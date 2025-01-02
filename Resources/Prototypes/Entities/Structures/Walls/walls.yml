@@ -126,7 +126,7 @@
   - type: StaticPrice
     price: 75
   - type: RadiationBlocker
-    resistance: 1
+    resistance: 2
   - type: BlockWeather
   - type: SunShadowCast
 
@@ -515,7 +515,7 @@
     key: walls
     base: plasma
   - type: RadiationBlocker
-    resistance: 7
+    resistance: 5
 
 - type: entity
   parent: BaseWall
@@ -715,7 +715,7 @@
   - type: StaticPrice
     price: 250
   - type: RadiationBlocker
-    resistance: 8
+    resistance: 5
 
 - type: entity
   parent: WallReinforced
@@ -1308,7 +1308,7 @@
     key: walls
     base: uranium
   - type: RadiationBlocker
-    resistance: 10
+    resistance: 6
 
 - type: entity
   parent: BaseWall
