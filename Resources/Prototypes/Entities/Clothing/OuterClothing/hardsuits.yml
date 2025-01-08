@@ -491,6 +491,7 @@
   - type: ClothingGrantComponent
     component:
     - type: SupermatterImmune
+  # end imp edits #
 
 #Chief Medical Officer's Hardsuit
 - type: entity
