@@ -17,6 +17,7 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Content.Shared._EinsteinEngines.Supermatter.Components;
 
 namespace Content.Shared.Projectiles;
 
@@ -119,47 +120,20 @@ public abstract partial class SharedProjectileSystem : EntitySystem
 
         _audio.PlayPredicted(component.Sound, uid, null);
         component.EmbeddedIntoUid = target;
-        var ev = new EmbedEvent(user, target);
-        RaiseLocalEvent(uid, ref ev);
-        Dirty(uid, component);
 
-        EnsureComp<EmbeddedContainerComponent>(target, out var embeddedContainer);
+        // Imp edits, though this whole thing was changed in an EE port anyway
+        var embedEv = new EmbedEvent(user, target);
+        RaiseLocalEvent(uid, ref embedEv);
 
-        //Assert that this entity not embed
-        DebugTools.AssertEqual(embeddedContainer.EmbeddedObjects.Contains(uid), false);
+        var embeddedEv = new EmbeddedEvent(user, uid);
+        RaiseLocalEvent(target, ref embeddedEv);
+        // End imp edits
 
-        embeddedContainer.EmbeddedObjects.Add(uid);
-    }
+        if (component.AutoRemoveDuration != 0)
+            component.AutoRemoveTime = _timing.CurTime + TimeSpan.FromSeconds(component.AutoRemoveDuration);
 
-    public void EmbedDetach(EntityUid uid, EmbeddableProjectileComponent? component, EntityUid? user = null)
-    {
-        if (!Resolve(uid, ref component))
-            return;
+        component.Target = target;
 
-        if (component.EmbeddedIntoUid is not null)
-        {
-            if (TryComp<EmbeddedContainerComponent>(component.EmbeddedIntoUid.Value, out var embeddedContainer))
-            {
-                embeddedContainer.EmbeddedObjects.Remove(uid);
-                Dirty(component.EmbeddedIntoUid.Value, embeddedContainer);
-                if (embeddedContainer.EmbeddedObjects.Count == 0)
-                    RemCompDeferred<EmbeddedContainerComponent>(component.EmbeddedIntoUid.Value);
-            }
-        }
-
-        if (component.DeleteOnRemove && _net.IsServer)
-        {
-            QueueDel(uid);
-            return;
-        }
-
-        var xform = Transform(uid);
-        if (TerminatingOrDeleted(xform.GridUid) && TerminatingOrDeleted(xform.MapUid))
-            return;
-        TryComp<PhysicsComponent>(uid, out var physics);
-        _physics.SetBodyType(uid, BodyType.Dynamic, body: physics, xform: xform);
-        _transform.AttachToGridOrMap(uid, xform);
-        component.EmbeddedIntoUid = null;
         Dirty(uid, component);
 
         // Reset whether the projectile has damaged anything if it successfully was removed

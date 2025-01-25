@@ -151,7 +151,13 @@ public sealed class GravityWellSystem : SharedGravityWellSystem
     public void GravPulse(EntityUid uid, float maxRange, float minRange, in Matrix3x2 baseMatrixDeltaV, TransformComponent? xform = null)
     {
         if (Resolve(uid, ref xform))
+        {
             GravPulse(xform.Coordinates, maxRange, minRange, in baseMatrixDeltaV);
+
+            // imp edit
+            var ev = new GravPulseEvent();
+            RaiseLocalEvent(uid, ref ev);
+        }
     }
 
     /// <summary>
@@ -166,7 +172,13 @@ public sealed class GravityWellSystem : SharedGravityWellSystem
     public void GravPulse(EntityUid uid, float maxRange, float minRange, float baseRadialDeltaV = 0.0f, float baseTangentialDeltaV = 0.0f, TransformComponent? xform = null)
     {
         if (Resolve(uid, ref xform))
+        {
             GravPulse(xform.Coordinates, maxRange, minRange, baseRadialDeltaV, baseTangentialDeltaV);
+
+            // imp edit
+            var ev = new GravPulseEvent();
+            RaiseLocalEvent(uid, ref ev);
+        }
     }
 
     /// <summary>
@@ -273,4 +285,26 @@ public sealed class GravityWellSystem : SharedGravityWellSystem
     }
 
     #endregion Getters/Setters
+
+    #region Event Handlers
+
+    /// <summary>
+    /// Resets the pulse timings of the gravity well when the components starts up.
+    /// </summary>
+    /// <param name="uid">The uid of the gravity well to start up.</param>
+    /// <param name="comp">The state of the gravity well to start up.</param>
+    /// <param name="args">The startup prompt arguments.</param>
+    public void OnGravityWellStartup(EntityUid uid, GravityWellComponent comp, ComponentStartup args)
+    {
+        comp.LastPulseTime = _timing.CurTime;
+        comp.NextPulseTime = comp.LastPulseTime + comp.TargetPulsePeriod;
+    }
+
+    #endregion Event Handlers
 }
+
+/// <summary>
+/// Raised after each gravity pulse, imp edit
+/// </summary>
+[ByRefEvent]
+public readonly record struct GravPulseEvent();

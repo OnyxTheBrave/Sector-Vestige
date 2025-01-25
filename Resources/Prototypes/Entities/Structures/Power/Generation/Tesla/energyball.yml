@@ -15,7 +15,6 @@
   id: BaseEnergyBall
   abstract: true
   components:
-  - type: SupermatterImmune
   - type: Clickable
   - type: Physics
     bodyType: KinematicController
@@ -45,6 +44,7 @@
     shootMaxInterval: 10
     shootRange: 3
     lightningPrototype: Lightning
+  - type: SupermatterImmune # imp
 
 - type: entity
   id: TeslaEnergyBall
