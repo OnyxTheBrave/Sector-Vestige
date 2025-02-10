@@ -38,7 +38,7 @@ public sealed partial class SupermatterEntryContainer : BoxContainer
     private readonly Color _colorRed = StyleNano.DangerousRedFore;
     private readonly Color _colorOrange = StyleNano.ConcerningOrangeFore;
     private readonly Color _colorGreen = StyleNano.GoodGreenFore;
-    private readonly Color _colorTurqoise = Color.FromHex("#00fff7");
+    private readonly Color _colorTurquoise = Color.FromHex("#00fff7");
 
     // Arrow icons
     private readonly string _arrowUp = "/Textures/_EinsteinEngines/Interface/Supermatter/arrow_up.png";
@@ -51,6 +51,9 @@ public sealed partial class SupermatterEntryContainer : BoxContainer
 
     // Save focus data values so we don't update too often
     private SupermatterFocusData _focusData;
+
+    // Other saved variables
+    private bool _showAllGases;
 
     public SupermatterEntryContainer(NetEntity uid)
     {
@@ -67,12 +70,12 @@ public sealed partial class SupermatterEntryContainer : BoxContainer
         // Set the engine dictionary
         _engineDictionary = new()
         {
-            { "integrity",   ( IntegrityBarLabel,   IntegrityBar,   IntegrityBarBorder,   0.9f, 0.1f, _colorRed,      _colorOrange, _colorGreen ) },
-            { "power",       ( PowerBarLabel,       PowerBar,       PowerBarBorder,       0.9f, 0.1f, _colorGreen,    _colorOrange, _colorRed   ) },
-            { "radiation",   ( RadiationBarLabel,   RadiationBar,   RadiationBarBorder,   0.1f, 0.9f, _colorGreen,    _colorOrange, _colorRed   ) },
-            { "moles",       ( MolesBarLabel,       MolesBar,       MolesBarBorder,       0.5f, 0.5f, _colorGreen,    _colorOrange, _colorRed   ) },
-            { "temperature", ( TemperatureBarLabel, TemperatureBar, TemperatureBarBorder, 0.9f, 0.1f, _colorTurqoise, _colorGreen,  _colorRed   ) },
-            { "waste",       ( WasteBarLabel,       WasteBar,       WasteBarBorder,       0.5f, 0.5f, _colorGreen,    _colorOrange, _colorRed   ) }
+            { "integrity",   ( IntegrityBarLabel,   IntegrityBar,   IntegrityBarBorder,   0.9f, 0.1f, _colorRed,       _colorOrange, _colorGreen ) },
+            { "power",       ( PowerBarLabel,       PowerBar,       PowerBarBorder,       0.9f, 0.1f, _colorGreen,     _colorOrange, _colorRed   ) },
+            { "radiation",   ( RadiationBarLabel,   RadiationBar,   RadiationBarBorder,   0.1f, 0.9f, _colorGreen,     _colorOrange, _colorRed   ) },
+            { "moles",       ( MolesBarLabel,       MolesBar,       MolesBarBorder,       0.5f, 0.5f, _colorGreen,     _colorOrange, _colorRed   ) },
+            { "temperature", ( TemperatureBarLabel, TemperatureBar, TemperatureBarBorder, 0.9f, 0.1f, _colorTurquoise, _colorGreen,  _colorRed   ) },
+            { "waste",       ( WasteBarLabel,       WasteBar,       WasteBarBorder,       0.5f, 0.5f, _colorGreen,     _colorOrange, _colorRed   ) }
         };
 
         // Set the gas bar data
@@ -158,6 +161,7 @@ public sealed partial class SupermatterEntryContainer : BoxContainer
         // Set fonts and font colors
         SupermatterNameLabel.FontOverride = headerFont;
         SupermatterStatusLabel.FontOverride = normalFont;
+        ShowAllGasLabel.FontOverride = normalFont;
 
         IntegrityHealingInfoLabel.FontColorOverride = _colorGreen;
         RadiationBaseInfoLabel.FontColorOverride = _colorGreen;
@@ -181,6 +185,9 @@ public sealed partial class SupermatterEntryContainer : BoxContainer
             label.FontColorOverride = _colorSlate;
         }
 
+        // Set other variables
+        _showAllGases = false;
+
         // On click
         foreach (var detail in _expandDetails)
         {
@@ -190,6 +197,11 @@ public sealed partial class SupermatterEntryContainer : BoxContainer
                 detail.Arrow.TexturePath = detail.Container.Visible ? _arrowUp : _arrowDown;
             };
         }
+
+        ShowAllGasButton.OnButtonUp += args =>
+        {
+            _showAllGases = !_showAllGases;
+        };
     }
 
     public void UpdateEntry(SupermatterConsoleEntry entry, bool isFocus, SupermatterFocusData? focusData = null)
@@ -260,11 +272,8 @@ public sealed partial class SupermatterEntryContainer : BoxContainer
                     gasData.Add((data, moles));
                     data.Bar.UpdateEntry(gas, _focusData);
 
-                    // Hide 0% gases
-                    if (moles == 0f)
-                        data.Bar.Visible = false;
-                    else
-                        data.Bar.Visible = true;
+                    // Only show gases above 0%, unless "show all gases" is enabled
+                    data.Bar.Visible = moles > 0f || _showAllGases;
                 }
 
                 var gasSort = gasData.OrderByDescending(x => x.Moles).ThenBy(x => x.GasBarData.Gas);
