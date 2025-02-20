@@ -9,6 +9,7 @@ using Content.Shared._EE.Supermatter.Components;
 using Robust.Client.GameObjects;
 
 namespace Content.Client._EE.Supermatter.Systems;
+namespace Content.Client._EE.Supermatter.Systems;
 
 public sealed class SupermatterVisualizerSystem : VisualizerSystem<SupermatterVisualsComponent>
 {

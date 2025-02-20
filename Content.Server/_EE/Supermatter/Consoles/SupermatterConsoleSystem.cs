@@ -16,6 +16,7 @@ using Robust.Shared.Configuration;
 using System.Linq;
 
 namespace Content.Server._EE.Supermatter.Console.Systems;
+namespace Content.Server._EE.Supermatter.Console.Systems;
 
 public sealed class SupermatterConsoleSystem : SharedSupermatterConsoleSystem
 {
@@ -179,6 +180,7 @@ public sealed class SupermatterConsoleSystem : SharedSupermatterConsoleSystem
         if (sm.GasStorage != null)
             gases = sm.GasStorage;
 
+        var tempThreshold = Atmospherics.T0C + _config.GetCVar(EECCVars.SupermatterHeatPenaltyThreshold);
         var tempThreshold = Atmospherics.T0C + _config.GetCVar(EECCVars.SupermatterHeatPenaltyThreshold);
 
         return new SupermatterFocusData(
