@@ -93,6 +93,16 @@ namespace Content.Server.Destructible
                             $"Unknown damage source caused {ToPrettyString(uid):subject} to trigger [{triggeredBehaviors}]");
                     }
 
+                    // imp edit, unembed any embedded projectiles if the entity is about to be destroyed
+                    foreach (var behavior in threshold.Behaviors)
+                    {
+                        if (behavior is DoActsBehavior actBehavior && actBehavior.HasAct(ThresholdActs.Destruction))
+                        {
+                            ProjectileSystem.RemoveEmbeddedChildren(uid);
+                            break;
+                        }
+                    }
+
                     threshold.Execute(uid, this, EntityManager, args.Origin);
                 }
 

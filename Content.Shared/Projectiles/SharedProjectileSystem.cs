@@ -50,6 +50,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using Content.Shared._EE.Supermatter.Components;
+using Content.Shared.Destructible;
 
 namespace Content.Shared.Projectiles;
 
@@ -69,9 +70,10 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<ProjectileComponent, PreventCollideEvent>(PreventCollision);
-        SubscribeLocalEvent<EmbeddableProjectileComponent, ProjectileHitEvent>(OnEmbedProjectileHit);
-        SubscribeLocalEvent<EmbeddableProjectileComponent, ThrowDoHitEvent>(OnEmbedThrowDoHit);
-        SubscribeLocalEvent<EmbeddableProjectileComponent, ActivateInWorldEvent>(OnEmbedActivate);
+        SubscribeLocalEvent<EmbeddableProjectileComponent, ProjectileHitEvent>(OnEmbedProjectileHit, before: [typeof(SharedDestructibleSystem)]); // imp edit. ee code. i dont know at this point
+        SubscribeLocalEvent<EmbeddableProjectileComponent, ThrowDoHitEvent>(OnEmbedThrowDoHit, before: [typeof(SharedDestructibleSystem)]); // imp edit. ee code. i dont know at this point
+        SubscribeLocalEvent<EmbeddableProjectileComponent, ActivateInWorldEvent>(OnEmbedActivate, before: [typeof(ItemToggleSystem)]);
+        SubscribeLocalEvent<EmbeddableProjectileComponent, GetVerbsEvent<InteractionVerb>>(AddPullOutVerb);
         SubscribeLocalEvent<EmbeddableProjectileComponent, RemoveEmbeddedProjectileEvent>(OnEmbedRemove);
         SubscribeLocalEvent<EmbeddableProjectileComponent, ComponentShutdown>(OnEmbeddableCompShutdown);
 
@@ -163,10 +165,25 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         _physics.WakeBody(uid, body: physics);
 
         // try place it in the user's hand
-        _hands.TryPickupAnyHand(args.User, embeddable);
+        if (remover is { } removerUid)
+            _hands.TryPickupAnyHand(removerUid, uid);
     }
 
-    private void OnEmbeddableCompShutdown(Entity<EmbeddableProjectileComponent> embeddable, ref ComponentShutdown arg)
+    /// <summary>
+    /// Imp: Unembeds all child entities on a given entity.
+    /// </summary>
+    public void RemoveEmbeddedChildren(EntityUid uid)
+    {
+        var enumerator = Transform(uid).ChildEnumerator;
+
+        while (enumerator.MoveNext(out var child))
+        {
+            if (TryComp<EmbeddableProjectileComponent>(child, out var embed))
+                RemoveEmbed(child, embed);
+        }
+    }
+
+    private void OnEmbedRemove(EntityUid uid, EmbeddableProjectileComponent component, RemoveEmbeddedProjectileEvent args)
     {
         EmbedDetach(embeddable, embeddable.Comp);
     }
