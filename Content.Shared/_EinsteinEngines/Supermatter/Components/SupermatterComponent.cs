@@ -43,6 +43,9 @@ public sealed partial class SupermatterComponent : Component
     [DataField]
     public Color LightColorDelam = Color.FromHex("#ffe000");
 
+    [DataField]
+    public float HallucinationRange = 6f;
+
     #endregion
 
     #region Prototypes
