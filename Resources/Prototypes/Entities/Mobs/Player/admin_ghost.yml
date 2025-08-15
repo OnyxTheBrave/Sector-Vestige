@@ -107,6 +107,8 @@
   - type: Loadout
     prototypes: [ MobAghostGear ]
   - type: SupermatterImmune
+  - type: CharacterRecordConsole
+    consoleType: Admin
   - type: BypassInteractionChecks
 
 - type: entity
