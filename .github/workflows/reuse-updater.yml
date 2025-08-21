@@ -139,7 +139,8 @@ jobs:
             --files-modified "${{ steps.changed_files.outputs.modified }}" \
             --pr-license "${{ steps.changed_files.outputs.license }}" \
             --pr-base-sha ${{ github.event.pull_request.base.sha }} \
-            --pr-head-sha ${{ github.event.pull_request.head.sha }}
+            --pr-head-sha ${{ github.event.pull_request.head.sha }} \
+            --pr-author ${{ github.event.pull_request.user.login }}
         working-directory: ${{ github.workspace }}
 
       - name: Commit changes
