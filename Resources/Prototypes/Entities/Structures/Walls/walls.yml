@@ -1685,6 +1685,6 @@
   - type: IconSmooth
     key: cards
     base: card
-  - type: Occluder 
+  - type: Occluder
   - type: BlockWeather
   - type: SunShadowCast
