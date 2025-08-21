@@ -5,7 +5,11 @@ name: Update REUSE SPDX headers (PR)
 
 on:
   pull_request_target:
-    types: [opened, synchronize, reopened, ready_for_review]
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
 
 permissions:
   contents: write
@@ -39,7 +43,7 @@ jobs:
           repository: ${{ github.repository }}
           ref: ${{ github.event.pull_request.base.ref }}
           fetch-depth: 0
-          token: ${{ secrets.BOT_TOKEN }}
+          token: ${{ secrets.WEH_BOT_PAT }}
           path: base
 
       - name: Setup Git identity
@@ -62,7 +66,7 @@ jobs:
       - name: Determine changed files (API + git diff)
         id: diff
         env:
-          GH_TOKEN: ${{ secrets.BOT_TOKEN }}
+          GH_TOKEN: ${{ secrets.WEH_BOT_PAT }}
         run: |
           set -euo pipefail
           GH_REPO='${{ github.repository }}'
@@ -143,11 +147,11 @@ jobs:
       - name: Push changes to PR branch
         if: ${{ steps.commit.outputs.has_changes == 'true' && github.event.pull_request.maintainer_can_modify }}
         env:
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          WEH_BOT_PAT: ${{ secrets.WEH_BOT_PAT }}
           HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
           HEAD_REF: ${{ github.event.pull_request.head.ref }}
         run: |
           set -euo pipefail
-          git push "https://x-access-token:${BOT_TOKEN}@github.com/${HEAD_REPO}.git" "HEAD:${HEAD_REF}"
+          git push "https://x-access-token:${WEH_BOT_PAT}@github.com/${HEAD_REPO}.git" "HEAD:${HEAD_REF}"
         shell: bash
         working-directory: pr
