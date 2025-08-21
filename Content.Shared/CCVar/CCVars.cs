@@ -103,6 +103,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared._EinsteinEngines.Supermatter.Components;
+using Content.Shared.Administration;
+using Content.Shared.CCVar.CVarAccess;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 
