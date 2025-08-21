@@ -4,7 +4,7 @@
 name: Update REUSE SPDX headers (PR)
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened, ready_for_review]
 
 permissions:
@@ -24,13 +24,23 @@ jobs:
     if: ${{ github.actor != 'PJBot' && github.actor != 'weh-bot' && github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout PR head
+      - name: Checkout PR head (untrusted)
         uses: actions/checkout@v4
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
-          persist-credentials: true
+          persist-credentials: false
+          path: pr
+
+      - name: Checkout base repo (trusted)
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ github.event.pull_request.base.ref }}
+          fetch-depth: 0
+          token: ${{ secrets.BOT_TOKEN }}
+          path: base
 
       - name: Setup Git identity
         run: |
@@ -52,7 +62,7 @@ jobs:
       - name: Determine changed files (API + git diff)
         id: diff
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.BOT_TOKEN }}
         run: |
           set -euo pipefail
           GH_REPO='${{ github.repository }}'
@@ -99,12 +109,13 @@ jobs:
             echo "modified<<EOF"; echo "$MODIFIED_FILES"; echo "EOF";
           } >> $GITHUB_OUTPUT
         shell: bash
+        working-directory: pr
 
       - name: Update SPDX headers
         if: ${{ steps.diff.outputs.added != '' || steps.diff.outputs.modified != '' }}
         run: |
           set -euo pipefail
-          PYTHONPATH="" python Tools/update_pr_reuse_headers.py \
+          PYTHONPATH="" python "$GITHUB_WORKSPACE/base/Tools/update_pr_reuse_headers.py" \
             --files-added "${{ steps.diff.outputs.added }}" \
             --files-modified "${{ steps.diff.outputs.modified }}" \
             --pr-license agpl \
@@ -112,6 +123,7 @@ jobs:
             --pr-head-sha ${{ github.event.pull_request.head.sha }} \
             --pr-author ${{ github.event.pull_request.user.login }}
         shell: bash
+        working-directory: pr
 
       - name: Commit changes
         if: ${{ steps.diff.outputs.added != '' || steps.diff.outputs.modified != '' }}
@@ -126,20 +138,16 @@ jobs:
           git commit -m "chore(reuse): add/update SPDX headers (#$PR_NUMBER)"
           echo "has_changes=true" >> $GITHUB_OUTPUT
         shell: bash
+        working-directory: pr
 
-      - name: Push changes (same-repo PRs)
-        if: ${{ steps.commit.outputs.has_changes == 'true' && github.event.pull_request.head.repo.full_name == github.repository }}
+      - name: Push changes to PR branch
+        if: ${{ steps.commit.outputs.has_changes == 'true' && github.event.pull_request.maintainer_can_modify }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
           HEAD_REF: ${{ github.event.pull_request.head.ref }}
         run: |
           set -euo pipefail
-          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${HEAD_REPO}.git" "HEAD:${HEAD_REF}"
+          git push "https://x-access-token:${BOT_TOKEN}@github.com/${HEAD_REPO}.git" "HEAD:${HEAD_REF}"
         shell: bash
-
-      - name: Skip push (fork PRs)
-        if: ${{ steps.commit.outputs.has_changes == 'true' && github.event.pull_request.head.repo.full_name != github.repository }}
-        run: |
-          echo "Detected fork PR; push is skipped in PR workflow. pull_request_target workflow on base will handle pushing once merged to default branch."
-        shell: bash
+        working-directory: pr
