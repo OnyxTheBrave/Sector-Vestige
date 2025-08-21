@@ -112,9 +112,9 @@ jobs:
             ADDED_FILES=""
             MODIFIED_FILES=""
           else
-            # Case-insensitive extension match
-            ADDED_FILES=$(echo "$PR_FILES" | awk 'tolower($1)=="added" { $1=""; sub(/^\s+/, ""); print }' | grep -Eio '\\.((cs)|(ya?ml)|(py))$' -q >/dev/null && echo "$PR_FILES" | awk 'tolower($1)=="added" { $1=""; sub(/^\s+/, ""); print }' | grep -Eiu '\\.(cs|ya?ml|py)$' | xargs || true)
-            MODIFIED_FILES=$(echo "$PR_FILES" | awk 'tolower($1) ~ /^(modified|renamed|copied|changed)$/ { $1=""; sub(/^\s+/, ""); print }' | grep -Eiu '\\.(cs|ya?ml|py)$' | xargs) || true
+            # Case-insensitive extension and status match using awk only
+            ADDED_FILES=$(echo "$PR_FILES" | awk '{ s=tolower($1); $1=""; sub(/^\s+/, ""); p=$0; lp=tolower(p); if ((s=="added" || s=="a") && lp ~ /\.(cs|yml|yaml|py)$/) print p }' | xargs) || true
+            MODIFIED_FILES=$(echo "$PR_FILES" | awk '{ s=tolower($1); $1=""; sub(/^\s+/, ""); p=$0; lp=tolower(p); if ((s=="modified" || s=="m" || s=="renamed" || s=="copied" || s=="changed") && lp ~ /\.(cs|yml|yaml|py)$/) print p }' | xargs) || true
           fi
 
           echo "Added Files: $ADDED_FILES"
@@ -133,16 +133,16 @@ jobs:
           echo "Checking PR body for license..."
           if grep -q "LICENSE: MIT" <<< "$PR_BODY"; then
             echo "PR_LICENSE=mit" >> $GITHUB_ENV
-            echo "License specified in PR: MIT"
+            echo "PR license override requested in PR body: MIT"
           elif grep -q "LICENSE: AGPL" <<< "$PR_BODY"; then
             echo "PR_LICENSE=agpl" >> $GITHUB_ENV
-            echo "License specified in PR: AGPL"
+            echo "PR license override requested in PR body: AGPL"
           elif grep -q "LICENSE: MPL" <<< "$PR_BODY"; then
             echo "PR_LICENSE=mpl" >> $GITHUB_ENV
-            echo "License specified in PR: MPL"
+            echo "PR license override requested in PR body: MPL"
           else
-            echo "PR_LICENSE=mit" >> $GITHUB_ENV
-            echo "No license specified in PR, using default: MIT"
+            echo "PR_LICENSE=agpl" >> $GITHUB_ENV
+            echo "No license override specified in PR body; using PR default: agpl (per-file path rules may override)"
           fi
 
       - name: Skip if no relevant files changed
