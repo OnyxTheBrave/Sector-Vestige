@@ -101,12 +101,24 @@ jobs:
           echo "API reported files (status path):"
           echo "${PR_FILES}" | sed 's/^/  /' || true
 
+          # Initialize to avoid unbound variable errors with `set -u`
+          DIFF_LINES=""
           if [ "${GITHUB_EVENT_NAME}" = "pull_request_target" ]; then
             git remote add fork "https://github.com/${{ github.event.pull_request.head.repo.full_name }}.git" || true
             git fetch --no-tags --prune --depth=0 fork "${{ github.event.pull_request.head.ref }}:pr-head"
-            DIFF_LINES=$(git diff --name-status "${{ github.event.pull_request.base.sha }}" pr-head | sed 's/^\t\+/\t/g' | awk '{s=$1; $1=""; sub(/^\s+/, ""); print tolower(s)" "$0}') | sed '/^$/d' || true
+            DIFF_LINES=$(
+              git diff --name-status "${{ github.event.pull_request.base.sha }}" pr-head \
+                | sed 's/^\t\+/\t/g' \
+                | awk '{s=$1; $1=""; sub(/^\s+/, ""); print tolower(s)" "$0}' \
+                | sed '/^$/d'
+            ) || true
           else
-            DIFF_LINES=$(git diff --name-status "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" | sed 's/^\t\+/\t/g' | awk '{s=$1; $1=""; sub(/^\s+/, ""); print tolower(s)" "$0}') | sed '/^$/d' || true
+            DIFF_LINES=$(
+              git diff --name-status "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" \
+                | sed 's/^\t\+/\t/g' \
+                | awk '{s=$1; $1=""; sub(/^\s+/, ""); print tolower(s)" "$0}' \
+                | sed '/^$/d'
+            ) || true
           fi
 
           if [ -n "${DIFF_LINES}" ]; then
