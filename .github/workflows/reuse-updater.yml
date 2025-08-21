@@ -65,7 +65,10 @@ jobs:
           GH_REPO: ${{ github.repository }}
           PR_NUMBER: ${{ env.PR_NUMBER }}
         run: |
-          set -e # Exit script on first error
+          set -e
+          set -o pipefail
+          echo "Base SHA: ${{ github.event.pull_request.base.sha }}"
+          echo "Head SHA: ${{ github.event.pull_request.head.sha }}"
 
           echo "Fetching files for PR #${PR_NUMBER} in repo ${GH_REPO}"
 
@@ -90,13 +93,28 @@ jobs:
           # Trim leading/trailing newlines
           PR_FILES=$(echo "${PR_FILES}" | sed '/^$/d')
 
+          echo "API reported files (status path):"
+          echo "${PR_FILES}" | sed 's/^/  /' || true
+
+          # Fallback: also compute changes from git diff of base..head
+          DIFF_LINES=$(git diff --name-status "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" | sed 's/^\t\+/\t/g' | awk '{s=$1; $1=""; sub(/^\s+/, ""); print tolower(s)" "$0}') || true
+          if [ -n "${DIFF_LINES}" ]; then
+            echo "git diff reported files (status path):"
+            echo "${DIFF_LINES}" | sed 's/^/  /'
+            PR_FILES=$(printf "%s\n%s\n" "${PR_FILES}" "${DIFF_LINES}")
+          fi
+
+          # De-duplicate
+          PR_FILES=$(echo "${PR_FILES}" | sed '/^$/d' | sort -u)
+
           if [ -z "$PR_FILES" ]; then
             echo "No files found in PR."
             ADDED_FILES=""
             MODIFIED_FILES=""
           else
-            ADDED_FILES=$(echo "$PR_FILES" | grep -E "^added" | grep -E '\\.(cs|ya?ml|py)$' | sed 's/^added //' | xargs) || true
-            MODIFIED_FILES=$(echo "$PR_FILES" | grep -E "^(modified|renamed|copied|changed)" | grep -E '\\.(cs|ya?ml|py)$' | sed 's/^[^ ]* //' | xargs) || true
+            # Case-insensitive extension match
+            ADDED_FILES=$(echo "$PR_FILES" | awk 'tolower($1)=="added" { $1=""; sub(/^\s+/, ""); print }' | grep -Eio '\\.((cs)|(ya?ml)|(py))$' -q >/dev/null && echo "$PR_FILES" | awk 'tolower($1)=="added" { $1=""; sub(/^\s+/, ""); print }' | grep -Eiu '\\.(cs|ya?ml|py)$' | xargs || true)
+            MODIFIED_FILES=$(echo "$PR_FILES" | awk 'tolower($1) ~ /^(modified|renamed|copied|changed)$/ { $1=""; sub(/^\s+/, ""); print }' | grep -Eiu '\\.(cs|ya?ml|py)$' | xargs) || true
           fi
 
           echo "Added Files: $ADDED_FILES"
