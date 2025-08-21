@@ -43,6 +43,7 @@ jobs:
           sudo apt-get install -y jq
         shell: bash
 
+      ## i swear to god i'm going insane
       - name: Resolve bot identity
         id: bot_id
         env:
