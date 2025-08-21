@@ -174,19 +174,6 @@ jobs:
         working-directory: ${{ github.workspace }}
         shell: bash
 
-      - name: Run REUSE Header Update Script (pull_request_target)
-        if: ${{ github.event_name == 'pull_request_target' && (steps.changed_files.outputs.added != '' || steps.changed_files.outputs.modified != '') }}
-        run: |
-          PYTHONPATH="" python /tmp/reuse/updater.py \
-            --files-added "${{ steps.changed_files.outputs.added }}" \
-            --files-modified "${{ steps.changed_files.outputs.modified }}" \
-            --pr-license "$PR_LICENSE" \
-            --pr-base-sha ${{ github.event.pull_request.base.sha }} \
-            --pr-head-sha ${{ github.event.pull_request.head.sha }} \
-            --pr-author ${{ github.event.pull_request.user.login }}
-        working-directory: _prwork
-        shell: bash
-
       - name: Commit changes
         if: ${{ steps.changed_files.outputs.added != '' || steps.changed_files.outputs.modified != '' }}
         id: commit
