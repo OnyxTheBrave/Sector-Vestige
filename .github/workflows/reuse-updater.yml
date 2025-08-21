@@ -179,7 +179,52 @@ jobs:
           git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
         shell: bash
 
-      - name: Skip commit on forks (informational)
-        if: github.event.pull_request.head.repo.full_name != github.repository
-        run: echo "Running in forked PR context — not pushing changes."
+      - name: Detect and export changes for fork PRs
+        id: fork_patch
+        if: ${{ github.event.pull_request.head.repo.full_name != github.repository && (steps.changed_files.outputs.added != '' || steps.changed_files.outputs.modified != '') }}
+        run: |
+          if git diff --quiet; then
+            echo "No changes to export for patch (headers already up-to-date)."
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            # Include binary-safe diff of working tree changes
+            git diff --binary > reuse-headers.patch
+            echo "Wrote patch file: reuse-headers.patch"
+          fi
+        shell: bash
+
+      - name: Upload patch artifact (fork PRs)
+        if: ${{ steps.fork_patch.outputs.has_changes == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: reuse-headers-patch
+          path: reuse-headers.patch
+          if-no-files-found: error
+
+      - name: Comment on PR with patch instructions (fork PRs)
+        if: ${{ steps.fork_patch.outputs.has_changes == 'true' }}
+        env:
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+        run: |
+          body=$(cat <<'EOF'
+          Automated REUSE header update prepared for this forked PR.
+
+          CI cannot push commits to your fork. To apply the changes:
+
+          1) Download the artifact named "reuse-headers-patch" from this workflow run.
+          2) Apply it locally in your repo root:
+             git apply reuse-headers.patch
+          3) Commit and push the result to update this PR.
+
+          Alternatively, you can run locally:
+             python Tools/update_pr_reuse_headers.py \
+               --files-added "${{ steps.changed_files.outputs.added }}" \
+               --files-modified "${{ steps.changed_files.outputs.modified }}"
+          EOF
+          )
+          curl -s -f -H "Authorization: token ${GH_TOKEN}" -H "Accept: application/vnd.github+json" -X POST \
+            "https://api.github.com/repos/${GH_REPO}/issues/${PR_NUMBER}/comments" \
+            -d "$(jq -n --arg body "$body" '{body: $body}')"
         shell: bash
