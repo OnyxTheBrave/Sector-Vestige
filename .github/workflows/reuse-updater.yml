@@ -1,20 +1,29 @@
-## SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-FileCopyrightText: 2025 LateStation14 Contributors
+# SPDX-License-Identifier: AGPL-3.0-or-later
 
-name: Update REUSE Headers
+name: Update REUSE SPDX headers
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - '**/*.cs'
       - '**/*.yml'
       - '**/*.yaml'
       - '**/*.py'
+      - '**/*.xml'
+      - '**/*.xaml'
+      - '**/*.md'
+      - '**/*.sh'
+      - '**/*.bat'
+      - '**/*.ps1'
       - '.reuse/**'
       - 'REUSE.toml'
       - 'LICENSES/**'
-  pull_request_target:
-    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: write
+  pull-requests: read
 
 env:
   GH_TOKEN: ${{ github.token }}
@@ -26,24 +35,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  update_headers:
+  reuse_spdx:
     if: ${{ github.actor != 'PJBot' && github.actor != 'weh-bot' && github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: read
     steps:
-      - name: Checkout PR head (pull_request)
-        if: ${{ github.event_name == 'pull_request' }}
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 0
-          persist-credentials: false
-
-      - name: Checkout base repo (pull_request_target)
-        if: ${{ github.event_name == 'pull_request_target' }}
+      - name: Checkout base repo (trusted)
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository }}
@@ -57,7 +53,7 @@ jobs:
           git config --global user.email "weh-bot@users.noreply.github.com"
         shell: bash
 
-      - name: Setup Python
+      - name: Setup Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -68,18 +64,23 @@ jobs:
           sudo apt-get install -y jq
         shell: bash
 
-      - name: Get Changed Files and PR Info
-        id: changed_files
-        env:
-          PR_BODY: ${{ github.event.pull_request.body }}
-          GH_REPO: ${{ github.repository }}
-          PR_NUMBER: ${{ env.PR_NUMBER }}
+      - name: Fetch PR head into local ref
         run: |
           set -euo pipefail
-          echo "Base SHA: ${{ github.event.pull_request.base.sha }}"
-          echo "Head SHA: ${{ github.event.pull_request.head.sha }}"
+          git remote add fork "https://github.com/${{ github.event.pull_request.head.repo.full_name }}.git" || true
+          git fetch --no-tags --prune --depth=0 fork "${{ github.event.pull_request.head.ref }}:pr-head"
+          git worktree add _prwork pr-head
+          # Copy trusted updater script from base into a temp path
+          mkdir -p /tmp/reuse
+          cp Tools/update_pr_reuse_headers.py /tmp/reuse/updater.py
+        shell: bash
 
-          echo "Fetching files for PR #${PR_NUMBER} in repo ${GH_REPO}"
+      - name: Determine changed files
+        id: diff
+        run: |
+          set -euo pipefail
+          GH_REPO='${{ github.repository }}'
+          PR_NUMBER='${{ env.PR_NUMBER }}'
           PR_FILES=""
           PAGE=1
           while true; do
@@ -96,129 +97,71 @@ jobs:
             PAGE=$((PAGE+1))
           done
 
-          PR_FILES=$(echo "${PR_FILES}" | sed '/^$/d')
+          PR_FILES=$(echo "${PR_FILES}" | sed '/^$/d' | sort -u)
+          echo "API reported files (status path):"; echo "${PR_FILES}" | sed 's/^/  /' || true
 
-          echo "API reported files (status path):"
-          echo "${PR_FILES}" | sed 's/^/  /' || true
-
-          # Initialize to avoid unbound variable errors with `set -u`
-          DIFF_LINES=""
-          if [ "${GITHUB_EVENT_NAME}" = "pull_request_target" ]; then
-            git remote add fork "https://github.com/${{ github.event.pull_request.head.repo.full_name }}.git" || true
-            git fetch --no-tags --prune --depth=0 fork "${{ github.event.pull_request.head.ref }}:pr-head"
-            DIFF_LINES=$(
-              git diff --name-status "${{ github.event.pull_request.base.sha }}" pr-head \
-                | sed 's/^\t\+/\t/g' \
-                | awk '{s=$1; $1=""; sub(/^\s+/, ""); print tolower(s)" "$0}' \
-                | sed '/^$/d'
-            ) || true
-          else
-            DIFF_LINES=$(
-              git diff --name-status "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" \
-                | sed 's/^\t\+/\t/g' \
-                | awk '{s=$1; $1=""; sub(/^\s+/, ""); print tolower(s)" "$0}' \
-                | sed '/^$/d'
-            ) || true
-          fi
-
+          DIFF_LINES=$(git diff --name-status "${{ github.event.pull_request.base.sha }}" pr-head \
+            | sed 's/^\t\+/\t/g' \
+            | awk '{s=$1; $1=""; sub(/^\s+/, ""); print tolower(s)" "$0}' \
+            | sed '/^$/d') || true
           if [ -n "${DIFF_LINES}" ]; then
-            echo "git diff reported files (status path):"
-            echo "${DIFF_LINES}" | sed 's/^/  /'
+            echo "git diff reported files (status path):"; echo "${DIFF_LINES}" | sed 's/^/  /'
             PR_FILES=$(printf "%s\n%s\n" "${PR_FILES}" "${DIFF_LINES}")
           fi
 
           PR_FILES=$(echo "${PR_FILES}" | sed '/^$/d' | sort -u)
+          EXT_RE='\.(cs|yml|yaml|py|xml|xaml|md|sh|bat|ps1)$'
+          ADDED_FILES=$(echo "$PR_FILES" | awk -v extre="$EXT_RE" '{ s=tolower($1); $1=""; sub(/^\s+/, ""); p=$0; lp=tolower(p); if ((s=="added" || s=="a") && lp ~ extre) print p }' | xargs) || true
+          MODIFIED_FILES=$(echo "$PR_FILES" | awk -v extre="$EXT_RE" '{ s=tolower($1); $1=""; sub(/^\s+/, ""); p=$0; lp=tolower(p); if ((s=="modified" || s=="m" || s=="renamed" || s=="copied" || s=="changed") && lp ~ extre) print p }' | xargs) || true
 
-          if [ -z "$PR_FILES" ]; then
-            ADDED_FILES=""
-            MODIFIED_FILES=""
-          else
-            ADDED_FILES=$(echo "$PR_FILES" | awk '{ s=tolower($1); $1=""; sub(/^\s+/, ""); p=$0; lp=tolower(p); if ((s=="added" || s=="a") && lp ~ /\.(cs|yml|yaml|py)$/) print p }' | xargs) || true
-            MODIFIED_FILES=$(echo "$PR_FILES" | awk '{ s=tolower($1); $1=""; sub(/^\s+/, ""); p=$0; lp=tolower(p); if ((s=="modified" || s=="m" || s=="renamed" || s=="copied" || s=="changed") && lp ~ /\.(cs|yml|yaml|py)$/) print p }' | xargs) || true
-          fi
-
-          echo "Added Files: $ADDED_FILES"
-          echo "Modified Files: $MODIFIED_FILES"
-
+          echo "Added Files: $ADDED_FILES"; echo "Modified Files: $MODIFIED_FILES"
           {
-            echo "added<<EOF";
-            echo "$ADDED_FILES";
-            echo "EOF";
-            echo "modified<<EOF";
-            echo "$MODIFIED_FILES";
-            echo "EOF";
+            echo "added<<EOF"; echo "$ADDED_FILES"; echo "EOF";
+            echo "modified<<EOF"; echo "$MODIFIED_FILES"; echo "EOF";
           } >> $GITHUB_OUTPUT
-
-          if grep -q "LICENSE: MIT" <<< "$PR_BODY"; then
-            echo "PR_LICENSE=mit" >> $GITHUB_ENV
-          elif grep -q "LICENSE: AGPL" <<< "$PR_BODY"; then
-            echo "PR_LICENSE=agpl" >> $GITHUB_ENV
-          elif grep -q "LICENSE: MPL" <<< "$PR_BODY"; then
-            echo "PR_LICENSE=mpl" >> $GITHUB_ENV
-          else
-            echo "PR_LICENSE=agpl" >> $GITHUB_ENV
-          fi
         shell: bash
 
-      - name: Skip if no relevant files changed
-        if: ${{ steps.changed_files.outputs.added == '' && steps.changed_files.outputs.modified == '' }}
-        run: echo "No relevant .cs/.yml/.yaml/.py changes detected; skipping header update."
-        shell: bash
-
-      - name: Prepare PR worktree (pull_request_target)
-        if: ${{ github.event_name == 'pull_request_target' && (steps.changed_files.outputs.added != '' || steps.changed_files.outputs.modified != '') }}
+      - name: Update SPDX headers
+        if: ${{ steps.diff.outputs.added != '' || steps.diff.outputs.modified != '' }}
         run: |
-          git worktree add _prwork pr-head
-          mkdir -p /tmp/reuse
-          cp Tools/update_pr_reuse_headers.py /tmp/reuse/updater.py
-        shell: bash
-
-      - name: Run REUSE Header Update Script (pull_request)
-        if: ${{ github.event_name == 'pull_request' && (steps.changed_files.outputs.added != '' || steps.changed_files.outputs.modified != '') }}
-        run: |
-          python Tools/update_pr_reuse_headers.py \
-            --files-added "${{ steps.changed_files.outputs.added }}" \
-            --files-modified "${{ steps.changed_files.outputs.modified }}" \
-            --pr-license "$PR_LICENSE" \
+          set -euo pipefail
+          PYTHONPATH="" python /tmp/reuse/updater.py \
+            --files-added "${{ steps.diff.outputs.added }}" \
+            --files-modified "${{ steps.diff.outputs.modified }}" \
+            --pr-license agpl \
             --pr-base-sha ${{ github.event.pull_request.base.sha }} \
             --pr-head-sha ${{ github.event.pull_request.head.sha }} \
             --pr-author ${{ github.event.pull_request.user.login }}
-        working-directory: ${{ github.workspace }}
+        working-directory: _prwork
         shell: bash
 
       - name: Commit changes
-        if: ${{ steps.changed_files.outputs.added != '' || steps.changed_files.outputs.modified != '' }}
+        if: ${{ steps.diff.outputs.added != '' || steps.diff.outputs.modified != '' }}
         id: commit
         run: |
-          if [ -d _prwork ]; then cd _prwork; fi
+          set -euo pipefail
+          cd _prwork
           git add -A
           if git diff --cached --quiet; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
             exit 0
           fi
-          git commit -m "chore(reuse): update REUSE headers (#$PR_NUMBER)"
+          git commit -m "chore(reuse): add/update SPDX headers (#$PR_NUMBER)"
           echo "has_changes=true" >> $GITHUB_OUTPUT
         shell: bash
 
-      - name: Push changes (same-repo PRs)
-        if: ${{ steps.commit.outputs.has_changes == 'true' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: |
-          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.event.pull_request.head.repo.full_name }}.git" "HEAD:${{ github.event.pull_request.head.ref }}"
-        shell: bash
-
-      - name: Push changes (fork PRs via bot token)
-        if: ${{ steps.commit.outputs.has_changes == 'true' && github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.full_name != github.repository }}
+      - name: Push changes to PR via WEH bot
+        if: ${{ steps.commit.outputs.has_changes == 'true' }}
         env:
           BOT_PAT: ${{ secrets.WEH_BOT_PAT }}
           HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
           HEAD_REF: ${{ github.event.pull_request.head.ref }}
         run: |
-          cd _prwork
+          set -euo pipefail
           if [ -z "${BOT_PAT}" ]; then
-            echo "Missing WEH_BOT_PAT secret; cannot push to fork automatically." >&2
+            echo "Missing WEH_BOT_PAT secret; cannot push to PR automatically." >&2
             exit 1
           fi
+          cd _prwork
           git push "https://x-access-token:${BOT_PAT}@github.com/${HEAD_REPO}.git" "HEAD:${HEAD_REF}"
         shell: bash
