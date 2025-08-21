@@ -1,5 +1,9 @@
 # SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Aidenkrz <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 sleepyyapril <123355664+sleepyyapril@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 sleepyyapril <flyingkarii@gmail.com>
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aidenkrz <28298836+Aidenkrz@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Lachryphage (GitHub)
 # SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
 # SPDX-FileCopyrightText: 2025 sleepyyapril <123355664+sleepyyapril@users.noreply.github.com>
@@ -30,6 +34,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
           token: ${{ secrets.WEH_BOT_PAT }}
@@ -118,6 +123,8 @@ jobs:
             echo "license=mpl" >> $GITHUB_OUTPUT
             echo "License specified in PR: MPL"
           else
+            echo "PR_LICENSE=agpl" >> $GITHUB_ENV
+            echo "No license specified in PR, using default: AGPL"
             echo "license=agpl" >> $GITHUB_OUTPUT
             echo "No license specified in PR, using default: AGPL"
           fi
@@ -125,14 +132,25 @@ jobs:
       - name: Run REUSE Header Update Script
         run: |
           python Tools/update_pr_reuse_headers.py \
+            --files-added ${{ env.ADDED_FILES_LIST }} \
+            --files-modified ${{ env.MODIFIED_FILES_LIST }} \
+            --pr-license ${{ env.PR_LICENSE }} \
             --files-added "${{ steps.changed_files.outputs.added }}" \
             --files-modified "${{ steps.changed_files.outputs.modified }}" \
             --pr-license "${{ steps.changed_files.outputs.license }}" \
             --pr-base-sha ${{ github.event.pull_request.base.sha }} \
-            --pr-head-sha ${{ github.event.pull_request.head.sha }} \
-            --pr-author ${{ github.event.pull_request.user.login }}
+            --pr-head-sha ${{ github.event.pull_request.head.sha }}
         working-directory: ${{ github.workspace }}
 
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: automatically update REUSE headers"
+          commit_user_name: ${{ vars.WEH_BOT_USERNAME }}
+          commit_user_email: ${{ vars.WEH_BOT_EMAIL }}
+          commit_author: ${{ vars.WEH_BOT_USERNAME }} <${{ vars.WEH_BOT_EMAIL }}>
+          skip_dirty_check: false
+          skip_fetch: true
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
