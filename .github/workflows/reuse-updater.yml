@@ -5,7 +5,7 @@
 name: Update REUSE Headers
 
 on:
-  pull_request_target:
+  pull_request:
     types:
       - opened
       - synchronize
@@ -25,6 +25,10 @@ env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
   REUSE_LICENSE_MAP_PATH: .reuse/path-licenses.json
 
+concurrency:
+  group: reuse-updater-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   update_headers:
     # Skip runs triggered by our bot to avoid self-trigger loops on synchronize
@@ -34,21 +38,11 @@ jobs:
       contents: write
       pull-requests: read
     steps:
-      - name: Checkout base repo (trusted)
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ github.repository }}
-          ref: ${{ github.event.pull_request.base.sha }}
-          path: base
-          fetch-depth: 1
-          persist-credentials: false
-
-      - name: Checkout PR head (untrusted content)
+      - name: Checkout Code
         uses: actions/checkout@v4
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.sha }}
-          path: pr
           fetch-depth: 0
           persist-credentials: false
 
@@ -107,7 +101,13 @@ jobs:
           echo "API reported files (status path):"
           echo "${PR_FILES}" | sed 's/^/  /' || true
 
-          # Note: For security, we avoid executing git diff across untrusted checkouts here; API results are sufficient.
+          # Fallback: also compute changes from git diff of base..head
+          DIFF_LINES=$(git diff --name-status "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" | sed 's/^\t\+/\t/g' | awk '{s=$1; $1=""; sub(/^\s+/, ""); print tolower(s)" "$0}') || true
+          if [ -n "${DIFF_LINES}" ]; then
+            echo "git diff reported files (status path):"
+            echo "${DIFF_LINES}" | sed 's/^/  /'
+            PR_FILES=$(printf "%s\n%s\n" "${PR_FILES}" "${DIFF_LINES}")
+          fi
 
           # De-duplicate
           PR_FILES=$(echo "${PR_FILES}" | sed '/^$/d' | sort -u)
@@ -159,56 +159,22 @@ jobs:
       - name: Run REUSE Header Update Script
         if: ${{ steps.changed_files.outputs.added != '' || steps.changed_files.outputs.modified != '' }}
         run: |
-          # Export base license map JSON into env (safer than reading from PR checkout)
-          if [ -f "base/.reuse/path-licenses.json" ]; then
-            echo "REUSE_LICENSE_MAP_JSON<<EOF" >> $GITHUB_ENV
-            cat base/.reuse/path-licenses.json >> $GITHUB_ENV
-            echo "EOF" >> $GITHUB_ENV
-          fi
-          python base/Tools/update_pr_reuse_headers.py \
+          python Tools/update_pr_reuse_headers.py \
             --files-added "${{ steps.changed_files.outputs.added }}" \
             --files-modified "${{ steps.changed_files.outputs.modified }}" \
             --pr-license "$PR_LICENSE" \
             --pr-base-sha ${{ github.event.pull_request.base.sha }} \
             --pr-head-sha ${{ github.event.pull_request.head.sha }} \
             --pr-author ${{ github.event.pull_request.user.login }}
-        working-directory: pr
+        working-directory: ${{ github.workspace }}
         shell: bash
 
-      - name: Check if maintainers can modify fork PR
-        id: perm
-        if: ${{ github.event.pull_request.head.repo.full_name != github.repository && (steps.changed_files.outputs.added != '' || steps.changed_files.outputs.modified != '') }}
-        env:
-          GH_REPO: ${{ github.repository }}
-          PR_NUMBER: ${{ env.PR_NUMBER }}
-        run: |
-          set -e
-          resp=$(curl -s -f -H "Authorization: token ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${GH_REPO}/pulls/${PR_NUMBER}")
-          can=$(echo "$resp" | jq -r '.maintainer_can_modify // false')
-          echo "maintainer_can_modify=$can" >> $GITHUB_OUTPUT
-          echo "Maintainer can modify: $can"
-        shell: bash
-
-      - name: Check WEH bot token availability
-        id: weh
-        if: ${{ github.event.pull_request.head.repo.full_name != github.repository && (steps.changed_files.outputs.added != '' || steps.changed_files.outputs.modified != '') }}
-        env:
-          WEH_BOT_PAT: ${{ secrets.WEH_BOT_PAT }}
-        run: |
-          if [ -n "${WEH_BOT_PAT}" ]; then
-            echo "has_token=true" >> $GITHUB_OUTPUT
-          else
-            echo "has_token=false" >> $GITHUB_OUTPUT
-          fi
-        shell: bash
 
       - name: Commit changes (same-repo PRs only)
         if: ${{ github.event.pull_request.head.repo.full_name == github.repository && (steps.changed_files.outputs.added != '' || steps.changed_files.outputs.modified != '') }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          cd pr
           git add -A
           if git diff --cached --quiet; then
             echo "No changes to commit."
@@ -219,29 +185,11 @@ jobs:
           git push origin "HEAD:${{ github.event.pull_request.head.ref }}"
         shell: bash
 
-      - name: Commit changes to fork PR via WEH bot
-        if: ${{ github.event.pull_request.head.repo.full_name != github.repository && (steps.changed_files.outputs.added != '' || steps.changed_files.outputs.modified != '') && steps.perm.outputs.maintainer_can_modify == 'true' && steps.weh.outputs.has_token == 'true' }}
-        env:
-          HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
-          HEAD_REF: ${{ github.event.pull_request.head.ref }}
-        run: |
-          cd pr
-          git add -A
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-            exit 0
-          fi
-          git commit -m "chore(reuse): update REUSE headers (#$PR_NUMBER)"
-          # Push directly to the contributor's fork branch using WEH bot token
-          git remote set-url origin "https://x-access-token:${{ secrets.WEH_BOT_TOKEN }}@github.com/${HEAD_REPO}.git"
-          git push origin "HEAD:${HEAD_REF}"
-        shell: bash
-
+      # No direct push to forks from CI; fall back to patch artifact below
       - name: Detect and export changes for fork PRs (fallback)
         id: fork_patch
-        if: ${{ github.event.pull_request.head.repo.full_name != github.repository && (steps.changed_files.outputs.added != '' || steps.changed_files.outputs.modified != '') && (steps.perm.outputs.maintainer_can_modify != 'true' || steps.weh.outputs.has_token != 'true') }}
+        if: ${{ github.event.pull_request.head.repo.full_name != github.repository && (steps.changed_files.outputs.added != '' || steps.changed_files.outputs.modified != '') }}
         run: |
-          cd pr
           if git diff --quiet; then
             echo "No changes to export for patch (headers already up-to-date)."
             echo "has_changes=false" >> $GITHUB_OUTPUT
@@ -254,15 +202,15 @@ jobs:
         shell: bash
 
       - name: Upload patch artifact (fork PRs fallback)
-        if: ${{ steps.fork_patch.outputs.has_changes == 'true' && (steps.perm.outputs.maintainer_can_modify != 'true' || steps.weh.outputs.has_token != 'true') }}
+        if: ${{ steps.fork_patch.outputs.has_changes == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: reuse-headers-patch
-          path: pr/reuse-headers.patch
+          path: reuse-headers.patch
           if-no-files-found: error
 
       - name: Comment on PR with patch instructions (fork PRs fallback)
-        if: ${{ steps.fork_patch.outputs.has_changes == 'true' && (steps.perm.outputs.maintainer_can_modify != 'true' || steps.weh.outputs.has_token != 'true') }}
+        if: ${{ steps.fork_patch.outputs.has_changes == 'true' }}
         env:
           GH_REPO: ${{ github.repository }}
           PR_NUMBER: ${{ env.PR_NUMBER }}
@@ -270,7 +218,7 @@ jobs:
           body=$(cat <<'EOF'
           Automated REUSE header update prepared for this forked PR.
 
-          CI could not push commits to your fork (either "Allow edits by maintainers" is disabled or no bot token configured). To apply the changes:
+          CI cannot push commits to your fork. To apply the changes:
 
           1) Download the artifact named "reuse-headers-patch" from this workflow run.
           2) Apply it locally in your repo root:
