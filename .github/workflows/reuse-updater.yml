@@ -53,51 +53,64 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+        shell: bash
       - name: Get Changed Files and PR Info
         id: changed_files
         env:
-           PR_BODY: ${{ github.event.pull_request.body }}
-           GH_REPO: ${{ github.repository }}
-           PR_NUMBER: ${{ env.PR_NUMBER }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
         run: |
           set -e # Exit script on first error
 
           echo "Fetching files for PR #${PR_NUMBER} in repo ${GH_REPO}"
 
-          PR_FILES_JSON=$(curl -s -f -H "Authorization: token ${GH_TOKEN}" \
-            "https://api.github.com/repos/${GH_REPO}/pulls/${PR_NUMBER}/files")
+          # Fetch all PR files with pagination (per_page=100) and aggregate statuses
+          PR_FILES=""
+          PAGE=1
+          while true; do
+            PAGE_JSON=$(curl -s -f -H "Authorization: token ${GH_TOKEN}" \
+              "https://api.github.com/repos/${GH_REPO}/pulls/${PR_NUMBER}/files?per_page=100&page=${PAGE}") || true
+            if [ -z "${PAGE_JSON}" ] || ! echo "${PAGE_JSON}" | jq -e . >/dev/null 2>&1; then
+              break
+            fi
+            PAGE_COUNT=$(echo "${PAGE_JSON}" | jq 'length')
+            if [ "${PAGE_COUNT}" -eq 0 ] 2>/dev/null; then
+              break
+            fi
+            PAGE_LINES=$(echo "${PAGE_JSON}" | jq -r '.[] | select(.filename != null) | "\(.status) \(.filename)"')
+            PR_FILES=$(printf "%s\n%s\n" "${PR_FILES}" "${PAGE_LINES}")
+            PAGE=$((PAGE+1))
+          done
 
-          if [ $? -ne 0 ]; then
-            echo "Error fetching PR files from GitHub API."
-            exit 1
-          fi
-
-          if ! echo "$PR_FILES_JSON" | jq -e . > /dev/null; then
-             echo "Warning: Received empty or invalid JSON from GitHub API for PR files."
-             PR_FILES="" # Set PR_FILES to empty to avoid errors below
-          else
-             PR_FILES=$(echo "$PR_FILES_JSON" | jq -r '.[] | select(.filename != null) | "\(.status) \(.filename)"')
-          fi
+          # Trim leading/trailing newlines
+          PR_FILES=$(echo "${PR_FILES}" | sed '/^$/d')
 
           if [ -z "$PR_FILES" ]; then
             echo "No files found in PR."
             ADDED_FILES=""
             MODIFIED_FILES=""
           else
-            ADDED_FILES=$(echo "$PR_FILES" | grep -E "^added" | grep -E '\\.(cs|ya?ml)$' | sed 's/^added //' | xargs) || true
-            MODIFIED_FILES=$(echo "$PR_FILES" | grep -E "^(modified|renamed|copied|changed)" | grep -E '\\.(cs|ya?ml)$' | sed 's/^[^ ]* //' | xargs) || true
+            ADDED_FILES=$(echo "$PR_FILES" | grep -E "^added" | grep -E '\\.(cs|ya?ml|py)$' | sed 's/^added //' | xargs) || true
+            MODIFIED_FILES=$(echo "$PR_FILES" | grep -E "^(modified|renamed|copied|changed)" | grep -E '\\.(cs|ya?ml|py)$' | sed 's/^[^ ]* //' | xargs) || true
           fi
 
           echo "Added Files: $ADDED_FILES"
           echo "Modified Files: $MODIFIED_FILES"
 
-          echo "ADDED_FILES_LIST<<EOF" >> $GITHUB_ENV
-          echo "$ADDED_FILES" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-
-          echo "MODIFIED_FILES_LIST<<EOF" >> $GITHUB_ENV
-          echo "$MODIFIED_FILES" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          # Expose outputs for subsequent steps
+          {
+            echo "added<<EOF";
+            echo "$ADDED_FILES";
+            echo "EOF";
+            echo "modified<<EOF";
+            echo "$MODIFIED_FILES";
+            echo "EOF";
+          } >> $GITHUB_OUTPUT
 
           echo "Checking PR body for license..."
           if grep -q "LICENSE: MIT" <<< "$PR_BODY"; then
@@ -113,20 +126,19 @@ jobs:
             echo "PR_LICENSE=mit" >> $GITHUB_ENV
             echo "No license specified in PR, using default: MIT"
           fi
-        shell: bash
 
       - name: Skip if no relevant files changed
-        if: ${{ env.ADDED_FILES_LIST == '' && env.MODIFIED_FILES_LIST == '' }}
+        if: ${{ steps.changed_files.outputs.added == '' && steps.changed_files.outputs.modified == '' }}
         run: |
           echo "No relevant .cs/.yml/.yaml/.py changes detected; skipping header update."
         shell: bash
 
       - name: Run REUSE Header Update Script
-        if: ${{ env.ADDED_FILES_LIST != '' || env.MODIFIED_FILES_LIST != '' }}
+        if: ${{ steps.changed_files.outputs.added != '' || steps.changed_files.outputs.modified != '' }}
         run: |
           python Tools/update_pr_reuse_headers.py \
-            --files-added $ADDED_FILES_LIST \
-            --files-modified $MODIFIED_FILES_LIST \
+            --files-added "${{ steps.changed_files.outputs.added }}" \
+            --files-modified "${{ steps.changed_files.outputs.modified }}" \
             --pr-license "$PR_LICENSE" \
             --pr-base-sha ${{ github.event.pull_request.base.sha }} \
             --pr-head-sha ${{ github.event.pull_request.head.sha }} \
@@ -135,7 +147,7 @@ jobs:
         shell: bash
 
       - name: Commit changes (same-repo PRs only)
-        if: ${{ github.event.pull_request.head.repo.full_name == github.repository && (env.ADDED_FILES_LIST != '' || env.MODIFIED_FILES_LIST != '') }}
+        if: ${{ github.event.pull_request.head.repo.full_name == github.repository && (steps.changed_files.outputs.added != '' || steps.changed_files.outputs.modified != '') }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
