@@ -257,6 +257,7 @@
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
     - CircuitFloorsStatic
+    - SupermatterComputerCircuitboard # imp
     dynamicPacks:
     - EngineeringBoards
     - CargoBoards
