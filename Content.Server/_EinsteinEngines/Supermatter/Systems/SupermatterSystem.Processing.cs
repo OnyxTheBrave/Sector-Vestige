@@ -460,7 +460,7 @@ public sealed partial class SupermatterSystem
                 && pTransform.MapID == smTransform.MapID)
                 _popup.PopupEntity(Loc.GetString("supermatter-delam-player"), pEntity.Value, pEntity.Value, PopupType.MediumCaution);
         }
-        
+
         _audio.PlayGlobal(sm.DistortSound, Filter.BroadcastMap(Transform(uid).MapID), true);
 
         switch (sm.PreferredDelamType)
