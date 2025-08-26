@@ -1,13 +1,18 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
+<<<<<<<< HEAD:Resources/Textures/_DV/Structures/Machines/syndicate_fax_machine.rsi/meta.json
   "copyright": "Resprited by DangerRevolution from TauCetiClassic at commit https://github.com/TauCetiStation/TauCetiClassic/tree/23b5c47245804dd24507b75f250de5e87d34e294",
+========
+  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bfc9c6ba8126ee8c41564d68c4bfb9ce37faa8f8 and modified by Swept, modified again my Smugman",
+>>>>>>>> upstream/master:Resources/Textures/Objects/Tools/Lighters/gorlexmatch.rsi/meta.json
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
+<<<<<<<< HEAD:Resources/Textures/_DV/Structures/Machines/syndicate_fax_machine.rsi/meta.json
       "name": "icon"
     },
     {
@@ -23,10 +28,17 @@
     },
     {
       "name": "inserting",
+========
+      "name": "match_burnt"
+    },
+    {
+      "name": "match_lit",
+>>>>>>>> upstream/master:Resources/Textures/Objects/Tools/Lighters/gorlexmatch.rsi/meta.json
       "delays": [
         [
           0.2,
           0.2,
+<<<<<<<< HEAD:Resources/Textures/_DV/Structures/Machines/syndicate_fax_machine.rsi/meta.json
           0.2,
           0.2,
           0.2,
@@ -34,6 +46,60 @@
           0.2,
           0.2,
           0.2,
+          0.2,
+          0.2,
+========
+>>>>>>>> upstream/master:Resources/Textures/Objects/Tools/Lighters/gorlexmatch.rsi/meta.json
+          0.2
+        ]
+      ]
+    },
+    {
+<<<<<<<< HEAD:Resources/Textures/_DV/Structures/Machines/syndicate_fax_machine.rsi/meta.json
+      "name": "printing",
+========
+      "name": "match_unlit"
+    },
+    {
+      "name": "unlit-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "unlit-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "lit-inhand-left",
+      "directions": 4,
+>>>>>>>> upstream/master:Resources/Textures/Objects/Tools/Lighters/gorlexmatch.rsi/meta.json
+      "delays": [
+        [
+          0.2,
+          0.2,
+<<<<<<<< HEAD:Resources/Textures/_DV/Structures/Machines/syndicate_fax_machine.rsi/meta.json
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+========
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
           0.2,
           0.2,
           0.2
@@ -41,20 +107,26 @@
       ]
     },
     {
-      "name": "printing",
+      "name": "lit-inhand-right",
+      "directions": 4,
       "delays": [
         [
           0.2,
           0.2,
+          0.2
+        ],
+        [
           0.2,
           0.2,
+          0.2
+        ],
+        [
           0.2,
           0.2,
-          0.2,
-          0.2,
-          0.2,
-          0.2,
-          0.2,
+          0.2
+        ],
+        [
+>>>>>>>> upstream/master:Resources/Textures/Objects/Tools/Lighters/gorlexmatch.rsi/meta.json
           0.2,
           0.2,
           0.2

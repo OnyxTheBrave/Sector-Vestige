@@ -62,15 +62,6 @@
     count: 1
 
 - type: entity
-  id: Ointment10Lingering
-  parent: Ointment
-  suffix: 10, Lingering
-  components:
-  - type: Stack
-    lingering: true
-    count: 10
-
-- type: entity
   name: regenerative mesh
   description: Used to treat even the nastiest burns. Also effective against caustic burns.
   parent: BaseHealingItem
@@ -171,15 +162,6 @@
   - type: Stack
     stackType: Brutepack
     count: 1
-
-- type: entity
-  id: Brutepack10Lingering
-  parent: Brutepack
-  suffix: 10, Lingering
-  components:
-  - type: Stack
-    lingering: true
-    count: 10
 
 - type: entity
   name: medicated suture
@@ -284,15 +266,6 @@
     count: 1
 
 - type: entity
-  parent: Bloodpack
-  id: Bloodpack10Lingering
-  suffix: 10, Lingering
-  components:
-  - type: Stack
-    lingering: true
-    count: 10
-
-- type: entity
   parent: BaseHealingItem
   id: Tourniquet
   name: tourniquet
@@ -374,15 +347,6 @@
   components:
   - type: Stack
     count: 1
-
-- type: entity
-  id: Gauze10Lingering
-  parent: Gauze
-  suffix: 10, Lingering
-  components:
-  - type: Stack
-    lingering: true
-    count: 10
 
 - type: entity
   name: aloe cream
