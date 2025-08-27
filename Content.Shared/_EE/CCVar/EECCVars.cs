@@ -12,7 +12,6 @@ using Robust.Shared;
 using Robust.Shared.Configuration;
 
 namespace Content.Shared._EE.CCVar;
-namespace Content.Shared._EE.CCVar;
 
 [CVarDefs]
 public sealed partial class EECCVars : CVars
