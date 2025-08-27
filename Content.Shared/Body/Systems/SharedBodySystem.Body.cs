@@ -12,8 +12,8 @@
 // SPDX-FileCopyrightText: 2024 0x6273 <0x40@keemail.me>
 // SPDX-FileCopyrightText: 2024 Jezithyr <jezithyr@gmail.com>
 // SPDX-FileCopyrightText: 2024 ShadowCommander <shadowjjt@gmail.com>
-// SPDX-FileCopyrightText: 2025 Lachryphage (GitHub)
 // SPDX-FileCopyrightText: 2025 Dark <darkwindleaf@hotmail.co.uk>
+// SPDX-FileCopyrightText: 2025 Lachryphage (GitHub)
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
