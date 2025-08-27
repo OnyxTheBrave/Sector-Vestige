@@ -19,6 +19,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.CombatMode.Pacification;
+using Content.Shared.Stamina; //LateStation Addition
 
 namespace Content.Shared.Damage.Systems
 {
