@@ -1,4 +1,12 @@
-﻿using System.Diagnostics.CodeAnalysis;
+// SPDX-FileCopyrightText: 2024 Jezithyr <jezithyr@gmail.com>
+// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
+// SPDX-FileCopyrightText: 2025 Lachryphage (GitHub)
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+// SPDX-FileCopyrightText: 2025 Dark <darkwindleaf@hotmail.co.uk>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.Gibbing.Components;
 using Content.Shared.Gibbing.Events;
