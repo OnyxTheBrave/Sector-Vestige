@@ -103,7 +103,7 @@
 //
 // SPDX-License-Identifier: MIT
 
-using Content.Shared._EinsteinEngines.Supermatter.Components;
+using Content.Shared._EE.Supermatter.Components;
 using Content.Shared.Administration;
 using Content.Shared.CCVar.CVarAccess;
 using Robust.Shared;
