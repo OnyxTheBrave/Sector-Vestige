@@ -19,7 +19,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.CombatMode.Pacification;
-using Content.Shared.Stamina; //LateStation Addition
 
 namespace Content.Shared.Damage.Systems
 {
@@ -33,7 +32,7 @@ namespace Content.Shared.Damage.Systems
         [Dependency] private readonly SharedPhysicsSystem _physics = default!;
         [Dependency] private readonly MeleeSoundSystem _meleeSound = default!;
         [Dependency] private readonly IPrototypeManager _protoManager = default!;
-        [Dependency] private readonly StaminaSystem _stamina = default!;
+        [Dependency] private readonly SharedStaminaSystem _stamina = default!;
 
         public override void Initialize()
         {
