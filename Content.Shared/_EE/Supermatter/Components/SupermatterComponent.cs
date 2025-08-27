@@ -8,7 +8,6 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Shared._EE.Supermatter.Monitor;
 using Content.Shared.Atmos;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DoAfter;
