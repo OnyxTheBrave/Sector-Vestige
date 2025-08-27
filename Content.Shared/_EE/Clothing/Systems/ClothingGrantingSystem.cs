@@ -8,7 +8,7 @@ using Content.Shared.Inventory.Events;
 using Robust.Shared.Serialization.Manager;
 using Content.Shared.Tag;
 
-namespace Content.Shared._EinsteinEngines.Clothing;
+namespace Content.Shared._EE.Clothing;
 
 public sealed class ClothingGrantingSystem : EntitySystem
 {

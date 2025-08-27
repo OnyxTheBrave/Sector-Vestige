@@ -5,7 +5,7 @@
 
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._EinsteinEngines.Clothing
+namespace Content.Shared._EE.Clothing
 {
     [RegisterComponent]
     public sealed partial class ClothingGrantComponentComponent : Component
