@@ -85,13 +85,6 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         RemoveHand(name);
     }
 
-    private void OnRemoveHand(Entity<HandsComponent> entity, string name)
-    {
-        if (entity.Owner != _player.LocalEntity)
-            return;
-        RemoveHand(name);
-    }
-
     private void HandPressed(GUIBoundKeyEventArgs args, SlotControl hand)
     {
         if (!_handsSystem.TryGetPlayerHands(out var hands))
