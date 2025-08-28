@@ -34,7 +34,9 @@ LICENSE_CONFIG = {
     "mpl": {"id": "MPL-2.0", "path": "LICENSES/MPL-2.0.txt"},
 }
 
-DEFAULT_LICENSE_LABEL = "agpl"
+# Default fallback license for files that do not match any explicit pattern.
+# Core LateStation code (Content.* except special upstream forks) is MIT, so default to MIT.
+DEFAULT_LICENSE_LABEL = "mit"
 
 # Dictionary mapping file extensions to comment styles
 # Format: {extension: (prefix, suffix)}

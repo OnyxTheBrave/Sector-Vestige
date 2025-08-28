@@ -1,5 +1,8 @@
 {
   "rules": [
+    { "pattern": "Content.Server/**", "license": "MIT" },
+    { "pattern": "Content.Client/**", "license": "MIT" },
+    { "pattern": "Content.Shared/**", "license": "MIT" },
     { "pattern": "**/_CD/**", "license": "MIT" },
     { "pattern": "**/_Harmony/**", "license": "AGPL" },
     { "pattern": "**/_DV/**", "license": "AGPL" },

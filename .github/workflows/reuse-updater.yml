@@ -116,11 +116,14 @@ jobs:
             echo "PR_LICENSE=mpl" >> $GITHUB_ENV
             echo "License specified in PR: MPL"
           else
-            echo "PR_LICENSE=agpl" >> $GITHUB_ENV
-            echo "No license specified in PR, using default: AGPL"
+            # Default core code license policy is MIT.
+            echo "PR_LICENSE=mit" >> $GITHUB_ENV
+            echo "No license specified in PR, using default: MIT"
           fi
 
       - name: Run REUSE Header Update Script
+        env:
+          REUSE_FORCE_LICENSE: "true"  # Ensure existing headers are realigned to path rules
         run: |
           python Tools/update_pr_reuse_headers.py \
             --files-added ${{ env.ADDED_FILES_LIST }} \
