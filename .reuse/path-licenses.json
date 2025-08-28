@@ -1,16 +1,76 @@
 {
   "rules": [
-    { "pattern": "**/_CD/**", "license": "MIT" },
-    { "pattern": "**/_Harmony/**", "license": "AGPL" },
-    { "pattern": "**/_DV/**", "license": "AGPL" },
-    { "pattern": "**/_AXOLOTL/**", "license": "MIT" },
-    { "pattern": "**/_LateStation/**", "license": "mit+agpl" },
-    { "pattern": "**/_Umbra/**", "license": "MIT" },
-    { "pattern": "**/_Floofstation/**", "license": "AGPL" },
-    { "pattern": "**/_Impstation/**", "license": "AGPL" },
-    { "pattern": "**/_EinsteinEngines/**", "license": "AGPL" },
-    { "pattern": "**/_Funkystation/**", "license": "AGPL" },
-    { "pattern": "**/_NF/**", "license": "MIT" },
+    { "pattern": "Content.Server/_LateStation/**", "license": "AGPL" },
+    { "pattern": "Content.Client/_LateStation/**", "license": "AGPL" },
+    { "pattern": "Content.Shared/_LateStation/**", "license": "AGPL" },
+    { "pattern": "Resources/_LateStation/**", "license": "AGPL" },
+    { "pattern": "Resources/Prototypes/_LateStation/**", "license": "AGPL" },
+
+    { "pattern": "Content.Server/_Harmony/**", "license": "AGPL" },
+    { "pattern": "Content.Client/_Harmony/**", "license": "AGPL" },
+    { "pattern": "Content.Shared/_Harmony/**", "license": "AGPL" },
+    { "pattern": "Resources/_Harmony/**", "license": "AGPL" },
+    { "pattern": "Resources/Prototypes/_Harmony/**", "license": "AGPL" },
+
+    { "pattern": "Content.Server/_DV/**", "license": "AGPL" },
+    { "pattern": "Content.Client/_DV/**", "license": "AGPL" },
+    { "pattern": "Content.Shared/_DV/**", "license": "AGPL" },
+    { "pattern": "Resources/_DV/**", "license": "AGPL" },
+    { "pattern": "Resources/Prototypes/_DV/**", "license": "AGPL" },
+
+    { "pattern": "Content.Server/_Floofstation/**", "license": "AGPL" },
+    { "pattern": "Content.Client/_Floofstation/**", "license": "AGPL" },
+    { "pattern": "Content.Shared/_Floofstation/**", "license": "AGPL" },
+    { "pattern": "Resources/_Floofstation/**", "license": "AGPL" },
+    { "pattern": "Resources/Prototypes/_Floofstation/**", "license": "AGPL" },
+
+    { "pattern": "Content.Server/_Impstation/**", "license": "AGPL" },
+    { "pattern": "Content.Client/_Impstation/**", "license": "AGPL" },
+    { "pattern": "Content.Shared/_Impstation/**", "license": "AGPL" },
+    { "pattern": "Resources/_Impstation/**", "license": "AGPL" },
+    { "pattern": "Resources/Prototypes/_Impstation/**", "license": "AGPL" },
+
+    { "pattern": "Content.Server/_EinsteinEngines/**", "license": "AGPL" },
+    { "pattern": "Content.Client/_EinsteinEngines/**", "license": "AGPL" },
+    { "pattern": "Content.Shared/_EinsteinEngines/**", "license": "AGPL" },
+    { "pattern": "Resources/_EinsteinEngines/**", "license": "AGPL" },
+    { "pattern": "Resources/Prototypes/_EinsteinEngines/**", "license": "AGPL" },
+
+    { "pattern": "Content.Server/_Funkystation/**", "license": "AGPL" },
+    { "pattern": "Content.Client/_Funkystation/**", "license": "AGPL" },
+    { "pattern": "Content.Shared/_Funkystation/**", "license": "AGPL" },
+    { "pattern": "Resources/_Funkystation/**", "license": "AGPL" },
+    { "pattern": "Resources/Prototypes/_Funkystation/**", "license": "AGPL" },
+
+    { "pattern": "Content.Server/_AXOLOTL/**", "license": "MIT" },
+    { "pattern": "Content.Client/_AXOLOTL/**", "license": "MIT" },
+    { "pattern": "Content.Shared/_AXOLOTL/**", "license": "MIT" },
+    { "pattern": "Resources/_AXOLOTL/**", "license": "MIT" },
+    { "pattern": "Resources/Prototypes/_AXOLOTL/**", "license": "MIT" },
+
+    { "pattern": "Content.Server/_CD/**", "license": "MIT" },
+    { "pattern": "Content.Client/_CD/**", "license": "MIT" },
+    { "pattern": "Content.Shared/_CD/**", "license": "MIT" },
+    { "pattern": "Resources/_CD/**", "license": "MIT" },
+    { "pattern": "Resources/Prototypes/_CD/**", "license": "MIT" },
+
+    { "pattern": "Content.Server/_Umbra/**", "license": "MIT" },
+    { "pattern": "Content.Client/_Umbra/**", "license": "MIT" },
+    { "pattern": "Content.Shared/_Umbra/**", "license": "MIT" },
+    { "pattern": "Resources/_Umbra/**", "license": "MIT" },
+    { "pattern": "Resources/Prototypes/_Umbra/**", "license": "MIT" },
+
+    { "pattern": "Content.Server/_NF/**", "license": "AGPL" },
+    { "pattern": "Content.Client/_NF/**", "license": "AGPL" },
+    { "pattern": "Content.Shared/_NF/**", "license": "AGPL" },
+    { "pattern": "Resources/_NF/**", "license": "AGPL" },
+    { "pattern": "Resources/Prototypes/_NF/**", "license": "AGPL" },
+
+    { "pattern": "Content.Server/**", "license": "MIT" },
+    { "pattern": "Content.Client/**", "license": "MIT" },
+    { "pattern": "Content.Shared/**", "license": "MIT" },
+    { "pattern": "Resources/**", "license": "MIT" },
+
     { "pattern": "**/.github/**", "license": "MIT" }
   ]
 }

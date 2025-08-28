@@ -3,7 +3,7 @@
 # SPDX-FileCopyrightText: 2025 sleepyyapril <flyingkarii@gmail.com>
 # SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
 #
-# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-License-Identifier: MIT
 
 #!/usr/bin/env python3
 
@@ -34,7 +34,9 @@ LICENSE_CONFIG = {
     "mpl": {"id": "MPL-2.0", "path": "LICENSES/MPL-2.0.txt"},
 }
 
-DEFAULT_LICENSE_LABEL = "agpl"
+# Default fallback license for files that do not match any explicit pattern.
+# Core LateStation code (Content.* except special upstream forks) is MIT, so default to MIT.
+DEFAULT_LICENSE_LABEL = "mit"
 
 # Dictionary mapping file extensions to comment styles
 # Format: {extension: (prefix, suffix)}

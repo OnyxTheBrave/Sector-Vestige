@@ -1,3 +1,20 @@
+// SPDX-FileCopyrightText: 2021 Acruid <shatter66@gmail.com>
+// SPDX-FileCopyrightText: 2021 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2021 E F R <602406+Efruit@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2021 Galactic Chimp <63882831+GalacticChimp@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2021 Visne <39844191+Visne@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2022 Paul Ritter <ritter.paul1@googlemail.com>
+// SPDX-FileCopyrightText: 2022 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
+// SPDX-FileCopyrightText: 2022 wrexbe <81056464+wrexbe@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 Pieter-Jan Briers <pieterjan.briers@gmail.com>
+// SPDX-FileCopyrightText: 2023 Ygg01 <y.laughing.man.y@gmail.com>
+// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+// SPDX-FileCopyrightText: 2025 Thomas <87614336+Aeshus@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
@@ -80,7 +97,7 @@ public sealed partial class CreditsWindow : DefaultWindow
 
     private async void PopulateAttributions(BoxContainer attributionsContainer, int count)
     {
-        attributionsContainer.DisposeAllChildren();
+        attributionsContainer.RemoveAllChildren();
 
         if (_attributions.Count == 0)
         {
@@ -253,6 +270,8 @@ public sealed partial class CreditsWindow : DefaultWindow
 
     private void PopulateLicenses(BoxContainer licensesContainer)
     {
+        licensesContainer.RemoveAllChildren();
+
         foreach (var entry in CreditsManager.GetLicenses(_resourceManager).OrderBy(p => p.Name))
         {
             licensesContainer.AddChild(new Label
@@ -269,6 +288,8 @@ public sealed partial class CreditsWindow : DefaultWindow
 
     private void PopulatePatrons(BoxContainer patronsContainer)
     {
+        patronsContainer.RemoveAllChildren();
+
         var patrons = LoadPatrons();
 
         // Do not show "become a patron" button on Steam builds
@@ -318,6 +339,8 @@ public sealed partial class CreditsWindow : DefaultWindow
 
     private void PopulateContributors(BoxContainer ss14ContributorsContainer)
     {
+        ss14ContributorsContainer.RemoveAllChildren();
+
         Button contributeButton;
 
         ss14ContributorsContainer.AddChild(new BoxContainer
@@ -356,6 +379,7 @@ public sealed partial class CreditsWindow : DefaultWindow
         AddSection(Loc.GetString("credits-window-contributors-section-title"), "GitHub.txt");
         AddSection(Loc.GetString("credits-window-codebases-section-title"), "SpaceStation13.txt");
         AddSection(Loc.GetString("credits-window-original-remake-team-section-title"), "OriginalRemake.txt");
+        AddSection(Loc.GetString("credits-window-immortals-title"), "Immortals.txt", true);
         AddSection(Loc.GetString("credits-window-special-thanks-section-title"), "SpecialThanks.txt", true);
 
         var linkGithub = _cfg.GetCVar(CCVars.InfoLinksGithub);

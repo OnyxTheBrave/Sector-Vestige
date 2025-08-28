@@ -16,12 +16,19 @@ on:
       - reopened
       - ready_for_review
 
+# Avoid piling up duplicate runs for the same PR.
+concurrency:
+  group: reuse-updater-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
   pull-requests: read
 
 jobs:
   update_headers:
+    # Skip if the event was triggered by the bot's own auto-commit so we don't loop.
+    if: ${{ github.actor != 'weh-bot' && github.actor != 'weh-bot[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -116,11 +123,25 @@ jobs:
             echo "PR_LICENSE=mpl" >> $GITHUB_ENV
             echo "License specified in PR: MPL"
           else
-            echo "PR_LICENSE=agpl" >> $GITHUB_ENV
-            echo "No license specified in PR, using default: AGPL"
+            # Default core code license policy is MIT.
+            echo "PR_LICENSE=mit" >> $GITHUB_ENV
+            echo "No license specified in PR, using default: MIT"
           fi
 
+          # Output whether we have any relevant files so later steps can be conditional.
+          if [ -z "$ADDED_FILES" ] && [ -z "$MODIFIED_FILES" ]; then
+            echo "has_files=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_files=true" >> $GITHUB_OUTPUT
+          fi
+      - name: No candidate files - nothing to do
+        if: ${{ steps.changed_files.outputs.has_files == 'false' }}
+        run: echo "No added or modified *.cs / *.yml files to process. Skipping header update."
+
       - name: Run REUSE Header Update Script
+        if: ${{ steps.changed_files.outputs.has_files == 'true' }}
+        env:
+          REUSE_FORCE_LICENSE: "true"  # Ensure existing headers are realigned to path rules
         run: |
           python Tools/update_pr_reuse_headers.py \
             --files-added ${{ env.ADDED_FILES_LIST }} \
@@ -132,6 +153,7 @@ jobs:
         working-directory: ${{ github.workspace }}
 
       - name: Commit changes
+        if: ${{ steps.changed_files.outputs.has_files == 'true' }}
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: automatically update REUSE headers"

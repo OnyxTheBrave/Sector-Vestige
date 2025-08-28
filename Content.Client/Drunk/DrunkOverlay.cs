@@ -1,5 +1,15 @@
+// SPDX-FileCopyrightText: 2022 Kara D <lunarautomaton6@gmail.com>
+// SPDX-FileCopyrightText: 2022 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 Waylon Cude <waylon.cude@finzdani.net>
+// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 using Content.Shared.Drunk;
 using Content.Shared.StatusEffect;
+using Content.Shared.StatusEffectNew;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
@@ -43,19 +53,21 @@ public sealed class DrunkOverlay : Overlay
         if (playerEntity == null)
             return;
 
-        if (!_entityManager.HasComponent<DrunkComponent>(playerEntity)
-            || !_entityManager.TryGetComponent<StatusEffectsComponent>(playerEntity, out var status))
+        var statusSys = _sysMan.GetEntitySystem<Shared.StatusEffectNew.StatusEffectsSystem>();
+        if (!statusSys.TryGetMaxTime<DrunkStatusEffectComponent>(playerEntity.Value, out var status))
             return;
 
-        var statusSys = _sysMan.GetEntitySystem<StatusEffectsSystem>();
-        if (!statusSys.TryGetTime(playerEntity.Value, SharedDrunkSystem.DrunkKey, out var time, status))
-            return;
+        var time = status.Item2;
 
-        var curTime = _timing.CurTime;
-        var timeLeft = (float) (time.Value.Item2 - curTime).TotalSeconds;
+        var power = SharedDrunkSystem.MagicNumber;
 
+        if (time != null)
+        {
+            var curTime = _timing.CurTime;
+            power = (float) (time - curTime).Value.TotalSeconds;
+        }
 
-        CurrentBoozePower += 8f * (0.5f*timeLeft - CurrentBoozePower) * args.DeltaSeconds / (timeLeft+1);
+        CurrentBoozePower += 8f * (power * 0.5f - CurrentBoozePower) * args.DeltaSeconds / (power+1);
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)

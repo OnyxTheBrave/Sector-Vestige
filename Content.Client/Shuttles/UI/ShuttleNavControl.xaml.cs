@@ -1,3 +1,11 @@
+// SPDX-FileCopyrightText: 2024 ArchRBX <5040911+ArchRBX@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 eoineoineoin <github@eoinrul.es>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+// SPDX-FileCopyrightText: 2025 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
 using System.Numerics;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
@@ -308,7 +316,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             -dockRadius * UIScale,
             (Size.X + dockRadius) * UIScale,
             (Size.Y + dockRadius) * UIScale);
-        
+
         if (_docks.TryGetValue(nent, out var docks))
         {
             foreach (var state in docks)
@@ -321,7 +329,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     continue;
                 }
 
-                var color = Color.ToSrgb(Color.Magenta);
+                var color = Color.ToSrgb(state.HighlightedColor);
 
                 var verts = new[]
                 {
