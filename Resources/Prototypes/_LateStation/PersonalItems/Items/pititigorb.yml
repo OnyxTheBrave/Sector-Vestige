@@ -1,0 +1,20 @@
+## Personal item for Pititi. GORBINGS YAYA!!
+- type: entity
+  parent: BaseItem
+  id: PersonalItemPititiGorb
+  name: Gorb
+  description: A shiny pet rock with googly eyes attached
+  components:
+  - type: Sprite
+    sprite: _LateStation/PersonalItems/pititigorb.rsi
+    state: icon
+
+- type: loadout
+  id: PersonalItemPititiGorb
+  storage:
+    back:
+      - PersonalItemPititiGorb
+  effects:
+  - !type:PersonalItemLoadoutEffect
+    character:
+    - Pititi
