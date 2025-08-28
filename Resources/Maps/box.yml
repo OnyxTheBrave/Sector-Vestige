@@ -792,11 +792,6 @@ entities:
             6232: -24,-76
             6233: -25,-77
         - node:
-            color: '#DE3A3A96'
-            id: BotLeft
-          decals:
-            7559: -11,44
-        - node:
             color: '#FFFFFFFF'
             id: BotLeft
           decals:
@@ -7423,7 +7418,6 @@ entities:
             2315: -69,8
             2316: -76,8
             3699: -38,-10
-            6442: -11,41
         - node:
             zIndex: 1
             color: '#FFFFFFFF'
@@ -7432,11 +7426,6 @@ entities:
             5976: -23,-66
             6069: 20,-76
             6175: -19,-82
-        - node:
-            color: '#FFFFFFFF'
-            id: WarnEndE
-          decals:
-            7545: -8,45
         - node:
             color: '#FFFFFFFF'
             id: WarnEndGreyscaleN
@@ -22476,11 +22465,6 @@ entities:
     - type: Transform
       pos: -5.5,-76.5
       parent: 8364
-  - uid: 13622
-    components:
-    - type: Transform
-      pos: -7.5,45.5
-      parent: 8364
   - uid: 13849
     components:
     - type: Transform
@@ -22945,7 +22929,7 @@ entities:
     - type: Transform
       pos: -19.55601,-15.847038
       parent: 8364
-- proto: BoxFolderBase
+- proto: BoxFlashbang
   entities:
   - uid: 28749
     components:
@@ -128878,11 +128862,6 @@ entities:
     - type: Transform
       pos: 43.5,-34.5
       parent: 8364
-  - uid: 19941
-    components:
-    - type: Transform
-      pos: -14.5,43.5
-      parent: 8364
   - uid: 20150
     components:
     - type: Transform
@@ -130264,6 +130243,8 @@ entities:
   entities:
   - uid: 7903
     components:
+    - type: MetaData
+      name: disabler safe (5)
     - type: Transform
       anchored: True
       pos: -14.5,41.5
@@ -130325,6 +130306,8 @@ entities:
   entities:
   - uid: 4933
     components:
+    - type: MetaData
+      name: mk58 safe (4)
     - type: Transform
       anchored: True
       pos: -13.5,47.5
@@ -130418,6 +130401,8 @@ entities:
   entities:
   - uid: 8594
     components:
+    - type: MetaData
+      name: drozd safe (3)
     - type: Transform
       anchored: True
       pos: -9.5,44.5
@@ -133299,11 +133284,6 @@ entities:
       parent: 8364
 - proto: LootSpawnerSecurity
   entities:
-  - uid: 8535
-    components:
-    - type: Transform
-      pos: -0.5,43.5
-      parent: 8364
   - uid: 10878
     components:
     - type: Transform
@@ -133453,7 +133433,7 @@ entities:
     - type: Transform
       pos: 7.4027314,48.74582
       parent: 8364
-- proto: MagazineBoxPistolPractice
+- proto: MagazinePistolSubMachineGun
   entities:
   - uid: 26311
     components:
@@ -160417,12 +160397,6 @@ entities:
     - type: Transform
       pos: -3.5,-24.5
       parent: 8364
-  - uid: 26321
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -7.5,46.5
-      parent: 8364
   - uid: 26827
     components:
     - type: Transform
@@ -162874,11 +162848,6 @@ entities:
     components:
     - type: Transform
       pos: 75.5,-43.5
-      parent: 8364
-  - uid: 7314
-    components:
-    - type: Transform
-      pos: -12.5,47.5
       parent: 8364
   - uid: 14610
     components:
