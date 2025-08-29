@@ -85,15 +85,15 @@
   - type: ReplacementAccent
     accent: silicon
   - type: Speech
-    speechSounds: Suppy
-    speechVerb: Suppy
+    speechSounds: Arachnid
+    speechVerb: Arachnid
   - type: TypingIndicator
     proto: robot
   - type: Vocal
     sounds:
-      Male: Suppy
-      Female: Suppy
-      Unsexed: Suppy
+      Male: UnisexArachnid
+      Female: UnisexArachnid
+      Unsexed: UnisexArachnid
   - type: AnimatedEmotes
   - type: Buckle
   - type: Climbing
