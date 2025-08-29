@@ -3,7 +3,7 @@
 // SPDX-FileCopyrightText: 2025 Lachryphage (GitHub)
 // SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
 //
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: MIT
 
 using System.Linq;
 using Content.Server.GameTicking.Rules.VariationPass.Components;

@@ -10,7 +10,7 @@
 // SPDX-FileCopyrightText: 2025 V <97265903+formlessnameless@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 mqole <113324899+mqole@users.noreply.github.com>
 //
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: MIT
 
 using System.Numerics;
 using Content.Server.Beam.Components;

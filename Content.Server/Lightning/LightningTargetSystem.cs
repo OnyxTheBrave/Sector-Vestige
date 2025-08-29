@@ -7,7 +7,7 @@
 // SPDX-FileCopyrightText: 2025 Dark <darkwindleaf@hotmail.co.uk>
 // SPDX-FileCopyrightText: 2025 Lachryphage (GitHub)
 //
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: MIT
 
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Lightning;

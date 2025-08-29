@@ -2,7 +2,7 @@
 // SPDX-FileCopyrightText: 2025 AftrLite <61218133+AftrLite@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Lachryphage (GitHub)
 //
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: MIT
 
 using Content.Shared.Random;
 using Content.Shared.Storage;
