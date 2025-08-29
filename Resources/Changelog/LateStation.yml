@@ -685,3 +685,13 @@ Entries:
       message: Added Gorb.
   id: 89
   time: '2025-08-28T14:37:12.0000000+00:00'
+- author: Lachryphage
+  changes:
+    - type: Add
+      message: Added super matter engine
+    - type: Tweak
+      message: Radiation shielding adjustments.
+    - type: Tweak
+      message: Radiation no longer prevents doafters
+  id: 90
+  time: '2025-08-29T14:49:43.0000000+00:00'
