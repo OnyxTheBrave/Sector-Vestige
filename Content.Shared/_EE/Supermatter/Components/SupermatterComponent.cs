@@ -1,13 +1,3 @@
-// SPDX-FileCopyrightText: 2025 AftrLite <61218133+AftrLite@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Dark <darkwindleaf@hotmail.co.uk>
-// SPDX-FileCopyrightText: 2025 Lachryphage (GitHub)
-// SPDX-FileCopyrightText: 2025 V <97265903+formlessnameless@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 beck <163376292+widgetbeck@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 hivehum <ketchupfaced@gmail.com>
-// SPDX-FileCopyrightText: 2025 mqole <113324899+mqole@users.noreply.github.com>
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Shared.Atmos;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DoAfter;
@@ -134,6 +124,12 @@ public sealed partial class SupermatterComponent : Component
 
     [DataField]
     public ProtoId<SpeechSoundsPrototype>? StatusCurrentSound;
+
+    [DataField]
+    public SoundSpecifier GainParacusiaSound = new SoundPathSpecifier("/Audio/Ambience/ambidanger.ogg");
+
+    [DataField]
+    public SoundSpecifier GiveParacusiaSound = new SoundPathSpecifier("/Audio/Ambience/ambireebe3.ogg");
 
     #endregion
 
@@ -296,6 +292,12 @@ public sealed partial class SupermatterComponent : Component
     #region Damage
 
     /// <summary>
+    /// The chance for lights across the station to flicker on a delamination
+    /// </summary>
+    [DataField]
+    public float LightFlickerChance = 0.33f;
+
+    /// <summary>
     /// The amount of damage taken
     /// </summary>
     [DataField]
@@ -368,6 +370,13 @@ public sealed partial class SupermatterComponent : Component
 
     [DataField]
     public bool DelamAnnounced;
+
+    /// <summary>
+    /// The radio channel for supermatter alerts
+    /// </summary>
+    [DataField]
+    public bool SuppressAnnouncements = false;
+
 
     /// <summary>
     /// The radio channel for supermatter alerts

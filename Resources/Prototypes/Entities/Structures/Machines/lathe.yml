@@ -257,7 +257,7 @@
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
     - CircuitFloorsStatic
-    - SupermatterComputerCircuitboard # imp
+    - ImpCircuitStatic # Imp | LateStation, added for the port
     dynamicPacks:
     - EngineeringBoards
     - CargoBoards

@@ -1,11 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Lachryphage (GitHub)
-// SPDX-FileCopyrightText: 2025 V <97265903+formlessnameless@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 hivehum <ketchupfaced@gmail.com>
-// SPDX-FileCopyrightText: 2025 mqole <113324899+mqole@users.noreply.github.com>
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
-using Content.Client.Atmos.EntitySystems;
 using Content.Client.Stylesheets;
 using Content.Shared._EE.CCVar;
 using Content.Shared._EE.Supermatter.Components;
@@ -17,6 +9,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Configuration;
 using System.Linq;
+using System.Numerics;
 
 namespace Content.Client._EE.Supermatter.Consoles;
 

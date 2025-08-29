@@ -1,12 +1,3 @@
-// SPDX-FileCopyrightText: 2025 AftrLite <61218133+AftrLite@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Lachryphage (GitHub)
-// SPDX-FileCopyrightText: 2025 V <97265903+formlessnameless@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 hivehum <ketchupfaced@gmail.com>
-// SPDX-FileCopyrightText: 2025 mqole <113324899+mqole@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 mqole <anactualpanacea@gmail.com>
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Shared._EE.CCVar;
 using Content.Shared._EE.Supermatter.Components;
 using Content.Shared._EE.Supermatter.Consoles;
@@ -16,7 +7,6 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using System.Linq;
 
-namespace Content.Server._EE.Supermatter.Console.Systems;
 namespace Content.Server._EE.Supermatter.Console.Systems;
 
 public sealed class SupermatterConsoleSystem : SharedSupermatterConsoleSystem
@@ -182,7 +172,7 @@ public sealed class SupermatterConsoleSystem : SharedSupermatterConsoleSystem
             gases = sm.GasStorage;
 
         var tempThreshold = Atmospherics.T0C + _config.GetCVar(EECCVars.SupermatterHeatPenaltyThreshold);
-        var tempThreshold = Atmospherics.T0C + _config.GetCVar(EECCVars.SupermatterHeatPenaltyThreshold);
+        var gasEfficiency = sm.GasEfficiency / (sm.Power > 0 ? 1 : _config.GetCVar(EECCVars.SupermatterGasEfficiencyGraceModifier));
 
         return new SupermatterFocusData(
             GetNetEntity(focusSupermatter.Value),
