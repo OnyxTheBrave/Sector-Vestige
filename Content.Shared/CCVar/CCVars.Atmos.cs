@@ -2,7 +2,7 @@
 // SPDX-FileCopyrightText: 2025 Lachryphage (GitHub)
 // SPDX-FileCopyrightText: 2025 mqole <113324899+mqole@users.noreply.github.com>
 //
-// SPDX-License-Identifier: AGPL-3.0-or-later
+// SPDX-License-Identifier: MIT
 
 using Robust.Shared.Configuration;
 
