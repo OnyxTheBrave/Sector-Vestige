@@ -70,7 +70,7 @@
       points: 2
       required: false
     Tail:
-      points: 1
+      points: 2
       required: true
       defaultMarkings: [ VoxTail ]
 

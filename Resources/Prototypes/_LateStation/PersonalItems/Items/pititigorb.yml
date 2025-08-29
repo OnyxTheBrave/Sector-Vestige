@@ -1,0 +1,24 @@
+# SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+## Personal item for Pititi. GORBINGS YAYA!!
+- type: entity
+  parent: BaseItem
+  id: PersonalItemPititiGorb
+  name: Gorb
+  description: A shiny pet rock with googly eyes attached
+  components:
+  - type: Sprite
+    sprite: _LateStation/PersonalItems/pititigorb.rsi
+    state: icon
+
+- type: loadout
+  id: PersonalItemPititiGorb
+  storage:
+    back:
+      - PersonalItemPititiGorb
+  effects:
+  - !type:PersonalItemLoadoutEffect
+    character:
+    - Pititi

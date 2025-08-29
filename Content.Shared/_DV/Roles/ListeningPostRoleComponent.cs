@@ -1,6 +1,7 @@
-using Content.Shared.Roles;
+using Robust.Shared.GameStates;
+using Content.Shared.Roles.Components;
 
 namespace Content.Shared.DeltaV.Roles;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class ListeningPostRoleComponent : BaseMindRoleComponent;

@@ -673,3 +673,15 @@ Entries:
       message: Added Lucy Price's Trenchcoat as a Personal Item.
   id: 87
   time: '2025-08-25T15:18:45.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Fix
+      message: Vox tail markings now work properly.
+  id: 88
+  time: '2025-08-28T12:48:46.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Add
+      message: Added Gorb.
+  id: 89
+  time: '2025-08-28T14:37:12.0000000+00:00'
