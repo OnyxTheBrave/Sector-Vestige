@@ -134,11 +134,11 @@ Copyright: Contributors of the _Impstation upstream project
 License: AGPL-3.0-or-later
 
 # EinsteinEngines code licensed under AGPL-3.0-or-later
-Files: Content.Server/_EinsteinEngines/**
-        Content.Client/_EinsteinEngines/**
-        Content.Shared/_EinsteinEngines/**
-        Resources/_EinsteinEngines/**
-        Resources/Prototypes/_EinsteinEngines/**
+Files: Content.Server/_EE/**
+        Content.Client/_EE/**
+        Content.Shared/_EE/**
+        Resources/_EE/**
+        Resources/Prototypes/_EE/**
 Copyright: Contributors of the _EinsteinEngines upstream project
  2020-2025 LateStation14 contributors (modifications)
  2020-2025 EinsteinEngines contributors
