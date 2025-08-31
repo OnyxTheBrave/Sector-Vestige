@@ -70,10 +70,10 @@
   groupBy: "plushies"
 
 - type: loadout
-  id: PlushieArachnid
+  id: PlushieArachind
   storage:
     back:
-      - PlushieArachnid
+      - PlushieArachind
   groupBy: "plushies"
 
 - type: loadout
