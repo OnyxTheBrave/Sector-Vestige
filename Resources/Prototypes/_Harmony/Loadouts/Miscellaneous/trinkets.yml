@@ -80,7 +80,7 @@
   storage:
     back:
     - PlushieVox
-- groupBy: "plushies" # Late
+  groupBy: "plushies" # Late
 
 # Towels
 - type: loadout
