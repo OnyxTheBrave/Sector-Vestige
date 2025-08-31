@@ -70,6 +70,7 @@
   storage:
     back:
     - PlushieVox
+- groupBy: "plushies" # Late
 
 # Towels
 - type: loadout

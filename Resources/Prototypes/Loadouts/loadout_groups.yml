@@ -8,10 +8,31 @@
   - FlowerWreath
   - Hairflower
   - Headphones
+  - Whistle # Late
   - PlushieLizard
   - PlushieSpaceLizard
   - PlushieVox # Harmony
+  - PlushieBee # Late
+  - PlushieArachnid # Late
+  - PlushieNukie # Late
+  - PlushieDiona # Late
+  - PlushieSharkBlue # Late
+  - PlushieSharkPink # Late
+  - PlushieSharkGrey # Late
+  - PlushieCarp # Late
+  - PlushieMagicarp # Late
+  - PlushieHolocarp # Late
+  - PlushieSlime # Late
+  - PlushieSnake # Late
+  - ToyMouse # Late
+  - PlushieAtmosian # Late
+  - PlushieXeno # Late
+  - PlushiePenguin # Late
+  - PlushieHuman # Late
+  - PlushieMoth # Late
+  - PersonalAI # Late
   - ThreeCandles
+  - Wristwatch # Late
   - Lighter
   - CigPackGreen
   - CigPackRed
@@ -19,6 +40,10 @@
   - CigPackBlack
   - CigarCase
   - CigarGold
+  - FlippoLighter # Late
+  - DiscountDanLighter # Late
+  - NanotrasenFlippo # Late
+  - SmokingPipe # Late
   - ClothingNeckLGBTPin
   - ClothingNeckAllyPin
   - ClothingNeckAromanticPin
@@ -63,7 +88,11 @@
   - TowelStripedOrange # Harmony
   - Cane # Harmony
   - TapeRecorder # DeltaV / Harmony
-  - ThrowingBrickSoft
+  - ThrowingBrickSoft # Late
+  - BarberScissors # Late
+  - HairBrush # Late
+  - NTHandyFlag # Late
+  - LGBTQHandyFlag # Late
 
 - type: loadoutGroup
   id: Glasses
@@ -401,6 +430,7 @@
   - BibleNanoTrasen
   - BibleSatanic
   - BibleTanakh
+  - BibleCommunistManifesto # Late
 
 - type: loadoutGroup
   id: JanitorHead
