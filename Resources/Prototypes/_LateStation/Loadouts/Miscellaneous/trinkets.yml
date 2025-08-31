@@ -77,10 +77,10 @@
   groupBy: "plushies"
 
 - type: loadout
-  id: PlushieNukie
+  id: PlushieNuke
   storage:
     back:
-      - PlushieNukie
+      - PlushieNuke
   groupBy: "plushies"
 
 - type: loadout
