@@ -34,14 +34,14 @@
   storage:
     back:
     - PlushieLizard
-- groupBy: "plushies" # Late
+  groupBy: "plushies" # Late
 
 - type: loadout
   id: PlushieSpaceLizard
   storage:
     back:
     - PlushieSpaceLizard
-- groupBy: "plushies" # Late
+  groupBy: "plushies" # Late
 
 - type: loadout
   id: ThreeCandles

@@ -15,42 +15,42 @@
   storage:
     back:
     - NTHandyFlag
-- groupBy: "handflag"
+  groupBy: "handflag"
 
 - type: loadout
   id: LGBTQHandyFlag
   storage:
     back:
     - LGBTQHandyFlag
-- groupBy: "handflag"
+  groupBy: "handflag"
 
 - type: loadout
   id: FlippoLighter
   storage:
     back:
     - FlippoLighter
-- groupBy: "smokeables"
+  groupBy: "smokeables"
 
 - type: loadout
   id: DiscountDanLighter
   storage:
     back:
       - DiscountDanLighter
-- groupBy: "smokeables"
+  groupBy: "smokeables"
 
 - type: loadout
   id: NanotrasenFlippo
   storage:
     back:
       - NanotrasenFlippo
-- groupBy: "smokeables"
+  groupBy: "smokeables"
 
 - type: loadout
   id: SmokingPipe
   storage:
     back:
       - SmokingPipe
-- groupBy: "smokeables"
+  groupBy: "smokeables"
 
 - type: loadout
   id: Wristwatch
@@ -63,126 +63,126 @@
   storage:
     back:
       - PlushieBee
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PlushieArachnid
   storage:
     back:
       - PlushieArachnid
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PlushieNukie
   storage:
     back:
       - PlushieNukie
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PlushieDiona
   storage:
     back:
       - PlushieDiona
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PlushieSharkBlue
   storage:
     back:
       - PlushieSharkBlue
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PlushieSharkPink
   storage:
     back:
       - PlushieSharkPink
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PlushieSharkGrey
   storage:
     back:
       - PlushieSharkGrey
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PlushieCarp
   storage:
     back:
       - PlushieCarp
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PlushieMagicarp
   storage:
     back:
       - PlushieMagicarp
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PlushieHolocarp
   storage:
     back:
       - PlushieHolocarp
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PlushieSlime
   storage:
     back:
       - PlushieSlime
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PlushieSnake
   storage:
     back:
       - PlushieSnake
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: ToyMouse
   storage:
     back:
       - ToyMouse
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PlushieAtmosian
   storage:
     back:
       - PlushieAtmosian
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PlushieXeno
   storage:
     back:
       - PlushieXeno
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PlushiePenguin
   storage:
     back:
       - PlushiePenguin
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PlushieHuman
   storage:
     back:
       - PlushieHuman
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PlushieMoth
   storage:
     back:
       - PlushieMoth
-- groupBy: "plushies"
+  groupBy: "plushies"
 
 - type: loadout
   id: PersonalAI
