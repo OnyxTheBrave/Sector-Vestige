@@ -189,3 +189,9 @@
   storage:
     back:
       - PersonalAI
+
+- type: loadout
+  id: Whistle
+  storage:
+    back:
+      - Whistle
