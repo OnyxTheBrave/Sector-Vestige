@@ -695,3 +695,11 @@ Entries:
       message: Radiation no longer prevents doafters
   id: 90
   time: '2025-08-29T14:49:43.0000000+00:00'
+- author: bruhmogus
+  changes:
+    - type: Add
+      message: Chaplains can now take the Communist Manifesto in their loadout.
+    - type: Add
+      message: A lot of new trinket items have been added to loadouts.
+  id: 91
+  time: '2025-09-20T12:50:03.0000000+00:00'
