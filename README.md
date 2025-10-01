@@ -69,7 +69,7 @@ For full IDE and build setup, see the [SS14 Developer Docs](https://docs.spacest
 
 ### Code
 
-- All **original LateStation code** (generally in `_LateStation/` folders) is **dual-licensed under MIT OR AGPL-3.0-or-later**.
+- All **original LateStation code** (generally in `_LateStation/` folders) is **licensed under AGPL-3.0-or-later**.
   (Code written before the switch remains MIT-only.)
 - **Upstream code** from [Wizards Den / Space Station 14](https://github.com/space-wizards/space-station-14) remains under the **MIT License**.
   If changes are required to upstream files, they are commented to make merges and attribution clear.
