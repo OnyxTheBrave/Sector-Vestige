@@ -18,3 +18,60 @@
       path: /Audio/_CD/Voice/Avali/avali_scream.ogg
     Laugh:
       path: /Audio/_CD/Voice/Avali/avali_laugh.ogg
+
+# Foxfolk Sounds
+- type: emoteSounds
+  id: MaleFoxfolk
+  params:
+    variation: 0.125
+  sounds:
+    Laugh:
+      collection: MaleLaugh
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    Whistle:
+      collection: Whistles
+    Sigh:
+      collection: MaleSigh
+    Scream:
+      collection: MaleScreams
+    Growl:
+      collection: FoxfolkGrowls
+    Snarl:
+      collection: FoxfolkSnarls
+    Bark:
+      collection: FoxfolkBarks
+    Whine:
+      collection: FoxfolkWhines
+    Howl:
+      collection: FoxfolkHowls
+
+- type: emoteSounds
+  id: FemaleFoxfolk
+  params:
+    variation: 0.125
+  sounds:
+    Laugh:
+      collection: FemaleLaugh
+    Sneeze:
+      collection: FemaleSneezes
+    Cough:
+      collection: FemaleCoughs
+    Whistle:
+      collection: Whistles
+    Sigh:
+      collection: FemaleSigh
+    Scream:
+      collection: FemaleScreams
+    Growl:
+      collection: FoxfolkGrowls
+    Snarl:
+      collection: FoxfolkSnarls
+    Bark:
+      collection: FoxfolkBarks
+    Whine:
+      collection: FoxfolkWhines
+    Howl:
+      collection: FoxfolkHowls

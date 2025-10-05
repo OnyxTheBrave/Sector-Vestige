@@ -1,26 +1,3 @@
-# SPDX-FileCopyrightText: 2024 BuildTools <unconfigured@null.spigotmc.org>
-# SPDX-FileCopyrightText: 2024 DieselMohawk <gavin.drinka@gmail.com>
-# SPDX-FileCopyrightText: 2024 Doctor-Cpu <77215380+Doctor-Cpu@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 FluffMe <1780586+FluffMe@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Kelderan <66748890+KeldWolf@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 TakoDragon <69509841+BackeTako@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 cool dolphin <36332236+Afrokada@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 joshepvodka <86210200+joshepvodka@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Арт <123451459+JustArt1m@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Cass <45694413+CubixThree@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Julian Giebel <juliangiebel@live.de>
-# SPDX-FileCopyrightText: 2025 Momo <Rsnesrud@gmail.com>
-# SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
-# SPDX-FileCopyrightText: 2025 T <theo75cg@gmail.com>
-# SPDX-FileCopyrightText: 2025 centcomofficer24 <theo75cg@gmail.com>
-# SPDX-FileCopyrightText: 2025 lzk <124214523+lzk228@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 bruhmogus <104110869+bruhmogus@users.noreply.github.com>
-#
-# SPDX-License-Identifier: MIT
-
 # Timers
 - type: loadoutEffectGroup
   id: Command
@@ -57,14 +34,12 @@
   storage:
     back:
     - PlushieLizard
-  groupBy: "plushies" # Late
 
 - type: loadout
   id: PlushieSpaceLizard
   storage:
     back:
     - PlushieSpaceLizard
-  groupBy: "plushies" # Late
 
 - type: loadout
   id: ThreeCandles
@@ -113,6 +88,9 @@
 
 - type: loadout
   id: CigarCase
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Command
   storage:
     back:
     - CigarCase
@@ -120,6 +98,9 @@
 
 - type: loadout
   id: CigarGold
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Command
   storage:
     back:
     - CigarGold
@@ -270,6 +251,12 @@
 
 - type: loadout
   id: OffsetCaneClown
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobClown
+      time: 3600 # 1hr
   storage:
     back:
     - OffsetCaneClown
@@ -277,6 +264,12 @@
 
 - type: loadout
   id: OffsetCaneMime
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMime
+      time: 3600 # 1hr
   storage:
     back:
     - OffsetCaneMime
@@ -284,6 +277,12 @@
 
 - type: loadout
   id: OffsetCaneNT
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Command
+      time: 18000 # 5hr
   storage:
     back:
     - OffsetCaneNT
@@ -291,6 +290,12 @@
 
 - type: loadout
   id: Cane
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobLibrarian
+      time: 3600 # 1hr same as Jamjar.
   storage:
     back:
     - Cane
@@ -299,6 +304,11 @@
 # Towels
 - type: loadout
   id: TowelColorWhite
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 36000 # 10hr
   storage:
     back:
     - TowelColorWhite
@@ -306,6 +316,11 @@
 
 - type: loadout
   id: TowelColorSilver
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 1800000 # 500hr
   storage:
     back:
     - TowelColorSilver
@@ -313,6 +328,11 @@
 
 - type: loadout
   id: TowelColorGold
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:OverallPlaytimeRequirement
+      time: 3600000 # 1000hr
   storage:
     back:
     - TowelColorGold
@@ -320,6 +340,12 @@
 
 - type: loadout
   id: TowelColorLightBrown
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorLightBrown
@@ -327,6 +353,12 @@
 
 - type: loadout
   id: TowelColorGreen
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorGreen
@@ -334,6 +366,12 @@
 
 - type: loadout
   id: TowelColorDarkBlue
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Command
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorDarkBlue
@@ -341,6 +379,12 @@
 
 - type: loadout
   id: TowelColorOrange
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorOrange
@@ -348,6 +392,12 @@
 
 - type: loadout
   id: TowelColorLightBlue
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Medical
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorLightBlue
@@ -355,6 +405,12 @@
 
 - type: loadout
   id: TowelColorPurple
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Science
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorPurple
@@ -362,6 +418,12 @@
 
 - type: loadout
   id: TowelColorRed
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Security
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorRed
@@ -369,6 +431,12 @@
 
 - type: loadout
   id: TowelColorGray
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobPassenger
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorGray
@@ -376,6 +444,12 @@
 
 - type: loadout
   id: TowelColorBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChaplain
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorBlack
@@ -383,6 +457,12 @@
 
 - type: loadout
   id: TowelColorDarkGreen
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobLibrarian
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorDarkGreen
@@ -390,6 +470,12 @@
 
 - type: loadout
   id: TowelColorMaroon
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobLawyer
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorMaroon
@@ -397,6 +483,12 @@
 
 - type: loadout
   id: TowelColorYellow
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobClown
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorYellow
@@ -404,6 +496,12 @@
 
 - type: loadout
   id: TowelColorMime
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMime
+      time: 360000 # 100hr
   storage:
     back:
     - TowelColorMime

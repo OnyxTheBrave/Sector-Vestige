@@ -87,11 +87,6 @@ public sealed partial class HumanoidAppearanceComponent : Component
     public Color? CachedFacialHairColor;
 
     /// <summary>
-    ///     The height of this humanoid.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public float Height = 1f;
-
     ///     Which layers of this humanoid that should be hidden on equipping a corresponding item..
     /// </summary>
     [DataField]

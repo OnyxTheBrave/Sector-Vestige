@@ -158,7 +158,6 @@
     - id: HolofanProjector
     - id: RCD
     - id: RCDAmmo
-    - id: RPD #Harmony Change
     - id: AirGrenade
 
 - type: entityTable

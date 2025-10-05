@@ -137,6 +137,7 @@
   - type: AmmoCounter
   - type: Item
     size: Normal
+
 - type: entity
   name: syringe gun
   parent: BaseStorageItem

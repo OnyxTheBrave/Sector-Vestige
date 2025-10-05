@@ -18,6 +18,7 @@ public sealed partial class GhostRoleComponent : Component
     // Actually make use of / enforce this requirement?
     // Why is this even here.
     // Move to ghost role prototype & respect CCvars.GameRoleTimerOverride
+    // LateStation: Find a use for this
     [DataField("requirements")]
     public HashSet<JobRequirement>? Requirements;
 
