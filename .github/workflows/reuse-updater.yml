@@ -29,7 +29,8 @@ permissions:
 jobs:
   update_headers:
     # Skip if the event was triggered by the bot's own auto-commit so we don't loop.
-    if: ${{ github.actor != 'weh-bot' && github.actor != 'weh-bot[bot]' }}
+    # Also skip if the PR has the "maintanance" label.
+    if: ${{ github.actor != 'weh-bot' && github.actor != 'weh-bot[bot]' && !contains(github.event.pull_request.labels.*.name, 'maintanance') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
