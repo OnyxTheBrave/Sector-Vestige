@@ -74,7 +74,8 @@ namespace Content.IntegrationTests.Tests
         private static readonly string[] DoNotMapWhitelist =
         {
             "/Maps/centcomm.yml",
-            "/Maps/Shuttles/AdminSpawn/**" // admin gaming
+            "/Maps/Shuttles/AdminSpawn/**", // admin gaming
+            "/Maps/_Harmony/Nonstations/**" // custom nonstations may have various stamps and items
         };
 
         /// <summary>
