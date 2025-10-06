@@ -146,3 +146,5 @@ command-description-dynamicrule-executenow =
     Executes the piped dynamic rule as if it had reached its regular update time.
 command-description-dynamicrule-rules =
     Gets a list of all the rules spawned by the piped dynamic rule.
+command-description-pref-has =
+    Check if the given session has the given antag preference.
