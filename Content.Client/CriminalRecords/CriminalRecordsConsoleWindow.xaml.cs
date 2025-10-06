@@ -1,16 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Arendian <137322659+Arendian@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 BuildTools <unconfigured@null.spigotmc.org>
-// SPDX-FileCopyrightText: 2024 FluffMe <1780586+FluffMe@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 eoineoineoin <github@eoinrul.es>
-// SPDX-FileCopyrightText: 2025 James Simonson <jamessimo89@gmail.com>
-// SPDX-FileCopyrightText: 2025 MilenVolf <63782763+MilenVolf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
-// SPDX-FileCopyrightText: 2025 eoineoineoin <helloworld@eoinrul.es>
-//
-// SPDX-License-Identifier: MIT
-
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration;
@@ -30,7 +17,6 @@ using System.Linq;
 using System.Numerics;
 using Content.Shared.StatusIcon;
 using Robust.Client.GameObjects;
-using Serilog;
 
 namespace Content.Client.CriminalRecords;
 
@@ -266,14 +252,6 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
             {
                 message = FormattedMessage.FromMarkupOrThrow(Loc.GetString("criminal-records-console-suspected-reason"));
             }
-            if (criminalRecord.Status == SecurityStatus.Monitor)
-            {
-                message = FormattedMessage.FromMarkupOrThrow(Loc.GetString("criminal-records-console-monitor"));
-            }
-            if (criminalRecord.Status == SecurityStatus.Search)
-            {
-                message = FormattedMessage.FromMarkupOrThrow(Loc.GetString("criminal-records-console-search"));
-            }
             message.AddText($": {reason}");
 
             WantedReason.SetMessage(message);
@@ -298,9 +276,7 @@ public sealed partial class CriminalRecordsConsoleWindow : FancyWindow
 
     private void SetStatus(SecurityStatus status)
     {
-        if (status == SecurityStatus.Wanted || status == SecurityStatus.Suspected
-        // Harmony additional statuses
-            || status == SecurityStatus.Monitor || status == SecurityStatus.Search)
+        if (status == SecurityStatus.Wanted || status == SecurityStatus.Suspected)
         {
             GetReason(status);
             return;

@@ -1,3 +1,10 @@
+// SPDX-FileCopyrightText: 2023 Chief-Engineer <119664036+Chief-Engineer@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 Riggle <27156122+RigglePrime@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 using Content.Client.Eui;
 using Content.Shared.Administration;
 using Content.Shared.Eui;
@@ -14,8 +21,7 @@ public sealed class BanPanelEui : BaseEui
     {
         BanPanel = new BanPanel();
         BanPanel.OnClose += () => SendMessage(new CloseEuiMessage());
-        BanPanel.BanSubmitted += (player, ip, useLastIp, hwid, useLastHwid, minutes, reason, severity, roles, erase)
-            => SendMessage(new BanPanelEuiStateMsg.CreateBanRequest(player, ip, useLastIp, hwid, useLastHwid, minutes, reason, severity, roles, erase));
+        BanPanel.BanSubmitted += ban => SendMessage(new BanPanelEuiStateMsg.CreateBanRequest(ban));
         BanPanel.PlayerChanged += player => SendMessage(new BanPanelEuiStateMsg.GetPlayerInfoRequest(player));
     }
 

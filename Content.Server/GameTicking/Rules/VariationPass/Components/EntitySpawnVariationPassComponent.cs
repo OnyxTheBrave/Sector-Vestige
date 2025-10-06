@@ -1,10 +1,4 @@
-// SPDX-FileCopyrightText: 2024 Kara <lunarautomaton6@gmail.com>
-// SPDX-FileCopyrightText: 2025 AftrLite <61218133+AftrLite@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Lachryphage (GitHub)
-//
-// SPDX-License-Identifier: MIT
-
-using Content.Shared.Random;
+﻿using Content.Shared.Random;
 using Content.Shared.Storage;
 using Robust.Shared.Prototypes;
 
@@ -30,10 +24,4 @@ public sealed partial class EntitySpawnVariationPassComponent : Component
     /// </summary>
     [DataField(required: true)]
     public List<EntitySpawnEntry> Entities = default!;
-
-    /// <summary>
-    ///     Imp: Skip spawning an entity if another entity with one of these components exists on the tile.
-    /// </summary>
-    [DataField]
-    public ComponentRegistry? ComponentBlacklist;
 }

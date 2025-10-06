@@ -152,9 +152,6 @@
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/goliathcloak.rsi
-  - type: Construction
-    graph: ClothingGoliathCloak
-    node: cloak
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodGoliathCloak
     requiredSlot:
@@ -163,6 +160,9 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+  - type: Construction
+    graph: ClothingGoliathCloak
+    node: cloak
 
 - type: entity
   parent: ClothingNeckBase

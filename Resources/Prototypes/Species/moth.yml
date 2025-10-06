@@ -16,7 +16,6 @@
   id: MobMothSprites
   sprites:
     Head: MobMothHead
-    Hair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
@@ -45,7 +44,7 @@
   onlyWhitelisted: true
   points:
     Hair:
-      points: 1
+      points: 0
       required: false
     FacialHair:
       points: 0
@@ -65,7 +64,7 @@
       points: 1
       required: false
     Head:
-      points: 3
+      points: 1
       required: false
     UndergarmentTop:
       points: 1
@@ -77,10 +76,10 @@
       points: 2
       required: false
     Legs:
-      points: 6
+      points: 2
       required: false
     Arms:
-      points: 6
+      points: 2
       required: false
 
 - type: humanoidBaseSprite

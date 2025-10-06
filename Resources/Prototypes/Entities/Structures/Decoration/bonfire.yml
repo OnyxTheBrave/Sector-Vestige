@@ -10,9 +10,6 @@
     layers:
       - state: bonfire
       - state: burning
-  - type: Construction
-    graph: BonfireGraph
-    node: bonfirenode
   - type: PointLight
     radius: 5
     energy: 3

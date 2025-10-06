@@ -30,7 +30,6 @@
   id: RaisedByArachnids
   name: trait-raisedbyarachnids-name
   description: trait-raisedbyarachnids-desc
-  replaceComponents: true
   cost: 1
   category: SpeechTraits
   components:
@@ -50,7 +49,6 @@
   id: RaisedByDiona
   name: trait-raisedbydiona-name
   description: trait-raisedbydiona-desc
-  replaceComponents: true
   cost: 1
   category: SpeechTraits
   components:
@@ -69,7 +67,6 @@
   id: RaisedByDwarfs
   name: trait-raisedbydwarfs-name
   description: trait-raisedbydwarfs-desc
-  replaceComponents: true
   cost: 1
   category: SpeechTraits
   components:
@@ -91,7 +88,6 @@
   id: RaisedByHumans
   name: trait-raisedbyhumans-name
   description: trait-raisedbyhumans-desc
-  replaceComponents: true
   cost: 1
   category: SpeechTraits
   components:
@@ -110,7 +106,6 @@
   id: RaisedByMoths
   name: trait-raisedbymoths-name
   description: trait-raisedbymoths-desc
-  replaceComponents: true
   cost: 1
   category: SpeechTraits
   components:
@@ -131,7 +126,6 @@
   id: RaisedByReptilians
   name: trait-raisedbyreptilians-name
   description: trait-raisedbyreptilians-desc
-  replaceComponents: true
   cost: 1
   category: SpeechTraits
   components:
@@ -151,7 +145,6 @@
   id: RaisedBySlimes
   name: trait-raisedbyslimes-name
   description: trait-raisedbyslimes-desc
-  replaceComponents: true
   cost: 1
   category: SpeechTraits
   components:
@@ -171,7 +164,6 @@
   id: RaisedByVox
   name: trait-raisedbyvox-name
   description: trait-raisedbyvox-desc
-  replaceComponents: true
   cost: 1
   category: SpeechTraits
   components:

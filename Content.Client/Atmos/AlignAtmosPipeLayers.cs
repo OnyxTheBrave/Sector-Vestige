@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 using Content.Client.Construction;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
@@ -134,7 +138,7 @@ public sealed class AlignAtmosPipeLayers : SnapgridCenter
 
         var newProtoId = altPrototypes[(int)layer];
 
-        if (!_protoManager.TryIndex(newProtoId, out var newProto))
+        if (!_protoManager.Resolve(newProtoId, out var newProto))
             return;
 
         if (newProto.Type != ConstructionType.Structure)

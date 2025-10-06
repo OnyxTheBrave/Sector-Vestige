@@ -634,6 +634,9 @@
   id: GhostOnlyWarp
 
 - type: Tag
+  id: GenderPin
+
+- type: Tag
   id: GlassAirlock
 
 - type: Tag
@@ -802,6 +805,9 @@
   id: Ingot
 
 - type: Tag
+  id: Inflatable
+
+- type: Tag
   id: InstantDoAfters
 
 - type: Tag
@@ -927,6 +933,9 @@
 
 - type: Tag
   id: Medkit
+
+- type: Tag
+  id: MessyDrinkerImmune
 
 - type: Tag
   id: Metal
@@ -1335,6 +1344,9 @@
   id: StationAi
 
 - type: Tag
+  id: StationAiCoreElectronics
+
+- type: Tag
   id: StationMapElectronics
 
 - type: Tag
@@ -1447,9 +1459,6 @@
 
 - type: Tag
   id: VGRoidInterior
-
-- type: Tag
-  id: VehicleKey # LateStation Wheelchair addition
 
 - type: Tag
   id: VimPilot

@@ -1,71 +1,3 @@
-# SPDX-FileCopyrightText: 2020 FrostMando <68990565+FrostMando@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2020 Swept <sweptwastaken@protonmail.com>
-# SPDX-FileCopyrightText: 2020 Víctor Aguilera Puerto <zddm@outlook.es>
-# SPDX-FileCopyrightText: 2020 Ygg01 <daniel.fath7@gmail.com>
-# SPDX-FileCopyrightText: 2021 Elijahrane <60792108+Elijahrane@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2021 Mith-randalf <84274729+Mith-randalf@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2021 Paul Ritter <ritter.paul1@googlemail.com>
-# SPDX-FileCopyrightText: 2021 xRiriq <94037592+xRiriq@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2021 xRiriq <xRiriq.git@gmail.com>
-# SPDX-FileCopyrightText: 2022 Fishfish458 <47410468+Fishfish458@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 HoidC <99100948+HoidC@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 Moony <moonheart08@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 Pancake <Pangogie@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 Peptide90 <78795277+Peptide90@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 Rane <60792108+Elijahrane@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 Vordenburg <114301317+Vordenburg@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2022 fishfish458 <fishfish458>
-# SPDX-FileCopyrightText: 2022 mirrorcult <lunarautomaton6@gmail.com>
-# SPDX-FileCopyrightText: 2022 rolfero <45628623+rolfero@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Alekshhh <44923899+Alekshhh@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 CrigCrag <137215465+CrigCrag@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Ed <96445749+TheShuEd@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 EnDecc <33369477+Endecc@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Errant <35878406+Errant-4@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Genkail <50331122+Genkail@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Maxtone <124747282+MagnusCrowe@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 Puro <103608145+PuroSlavKing@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 StanTheCarpenter <66203777+StanTheCarpenter@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 brainfood1183 <113240905+brainfood1183@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 crazybrain23 <44417085+crazybrain23@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
-# SPDX-FileCopyrightText: 2023 lapatison <100279397+lapatison@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 AlexUm & XGabriel08X <159550239+AlexUmAndXGabriel08X@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 BuildTools <unconfigured@null.spigotmc.org>
-# SPDX-FileCopyrightText: 2024 Dark <darkwindleaf@hotmail.co.uk>
-# SPDX-FileCopyrightText: 2024 ERROR404 <100093430+ERORR404V1@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Emisse <99158783+Emisse@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Flareguy <78941145+Flareguy@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Hmeister-real <118129069+Hmeister-real@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Kara <lunarautomaton6@gmail.com>
-# SPDX-FileCopyrightText: 2024 Mr. 27 <45323883+Dutch-VanDerLinde@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 TheCrimsonJupiter <54331834+TheCrimsonJupiter@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Whisper <121047731+QuietlyWhisper@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 deltanedas <39013340+deltanedas@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 August Sun <45527070+august-sun@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 BoskiYourk <175783845+BoskiYourk@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 BramvanZijp <56019239+BramvanZijp@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Brassica Prime <114382089+Pumkin69@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Hyper B <137433177+HyperB1@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 K-Dynamic <20566341+K-Dynamic@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Killerqu00 <killerqueen1777@gmail.com>
-# SPDX-FileCopyrightText: 2025 Lachryphage (GitHub)
-# SPDX-FileCopyrightText: 2025 Mercer Bray <74152185+DissidentBullet@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Michael <107807667+Doc-Michael@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Palourde89 <112418466+Palourde89@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
-# SPDX-FileCopyrightText: 2025 RedBookcase <crazykid1590@gmail.com>
-# SPDX-FileCopyrightText: 2025 ScarKy0 <106310278+ScarKy0@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 UpAndLeaves <92269094+Alpha-Two@users.noreply.github.com>
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 #When adding new hardsuits, please try to keep the organization consistent with hardsuit-helmets.yml (if possible.)
 
 #CREW HARDSUITS
@@ -77,13 +9,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has thermal shielding.
   components:
   - type: Sprite
-  #start of Harmony change : Update sprite pathing
-    #sprite: Clothing/OuterClothing/Hardsuits/atmospherics.rsi
-    sprite: _Harmony/Clothing/OuterClothing/Hardsuits/atmospherics.rsi
+    sprite: Clothing/OuterClothing/Hardsuits/atmospherics.rsi
   - type: Clothing
-    #sprite: Clothing/OuterClothing/Hardsuits/atmospherics.rsi
-    sprite: _Harmony/Clothing/OuterClothing/Hardsuits/atmospherics.rsi
-  #end of Harmony change
+    sprite: Clothing/OuterClothing/Hardsuits/atmospherics.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -122,13 +50,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-#  start of Harmony change : Update sprite pathing
-#   sprite: Clothing/OuterClothing/Hardsuits/engineering.rsi
-    sprite: _Harmony/Clothing/OuterClothing/Hardsuits/engineering.rsi
+    sprite: Clothing/OuterClothing/Hardsuits/engineering.rsi
   - type: Clothing
-#   sprite: Clothing/OuterClothing/Hardsuits/engineering.rsi
-    sprite: _Harmony/Clothing/OuterClothing/Hardsuits/engineering.rsi
-#  end of Harmony change
+    sprite: Clothing/OuterClothing/Hardsuits/engineering.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.04
     lowPressureMultiplier: 1000
@@ -300,7 +224,6 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMaxim
 
-# Harmony change. Adjusted damage resistance values
 #Security Hardsuit
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
@@ -326,8 +249,8 @@
         Heat: 0.8
         Caustic: 0.7
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurity
@@ -341,49 +264,35 @@
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
   id: ClothingOuterHardsuitBrigmedic
-  name: brigmedic void suit # Harmony Change: Updated Name
+  name: brigmedic hardsuit
   description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
   components:
   - type: Sprite
-# Start of Harmony Change: Updated Sprite Pathing
-#    sprite: Clothing/OuterClothing/Hardsuits/brigmedic.rsi
-    sprite: _Harmony/Clothing/OuterClothing/Hardsuits/brigmedic.rsi
+    sprite: Clothing/OuterClothing/Hardsuits/brigmedic.rsi
   - type: Clothing
-#    sprite: Clothing/OuterClothing/Hardsuits/brigmedic.rsi
-    sprite: _Harmony/Clothing/OuterClothing/Hardsuits/brigmedic.rsi
-# End of Change
+    sprite: Clothing/OuterClothing/Hardsuits/brigmedic.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
   - type: Armor
     modifiers:
       coefficients:
-# Start of Harmony Change: Updates Speed and Armor Values
-#        Blunt: 0.8
-#        Slash: 0.8
-#        Piercing: 0.7
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.75
-        Heat: 0.8
-        Caustic: 0.7
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.7
   - type: ClothingSpeedModifier
-#    walkModifier: 0.65
-#    sprintModifier: 0.65
-    walkModifier: 0.90
-    sprintModifier: 0.90
-# End of Harmony Change
+    walkModifier: 0.65
+    sprintModifier: 0.65
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
 
-# Harmony change. Adjusted damage resistance values
 #Warden's Hardsuit
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
   id: ClothingOuterHardsuitWarden
   name: warden's hardsuit
-  description: The Warden's suit. Built like a tank.
+  description: A specialized riot suit geared to combat low pressure environments.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/security-warden.rsi
@@ -398,13 +307,13 @@
     modifiers:
       coefficients:
         Blunt: 0.4
-        Slash: 0.4
-        Piercing: 0.4
-        Heat: 0.7
+        Slash: 0.5
+        Piercing: 0.6
+        Heat: 0.8
         Caustic: 0.7
   - type: ClothingSpeedModifier
-    walkModifier: 0.70
-    sprintModifier: 0.70
+    walkModifier: 0.7
+    sprintModifier: 0.7
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWarden
@@ -454,13 +363,9 @@
   description: A special hardsuit that protects against hazardous, low pressure environments, made for the chief engineer of the station.
   components:
   - type: Sprite
-#  start of Harmony change : Update sprite pathing
-#   sprite: Clothing/OuterClothing/Hardsuits/engineering-white.rsi
-    sprite: _Harmony/Clothing/OuterClothing/Hardsuits/engineering-white.rsi
+    sprite: Clothing/OuterClothing/Hardsuits/engineering-white.rsi
   - type: Clothing
-#   sprite: Clothing/OuterClothing/Hardsuits/engineering-white.rsi
-    sprite: _Harmony/Clothing/OuterClothing/Hardsuits/engineering-white.rsi
-#  end of Harmony change
+    sprite: Clothing/OuterClothing/Hardsuits/engineering-white.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -488,10 +393,6 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-  - type: ClothingGrantComponent
-    component:
-    - type: SupermatterImmune
-  # end imp edits #
 
 #Chief Medical Officer's Hardsuit
 - type: entity
@@ -571,13 +472,12 @@
   - type: StealTarget
     stealGroup: ClothingOuterHardsuitRd
 
-# Harmony change. Adjusted damage resistance values
 #Head of Security's Hardsuit
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitSecurityRed
-  name: head of security's assault suit
-  description: A huge, looming, armored space suit. The biggest and the baddest.
+  name: head of security's hardsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/security-red.rsi
@@ -587,18 +487,19 @@
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.4
+    damageCoefficient: 0.5
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
+        Blunt: 0.6
         Slash: 0.5
         Piercing: 0.5
-        Heat: 0.75
+        Heat: 0.8
+        Radiation: 0.5
         Caustic: 0.6
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.8
+    sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurityRed
@@ -637,7 +538,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitLuxury
 
 #ANTAG HARDSUITS
-# Harmony change. Updated sprite file path due to resprite
 #Blood-red Hardsuit
 - type: entity
   parent: [ ClothingOuterHardsuitBase, BaseSyndicateContraband ]
@@ -646,15 +546,11 @@
   description: A heavily armored hardsuit designed for work in special operations. Property of Gorlex Marauders.
   components:
   - type: Sprite
-  #start of Harmony change
-    #sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
-    sprite: _Harmony/Clothing/OuterClothing/Hardsuits/syndicate.rsi
+    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
   - type: Item
     size: Huge
   - type: Clothing
-    #sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
-    sprite: _Harmony/Clothing/OuterClothing/Hardsuits/syndicate.rsi
-  #end of Harmony change
+    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -687,7 +583,6 @@
   - type: StaticPrice
     price: 5000
 
-# Harmony change. Updated sprite file path due to resprite
 # Syndicate Medic Hardsuit
 - type: entity
   parent: [ClothingOuterHardsuitSyndie, BaseSyndicateContraband]
@@ -696,21 +591,16 @@
   description: A heavily armored and agile advanced hardsuit specifically designed for field medic operations.
   components:
   - type: Sprite
-  #start of Harmony change
-    #sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
-    sprite: _Harmony/Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
+    sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
   - type: Clothing
-    #sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
-    sprite: _Harmony/Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
+    sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieMedic
-  #end of Harmony change
   - type: Tag
     tags:
     - Hardsuit
     - WhitelistChameleon
 
-# Harmony change. Updated sprite file path due to resprite
 #Syndicate Elite Hardsuit
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseSyndicateContraband]
@@ -719,13 +609,9 @@
   description: An elite version of the blood-red hardsuit, with improved radiation resistance and fireproofing. Property of Gorlex Marauders.
   components:
   - type: Sprite
-  #start of Harmony change
-    #sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
-    sprite: _Harmony/Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+    sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
   - type: Clothing
-    #sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
-    sprite: _Harmony/Clothing/OuterClothing/Hardsuits/syndieelite.rsi
-  #end of Harmony change
+    sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -761,7 +647,6 @@
     - Hardsuit
     - WhitelistChameleon
 
-# Harmony change. Updated sprite file path due to resprite
 #Syndicate Commander Hardsuit
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseSyndicateContraband]
@@ -770,13 +655,9 @@
   description: A bulked up version of the blood-red hardsuit, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
   components:
   - type: Sprite
-  #start of Harmony change
-    #sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
-    sprite: _Harmony/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
+    sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
   - type: Clothing
-    #sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
-    sprite: _Harmony/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
-  #end of Harmony change
+    sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
