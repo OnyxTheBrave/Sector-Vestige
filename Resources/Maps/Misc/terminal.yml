@@ -13382,13 +13382,6 @@ entities:
     - type: Transform
       pos: 10.5,-27.5
       parent: 2
-- proto: VendingMachineGamesUmbra
-  entities:
-  - uid: 1937
-    components:
-    - type: Transform
-      pos: 6.5,1.5
-      parent: 2
   - uid: 1938
     components:
     - type: Transform
