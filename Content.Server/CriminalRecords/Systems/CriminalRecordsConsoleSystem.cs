@@ -16,10 +16,6 @@ using Content.Shared.Security.Components;
 using System.Linq;
 using Content.Shared.Roles.Jobs;
 
-// CD: imports
-using Content.Server._CD.Records;
-using Content.Shared._CD.Records;
-
 namespace Content.Server.CriminalRecords.Systems;
 
 /// <summary>
@@ -40,7 +36,6 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         SubscribeLocalEvent<CriminalRecordsConsoleComponent, RecordModifiedEvent>(UpdateUserInterface);
         SubscribeLocalEvent<CriminalRecordsConsoleComponent, AfterGeneralRecordCreatedEvent>(UpdateUserInterface);
 
-        /* CD: We disable the wizden Criminal Records computer and reuse some of the Bui events
         Subs.BuiEvents<CriminalRecordsConsoleComponent>(CriminalRecordsConsoleKey.Key, subs =>
         {
             subs.Event<BoundUIOpenedEvent>(UpdateUserInterface);
@@ -50,17 +45,6 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
             subs.Event<CriminalRecordAddHistory>(OnAddHistory);
             subs.Event<CriminalRecordDeleteHistory>(OnDeleteHistory);
             subs.Event<CriminalRecordSetStatusFilter>(OnStatusFilterPressed);
-        }); */
-
-        // CD: also subscribe to status changes from the CD records console
-        Subs.BuiEvents<CriminalRecordsConsoleComponent>(CharacterRecordConsoleKey.Key, subs =>
-        {
-            subs.Event<SelectStationRecord>(OnKeySelected);
-            subs.Event((Entity<CriminalRecordsConsoleComponent> ent, ref CriminalRecordChangeStatus args) =>
-            {
-                OnChangeStatus(ent, ref args);
-                RaiseLocalEvent(ent, new CharacterRecordsModifiedEvent());
-            });
         });
     }
 
@@ -103,10 +87,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
     {
         // prevent malf client violating wanted/reason nullability
         if (msg.Status == SecurityStatus.Wanted != (msg.Reason != null) &&
-            msg.Status == SecurityStatus.Suspected != (msg.Reason != null) &&
-            // Additional Harmony statuses
-            msg.Status == SecurityStatus.Monitor != (msg.Reason != null) &&
-            msg.Status == SecurityStatus.Search != (msg.Reason != null))
+            msg.Status == SecurityStatus.Suspected != (msg.Reason != null))
             return;
 
         if (!CheckSelected(ent, msg.Actor, out var mob, out var key))
@@ -173,12 +154,6 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
             (_, SecurityStatus.Discharged) => "released",
             // going from any other state to wanted, AOS or prisonbreak / lazy secoff never set them to released and they reoffended
             (_, SecurityStatus.Wanted) => "wanted",
-            // Additional Harmony statuses
-            // person is being monitored
-            (_, SecurityStatus.Monitor) => "monitor",
-            // person needs to be searched
-            (_, SecurityStatus.Search) => "search",
-            // End of Additional Harmony statuses
             // person is no longer sus
             (SecurityStatus.Suspected, SecurityStatus.None) => "not-suspected",
             // going from wanted to none, must have been a mistake
@@ -187,12 +162,6 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
             (SecurityStatus.Detained, SecurityStatus.None) => "released",
             // criminal is no longer on parole
             (SecurityStatus.Paroled, SecurityStatus.None) => "not-parole",
-            // Additional Harmony statuses
-            // person is no longer monitored
-            (SecurityStatus.Monitor, SecurityStatus.None) => "not-monitor",
-            // person no longer needs to be searched
-            (SecurityStatus.Search, SecurityStatus.None) => "not-search",
-            // End of Additional Harmony statuses
             // this is impossible
             _ => "not-wanted"
         };
@@ -299,32 +268,5 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         key = new StationRecordKey(id, station);
         mob = user;
         return true;
-    }
-
-    /// <summary>
-    /// Checks if the new identity's name has a criminal record attached to it, and gives the entity the icon that
-    /// belongs to the status if it does.
-    /// </summary>
-    public void CheckNewIdentity(EntityUid uid)
-    {
-        var name = Identity.Name(uid, EntityManager);
-        var xform = Transform(uid);
-
-        // TODO use the entity's station? Not the station of the map that it happens to currently be on?
-        var station = _station.GetStationInMap(xform.MapID);
-
-        if (station != null && _records.GetRecordByName(station.Value, name) is { } id)
-        {
-            if (_records.TryGetRecord<CriminalRecord>(new StationRecordKey(id, station.Value),
-                    out var record))
-            {
-                if (record.Status != SecurityStatus.None)
-                {
-                    _criminalRecords.SetCriminalIcon(name, record.Status, uid);
-                    return;
-                }
-            }
-        }
-        RemComp<CriminalRecordComponent>(uid);
     }
 }

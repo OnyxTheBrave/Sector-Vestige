@@ -347,8 +347,7 @@ public sealed partial class SleepingSystem : EntitySystem
     /// </summary>
     public void OnEmoteAttempt(Entity<SleepingComponent> ent, ref EmoteAttemptEvent args)
     {
-        // LateStation, Allow people to emote while sleeping
-        // args.Cancel();
+        args.Cancel();
     }
 
     private void OnChangeForceSay(Entity<SleepingComponent> ent, ref BeforeForceSayEvent args)

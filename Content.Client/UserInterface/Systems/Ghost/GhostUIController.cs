@@ -2,15 +2,9 @@
 using Content.Client.Ghost;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.UserInterface.Systems.Ghost.Widgets;
-using Content.Shared._AXOLOTL;
 using Content.Shared.Ghost;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
-
-// AXOLOTL: imports for ghostrespawn
-using Content.Shared.CCVar;
-using Robust.Shared.Configuration;
-using Robust.Shared.Console;
 
 namespace Content.Client.UserInterface.Systems.Ghost;
 
@@ -22,10 +16,6 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     [UISystemDependency] private readonly GhostSystem? _system = default;
 
     private GhostGui? Gui => UIManager.GetActiveUIWidgetOrNull<GhostGui>();
-
-    // AXOLOTL: Systems required for ghostrespawn
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IConsoleHost _consoleHost = default!;
 
     public override void Initialize()
     {
@@ -74,9 +64,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         }
 
         Gui.Visible = _system?.IsGhost ?? false;
-        // AXOLOTL: Send death and respawn time information to client for ghostrespawn
-        Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody,
-                _system?.Player?.TimeOfDeath, _cfg.GetCVar(AxolotlCVars.RespawnTime));
+        Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody);
     }
 
     private void OnPlayerRemoved(GhostComponent component)
@@ -86,7 +74,6 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
 
     private void OnPlayerUpdated(GhostComponent component)
     {
-        AxolotlUpdateRespawn(component.TimeOfDeath);
         UpdateGui();
     }
 
@@ -96,7 +83,6 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
             return;
 
         Gui.Visible = true;
-        AxolotlUpdateRespawn(component.TimeOfDeath);
         UpdateGui();
     }
 
@@ -141,8 +127,6 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.GhostRolesPressed += GhostRolesPressed;
         Gui.TargetWindow.WarpClicked += OnWarpClicked;
         Gui.TargetWindow.OnGhostnadoClicked += OnGhostnadoClicked;
-        // AXOLOTL: ghostrespawn button
-        Gui.AxolotlGhostRespawnPressed += AxolotlGuiOnGhostRespawnPressed;
 
         UpdateGui();
     }
@@ -175,15 +159,5 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     private void GhostRolesPressed()
     {
         _system?.OpenGhostRoles();
-    }
-
-    private void AxolotlUpdateRespawn(TimeSpan? timeOfDeath)
-    {
-        Gui?.AxolotlUpdateRespawn(timeOfDeath);
-    }
-
-    private void AxolotlGuiOnGhostRespawnPressed()
-    {
-        _consoleHost.ExecuteCommand("ghostrespawn");
     }
 }

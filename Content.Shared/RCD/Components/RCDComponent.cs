@@ -57,12 +57,4 @@ public sealed partial class RCDComponent : Component
     /// </remarks>
     [ViewVariables(VVAccess.ReadOnly)]
     public Transform ConstructionTransform { get; private set; }
-
-    // Harmony change - RPD
-    /// <summary>
-    /// Indicates whether this is an RCD or an RPD
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool IsRpd { get; set; } = false;
-    // End harmony
 }

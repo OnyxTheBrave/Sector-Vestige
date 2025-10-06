@@ -231,8 +231,8 @@ public sealed partial class SupermatterSystem
             zapCount += 1;
         }
 
-        if (zapCount >= 1)
-            _lightning.ShootRandomLightnings(uid, zapRange, zapCount, sm.LightningPrototypes[zapPower], hitCoordsChance: sm.ZapHitCoordinatesChance, canExplode: false);
+            if (zapCount >= 1)
+                _lightning.ShootRandomLightnings(uid, zapRange, zapCount, sm.LightningPrototypes[zapPower]);
     }
 
     /// <summary>

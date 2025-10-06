@@ -209,7 +209,6 @@ marking-VoxBelly = Belly
 marking-VoxBelly-voxbelly = Belly
 marking-VoxTailBalled = Thrasher
 marking-VoxTailBalled-voxtailballed = Thrasher
-marking-VoxTailSplit = Twinned
 marking-VoxTailSplit-voxtailsplit = Twinned
 
 # upstream vox markings dont have localized names. lmfao

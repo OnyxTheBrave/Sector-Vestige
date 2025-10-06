@@ -37,13 +37,13 @@
   onlyWhitelisted: true
   points:
     Head:
-      points: 3
+      points: 2
       required: false
     HeadTop:
-      points: 2
+      points: 1
       required: false
     HeadSide:
-      points: 2
+      points: 1
       required: false
     UndergarmentTop:
       points: 1

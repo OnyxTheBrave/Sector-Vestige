@@ -1,3 +1,17 @@
+// SPDX-FileCopyrightText: 2022 Paul Ritter <ritter.paul1@googlemail.com>
+// SPDX-FileCopyrightText: 2022 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
+// SPDX-FileCopyrightText: 2022 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
+// SPDX-FileCopyrightText: 2023 Visne <39844191+Visne@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 ElectroJr <leonsfriedrich@gmail.com>
+// SPDX-FileCopyrightText: 2024 Emisse <99158783+Emisse@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+// SPDX-FileCopyrightText: 2025 Spessmann <156740760+Spessmann@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +61,7 @@ public class MapLoadBenchmark
         PoolManager.Shutdown();
     }
 
-    public static readonly string[] MapsSource = { "Empty", "Saltern", "Box", "Bagel", "Dev", "CentComm", "Core", "TestTeg", "Packed", "Omega", "Reach", "Meta", "Marathon", "MeteorArena", "Fland", "Oasis", "Convex"};
+    public static string[] MapsSource { get; } = { "Empty", "Saltern", "Box", "Bagel", "Dev", "CentComm", "Core", "TestTeg", "Packed", "Omega", "Reach", "Meta", "Marathon", "MeteorArena", "Fland", "Oasis", "Convex"};
 
     [ParamsSource(nameof(MapsSource))]
     public string Map;

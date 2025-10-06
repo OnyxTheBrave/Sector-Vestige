@@ -1,26 +1,3 @@
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 DrSmugleaf <drsmugleaf@gmail.com>
-// SPDX-FileCopyrightText: 2023 Vordenburg <114301317+Vordenburg@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <39013340+deltanedas@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
-// SPDX-FileCopyrightText: 2023 keronshb <54602815+keronshb@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Brandon Hu <103440971+Brandon-Huu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 BuildTools <unconfigured@null.spigotmc.org>
-// SPDX-FileCopyrightText: 2024 Dark <darkwindleaf@hotmail.co.uk>
-// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 LordCarve <27449516+LordCarve@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
-// SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2024 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 J <billsmith116@gmail.com>
-// SPDX-FileCopyrightText: 2025 Lachryphage (GitHub)
-// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
-// SPDX-FileCopyrightText: 2025 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 mqole <113324899+mqole@users.noreply.github.com>
-//
-// SPDX-License-Identifier: MIT
-
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Content.Shared.ActionBlocker;
@@ -52,6 +29,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<DoAfterComponent, DamageChangedEvent>(OnDamage);
         SubscribeLocalEvent<DoAfterComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<DoAfterComponent, ComponentGetState>(OnDoAfterGetState);
@@ -336,16 +314,16 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
     /// <summary>
     ///     Cancels an active DoAfter.
     /// </summary>
-    public void Cancel(DoAfterId? id, DoAfterComponent? comp = null)
+    public void Cancel(DoAfterId? id, DoAfterComponent? comp = null, bool force = false)
     {
         if (id != null)
-            Cancel(id.Value.Uid, id.Value.Index, comp);
+            Cancel(id.Value.Uid, id.Value.Index, comp, force);
     }
 
     /// <summary>
     ///     Cancels an active DoAfter.
     /// </summary>
-    public void Cancel(EntityUid entity, ushort id, DoAfterComponent? comp = null)
+    public void Cancel(EntityUid entity, ushort id, DoAfterComponent? comp = null, bool force = false)
     {
         if (!Resolve(entity, ref comp, false))
             return;
@@ -356,13 +334,13 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
             return;
         }
 
-        InternalCancel(doAfter, comp);
+        InternalCancel(doAfter, comp, force: force);
         Dirty(entity, comp);
     }
 
-    private void InternalCancel(DoAfter doAfter, DoAfterComponent component)
+    private void InternalCancel(DoAfter doAfter, DoAfterComponent component, bool force = false)
     {
-        if (doAfter.Cancelled || doAfter.Completed)
+        if (doAfter.Cancelled || (doAfter.Completed && !force))
             return;
 
         // Caller is responsible for dirtying the component.

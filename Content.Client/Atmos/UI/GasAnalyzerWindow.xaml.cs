@@ -1,3 +1,13 @@
+// SPDX-FileCopyrightText: 2022 theashtronaut <112137107+theashtronaut@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 qwerltaz <69696513+qwerltaz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Mervill <mervills.email@gmail.com>
+// SPDX-FileCopyrightText: 2024 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 using System.Numerics;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Atmos;
@@ -208,7 +218,7 @@ namespace Content.Client.Atmos.UI
             });
             presBox.AddChild(new Label
             {
-                Text = Loc.GetString("gas-analyzer-window-pressure-val-text", ("pressure", $"{gasMix.Pressure:0.##}")),
+                Text = Loc.GetString("gas-analyzer-window-pressure-val-text", ("pressure", $"{gasMix.Pressure:0.00}")),
                 Align = Label.AlignMode.Right,
                 HorizontalExpand = true
             });
@@ -232,8 +242,8 @@ namespace Content.Client.Atmos.UI
                 tempBox.AddChild(new Label
                 {
                     Text = Loc.GetString("gas-analyzer-window-temperature-val-text",
-                        ("tempK", $"{gasMix.Temperature:0.#}"),
-                        ("tempC", $"{TemperatureHelpers.KelvinToCelsius(gasMix.Temperature):0.#}")),
+                        ("tempK", $"{gasMix.Temperature:0.0}"),
+                        ("tempC", $"{TemperatureHelpers.KelvinToCelsius(gasMix.Temperature):0.0}")),
                     Align = Label.AlignMode.Right,
                     HorizontalExpand = true
                 });

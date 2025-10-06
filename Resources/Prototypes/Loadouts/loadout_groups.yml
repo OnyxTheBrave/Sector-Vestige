@@ -1,98 +1,16 @@
-# SPDX-FileCopyrightText: 2024 Alzore <140123969+Blackern5000@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Bellwether <157836624+BellwetherLogic@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 BuildTools <unconfigured@null.spigotmc.org>
-# SPDX-FileCopyrightText: 2024 Cojoke <83733158+Cojoke-dot@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 DieselMohawk <gavin.drinka@gmail.com>
-# SPDX-FileCopyrightText: 2024 Doctor-Cpu <77215380+Doctor-Cpu@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Ed <96445749+TheShuEd@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 FluffMe <1780586+FluffMe@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 FluffMe <dex.stb@gmail.com>
-# SPDX-FileCopyrightText: 2024 Ghagliiarghii <68826635+Ghagliiarghii@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Hanz <41141796+Hanzdegloker@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Kelderan <66748890+KeldWolf@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 LittleNorthStar <vorriasam@gmail.com>
-# SPDX-FileCopyrightText: 2024 Michael Krebs <michael@krb.io>
-# SPDX-FileCopyrightText: 2024 Mr. 27 <45323883+Dutch-VanDerLinde@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Pancake <Pangogie@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 PoorMansDreams <150595537+PoorMansDreams@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 SpeltIncorrectyl <66873282+SpeltIncorrectyl@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 TakoDragon <69509841+BackeTako@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
-# SPDX-FileCopyrightText: 2024 Verm <32827189+Vermidia@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 cool dolphin <36332236+Afrokada@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 jack-thedragon95 <dankbooty66@gmail.com>
-# SPDX-FileCopyrightText: 2024 joshepvodka <86210200+joshepvodka@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 liltenhead <liltenhead@gmail.com>
-# SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 pigeonpeas <147350443+pigeonpeas@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 themias <89101928+themias@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 thesaladmancer <86530143+thesaladmancer@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2024 Арт <123451459+JustArt1m@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 BoskiYourk <175783845+BoskiYourk@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 BoskiYourk <175783845+BoskiYourk@users.noreply.guthub.com>
-# SPDX-FileCopyrightText: 2025 Brassica Prime <114382089+Pumkin69@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Cass <45694413+CubixThree@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Jajsha <101492056+Zap527@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Julian Giebel <juliangiebel@live.de>
-# SPDX-FileCopyrightText: 2025 KingFroozy <140668342+KingFroozy@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 MissKay1994 <15877268+MissKay1994@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Momo <Rsnesrud@gmail.com>
-# SPDX-FileCopyrightText: 2025 MoonlightHollow <muszynskinicholas8@gmail.com>
-# SPDX-FileCopyrightText: 2025 NakataRin <45946146+NakataRin@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Phooooooooooooooooooooooooooooooosphate <184853112+Phooooooooooooooooooooooooooooooosphate@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
-# SPDX-FileCopyrightText: 2025 T <theo75cg@gmail.com>
-# SPDX-FileCopyrightText: 2025 TheCrimsonJupiter <54331834+TheCrimsonJupiter@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 TheSecondLord <88201625+TheSecondLord@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 centcomofficer24 <theo75cg@gmail.com>
-# SPDX-FileCopyrightText: 2025 jajsha <corbinbinouche7@gmail.com>
-# SPDX-FileCopyrightText: 2025 lzk <124214523+lzk228@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 whythelettuce <stephanietokai@gmail.com>
-# SPDX-FileCopyrightText: 2025 youtissoum <51883137+youtissoum@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 bruhmogus <104110869+bruhmogus@users.noreply.github.com>
-#
-# SPDX-License-Identifier: MIT
-
 # Miscellaneous
 - type: loadoutGroup
   id: Trinkets
   name: loadout-group-trinkets
   minLimit: 0
-  maxLimit: 5
+  maxLimit: 3
   loadouts:
   - FlowerWreath
   - Hairflower
   - Headphones
-  - Whistle # Late
   - PlushieLizard
   - PlushieSpaceLizard
-  - PlushieVox # Harmony
-  - PlushieBee # Late
-  - PlushieArachind # Late
-  - PlushieNuke # Late
-  - PlushieDiona # Late
-  - PlushieSharkBlue # Late
-  - PlushieSharkPink # Late
-  - PlushieSharkGrey # Late
-  - PlushieCarp # Late
-  - PlushieMagicarp # Late
-  - PlushieHolocarp # Late
-  - PlushieSlime # Late
-  - PlushieSnake # Late
-  - ToyMouse # Late
-  - PlushieAtmosian # Late
-  - PlushieXeno # Late
-  - PlushiePenguin # Late
-  - PlushieHuman # Late
-  - PlushieMoth # Late
-  - PersonalAI # Late
   - ThreeCandles
-  - Wristwatch # Late
   - Lighter
   - CigPackGreen
   - CigPackRed
@@ -100,10 +18,6 @@
   - CigPackBlack
   - CigarCase
   - CigarGold
-  - FlippoLighter # Late
-  - DiscountDanLighter # Late
-  - NanotrasenFlippo # Late
-  - SmokingPipe # Late
   - ClothingNeckLGBTPin
   - ClothingNeckAllyPin
   - ClothingNeckAromanticPin
@@ -122,7 +36,6 @@
   - ClothingNeckTransPin
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
-  - HarmonicaInstrument
   - OffsetCane
   - OffsetCaneWood
   - OffsetCaneClown
@@ -145,14 +58,6 @@
   - TowelColorSilver
   - TowelColorWhite
   - TowelColorYellow
-  - TowelStripedOrange # Harmony
-  - Cane # Harmony
-  - TapeRecorder # DeltaV / Harmony
-  - ThrowingBrickSoft # Late
-  - BarberScissors # Late
-  - HairBrush # Late
-  - NTHandyFlag # Late
-  - LGBTQHandyFlag # Late
 
 - type: loadoutGroup
   id: Glasses
@@ -214,7 +119,6 @@
   loadouts:
   - CaptainHead
   - CaptainCap
-  - BeretCaptainHarmony # Harmony
 
 - type: loadoutGroup
   id: CaptainJumpsuit
@@ -224,9 +128,6 @@
   - CaptainJumpskirt
   - CaptainFormalSuit
   - CaptainFormalSkirt
-  - CaptainJumpsuitTurtleneckHarmony #Harmony
-  - CaptainJumpskirtTurtleneckHarmony #Harmony
-  - CaptainHawaiianHarmony # Harmony
 
 - type: loadoutGroup
   id: CaptainNeck
@@ -251,7 +152,6 @@
   loadouts:
   - CaptainOuterClothing
   - CaptainWintercoat
-  - CaptainArmoredWinterCoatHarmony #Harmony
 
 - type: loadoutGroup
   id: HoPHead
@@ -259,7 +159,6 @@
   minLimit: 0
   loadouts:
   - HoPHead
-  - HoPBeretHarmony # Harmony
 
 - type: loadoutGroup
   id: HoPJumpsuit
@@ -267,10 +166,6 @@
   loadouts:
   - HoPJumpsuit
   - HoPJumpskirt
-  - HoPJumpsuitTurtleneckHarmony #Harmony
-  - HoPJumpskirtTurtleneckHarmony #Harmony
-  - HoPJumpsuitMessKitHarmony #Harmony
-  - HoPJumpskirtMessKitHarmony #Harmony
 
 - type: loadoutGroup
   id: HoPNeck
@@ -490,7 +385,6 @@
   - BibleNanoTrasen
   - BibleSatanic
   - BibleTanakh
-  - BibleCommunistManifesto # Late
 
 - type: loadoutGroup
   id: JanitorHead
@@ -764,8 +658,6 @@
   minLimit: 0
   loadouts:
   - CargoTechnicianHead
-  - CargoTechnicianBandanaHarmony # Harmony
-  - SeniorTechnicianBeretHarmony # Harmony change: adds senior tech beret to loadout group
 
 - type: loadoutGroup
   id: CargoTechnicianJumpsuit
@@ -773,14 +665,6 @@
   loadouts:
   - CargoTechnicianJumpsuit
   - CargoTechnicianJumpskirt
-# start of harmony change: adds new outfits to loadout
-  - CargoPantsHarmony
-  - CargoverallsHarmony
-  - CargoOfficeSlacksJumpsuitHarmony
-  - CargoOfficeSkirtJumpskirtHarmony
-  - SeniorTechnicianJumpsuitHarmony
-  - SeniorTechnicianJumpskirtHarmony
-# end of harmony change
 
 - type: loadoutGroup
   id: CargoTechnicianBackpack
@@ -803,6 +687,13 @@
   loadouts:
   - BlackShoes
   - CargoWinterBoots
+
+- type: loadoutGroup
+  id: CargoTechnicianID
+  name: loadout-group-cargo-technician-id
+  loadouts:
+  - CargoTechnicianPDA
+  - SeniorCourierPDA
 
 - type: loadoutGroup
   id: SalvageSpecialistBackpack
@@ -833,8 +724,7 @@
   minLimit: 0
   loadouts:
   - ChiefEngineerHead
-#  - ChiefEngineerBeret
-  - CEBeretHarmony # Harmony Change
+  - ChiefEngineerBeret
 
 - type: loadoutGroup
   id: ChiefEngineerJumpsuit
@@ -970,8 +860,7 @@
   name: loadout-group-research-director-head
   minLimit: 0
   loadouts:
-#  - ResearchDirectorBeret
-  - RDBeretHarmony # Harmony Change
+  - ResearchDirectorBeret
 
 - type: loadoutGroup
   id: ResearchDirectorNeck
@@ -1089,8 +978,6 @@
   loadouts:
   - HeadofSecurityHead
   - HeadofSecurityBeret
-  - HoSWidebrimHarmony # Harmony
-  - HoSSoftHarmony # Harmony
 
 - type: loadoutGroup
   id: HeadofSecurityJumpsuit
@@ -1098,14 +985,8 @@
   loadouts:
   - HeadofSecurityJumpsuit
   - HeadofSecurityJumpskirt
-  - JumpsuitHoSBlueHarmony # Harmony
-  - JumpsuitHoSGrey # Harmony
-  - JumpsuitHoSTurtleNeckHarmony # Harmony
-  - JumpskirtHoSTurtleNeckHarmony # Harmony
-# - HeadofSecurityTurtleneck
-# - HeadofSecurityTurtleneckSkirt
-  - HeadofSecurityAssaultSuit # Harmony
-  - HeadofSecurityAssaultSkirt # Harmony
+  - HeadofSecurityTurtleneck
+  - HeadofSecurityTurtleneckSkirt
   - HeadofSecurityFormalSuit
   - HeadofSecurityFormalSkirt
 
@@ -1138,7 +1019,6 @@
   loadouts:
   - WardenJumpsuit
   - WardenJumpskirt
-  - WardenBlueSuitHarmony # Harmony
 
 - type: loadoutGroup
   id: WardenOuterClothing
@@ -1156,10 +1036,6 @@
   - SecurityBeret
   - SecurityHat
   - TrooperHat
-  - SecurityBandanaHarmony # Harmony
-  - SecurityBlueCapHarmony # Harmony
-  - SeniorOfficerBeretHarmony # Harmony
-  - SecurityBlueBeretHarmony # Harmony
 
 - type: loadoutGroup
   id: SecurityJumpsuit
@@ -1172,7 +1048,6 @@
   - SeniorOfficerJumpsuit
   - SeniorOfficerJumpskirt
   - TrooperUniform
-  - JumpsuitSecBlue # Harmony
 
 - type: loadoutGroup
   id: SecurityBackpack
@@ -1218,7 +1093,6 @@
   loadouts:
   - DetectiveFedora
   - DetectiveFedoraGrey
-  - DetectiveFedoraBlueHarmony # Harmony
 
 - type: loadoutGroup
   id: DetectiveNeck
@@ -1235,8 +1109,6 @@
   - DetectiveJumpskirt
   - NoirJumpsuit
   - NoirJumpskirt
-  - DetectiveBlueSuitHarmony # Harmony
-  - DetectiveBlueSkirtHarmony # Harmony
 
 - type: loadoutGroup
   id: DetectiveOuterClothing
@@ -1245,9 +1117,6 @@
   - DetectiveArmorVest
   - DetectiveCoat
   - DetectiveCoatGrey
-  - DetectiveBlueCoatHarmony # Harmony
-  - DetectiveBomberCoatHarmony # Harmony
-  - DetectiveDiscoCoatHarmony # Harmony
 
 - type: loadoutGroup
   id: SecurityCadetJumpsuit
@@ -1333,7 +1202,6 @@
   loadouts:
   - MedicalDoctorJumpsuit
   - MedicalDoctorJumpskirt
-  - WorkadaySuit # Harmony
   - SeniorPhysicianJumpsuit
   - SeniorPhysicianJumpskirt
   - MedicalBlueScrubs
@@ -1362,7 +1230,6 @@
   name: loadout-group-medical-doctor-shoes
   loadouts:
   - WhiteShoes
-  - BlackShoes # Harmony
   - MedicalWinterBoots
 
 - type: loadoutGroup
@@ -1516,31 +1383,24 @@
   name: loadout-group-breath-tool
   minLimit: 1
   maxLimit: 1
-  hidden: false # Harmony change for various Vox masks
+  hidden: true
   loadouts:
   - LoadoutSpeciesBreathTool
-  - LoadoutClothingMaskAuralis # Harmony
-  - LoadoutClothingMaskVoxSpecial # Harmony
 
 - type: loadoutGroup
   id: GroupSpeciesBreathToolMedical
   name: loadout-group-breath-tool
   minLimit: 1
   maxLimit: 1
-  hidden: false # Harmony change for various Vox masks
+  hidden: true
   loadouts:
   - LoadoutSpeciesBreathToolMedical
-  - LoadoutClothingMaskAuralis # Harmony
-  - LoadoutClothingMaskVoxSpecial # Harmony
 
 - type: loadoutGroup
   id: GroupSpeciesBreathToolSecurity
   name: loadout-group-breath-tool
   minLimit: 1
   maxLimit: 1
-  hidden: false # Harmony change for various Vox masks
+  hidden: true
   loadouts:
   - LoadoutSpeciesBreathToolSecurity
-  - LoadoutClothingMaskAuralis # Harmony
-  - LoadoutClothingMaskVoxSpecial # Harmony
-  - LoadoutClothingMaskNTEnforcer # Harmony
