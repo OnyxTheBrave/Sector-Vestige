@@ -1,4 +1,10 @@
-﻿using Robust.Shared.Configuration;
+﻿// SPDX-FileCopyrightText: 2024 Simon <63975668+Simyon264@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Lachryphage (GitHub)
+// SPDX-FileCopyrightText: 2025 mqole <113324899+mqole@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
+using Robust.Shared.Configuration;
 
 namespace Content.Shared.CCVar;
 
@@ -126,7 +132,7 @@ public sealed partial class CCVars
     ///     Atmos tickrate in TPS. Atmos processing will happen every 1/TPS seconds.
     /// </summary>
     public static readonly CVarDef<float> AtmosTickRate =
-        CVarDef.Create("atmos.tickrate", 15f, CVar.SERVERONLY);
+        CVarDef.Create("atmos.tickrate", 15f, CVar.SERVER); // imp edit - was SERVERONLY, needs to be readable by clients for accurate supermatter console
 
     /// <summary>
     ///     Scale factor for how fast things happen in our atmosphere
