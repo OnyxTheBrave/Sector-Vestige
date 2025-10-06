@@ -160,6 +160,9 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+  - type: Construction
+    graph: ClothingGoliathCloak
+    node: cloak
 
 - type: entity
   parent: ClothingNeckBase
