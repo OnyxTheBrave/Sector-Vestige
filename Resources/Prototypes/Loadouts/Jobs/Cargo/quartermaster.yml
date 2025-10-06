@@ -53,11 +53,12 @@
 
 - type: loadout
   id: QuartermasterMantle
-  equipment:
+  equipment: 
     neck: ClothingNeckMantleQM
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MasterQM
+#CD redaction
+#  effects:
+#  - !type:GroupLoadoutEffect
+#    proto: MasterQM
 
 - type: startingGear
   id: QuartermasterMantle

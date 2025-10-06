@@ -75,13 +75,6 @@
     back:
     - HarmonicaInstrument
 
-- type: loadout
-  id: PlushieVox
-  storage:
-    back:
-    - PlushieVox
-  groupBy: "plushies" # Late
-
 # Towels
 - type: loadout
   id: TowelStripedOrange

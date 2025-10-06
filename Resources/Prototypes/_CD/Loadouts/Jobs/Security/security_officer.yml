@@ -1,0 +1,37 @@
+#Eyes
+- type: loadout
+  id: EyesGlassesSecurity
+  equipment: 
+    eyes: ClothingEyesGlassesSecurity
+
+- type: loadout
+  id: EyesHudSecurity
+  equipment: 
+    eyes: ClothingEyesHudSecurity
+
+#Jumpsuit
+- type: loadout
+  id: SecurityCasualsuit
+  equipment: 
+    jumpsuit: ClothingUniformSecurtyCasual
+
+- type: loadout
+  id: SecurityCasualskirt
+  equipment: 
+    jumpsuit: ClothingUniformJumpskirtSecurtyCasual
+
+- type: loadout
+  id: SecurityPlateCarrier
+  equipment:
+    belt: ClothingBeltSecurityPlateCarrierFilled
+
+- type: loadout
+  id: SecurityGreatcoat
+  equipment:
+    outerClothing: ClothingOuterCoatSecGreatcoat
+
+# PDA
+- type: loadout
+  id: SecurityCadetPDA
+  equipment:
+    id: SecurityCadetPDA

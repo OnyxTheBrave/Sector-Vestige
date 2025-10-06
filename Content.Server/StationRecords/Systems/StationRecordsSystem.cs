@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Server._CD.Loadouts;
 using Content.Server.Access.Systems;
 using Content.Server.Forensics;
 using Content.Shared.Access.Components;
@@ -151,6 +152,9 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             SetIdKey(idUid, new StationRecordKey(id, station));
             return;
         }
+
+        // CD: Job titles. We need to inject it here for the manifest and records.
+        var jobTitle = TryComp<RenameIdComponent>(idUid, out var rename) ? Loc.GetString(rename.Value) : jobPrototype.LocalizedName;
 
         var record = new GeneralStationRecord()
         {
