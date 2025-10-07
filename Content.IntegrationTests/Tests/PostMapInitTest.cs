@@ -37,14 +37,12 @@ namespace Content.IntegrationTests.Tests
         {
             "CentComm",
             "Dart",
-			"CDCentComm" // CD Map
         };
 
         private static readonly string[] Grids =
         {
             "/Maps/centcomm.yml",
             AdminTestArenaSystem.ArenaMapPath,
-            "/Maps/_CD/centcomm.yml" // CD Map.
         };
 
         /// <summary>
