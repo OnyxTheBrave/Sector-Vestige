@@ -1,23 +1,23 @@
 #Eyes
 - type: loadout
   id: EyesGlassesSecurity
-  equipment: 
+  equipment:
     eyes: ClothingEyesGlassesSecurity
 
 - type: loadout
   id: EyesHudSecurity
-  equipment: 
+  equipment:
     eyes: ClothingEyesHudSecurity
 
 #Jumpsuit
 - type: loadout
   id: SecurityCasualsuit
-  equipment: 
+  equipment:
     jumpsuit: ClothingUniformSecurtyCasual
 
 - type: loadout
   id: SecurityCasualskirt
-  equipment: 
+  equipment:
     jumpsuit: ClothingUniformJumpskirtSecurtyCasual
 
 - type: loadout

@@ -10,12 +10,12 @@
 # Jumpsuit
 - type: loadout
   id: PrisonerJumpsuit
-  equipment: 
+  equipment:
     jumpsuit: ClothingUniformJumpsuitPrisoner
 
 - type: loadout
   id: PrisonerJumpskirt
-  equipment: 
+  equipment:
     jumpsuit: ClothingUniformJumpskirtPrisoner
 
 - type: loadout

@@ -1,9 +1,9 @@
 - type: loadout
   id: WardenCasualsuit
-  equipment: 
+  equipment:
     jumpsuit: ClothingUniformWardenCasual
 
 - type: loadout
   id: WardenCasualskirt
-  equipment: 
+  equipment:
     jumpsuit: ClothingUniformJumpskirtWardenCasual

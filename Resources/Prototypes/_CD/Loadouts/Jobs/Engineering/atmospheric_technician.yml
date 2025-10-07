@@ -1,17 +1,17 @@
 # Jumpsuit
 - type: loadout
   id: AtmosphericTechnicianHazardsuit
-  equipment: 
+  equipment:
     jumpsuit: ClothingUniformJumpsuitAtmosHazard
 
 - type: loadout
   id: AtmosphericTechnicianJumpsuitModern
-  equipment: 
+  equipment:
     jumpsuit: ClothingUniformJumpsuitAtmosModern
 
 - type: loadout
   id: AtmosphericTechnicianJumpskirtModern
-  equipment: 
+  equipment:
     jumpsuit: ClothingUniformJumpskirtAtmosModern
 
 # OuterClothing

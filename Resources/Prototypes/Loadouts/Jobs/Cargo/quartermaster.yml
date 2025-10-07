@@ -53,7 +53,7 @@
 
 - type: loadout
   id: QuartermasterMantle
-  equipment: 
+  equipment:
     neck: ClothingNeckMantleQM
 #CD redaction
 #  effects:

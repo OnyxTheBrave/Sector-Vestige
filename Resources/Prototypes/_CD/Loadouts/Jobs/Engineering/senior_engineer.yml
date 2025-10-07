@@ -1,20 +1,20 @@
 # Jumpsuit
 - type: loadout
   id: SeniorEngineerJumpsuit
-  equipment: 
+  equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorEngineer
 
 - type: loadout
   id: SeniorEngineerJumpskirt
-  equipment: 
+  equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorEngineer
 
 - type: loadout
   id: SeniorEngineerJumpsuitModern
-  equipment: 
+  equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorEngineerModern
 
 - type: loadout
   id: SeniorEngineerJumpskirtModern
-  equipment: 
+  equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorEngineerModern

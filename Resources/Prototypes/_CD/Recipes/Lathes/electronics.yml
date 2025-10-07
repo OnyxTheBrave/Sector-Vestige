@@ -1,7 +1,7 @@
 - type: latheRecipe
   id: StationRecordsComputerCircuitboard
   result: StationRecordsComputerCircuitboard
-  categories: 
+  categories:
   - Circuitry
   completetime: 4
   materials:
@@ -11,7 +11,7 @@
 - type: latheRecipe
   id: MedicalRecordsComputerCircuitboard
   result: MedicalRecordsComputerCircuitboard
-  categories: 
+  categories:
   - Circuitry
   completetime: 4
   materials:
@@ -21,7 +21,7 @@
 - type: latheRecipe
   id: CriminalRecordsComputerCircuitboard
   result: CriminalRecordsComputerCircuitboard
-  categories: 
+  categories:
   - Circuitry
   completetime: 4
   materials:

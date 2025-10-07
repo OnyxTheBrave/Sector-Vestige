@@ -30,7 +30,7 @@
 
 - type: loadout
   id: CargoBomber
-  equipment: 
+  equipment:
     outerClothing: ClothingOuterCoatCargoBomber
 
 - type: loadout
