@@ -1,0 +1,19 @@
+- type: playTimeTracker
+  id: JobPrisoner
+#Check this out later SV - Rebound
+
+- type: playTimeTracker
+  id: JobPrivateInvestigator
+
+# Senior Roles
+- type: playTimeTracker
+  id: JobSeniorEngineer
+
+- type: playTimeTracker
+  id: JobSeniorOfficer
+
+- type: playTimeTracker
+  id: JobSeniorPhysician
+
+- type: playTimeTracker
+  id: JobSeniorResearcher

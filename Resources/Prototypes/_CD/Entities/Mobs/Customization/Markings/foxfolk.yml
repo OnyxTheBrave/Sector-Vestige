@@ -831,6 +831,28 @@
       state: foxfolk_wag-tip
 
 - type: marking
+  id: FoxfolkTailAltAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: _CD/Mobs/Customization/Foxfolk/tail_markings.rsi
+      state: foxfolk_wag
+    - sprite: _CD/Mobs/Customization/Foxfolk/tail_markings.rsi
+      state: foxfolk_wag-fade
+
+- type: marking
+  id: FoxfolkTailAltTipAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: _CD/Mobs/Customization/Foxfolk/tail_markings.rsi
+      state: foxfolk_wag
+    - sprite: _CD/Mobs/Customization/Foxfolk/tail_markings.rsi
+      state: foxfolk_wag-tip
+
+- type: marking
   id: FoxfolkTailFoxAnimated
   bodyPart: Tail
   markingCategory: Tail

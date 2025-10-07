@@ -1,20 +1,20 @@
 <p align="center">
-  <img alt="LateStation" src="https://raw.githubusercontent.com/LateStation14/Late-station-14/refs/heads/master/Resources/Textures/Logo/logo.png" />
+  <img alt="Sector Vestige" src="https://raw.githubusercontent.com/Sector-Vestige/Sector-Vestige/refs/heads/master/Resources/Textures/Logo/logo.png" />
 </p>
 
-# LateStation14
+# Sector Vestige14
 
-[![REUSE status](https://api.reuse.software/badge/github.com/LateStation14/Late-station-14)](https://api.reuse.software/info/github.com/LateStation14/Late-station-14)
-[![Build & Test Debug](https://github.com/LateStation14/Late-station-14/actions/workflows/build-test-debug.yml/badge.svg?branch=master)](https://github.com/LateStation14/Late-station-14/actions/workflows/build-test-debug.yml)
-[![YAML Linter](https://github.com/LateStation14/Late-station-14/actions/workflows/yaml-linter.yml/badge.svg?branch=master)](https://github.com/LateStation14/Late-station-14/actions/workflows/yaml-linter.yml)
-[![YAML map schema validator](https://github.com/LateStation14/Late-station-14/actions/workflows/validate_mapfiles.yml/badge.svg?branch=master)](https://github.com/LateStation14/Late-station-14/actions/workflows/validate_mapfiles.yml)
-[![Validate RSIs](https://github.com/LateStation14/Late-station-14/actions/workflows/validate-rsis.yml/badge.svg?branch=master)](https://github.com/LateStation14/Late-station-14/actions/workflows/validate-rsis.yml)
-[![YAML RGA schema validator](https://github.com/LateStation14/Late-station-14/actions/workflows/validate-rgas.yml/badge.svg?branch=master)](https://github.com/LateStation14/Late-station-14/actions/workflows/validate-rgas.yml)
+[![REUSE status](https://api.reuse.software/badge/github.com/Sector-Vestige/Sector-Vestige)](https://api.reuse.software/info/github.com/Sector-Vestige/Sector-Vestige)
+[![Build & Test Debug](https://github.com/Sector-Vestige/Sector-Vestige/actions/workflows/build-test-debug.yml/badge.svg?branch=master)](https://github.com/Sector-Vestige/Sector-Vestige/actions/workflows/build-test-debug.yml)
+[![YAML Linter](https://github.com/Sector-Vestige/Sector-Vestige/actions/workflows/yaml-linter.yml/badge.svg?branch=master)](https://github.com/Sector-Vestige/Sector-Vestige/actions/workflows/yaml-linter.yml)
+[![YAML map schema validator](https://github.com/Sector-Vestige/Sector-Vestige/actions/workflows/validate_mapfiles.yml/badge.svg?branch=master)](https://github.com/Sector-Vestige/Sector-Vestige/actions/workflows/validate_mapfiles.yml)
+[![Validate RSIs](https://github.com/Sector-Vestige/Sector-Vestige/actions/workflows/validate-rsis.yml/badge.svg?branch=master)](https://github.com/Sector-Vestige/Sector-Vestige/actions/workflows/validate-rsis.yml)
+[![YAML RGA schema validator](https://github.com/Sector-Vestige/Sector-Vestige/actions/workflows/validate-rgas.yml/badge.svg?branch=master)](https://github.com/Sector-Vestige/Sector-Vestige/actions/workflows/validate-rgas.yml)
 
-**LateStation** is a custom-content fork of the official [Space Station 14](https://github.com/space-wizards/space-station-14) project.
+**Sector Vestige** is a custom-content fork of the official [Space Station 14](https://github.com/space-wizards/space-station-14) project.
 We aim to create our own gameplay experience, with original mechanics, stations, and assets — while staying aligned with the upstream SS14 codebase.
 
-LateStation is steadily building its own identity on top of the SS14 platform. While much of the game remains familiar to upstream, LateStation actively develops new systems, balance changes, and unique content to support our long-term vision.
+Sector Vestige is steadily building its own identity on top of the SS14 platform. While much of the game remains familiar to upstream, Sector Vestige actively develops new systems, balance changes, and unique content to support our long-term vision.
 
 **Space Station 14** is a remake of the classic SS13, running on [RobustToolbox](https://github.com/space-wizards/RobustToolbox) — an open-source engine written in C# and purpose-built for multiplayer, tile-based simulation games.
 
@@ -22,18 +22,18 @@ LateStation is steadily building its own identity on top of the SS14 platform. W
 
 ## 🔗 Links
 
-- 🌐 LateStation Website: http://www.lateStation14.space/
+- 🌐 Sector Vestige Website: WIP
 - 🧭 SS14 Website: https://spacestation14.io/
 - 🛠️ SS14 Standalone Download: https://spacestation14.io/about/nightlies/
 - 🎮 SS14 on Steam: https://store.steampowered.com/app/1255460/Space_Station_14/
-- 📁 LateStation Resources: https://www.lateStation14.space/
+- 📁 Sector-Vestige Builds: https://cdn.sector-vestige.space:8443/fork/sector-vestige
 
 ---
 
 ## 📚 Documentation & Wiki
 
 - SS14 Docs: https://docs.spacestation14.io/ — covers engine, content, mapping, modding, and more.
-- LateStation Contributions: see [CONTRIBUTING.md](CONTRIBUTING.md) — read this first if you want to contribute!
+- Sector Vestige Contributions: see [CONTRIBUTING.md](CONTRIBUTING.md) — read this first if you want to contribute!
 
 ---
 
@@ -50,7 +50,7 @@ We welcome contributions of all kinds — coding, spriting, mapping, balancing, 
 
 1. Clone this repo:
 
-   git clone https://github.com/LateStation14/Late-station-14.git
+   git clone https://github.com/Sector-Vestige/Sector-Vestige.git
 
 2. Enter the project folder and run the setup script:
 
@@ -69,7 +69,7 @@ For full IDE and build setup, see the [SS14 Developer Docs](https://docs.spacest
 
 ### Code
 
-- All **original LateStation code** (generally in `_LateStation/` folders) is **licensed under AGPL-3.0-or-later**.
+- All **original Sector Vestige code** (generally in `_SV/` folders) is **licensed under AGPL-3.0-or-later**.
   (Code written before the switch remains MIT-only.)
 - **Upstream code** from [Wizards Den / Space Station 14](https://github.com/space-wizards/space-station-14) remains under the **MIT License**.
   If changes are required to upstream files, they are commented to make merges and attribution clear.

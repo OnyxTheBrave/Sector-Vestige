@@ -1,6 +1,6 @@
-# LateStation Contributing Guidelines
+# Sector Vestige Contributing Guidelines
 
-LateStation is a custom-content fork of Space Station 14 (https://github.com/space-wizards/space-station-14), built to extend and reshape the game with our own mechanics, assets, and content (all in due time).
+Sector Vestige is a custom-content fork of Space Station 14 (https://github.com/space-wizards/space-station-14), built to extend and reshape the game with our own mechanics, assets, and content (all in due time).
 
 We follow upstream's PR guidelines:
 https://docs.spacestation14.com/en/general-development/codebase-info/pull-request-guidelines.html
@@ -11,13 +11,13 @@ https://docs.spacestation14.com/en/general-development/codebase-info/pull-reques
 All contributors are expected to have a working development environment:
 https://docs.spacestation14.com/en/general-development/setup/setting-up-a-development-environment.html
 
-By submitting a PR, you agree that your code contributions are licensed under the MIT License and AGPL-3.0-or-later, in line with LateStation’s dual-licensing model for original content.
+By submitting a PR, you agree that your code contributions are licensed under AGPL-3.0-or-later, in line with Sector Vestige’s licensing model for original content.
 
 ---
 
 ## Table of Contents
 
-- LateStation-specific Content
+- Sector Vestige-specific Content
 - Changes to Upstream Files
   - Commenting Example
 - Porting (Importing from Other Forks)
@@ -29,16 +29,16 @@ By submitting a PR, you agree that your code contributions are licensed under th
 
 ---
 
-## LateStation-specific Content
+## Sector Vestige-specific Content
 
-When adding new content, create it under `_LateStation` folders whenever possible.
+When adding new content, create it under `_SV` folders whenever possible.
 This keeps our content cleanly separated from upstream code and simplifies merges.
 
 Examples:
-- Content.Server/_LateStation/Speech/EntitySystems/IlleismAccentSystem.cs
-- Resources/Prototypes/_LateStation/game_presets.yml
-- Resources/Textures/_LateStation/Clothing/Shoes/Misc/ducky-galoshes.rsi
-- Resources/Locale/en-US/_LateStation/game-ticking/game-presets/preset-deathmatchpromod.ftl
+- Content.Server/_SV/Speech/EntitySystems/IlleismAccentSystem.cs
+- Resources/Prototypes/_SV/game_presets.yml
+- Resources/Textures/_SV/Clothing/Shoes/Misc/ducky-galoshes.rsi
+- Resources/Locale/en-US/_SV/game-ticking/game-presets/preset-deathmatchpromod.ftl
 
 ---
 
@@ -55,23 +55,23 @@ This helps with resolving future merge conflicts and makes your intent clear.
 ### Commenting Example
 
 YAML – Inline field comment:
-  hidden: false # LateStation change for various Vox masks
+  hidden: false # Sector Vestige change for various Vox masks
 
 YAML – Block comment:
-  # Begin LateStation Personal trinkets
+  # Begin Sector Vestige Personal trinkets
   - ItemJamesCane
   - ItemAnnabellePlushie
   - ItemPititiRockGorb
-  # End LateStation Personal trinkets
+  # End Sector Vestige Personal trinkets
 
 C# – Inline logic comment:
-  if (!_actionBlocker.CanSpeak(source, true) && !ignoreActionBlocker) // LateStation: support hypophonia trait
+  if (!_actionBlocker.CanSpeak(source, true) && !ignoreActionBlocker) // Sector Vestige: support hypophonia trait
 
 C# – Enclosing block:
-  // LateStation - start of additional statuses (ported from CD)
+  // Sector Vestige - start of additional statuses (ported from CD)
   SecurityStatus.Monitor => "SecurityIconMonitor",
   SecurityStatus.Search => "SecurityIconSearch",
-  // LateStation - end of additional statuses (ported from CD)
+  // Sector Vestige - end of additional statuses (ported from CD)
 
 ---
 
@@ -85,20 +85,20 @@ When porting content (code, YAML, assets) from other SS14 forks (e.g., Delta-V, 
   - _NF/ for Frontier
   - _Harmony/ for Harmony
 
-- Do not mix ported code into _LateStation or upstream folders.
+- Do not mix ported code into _SV or upstream folders.
 - This separation makes it easy to remove or update entire ports later.
 
 ### License Requirements
 
 - MIT: freely portable. (will be labeled by the bot just in case)
 - AGPL: allowed, but must be clearly labeled.
-  - Add an SPDX license header to each file:
+  - Add an SPDX license header to each file: (Bot does that on PR for you)
     // SPDX-License-Identifier: AGPL-3.0-or-later
     // Copyright (c) 2025 Delta-V contributors
   - Keep the code in its _ForkName/ folder.
   - AGPL requires source disclosure for servers running AGPL code.
 
-If you are unsure about the license of something you want to port, ask in the LateStation Discord before submitting.
+If you are unsure about the license of something you want to port, ask in the Sector Vestige Discord before submitting.
 
 ---
 
@@ -106,7 +106,7 @@ If you are unsure about the license of something you want to port, ask in the La
 
 - Follow upstream mapping guidelines: https://docs.spacestation14.com/en/space-station-14/mapping.html
 - Test maps thoroughly (power, atmos, gravity, lighting).
-- LateStation-exclusive maps (e.g., shuttles, wrecks) should fit an immersive MRP style.
+- Sector Vestige-exclusive maps (e.g., shuttles, wrecks) should fit an immersive MRP style.
 - Submit upstream map changes to upstream when possible.
 
 ---
@@ -126,7 +126,7 @@ If you are unsure about the license of something you want to port, ask in the La
   - Avoid whitespace-only diffs
 
 - Confirm your target:
-  - Repository: LateStation14/Late-station-14
+  - Repository: Sector Vestige/Sector Vestige
   - Branch: master
 
 To undo accidental RobustToolbox changes:
@@ -148,7 +148,7 @@ Example:
 - fix: Fixed crew manifest showing dead people.
 
 Only entries after :cl: are read by Weh Bot.
-LateStation does not maintain a separate Admin changelog.
+Sector Vestige does not maintain a separate Admin changelog.
 
 ---
 

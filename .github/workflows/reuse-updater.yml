@@ -30,7 +30,7 @@ jobs:
   update_headers:
     # Skip if the event was triggered by the bot's own auto-commit so we don't loop.
     # Also skip if the PR has the "maintanance" label (case-insensitive).
-    if: ${{ github.actor != 'weh-bot' && github.actor != 'weh-bot[bot]' && !contains(fromJSON('["maintanance", "Maintanance", "MAINTANANCE"]'), github.event.pull_request.labels.*.name) }}
+    if: ${{ github.actor != 'vestige-bot' && github.actor != 'vestige-bot[bot]' && !contains(fromJSON('["maintanance", "Maintanance", "MAINTANANCE"]'), github.event.pull_request.labels.*.name) }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -61,8 +61,8 @@ jobs:
           set -euo pipefail
           NAME="${VAR_USER:-}"
           EMAIL="${VAR_EMAIL:-}"
-          if [ -z "$NAME" ]; then NAME="weh-bot"; fi
-          if [ -z "$EMAIL" ]; then EMAIL="weh-bot@users.noreply.github.com"; fi
+          if [ -z "$NAME" ]; then NAME="vestige-bot"; fi
+          if [ -z "$EMAIL" ]; then EMAIL="vestige-bot@users.noreply.github.com"; fi
           echo "name=$NAME" >> $GITHUB_OUTPUT
           echo "email=$EMAIL" >> $GITHUB_OUTPUT
         shell: bash
