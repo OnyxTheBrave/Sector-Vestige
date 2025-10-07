@@ -66,9 +66,10 @@
   id: HeadofSecurityMantle
   equipment:
     neck: ClothingNeckMantleHOS
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MasterHoS
+#CD redaction
+#  effects:
+#  - !type:GroupLoadoutEffect
+#    proto: MasterHoS
 
 - type: startingGear
   id: HeadofSecurityMantle

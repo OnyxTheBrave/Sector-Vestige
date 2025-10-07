@@ -1,0 +1,42 @@
+- type: entity
+  abstract: true
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltHarnessBase
+  components:
+  - type: Storage
+    grid:
+    - 0,0,2,1
+  - type: Item
+    size: Normal
+
+# Actual harnesses
+- type: entity
+  parent: ClothingBeltHarnessBase
+  id: ClothingBeltHarnessETU
+  name: ETU harness
+  description: A robust harness worn by emergency trauma unit teams.
+  components:
+  - type: Sprite
+    sprite: _CD/Clothing/Belt/Harnesses/etu_trauma.rsi
+  - type: Clothing
+    sprite: _CD/Clothing/Belt/Harnesses/etu_trauma.rsi
+  - type: Storage
+    grid:
+    - 0,0,3,2
+    whitelist:
+      tags:
+        - Wrench
+        - Bottle
+        - Spray
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Ointment
+        - CigPack
+        - PillCanister
+        - Radio
+        - DiscreteHealthAnalyzer
+      components:
+        - Hypospray
+        - Injector
+        - Pill

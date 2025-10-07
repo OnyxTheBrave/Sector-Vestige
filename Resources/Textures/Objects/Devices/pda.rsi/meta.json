@@ -259,6 +259,9 @@
             "name": "harmony-pda-prisoner"
         },
         {
+            "name": "pda-privateinvestigator"
+        },
+        {
             "name": "equipped-IDCARD",
             "directions": 4
         }

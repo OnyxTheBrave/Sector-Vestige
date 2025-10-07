@@ -70,45 +70,10 @@
   groupBy: "plushies"
 
 - type: loadout
-  id: PlushieArachind
-  storage:
-    back:
-      - PlushieArachind
-  groupBy: "plushies"
-
-- type: loadout
   id: PlushieNuke
   storage:
     back:
       - PlushieNuke
-  groupBy: "plushies"
-
-- type: loadout
-  id: PlushieDiona
-  storage:
-    back:
-      - PlushieDiona
-  groupBy: "plushies"
-
-- type: loadout
-  id: PlushieSharkBlue
-  storage:
-    back:
-      - PlushieSharkBlue
-  groupBy: "plushies"
-
-- type: loadout
-  id: PlushieSharkPink
-  storage:
-    back:
-      - PlushieSharkPink
-  groupBy: "plushies"
-
-- type: loadout
-  id: PlushieSharkGrey
-  storage:
-    back:
-      - PlushieSharkGrey
   groupBy: "plushies"
 
 - type: loadout
@@ -172,20 +137,6 @@
   storage:
     back:
       - PlushiePenguin
-  groupBy: "plushies"
-
-- type: loadout
-  id: PlushieHuman
-  storage:
-    back:
-      - PlushieHuman
-  groupBy: "plushies"
-
-- type: loadout
-  id: PlushieMoth
-  storage:
-    back:
-      - PlushieMoth
   groupBy: "plushies"
 
 - type: loadout
