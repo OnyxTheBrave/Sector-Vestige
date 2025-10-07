@@ -85,6 +85,7 @@
   - AtmosphericTechnician
   - ChiefEngineer
   - StationEngineer
+  - SeniorEngineer
   - TechnicalAssistant
 
 - type: department
@@ -99,6 +100,7 @@
   - MedicalIntern
   - Psychologist
   - Paramedic
+  - SeniorPhysician
 
 - type: department
   id: Security
@@ -110,6 +112,7 @@
   - HeadOfSecurity
   - SecurityCadet
   - SecurityOfficer
+  - SeniorOfficer
   - Detective
   - Warden
 
@@ -121,6 +124,7 @@
   roles:
   - ResearchDirector
   - Scientist
+  - SeniorResearcher
   - ResearchAssistant
 
 - type: department
