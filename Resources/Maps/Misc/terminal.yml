@@ -10245,13 +10245,6 @@ entities:
     - type: Transform
       pos: 15.5,-33.5
       parent: 2
-- proto: GunSafePractice
-  entities:
-  - uid: 1
-    components:
-    - type: Transform
-      pos: -8.5,-34.5
-      parent: 2
   - uid: 1470
     components:
     - type: Transform
@@ -13339,13 +13332,6 @@ entities:
     components:
     - type: Transform
       pos: -9.5,-30.5
-      parent: 2
-- proto: VendingMachineAmmoPractice
-  entities:
-  - uid: 1474
-    components:
-    - type: Transform
-      pos: -3.5,-38.5
       parent: 2
 - proto: VendingMachineBooze
   entities:
