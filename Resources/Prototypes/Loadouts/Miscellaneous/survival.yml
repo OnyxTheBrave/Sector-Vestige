@@ -19,7 +19,10 @@
     - Moth
     - Reptilian
     - Vulpkanin
+    - Avali #CD additions start
     - Foxfolk
+    #- Rodentia #CD additions end
+    - Felinid
 
 - type: loadoutEffectGroup
   id: EffectSpeciesVox

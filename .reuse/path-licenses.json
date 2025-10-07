@@ -66,6 +66,12 @@
     { "pattern": "Resources/_NF/**", "license": "AGPL" },
     { "pattern": "Resources/Prototypes/_NF/**", "license": "AGPL" },
 
+    { "pattern": "Content.Server/_SV/**", "license": "AGPL" },
+    { "pattern": "Content.Client/_SV/**", "license": "AGPL" },
+    { "pattern": "Content.Shared/_SV/**", "license": "AGPL" },
+    { "pattern": "Resources/_SV/**", "license": "AGPL" },
+    { "pattern": "Resources/Prototypes/_SV/**", "license": "AGPL" },
+
     { "pattern": "Content.Server/**", "license": "MIT" },
     { "pattern": "Content.Client/**", "license": "MIT" },
     { "pattern": "Content.Shared/**", "license": "MIT" },
