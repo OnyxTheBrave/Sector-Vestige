@@ -17,7 +17,7 @@
   name: privateinvestigator
   components:
   - type: SpawnPoint
-    job_id: Prisoner
+    job_id: PrivateInvestigator
   - type: Sprite
     layers:
       - state: green
