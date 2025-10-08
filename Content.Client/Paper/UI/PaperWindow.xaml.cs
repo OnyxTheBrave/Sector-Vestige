@@ -291,9 +291,9 @@ namespace Content.Client.Paper.UI
             {
                 StampDisplay.AddStamp(new StampWidget{ StampInfo = stamper });
             }
-        }
 
-        StampDisplay.MinHeight = 10f + MathF.Floor(state.StampedBy.Count / 3f) * 70f; // Moffstation - Set height based on number of stamps
+            StampDisplay.MinHeight = 10f + MathF.Floor(state.StampedBy.Count / 3f) * 70f; // Moffstation - Set height based on number of stamps
+        }
 
         /// <summary>
         ///     BaseWindow interface. Allow users to drag UI around by grabbing
