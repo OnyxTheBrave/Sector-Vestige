@@ -275,7 +275,7 @@
         Asphyxiation: -1.0
   - type: FireVisuals
     alternateState: Standing
-  - type: RMCSetPose # RMC Change, all species can set their pose through right clicking on themselves and selecting the "Set Pose" verb.
+  - type: SetExamine # Umbra Change, all species can set additional examine text.
   - type: StunVisuals
 
 - type: entity
