@@ -12,4 +12,3 @@
     useDelay: 3
   - type: InstantAction
     event: !type:SetExamineActionEvent
-      
