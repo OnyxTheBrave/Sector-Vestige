@@ -14,7 +14,7 @@ public sealed partial class SetExamineComponent : Component
     public EntityUid? Action;
 
     [DataField, AutoNetworkedField]
-    public EntProtoId ActionPrototype; // = "ActionSetExtraExamine", but that was breaking things /shrug
+    public EntProtoId ActionPrototype = "ActionSetExtraExamine";
 
     [DataField, AutoNetworkedField]
     public string ExamineText = string.Empty;
