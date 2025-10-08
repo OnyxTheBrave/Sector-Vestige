@@ -48,19 +48,19 @@ public sealed partial class StampComponent : Component
     public string StampedName { get; set; } = "stamp-component-stamped-name-default";
 
     /// <summary>
-    ///     Tne sprite state of the stamp to display on the paper from paper Sprite path.
+    ///     The sprite state of the stamp to display on the paper from paper Sprite path.
     /// </summary>
     [DataField("stampState")]
     public string StampState { get; set; } = "paper_stamp-generic";
 
     /// <summary>
-    /// The color of the ink used by the stamp in UIs
+    ///     The color of the ink used by the stamp in UIs
     /// </summary>
     [DataField("stampedColor")]
     public Color StampedColor = Color.FromHex("#BB3232"); // StyleNano.DangerousRedFore
 
     /// <summary>
-    /// The sound when stamp stamped
+    ///     The sound when stamp stamped
     /// </summary>
     [DataField("sound")]
     public SoundSpecifier? Sound = null;
