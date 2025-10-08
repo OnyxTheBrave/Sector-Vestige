@@ -25,7 +25,7 @@ public sealed partial class CCVars
     ///     Whether the arrivals terminal should be on a planet map.
     /// </summary>
     public static readonly CVarDef<bool> ArrivalsPlanet =
-        CVarDef.Create("shuttle.arrivals_planet", false, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.arrivals_planet", true, CVar.SERVERONLY);
 
     /// <summary>
     ///     Whether the arrivals shuttle is enabled.
@@ -49,7 +49,7 @@ public sealed partial class CCVars
     ///     Are players allowed to return on the arrivals shuttle.
     /// </summary>
     public static readonly CVarDef<bool> ArrivalsReturns =
-        CVarDef.Create("shuttle.arrivals_returns", true, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.arrivals_returns", false, CVar.SERVERONLY);
 
     /// <summary>
     ///     Should all players who spawn at arrivals have godmode until they leave the map?
@@ -117,7 +117,7 @@ public sealed partial class CCVars
     ///     Is the emergency shuttle allowed to be early launched.
     /// </summary>
     public static readonly CVarDef<bool> EmergencyEarlyLaunchAllowed =
-        CVarDef.Create("shuttle.emergency_early_launch_allowed", true, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("shuttle.emergency_early_launch_allowed", false, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     How long the emergency shuttle remains docked with the station, in seconds.
@@ -148,13 +148,13 @@ public sealed partial class CCVars
     ///     Actual minimum travel time cannot be less than <see cref="ShuttleSystem.DefaultArrivalTime"/>
     /// </summary>
     public static readonly CVarDef<float> EmergencyShuttleMinTransitTime =
-        CVarDef.Create("shuttle.emergency_transit_time_min", 90f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.emergency_transit_time_min", 60f, CVar.SERVERONLY);
 
     /// <summary>
     ///     The maximum time for the emergency shuttle to arrive at centcomm.
     /// </summary>
     public static readonly CVarDef<float> EmergencyShuttleMaxTransitTime =
-        CVarDef.Create("shuttle.emergency_transit_time_max", 210f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.emergency_transit_time_max", 180f, CVar.SERVERONLY);
 
     /// <summary>
     ///     Whether the emergency shuttle is enabled or should the round just end.
@@ -174,7 +174,7 @@ public sealed partial class CCVars
     /// </summary>
     [CVarControl(AdminFlags.Server | AdminFlags.Mapping, min: 0, max: int.MaxValue)]
     public static readonly CVarDef<int> EmergencyShuttleAutoCallTime =
-        CVarDef.Create("shuttle.auto_call_time", 0, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.auto_call_time", 90, CVar.SERVERONLY);
 
     /// <summary>
     ///     Time in minutes after the round was extended (by recalling the shuttle) to call
