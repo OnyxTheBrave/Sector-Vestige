@@ -1,6 +1,6 @@
 ﻿[game]
 # Straight in-game baby
-lobbyenabled = true
+lobbyenabled = false
 # Dev map for faster loading & convenience
 map = "Dev"
 role_timers = false
@@ -32,14 +32,14 @@ expedition_cooldown = 30.0
 [shuttle]
 grid_fill = false
 auto_call_time = 0
-emergency = true
-arrivals = true
+emergency = false
+arrivals = false
 preload_grids = false
 
 [admin]
 see_own_notes = true
 
 [ic]
-random_characters = false
+random_characters = true
 random_species_weights = ""
 ssd_sleep_time = 3600
