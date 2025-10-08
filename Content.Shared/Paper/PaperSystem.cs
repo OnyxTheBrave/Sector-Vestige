@@ -253,8 +253,9 @@ public sealed class PaperSystem : EntitySystem
     /// </summary>
     public bool TryStamp(Entity<PaperComponent> entity, StampDisplayInfo stampInfo, string spriteStampState)
     {
-        if (!(entity.Comp.StampingEnabled)) // Moffstation
-            return false;
+///        if (!(entity.Comp.StampingEnabled)) // Moffstation
+///            return false;
+/// Okay so StampingEnabled breaks things that i have not the fortitude to unearth at this exact second. I'm sure it's fine tho
 
         if (!entity.Comp.StampedBy.Contains(stampInfo))
         {
