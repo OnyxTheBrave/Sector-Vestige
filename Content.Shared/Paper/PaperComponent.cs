@@ -23,6 +23,10 @@ public sealed partial class PaperComponent : Component
     [DataField("stampState"), AutoNetworkedField]
     public string? StampState { get; set; }
 
+    ///    [DataField("stampingEnabled"), AutoNetworkedField]
+    ///    public bool StampingEnabled = true;
+    ///    The reporter shift-end report adds this, and for some indescernable (not ported) reason, that breaks things.
+
     [DataField, AutoNetworkedField]
     public bool EditingDisabled;
 
