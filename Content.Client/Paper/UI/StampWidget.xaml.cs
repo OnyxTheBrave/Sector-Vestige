@@ -13,6 +13,7 @@ namespace Content.Client.Paper.UI;
 public sealed partial class StampWidget : PanelContainer
 {
     private static readonly ProtoId<ShaderPrototype> PaperStamp = "PaperStamp";
+
     private StyleBoxTexture _borderTexture;
     private ShaderInstance? _stampShader;
 
