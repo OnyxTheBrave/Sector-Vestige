@@ -10,7 +10,7 @@ on:
 
 jobs:
   Label:
-    if: ( github.event.pull_request.draft == false ) && ( github.actor != 'Weh-Bot' )
+    if: ( github.event.pull_request.draft == false ) && ( github.actor != 'Vestige-bot' )
     runs-on: ubuntu-latest
     permissions:
       contents: read
