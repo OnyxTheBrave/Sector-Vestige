@@ -293,6 +293,8 @@ namespace Content.Client.Paper.UI
             }
         }
 
+        StampDisplay.MinHeight = 10f + MathF.Floor(state.StampedBy.Count / 3f) * 70f; // Moffstation - Set height based on number of stamps
+
         /// <summary>
         ///     BaseWindow interface. Allow users to drag UI around by grabbing
         ///     anywhere on the page (like FancyWindow) but try to calculate
