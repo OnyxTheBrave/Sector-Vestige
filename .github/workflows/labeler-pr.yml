@@ -12,7 +12,7 @@ on:
 
 jobs:
   labeler:
-    if: ${{ github.actor != 'Weh-Bot' && github.actor != 'dependabot[bot]' }}
+    if: ${{ github.actor != 'Vestige-bot' && github.actor != 'dependabot[bot]' }}
     permissions:
       contents: read
       issues: write

@@ -5,7 +5,7 @@ on:
 jobs:
   add_label:
     # Change the repository name after you've made sure the team name is correct for your fork!
-    if: ${{ (github.repository == 'LateStation14/Late-station-14') && (github.event.review.state == 'APPROVED') }}
+    if: ${{ (github.repository == 'Sector-Vestige/Sector-Vestige') && (github.event.review.state == 'APPROVED') }}
     permissions:
       contents: read
       pull-requests: write
@@ -16,7 +16,7 @@ jobs:
       with:
         username: ${{ github.actor }}
         team: "admin-team"
-        GITHUB_TOKEN: ${{ secrets.WEH_BOT_PAT }}
+        GITHUB_TOKEN: ${{ secrets.VESTIGE_BOT_PAT }}
     - if: ${{ steps.checkUserMember.outputs.isTeamMember == 'true' }}
       uses: actions-ecosystem/action-add-labels@v1
       with:
