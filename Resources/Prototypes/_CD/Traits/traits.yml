@@ -1,4 +1,11 @@
 - type: trait
+  id: Synthetic
+  name: trait-synth-name
+  description: trait-synth-desc
+  components:
+    - type: Synth
+
+- type: trait
   id: VeryLightweightDrunk
   name: cd-trait-very-lightweight-name
   description: cd-trait-very-lightweight-desc
