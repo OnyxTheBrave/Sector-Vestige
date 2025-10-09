@@ -8,6 +8,7 @@
   markingLimits: MobFoxfolkMarkingLimits
   dollPrototype: MobFoxfolkDummy
   skinColoration: Hues
+  defaultHeight: 1.0
   maleFirstNames: NamesFoxfolkMale
   femaleFirstNames: NamesFoxfolkFemale
   lastNames: NamesFoxfolkLast

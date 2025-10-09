@@ -7,6 +7,7 @@
   markingLimits: MobHarpyMarkingLimits
   dollPrototype: MobHarpyDummy
   skinColoration: HumanToned
+  defaultHeight: 0.9
 
 - type: speciesBaseSprites
   id: MobHarpySprites

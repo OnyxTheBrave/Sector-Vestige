@@ -13,6 +13,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - PersonalItemsJobAgnostic #SV Change
 
 # Engineering
 - type: roleLoadout
@@ -28,6 +29,7 @@
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
+  - PersonalItemsJobAgnostic #SV Change
 
 # Science
 - type: roleLoadout
@@ -45,6 +47,7 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
+  - PersonalItemsJobAgnostic #SV Change
 
 # Security
 - type: roleLoadout
@@ -60,6 +63,7 @@
   - SurvivalSecurity
   - Trinkets
   - GroupSpeciesBreathToolSecurity
+  - PersonalItemsJobAgnostic #SV Change
 
 # Medical
 - type: roleLoadout
@@ -77,6 +81,7 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
+  - PersonalItemsJobAgnostic #SV Change
 
 # Wildcards
 - type: roleLoadout
@@ -87,3 +92,4 @@
   - PrisonerFun
   - GroupSpeciesBreathTool
   - Survival
+  - PersonalItemsJobAgnostic #SV Change
