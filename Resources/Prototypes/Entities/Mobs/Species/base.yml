@@ -275,6 +275,7 @@
         Asphyxiation: -1.0
   - type: FireVisuals
     alternateState: Standing
+  - type: SetExamine # Umbra Change, all species can set additional examine text.
   - type: StunVisuals
 
 - type: entity

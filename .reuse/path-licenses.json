@@ -72,6 +72,12 @@
     { "pattern": "Resources/_SV/**", "license": "AGPL" },
     { "pattern": "Resources/Prototypes/_SV/**", "license": "AGPL" },
 
+    { "pattern": "Content.Server/_Moffstation/**", "license": "MIT" },
+    { "pattern": "Content.Client/_Moffstation/**", "license": "MIT" },
+    { "pattern": "Content.Shared/_Moffstation/**", "license": "MIT" },
+    { "pattern": "Resources/_Moffstation/**", "license": "MIT" },
+    { "pattern": "Resources/Prototypes/_Moffstation/**", "license": "MIT" },
+
     { "pattern": "Content.Server/**", "license": "MIT" },
     { "pattern": "Content.Client/**", "license": "MIT" },
     { "pattern": "Content.Shared/**", "license": "MIT" },

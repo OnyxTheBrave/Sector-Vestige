@@ -357,12 +357,14 @@ def parse_existing_header(content, comment_style):
         # Single-line comment style (e.g., //, #)
         # Regular expressions for parsing
         # Allow optional space and accidental '//' after prefix (e.g., '# // SPDX-...')
+        # REUSE-IgnoreStart
         copyright_regex = re.compile(
             f"^{re.escape(prefix)}\\s*(?:\\/\\/\\s*)?SPDX-FileCopyrightText: (\\d{{4}}) (.+)$"
         )
         license_regex = re.compile(
             f"^{re.escape(prefix)}\\s*(?:\\/\\/\\s*)?SPDX-License-Identifier: (.+)$"
         )
+        # REUSE-IgnoreEnd
 
         # Find the header section
         in_header = True
@@ -397,8 +399,10 @@ def parse_existing_header(content, comment_style):
     else:
         # Multi-line comment style (e.g., <!-- -->)
         # Regular expressions for parsing
+        # REUSE-IgnoreStart
         copyright_regex = re.compile(r"^SPDX-FileCopyrightText: (\d{4}) (.+)$")
         license_regex = re.compile(r"^SPDX-License-Identifier: (.+)$")
+        # REUSE-IgnoreEnd
 
         # Find the header section
         in_comment = False
@@ -528,7 +532,9 @@ def create_header(authors, license_id, comment_style, last_author: str | None = 
         lines.append(f"{prefix}")
 
         # Add license line
+        # REUSE-IgnoreStart
         lines.append(f"{prefix} SPDX-License-Identifier: {license_id}")
+        # REUSE-IgnoreEnd
     else:
         # Multi-line comment style (e.g., <!-- -->)
         # Start comment
@@ -556,7 +562,9 @@ def create_header(authors, license_id, comment_style, last_author: str | None = 
         lines.append("")
 
         # Add license line
+        # REUSE-IgnoreStart
         lines.append(f"SPDX-License-Identifier: {license_id}")
+        # REUSE-IgnoreEnd
 
         # End comment
         lines.append(f"{suffix}")
@@ -805,7 +813,9 @@ def main():
 
     # Resolve license id (supports combined labels like "mit+agpl")
     license_id = _resolve_license_id(args.pr_license)
+    # REUSE-IgnoreStart
     print(f"Using license for new files: {license_id}")
+    # REUSE-IgnoreEnd
 
     # Optional: load per-path license map
     def _load_license_map(path: str | None):

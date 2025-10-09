@@ -113,12 +113,14 @@ def extract_header_license(path: Path) -> str | None:
     except Exception:  # pragma: no cover
         return None
     content = ''.join(lines) if 'lines' in locals() else ''
+    # REUSE-IgnoreStart
     for line in content.splitlines():
         if 'SPDX-License-Identifier:' in line:
             # Extract after colon
             parts = line.split('SPDX-License-Identifier:', 1)
             if len(parts) == 2:
                 return parts[1].strip().lstrip('*').strip()
+    # REUSE-IgnoreEnd
     return None
 
 
