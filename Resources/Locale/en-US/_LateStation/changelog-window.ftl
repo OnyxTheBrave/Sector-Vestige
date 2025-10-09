@@ -1,1 +1,1 @@
-changelog-tab-title-LateStation = LateStation
+changelog-tab-title-Sector-vestige = Sector-vestige
