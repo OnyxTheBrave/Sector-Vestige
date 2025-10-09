@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
+//
+// SPDX-License-Identifier: MIT
+
 using Content.Client.Eui;
 using Content.Shared._Moffstation.ReadyManifest;
 using Content.Shared.Eui;

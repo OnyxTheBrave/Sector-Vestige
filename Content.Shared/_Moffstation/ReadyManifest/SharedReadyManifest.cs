@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
+//
+// SPDX-License-Identifier: MIT
+
 using Content.Shared.Eui;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;

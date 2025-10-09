@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
+//
+// SPDX-License-Identifier: MIT
+
 using System.Linq;
 using Content.Client._Moffstation.ReadyManifest.UI;
 using Content.Shared.Roles;
