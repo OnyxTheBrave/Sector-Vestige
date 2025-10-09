@@ -1,4 +1,4 @@
-Name: Sector-vestige
+Name: LateStation
 Order: -1
 Entries:
 - id: 2
@@ -709,3 +709,9 @@ Entries:
       message: Added Set Examine.
   id: 92
   time: '2025-10-08T19:08:27.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Add
+      message: Added the ability to sign papers and other documents.
+  id: 93
+  time: '2025-10-09T12:28:13.0000000+00:00'
