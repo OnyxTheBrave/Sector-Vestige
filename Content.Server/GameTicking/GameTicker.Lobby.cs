@@ -31,6 +31,7 @@
 // SPDX-FileCopyrightText: 2024 faint <46868845+ficcialfaint@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
 // SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
+// SPDX-FileCopyrightText: 2025 vestige-bot <vestige-bot@users.noreply.github.com>
 //
 // SPDX-License-Identifier: MIT
 

@@ -25,6 +25,7 @@
 // SPDX-FileCopyrightText: 2025 J <billsmith116@gmail.com>
 // SPDX-FileCopyrightText: 2025 Milon <milonpl.git@proton.me>
 // SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
+// SPDX-FileCopyrightText: 2025 vestige-bot <vestige-bot@users.noreply.github.com>
 //
 // SPDX-License-Identifier: MIT
 
