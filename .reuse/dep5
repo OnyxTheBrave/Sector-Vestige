@@ -164,6 +164,16 @@ Copyright: Contributors of the _SV upstream project
  2020-2025 Sector Vestige contributors (modifications)
 License: AGPL-3.0-or-later
 
+# Sector Vestige code licensed under MIT
+Files: Content.Server/_Moffstation/**
+        Content.Client/_Moffstation/**
+        Content.Shared/_Moffstation/**
+        Resources/_Moffstation/**
+        Resources/Prototypes/_Moffstation/**
+Copyright: Contributors of the Moffstation upstream project
+ 2020-2025 Sector Vestige contributors (modifications)
+License: MIT
+
 # Assets
 Files: Resources/Textures/**
 Copyright: SS14 contributors (Check meta files)
