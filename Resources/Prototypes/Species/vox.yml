@@ -8,6 +8,7 @@
   dollPrototype: MobVoxDummy
   skinColoration: VoxFeathers
   defaultSkinTone: "#6c741d"
+  defaultHeight: 1.0
   maleFirstNames: NamesVox
   femaleFirstNames: NamesVox
   naming: First

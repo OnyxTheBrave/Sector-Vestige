@@ -13,6 +13,7 @@
   markingLimits: MobResomiMarkingLimits
   dollPrototype: MobResomiDummy
   skinColoration: Hues
+  defaultHeight: 0.8
   naming: First
   sexes: # Goobstation - why bother having male/female names and soundCollections if they were only available unsexed?
   - Unsexed
