@@ -16,7 +16,7 @@ jobs:
       with:
         username: ${{ github.actor }}
         team: "admin-team"
-        GITHUB_TOKEN: ${{ secrets.VESTIGE_BOT_PAT }}
+        GITHUB_TOKEN: ${{ secrets.WEH_BOT_PAT }}
     - if: ${{ steps.checkUserMember.outputs.isTeamMember == 'true' }}
       uses: actions-ecosystem/action-add-labels@v1
       with:
