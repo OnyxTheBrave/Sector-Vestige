@@ -859,7 +859,7 @@ namespace Content.Client.Lobby.UI
                 baseScale = scaleComp.OriginalScale.Value;
             }
 
-            // Sector Vestige - Apply height/scale to the preview (multiply with base scale)
+            // Sector Vestige - Scale both axes proportionally to preserve proportions
             var scale = baseScale * Profile.Height;
             _entManager.System<SharedScaleVisualsSystem>().SetSpriteScale(PreviewDummy, scale);
 
@@ -942,7 +942,7 @@ namespace Content.Client.Lobby.UI
                 baseScale = scaleComp.OriginalScale.Value;
             }
 
-            // Sector Vestige - Apply height/scale to the preview (multiply with base scale)
+            // Sector Vestige - Scale both axes proportionally to preserve proportions
             var scale = baseScale * Profile.Height;
             _entManager.System<SharedScaleVisualsSystem>().SetSpriteScale(PreviewDummy, scale);
 

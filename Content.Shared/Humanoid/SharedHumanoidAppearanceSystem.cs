@@ -9,10 +9,12 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences;
+using Content.Shared.Sprite; // Sector Vestige - For ScaleVisualsComponent and SharedScaleVisualsSystem
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.GameObjects.Components.Localization;
+using Robust.Shared.Log;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -41,6 +43,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly GrammarSystem _grammarSystem = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
+    [Dependency] private readonly SharedScaleVisualsSystem _scaleVisualsSystem = default!; // Sector Vestige - For applying character height
 
     public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
 
@@ -460,6 +463,21 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         }
 
         humanoid.Age = profile.Age;
+
+        // Sector Vestige - Apply character height from profile
+        // Get the species' base scale from ScaleVisualsComponent (e.g., dwarf = 1, 0.8)
+        var baseScale = Vector2.One;
+        if (TryComp<ScaleVisualsComponent>(uid, out var scaleComp))
+        {
+            // Use the Scale from the component, which is set from the entity prototype
+            baseScale = scaleComp.Scale != Vector2.Zero ? scaleComp.Scale : Vector2.One;
+        }
+
+        // Scale both axes proportionally to avoid stretching
+        // This preserves the species' proportions (width:height ratio)
+        var finalScale = baseScale * profile.Height;
+        Log.Info($"LoadProfile applying scale: base={baseScale}, height={profile.Height}, final={finalScale}");
+        _scaleVisualsSystem.SetSpriteScale(uid, finalScale);
 
         Dirty(uid, humanoid);
     }
