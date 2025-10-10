@@ -721,3 +721,9 @@ Entries:
       message: Slider removed for a input box.
   id: 94
   time: '2025-10-09T18:19:06.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Add
+      message: Added the Ready Manifest from Moffstation.
+  id: 95
+  time: '2025-10-10T13:22:44.0000000+00:00'
