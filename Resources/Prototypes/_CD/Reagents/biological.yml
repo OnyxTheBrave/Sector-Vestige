@@ -1,0 +1,28 @@
+# SPDX-FileCopyrightText: 2025 Contributors of the _CD upstream project
+# SPDX-FileCopyrightText: 2025 OnyxTheBrave <vinjeerik@gmail.com>
+# SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+#
+# SPDX-License-Identifier: MIT
+
+- type: reagent
+  id: SynthBlood
+  name: reagent-name-synth-blood
+  group: Biological
+  desc: reagent-desc-synth-blood
+  flavor: metallic
+  color: "#00b8f5"
+  recognizable: true
+  physicalDesc: reagent-physical-desc-reflective
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 1.5
+        conditions:
+          - !type:OrganType
+            type: Human
+            shouldHave: false
+  footstepSound:
+    collection: FootstepBlood
+    params:
+      volume: 6

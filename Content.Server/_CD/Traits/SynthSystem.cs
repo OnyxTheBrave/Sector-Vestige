@@ -1,0 +1,34 @@
+// SPDX-FileCopyrightText: 2025 Contributors of the _CD upstream project
+// SPDX-FileCopyrightText: 2025 OnyxTheBrave <vinjeerik@gmail.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
+using Content.Server.Body.Systems;
+using Content.Shared.Chat.TypingIndicator;
+
+namespace Content.Server._CD.Traits;
+
+public sealed class SynthSystem : EntitySystem
+{
+    [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<SynthComponent, ComponentStartup>(OnStartup);
+    }
+
+    private void OnStartup(EntityUid uid, SynthComponent component, ComponentStartup args)
+    {
+        if (TryComp<TypingIndicatorComponent>(uid, out var indicator))
+        {
+            indicator.TypingIndicatorPrototype = "robot";
+            Dirty(uid, indicator);
+        }
+
+        // Give them synth blood. Ion storm notif is handled in that system
+        _bloodstream.ChangeBloodReagent(uid, "SynthBlood");
+    }
+}
