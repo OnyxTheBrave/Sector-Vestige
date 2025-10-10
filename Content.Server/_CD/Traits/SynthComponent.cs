@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2025 OnyxTheBrave <vinjeerik@gmail.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 namespace Content.Server._CD.Traits;
 
 /// <summary>
