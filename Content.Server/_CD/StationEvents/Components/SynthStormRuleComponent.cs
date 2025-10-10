@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2025 OnyxTheBrave <vinjeerik@gmail.com>
-// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
-//
-// SPDX-License-Identifier: MIT
-
 using Robust.Shared.Audio;
 
 namespace Content.Server._CD.StationEvents.Components;

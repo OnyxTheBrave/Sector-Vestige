@@ -1,3 +1,4 @@
+# SPDX-FileCopyrightText: 2025 Sector-Vestige contributors
 # SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 sleepyyapril <123355664+sleepyyapril@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 sleepyyapril <flyingkarii@gmail.com>
@@ -150,7 +151,119 @@ def is_bot_name(name: str | None) -> bool:
         or "github-actions" in n
         or "dependabot" in n
         or "weh-bot" in n
+        or "vestige-bot" in n
     )
+
+def _parse_dep5_file(dep5_path: str = ".reuse/dep5") -> list[dict]:
+    """
+    Parse a .reuse/dep5 file and extract copyright information for file patterns.
+    Returns a list of dicts with keys: 'patterns', 'copyrights', 'license'
+    """
+    if not os.path.exists(dep5_path):
+        return []
+
+    entries = []
+    current_entry = None
+
+    try:
+        with open(dep5_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                line = line.rstrip('\n')
+
+                # Skip comments and empty lines
+                if not line.strip() or line.strip().startswith('#'):
+                    continue
+
+                # New "Files:" section starts a new entry
+                if line.startswith('Files:'):
+                    if current_entry:
+                        entries.append(current_entry)
+                    current_entry = {
+                        'patterns': [],
+                        'copyrights': [],
+                        'license': None
+                    }
+                    # Extract patterns from the same line
+                    patterns_str = line[6:].strip()
+                    if patterns_str:
+                        current_entry['patterns'].extend([p.strip() for p in patterns_str.split() if p.strip()])
+
+                # Continuation of Files: (patterns on next lines, indented)
+                elif current_entry and line.startswith((' ', '\t')) and not line.strip().startswith('Copyright:') and not line.strip().startswith('License:'):
+                    patterns = [p.strip() for p in line.split() if p.strip()]
+                    current_entry['patterns'].extend(patterns)
+
+                # Copyright line
+                elif line.startswith('Copyright:'):
+                    if current_entry:
+                        copyright_text = line[10:].strip()
+                        if copyright_text:
+                            current_entry['copyrights'].append(copyright_text)
+
+                # Continuation of Copyright: (multiple copyright lines, indented)
+                elif current_entry and line.startswith(' ') and current_entry.get('copyrights') is not None:
+                    # Check if this is a copyright continuation (not License: line)
+                    if not line.strip().startswith('License:'):
+                        copyright_text = line.strip()
+                        if copyright_text and not copyright_text.startswith('License:'):
+                            current_entry['copyrights'].append(copyright_text)
+
+                # License line
+                elif line.startswith('License:'):
+                    if current_entry:
+                        current_entry['license'] = line[8:].strip()
+
+        # Add the last entry
+        if current_entry:
+            entries.append(current_entry)
+
+    except Exception as e:
+        print(f"Warning: Failed to parse dep5 file: {e}", file=sys.stderr)
+        return []
+
+    return entries
+
+def _get_upstream_copyright_from_dep5(file_path: str) -> str | None:
+    """
+    Get the upstream copyright holder(s) from dep5 file for a given file path.
+    Returns the first/primary copyright line (usually the upstream), or None.
+    """
+    dep5_entries = _parse_dep5_file()
+    if not dep5_entries:
+        return None
+
+    # Normalize the file path
+    normalized_path = file_path.replace('\\', '/').lstrip('./')
+
+    # Find matching entries (prefer most specific pattern)
+    matches = []
+    for entry in dep5_entries:
+        for pattern in entry['patterns']:
+            # Convert dep5 glob pattern to fnmatch pattern
+            pattern = pattern.replace('\\', '/')
+            if fnmatch.fnmatch(normalized_path, pattern):
+                matches.append((len(pattern), entry))
+                break
+
+    if not matches:
+        return None
+
+    # Get the most specific match (longest pattern)
+    _, best_entry = max(matches, key=lambda x: x[0])
+
+    # Return the first copyright line (usually the primary/upstream)
+    if best_entry['copyrights']:
+        first_copyright = best_entry['copyrights'][0]
+        # Extract just the copyright holder part (after the year range)
+        # Format is typically: "2020-2025 Upstream Name contributors"
+        # We want to extract "Upstream Name contributors"
+        import re
+        match = re.search(r'\d{4}(?:-\d{4})?\s+(.+)$', first_copyright)
+        if match:
+            return match.group(1).strip()
+        return first_copyright
+
+    return None
 
 # Project name used in fallback copyright text
 DEFAULT_PROJECT_NAME = (
@@ -357,12 +470,14 @@ def parse_existing_header(content, comment_style):
         # Single-line comment style (e.g., //, #)
         # Regular expressions for parsing
         # Allow optional space and accidental '//' after prefix (e.g., '# // SPDX-...')
+        # REUSE-IgnoreStart
         copyright_regex = re.compile(
             f"^{re.escape(prefix)}\\s*(?:\\/\\/\\s*)?SPDX-FileCopyrightText: (\\d{{4}}) (.+)$"
         )
         license_regex = re.compile(
             f"^{re.escape(prefix)}\\s*(?:\\/\\/\\s*)?SPDX-License-Identifier: (.+)$"
         )
+        # REUSE-IgnoreEnd
 
         # Find the header section
         in_header = True
@@ -397,8 +512,10 @@ def parse_existing_header(content, comment_style):
     else:
         # Multi-line comment style (e.g., <!-- -->)
         # Regular expressions for parsing
+        # REUSE-IgnoreStart
         copyright_regex = re.compile(r"^SPDX-FileCopyrightText: (\d{4}) (.+)$")
         license_regex = re.compile(r"^SPDX-License-Identifier: (.+)$")
+        # REUSE-IgnoreEnd
 
         # Find the header section
         in_comment = False
@@ -492,18 +609,29 @@ def remove_existing_header(content: str, comment_style: tuple[str, str | None]) 
         return "\n".join(lines[i:]) + ("\n" if content.endswith("\n") else ''), True
     return content, False
 
-def create_header(authors, license_id, comment_style, last_author: str | None = None, last_year: int | None = None):
+def create_header(authors, license_id, comment_style, last_author: str | None = None, last_year: int | None = None, file_path: str | None = None):
     """
     Creates a REUSE header with the given authors and license.
     Returns: header string
 
     comment_style is a tuple of (prefix, suffix)
+    file_path is used to detect upstream source for the broader copyright line from dep5
     """
     prefix, suffix = comment_style
     lines = []
 
+    # Get current year for the broader copyright line
+    current_year = datetime.now(timezone.utc).year
+
+    # Get upstream copyright from dep5 file
+    upstream_copyright = _get_upstream_copyright_from_dep5(file_path) if file_path else None
+    broader_copyright = upstream_copyright if upstream_copyright else f"{DEFAULT_PROJECT_NAME} contributors"
+
     if suffix is None:
         # Single-line comment style (e.g., //, #)
+        # Add broader copyright line first
+        lines.append(f"{prefix} SPDX-FileCopyrightText: {current_year} {broader_copyright}")
+
         # Build ordered list of authors
         ordered = []
         if authors:
@@ -517,22 +645,25 @@ def create_header(authors, license_id, comment_style, last_author: str | None = 
                 ordered.append((last_author, authors[last_author][1]))
             else:
                 ordered.append((last_author, last_year or datetime.now(timezone.utc).year))
-        # Write authors or fallback
+        # Write individual authors
         if ordered:
             for a, y in ordered:
                 lines.append(f"{prefix} SPDX-FileCopyrightText: {y} {a}")
-        else:
-            lines.append(f"{prefix} SPDX-FileCopyrightText: Contributors to the {DEFAULT_PROJECT_NAME} project")
 
         # Add separator
         lines.append(f"{prefix}")
 
         # Add license line
+        # REUSE-IgnoreStart
         lines.append(f"{prefix} SPDX-License-Identifier: {license_id}")
+        # REUSE-IgnoreEnd
     else:
         # Multi-line comment style (e.g., <!-- -->)
         # Start comment
         lines.append(f"{prefix}")
+
+        # Add broader copyright line first
+        lines.append(f"SPDX-FileCopyrightText: {current_year} {broader_copyright}")
 
         # Add copyright lines
         ordered = []
@@ -549,14 +680,14 @@ def create_header(authors, license_id, comment_style, last_author: str | None = 
         if ordered:
             for a, y in ordered:
                 lines.append(f"SPDX-FileCopyrightText: {y} {a}")
-        else:
-            lines.append(f"SPDX-FileCopyrightText: Contributors to the {DEFAULT_PROJECT_NAME} project")
 
         # Add separator
         lines.append("")
 
         # Add license line
+        # REUSE-IgnoreStart
         lines.append(f"SPDX-License-Identifier: {license_id}")
+        # REUSE-IgnoreEnd
 
         # End comment
         lines.append(f"{suffix}")
@@ -691,6 +822,7 @@ def process_file(file_path, default_license_id, pr_base_sha=None, pr_head_sha=No
             comment_style,
             last_author=last_editor,
             last_year=(git_authors.get(last_editor, (None, None))[1] if last_editor else None),
+            file_path=file_path,
         )
 
         # Always rebuild from stripped content for idempotency
@@ -721,6 +853,7 @@ def process_file(file_path, default_license_id, pr_base_sha=None, pr_head_sha=No
             comment_style,
             last_author=last_editor,
             last_year=(git_authors.get(last_editor, (None, None))[1] if last_editor else None),
+            file_path=file_path,
         )
 
         # Add header to file
@@ -805,7 +938,9 @@ def main():
 
     # Resolve license id (supports combined labels like "mit+agpl")
     license_id = _resolve_license_id(args.pr_license)
+    # REUSE-IgnoreStart
     print(f"Using license for new files: {license_id}")
+    # REUSE-IgnoreEnd
 
     # Optional: load per-path license map
     def _load_license_map(path: str | None):
