@@ -1,6 +1,6 @@
 ﻿<cartridges:NanoChatLookupView
     xmlns="https://spacestation14.io"
-    xmlns:cartridges="clr-namespace:Content.Client.CartridgeLoader.Cartridges"
+    xmlns:cartridges="clr-namespace:Content.Client._CD.CartridgeLoader.Cartridges"
     HorizontalExpand="True"
     VerticalExpand="True"
     StyleClasses="AngleRect">
