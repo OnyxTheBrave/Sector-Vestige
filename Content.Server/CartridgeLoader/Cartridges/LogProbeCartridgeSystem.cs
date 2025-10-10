@@ -135,7 +135,6 @@ public sealed partial class LogProbeCartridgeSystem : EntitySystem // CD - Made 
 
     private void UpdateUiState(Entity<LogProbeCartridgeComponent> ent, EntityUid loaderUid)
     {
-        var state = new LogProbeUiState(ent.Comp.EntityName, ent.Comp.PulledAccessLogs);
         var state = new LogProbeUiState(ent.Comp.EntityName, ent.Comp.PulledAccessLogs, ent.Comp.ScannedNanoChatData); // CD - NanoChat support
         _cartridge.UpdateCartridgeUiState(loaderUid, state);
     }
