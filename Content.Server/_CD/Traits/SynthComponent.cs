@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2025 OnyxTheBrave <vinjeerik@gmail.com>
-// SPDX-FileCopyrightText: 2025 vestige-bot <vestige-bot@users.noreply.github.com>
-//
-// SPDX-License-Identifier: MIT
-
 namespace Content.Server._CD.Traits;
 
 /// <summary>

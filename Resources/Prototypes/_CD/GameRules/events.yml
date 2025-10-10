@@ -1,7 +1,3 @@
-# SPDX-FileCopyrightText: 2025 OnyxTheBrave <vinjeerik@gmail.com>
-#
-# SPDX-License-Identifier: MIT
-
 - type: entity
   parent: BaseGameRule
   id: SynthStorm
