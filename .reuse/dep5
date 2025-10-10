@@ -51,9 +51,8 @@ Files: Content.Server/_AXOLOTL/**
         Content.Shared/_AXOLOTL/**
         Resources/_AXOLOTL/**
         Resources/Prototypes/_AXOLOTL/**
-Copyright: Contributors of the _AXOLOTL upstream project
+Copyright: 2020-2025 AXOLOTL contributors
  2020-2025 Sector Vestige contributors (modifications)
- 2020-2025 AXOLOTL contributors
 License: MIT
 
 # CD (Cosmatic Drift) code licensed under MIT
@@ -62,9 +61,8 @@ Files: Content.Server/_CD/**
         Content.Shared/_CD/**
         Resources/_CD/**
         Resources/Prototypes/_CD/**
-Copyright: Contributors of the _CD upstream project
+Copyright: 2020-2025 Cosmatic Drift contributors
  2020-2025 Sector Vestige contributors (modifications)
- 2020-2025 CD contributors
 License: MIT
 
 # DV (Delta-V) code licensed under AGPL-3.0-or-later
@@ -73,9 +71,8 @@ Files: Content.Server/_DV/**
         Content.Shared/_DV/**
         Resources/_DV/**
         Resources/Prototypes/_DV/**
-Copyright: Contributors of the _DV upstream project
+Copyright: 2020-2025 Delta-V contributors
  2020-2025 Sector Vestige contributors (modifications)
- 2020-2025 Delta-V contributors
 License: AGPL-3.0-or-later
 
 # NF (Frontier) code licensed under AGPL-3.0-or-later
@@ -84,9 +81,8 @@ Files: Content.Server/_NF/**
         Content.Shared/_NF/**
         Resources/_NF/**
         Resources/Prototypes/_NF/**
-Copyright: Contributors of the _NF upstream project
+Copyright: 2020-2025 New Frontiers contributors
  2020-2025 Sector Vestige contributors (modifications)
- 2020-2025 Frontier contributors
 License: AGPL-3.0-or-later
 
 # Harmony code licensed under AGPL-3.0-or-later
@@ -95,9 +91,8 @@ Files: Content.Server/_Harmony/**
         Content.Shared/_Harmony/**
         Resources/_Harmony/**
         Resources/Prototypes/_Harmony/**
-Copyright: Contributors of the _Harmony upstream project
+Copyright: 2020-2025 Harmony contributors
  2020-2025 Sector Vestige contributors (modifications)
- 2020-2025 Harmony contributors
 License: AGPL-3.0-or-later
 
 # Umbra code licensed under MIT
@@ -106,9 +101,8 @@ Files: Content.Server/_Umbra/**
         Content.Shared/_Umbra/**
         Resources/_Umbra/**
         Resources/Prototypes/_Umbra/**
-Copyright: Contributors of the _Umbra upstream project
+Copyright: 2020-2025 Umbra contributors
  2020-2025 Sector Vestige contributors (modifications)
- 2020-2025 Umbra contributors
 License: MIT
 
 # Floofstation code licensed under AGPL-3.0-or-later
@@ -117,9 +111,8 @@ Files: Content.Server/_Floofstation/**
         Content.Shared/_Floofstation/**
         Resources/_Floofstation/**
         Resources/Prototypes/_Floofstation/**
-Copyright: Contributors of the _Floofstation upstream project
+Copyright: 2020-2025 FloofStation contributors
  2020-2025 Sector Vestige contributors (modifications)
- 2020-2025 Floofstation contributors
 License: AGPL-3.0-or-later
 
 # Impstation code licensed under AGPL-3.0-or-later
@@ -128,9 +121,8 @@ Files: Content.Server/_Impstation/**
         Content.Shared/_Impstation/**
         Resources/_Impstation/**
         Resources/Prototypes/_Impstation/**
-Copyright: Contributors of the _Impstation upstream project
+Copyright: 2020-2025 Impstation contributors
  2020-2025 Sector Vestige contributors (modifications)
- 2020-2025 Impstation contributors
 License: AGPL-3.0-or-later
 
 # EinsteinEngines code licensed under AGPL-3.0-or-later
@@ -139,9 +131,8 @@ Files: Content.Server/_EE/**
         Content.Shared/_EE/**
         Resources/_EE/**
         Resources/Prototypes/_EE/**
-Copyright: Contributors of the _EinsteinEngines upstream project
+Copyright: 2020-2025 EinsteinEngines contributors
  2020-2025 Sector Vestige contributors (modifications)
- 2020-2025 EinsteinEngines contributors
 License: AGPL-3.0-or-later
 
 # Funkystation code licensed under AGPL-3.0-or-later
@@ -160,17 +151,17 @@ Files: Content.Server/_SV/**
         Content.Shared/_SV/**
         Resources/_SV/**
         Resources/Prototypes/_SV/**
-Copyright: Contributors of the _SV upstream project
+Copyright: 2020-2025 Sector-Vestige contributors
  2020-2025 Sector Vestige contributors (modifications)
 License: AGPL-3.0-or-later
 
-# Sector Vestige code licensed under MIT
+# Moffstation code licensed under MIT
 Files: Content.Server/_Moffstation/**
         Content.Client/_Moffstation/**
         Content.Shared/_Moffstation/**
         Resources/_Moffstation/**
         Resources/Prototypes/_Moffstation/**
-Copyright: Contributors of the Moffstation upstream project
+Copyright: 2020-2025 Moffstation contributors
  2020-2025 Sector Vestige contributors (modifications)
 License: MIT
 
