@@ -1,3 +1,9 @@
+// SPDX-FileCopyrightText: 2025 Contributors of the _CD upstream project
+// SPDX-FileCopyrightText: 2025 OnyxTheBrave <vinjeerik@gmail.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 using Content.Server.Body.Systems;
 using Content.Shared.Chat.TypingIndicator;
 
