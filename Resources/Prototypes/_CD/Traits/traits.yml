@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+# SPDX-FileCopyrightText: 2025 OnyxTheBrave <vinjeerik@gmail.com>
+#
+# SPDX-License-Identifier: MIT
+
 - type: trait
   id: Synthetic
   name: trait-synth-name

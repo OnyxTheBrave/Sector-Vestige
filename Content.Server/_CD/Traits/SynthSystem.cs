@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 OnyxTheBrave <vinjeerik@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 using Content.Server.Body.Systems;
 using Content.Shared.Chat.TypingIndicator;
 

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 OnyxTheBrave <vinjeerik@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 using Content.Server._CD.StationEvents.Components;
 using Content.Server._CD.Traits;
 using Content.Server.Chat.Managers;
