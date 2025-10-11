@@ -111,7 +111,7 @@
   name: reagent-name-blissifylovene
   group: Medicine
   desc: reagent-desc-blissifylovene
-  physicalDesc: reagent-physical-desc-bending
+  physicalDesc: reagent-physical-desc-reflective # this used to be "bending" but that doesn't work for some reason
   flavor: bitter
   color: "#f2ff00"
   metabolisms:
@@ -192,7 +192,7 @@
         reagent: Neurozenium
         amount: -7.5
       - !type:AdjustReagent
-        probablity: 0.5 # Chance of Addiction rising per tick
+        probability: 0.5 # Chance of Addiction rising per tick
         conditions:
         - !type:ReagentThreshold
           reagent: Addictine
