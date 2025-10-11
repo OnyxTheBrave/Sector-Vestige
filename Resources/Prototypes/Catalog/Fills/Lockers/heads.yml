@@ -173,6 +173,7 @@
     - id: RPD # Harmony Change: Add RPD to locker before upstream implimentation
     - id: RubberStampCE
     - id: MetalFoamGrenade
+    - id: ClothingEyesSunglassesEngineering # Vestige Change: Add Engineering Sunglasses to the CE
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -233,6 +234,7 @@
     - id: MedkitFilled
     - id: RubberStampCMO
     - id: MedTekCartridge
+    - id: ClothingEyesSunglassesMedical # Vestige: Add medical sunglasses to the CMO's locker
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

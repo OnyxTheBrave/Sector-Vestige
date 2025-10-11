@@ -1,6 +1,6 @@
 - type: entity
   parent: [ClothingEyesBase, BaseEngineeringContraband]
-  id: ClothingEyesGlassesEngineering
+  id: ClothingEyesSunglassesEngineering
   name: engineering glasses
   description: Upgraded sunglasses that provide flash immunity and a diagnostic HUD.
   components:
@@ -23,11 +23,9 @@
     - Inorganic
     - Silicon
 
-#   WHY!!!!
-
 - type: entity
   parent: [ClothingEyesBase, ShowMedicalIcons]
-  id: ClothingEyesGlassesMed
+  id: ClothingEyesSunglassesMedical
   name: medical glasses
   description: Upgraded sunglasses that provide flash immunity while displaying a humanoid's health status.
   components:
