@@ -39,4 +39,6 @@
   name: loadout-group-senior-courier-shoes
   minLimit: 0
   loadouts:
+  - SeniorCourierBootsSteel
+  - SeniorCourierBootsBlack
   - SeniorCourierWinterBoots
