@@ -42,7 +42,6 @@
 
 - type: markingPoints
   id: MobMothMarkingLimits
-  onlyWhitelisted: true
   points:
     Hair:
       points: 1
