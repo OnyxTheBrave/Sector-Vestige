@@ -739,3 +739,9 @@ Entries:
       message: Added anti-depressants and anti-anxiety roleplay chemicals.
   id: 97
   time: '2025-10-11T10:04:02.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Moths have hair now.
+  id: 98
+  time: '2025-10-11T10:20:35.0000000+00:00'
