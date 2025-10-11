@@ -1,0 +1,8 @@
+# Senior Courier
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSeniorCourier
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: SeniorCourier
+  jobName: job-name-senior-courier

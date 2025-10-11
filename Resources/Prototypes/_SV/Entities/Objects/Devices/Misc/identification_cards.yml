@@ -1,0 +1,12 @@
+# Senior Courier
+- type: entity
+  parent: IDCardStandard
+  id: SeniorCourierIDCard
+  name: senior courier ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idseniorcourier
+  - type: PresetIdCard
+    job: SeniorCourier

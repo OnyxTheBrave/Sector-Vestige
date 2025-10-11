@@ -1,0 +1,14 @@
+# Senior Courier
+- type: roleLoadout
+  id: JobSeniorCourier
+  groups:
+  - GroupTankHarness
+  - SeniorCourierHead
+  - SeniorCourierJumpsuit
+  - SeniorCourierBackpack
+  - SeniorCourierOuterClothing
+  - SeniorCourierShoes
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+  - PersonalItemsJobAgnostic
