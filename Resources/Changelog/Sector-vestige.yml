@@ -751,3 +751,9 @@ Entries:
       message: the crewmon now matches the GPS coords.
   id: 99
   time: '2025-10-11T10:42:12.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Add
+      message: Added, Bronze, Amber, and Omega alerts from CD
+  id: 100
+  time: '2025-10-11T12:47:53.0000000+00:00'
