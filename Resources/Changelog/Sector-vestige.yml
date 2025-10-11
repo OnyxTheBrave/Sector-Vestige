@@ -733,3 +733,9 @@ Entries:
       message: Added the synthetic trait.
   id: 96
   time: '2025-10-10T13:34:13.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Add
+      message: Added anti-depressants and anti-anxiety roleplay chemicals.
+  id: 97
+  time: '2025-10-11T10:04:02.0000000+00:00'
