@@ -757,3 +757,11 @@ Entries:
       message: Added, Bronze, Amber, and Omega alerts from CD
   id: 100
   time: '2025-10-11T12:47:53.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Added Medical Sunglasses.
+    - type: Add
+      message: Added Engineering Sunglasses.
+  id: 101
+  time: '2025-10-11T12:57:39.0000000+00:00'
