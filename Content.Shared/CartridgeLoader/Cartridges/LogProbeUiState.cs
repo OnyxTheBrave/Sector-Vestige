@@ -1,4 +1,12 @@
-﻿using Robust.Shared.Serialization;
+// SPDX-FileCopyrightText: 2023 Chief-Engineer <119664036+Chief-Engineer@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Tayrtahn <tayrtahn@gmail.com>
+// SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
+//
+// SPDX-License-Identifier: MIT
+
+using Content.Shared._CD.CartridgeLoader.Cartridges; // CD
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.CartridgeLoader.Cartridges;
 
@@ -15,10 +23,16 @@ public sealed class LogProbeUiState : BoundUserInterfaceState
     /// </summary>
     public List<PulledAccessLog> PulledLogs;
 
-    public LogProbeUiState(string entityName, List<PulledAccessLog> pulledLogs)
+    /// <summary>
+    /// CD: The NanoChat data if a card was scanned, null otherwise
+    /// </summary>
+    public NanoChatData? NanoChatData { get; }
+
+    public LogProbeUiState(string entityName, List<PulledAccessLog> pulledLogs, NanoChatData? nanoChatData = null) // CD - NanoChat support
     {
         EntityName = entityName;
         PulledLogs = pulledLogs;
+        NanoChatData = nanoChatData; // CD
     }
 }
 

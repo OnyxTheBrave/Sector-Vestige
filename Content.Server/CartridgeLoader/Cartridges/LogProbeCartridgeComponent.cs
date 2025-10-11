@@ -1,5 +1,13 @@
+// SPDX-FileCopyrightText: 2023 Chief-Engineer <119664036+Chief-Engineer@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 J <billsmith116@gmail.com>
+// SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
+//
+// SPDX-License-Identifier: MIT
+
+using Content.Shared._CD.CartridgeLoader.Cartridges; // CD
 using Content.Shared.CartridgeLoader.Cartridges;
-﻿using Content.Shared.Paper;
+using Content.Shared.Paper;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -48,4 +56,9 @@ public sealed partial class LogProbeCartridgeComponent : Component
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextPrintAllowed = TimeSpan.Zero;
+
+    /// CD: The last scanned NanoChat data, if any
+    /// </summary>
+    [DataField]
+    public NanoChatData? ScannedNanoChatData;
 }
