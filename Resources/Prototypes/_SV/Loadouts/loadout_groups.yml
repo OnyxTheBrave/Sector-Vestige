@@ -13,6 +13,9 @@
   maxLimit: 2
   loadouts:
   - PersonalItemCyrusWhistle
+  - PersonalItemJamesPlushie
+  - PersonalItemPititiGorb
+  - PersonalItemJamesCane
 
 # Senior Courier
 - type: loadoutGroup
