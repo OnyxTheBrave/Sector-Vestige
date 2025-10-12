@@ -1,5 +1,4 @@
 - type: playTimeTracker
   id: JobBrigMedicHarmony
 
-- type: playTimeTracker
-  id: JobPermaPrisoner
+# Sector Vestige: Remove Harmony's prisoner in favor of Cosmatic Drift's
