@@ -6,13 +6,7 @@
   - BrownShoes
   - HoPLeatherShoesHarmony
 
-# Security
-- type: loadoutGroup
-  id: PermaPrisonerJumpsuit
-  name: loadout-group-perma-prisoner-jumpsuit
-  loadouts:
-  - PermaPrisonerJumpsuit
-  - PermaPrisonerJumpskirt
+# Sector Vestige: Remove Harmony's prisoner in favor of Cosmatic Drift's
 
 # Medical
 - type: loadoutGroup
