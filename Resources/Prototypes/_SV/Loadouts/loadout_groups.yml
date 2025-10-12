@@ -1,8 +1,21 @@
 # SPDX-FileCopyrightText: 2025 Sector-Vestige contributors
 # SPDX-FileCopyrightText: 2025 Sector Vestige contributors (modifications)
 # SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+# SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Personal Items
+- type: loadoutGroup
+  id: PersonalItemsJobAgnostic
+  name: loadout-group-personal-items
+  minLimit: 0
+  maxLimit: 2
+  loadouts:
+  - PersonalItemCyrusWhistle
+  - PersonalItemJamesPlushie
+  - PersonalItemPititiGorb
+  - PersonalItemJamesCane
 
 # Senior Courier
 - type: loadoutGroup

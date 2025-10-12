@@ -1,6 +1,9 @@
+# SPDX-FileCopyrightText: 2025 LateStation14 contributors
 # SPDX-FileCopyrightText: 2025 DoggowithaKeyboard <gaincarlo48@gmail.com>
 # SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
 # SPDX-FileCopyrightText: 2025 bruhmogus <104110869+bruhmogus@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
+#
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 # TO ADD A NEW PERSONAL ITEM LOADOUT, you MUST do the following:
@@ -12,12 +15,12 @@
 # 2. One loadout section per personal item.
 # 3. Add the loadout to every applicable LOADOUT GROUP HERE
 
-- type: loadoutGroup
-  id: PersonalItemsJobAgnostic
-  name: loadout-group-personal-items
-  minLimit: 0
-  maxLimit: 2
-  loadouts:
-  - PersonalItemJamesCane
-  - PersonalItemJamesPlushie
-  - PersonalItemPititiGorb
+# - type: loadoutGroup
+#  id: PersonalItemsJobAgnostic
+#  name: loadout-group-personal-items
+#  minLimit: 0
+#  maxLimit: 2
+#  loadouts:
+#  - PersonalItemJamesCane
+#  - PersonalItemJamesPlushie
+#  - PersonalItemPititiGorb

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "original trench whistle by Firewatchin (discord), personal item respite by qu4drivium (github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+
+  "states": [
+    {
+      "name": "cyrus-whistle-equipped-NECK",
+      "directions": 4
+    },
+    {
+      "name": "cyrus-whistle"
+    }
+  ]
+}
