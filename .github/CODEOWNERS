@@ -11,7 +11,7 @@
 /Resources/**/*.yml                                 @ReboundQ3
 
 # Sprites
-/Resources/Textures/                                @ReboundQ3
+/Resources/Textures/                                @ReboundQ3 @JuneSzalkowska
 
 # Lobby art and music
 /Resources/Audio/Lobby/                             @ReboundQ3
