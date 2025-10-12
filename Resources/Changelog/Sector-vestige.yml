@@ -777,3 +777,9 @@ Entries:
       message: Added a new gamepreset "Vestige-extended"
   id: 103
   time: '2025-10-12T13:09:23.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Added Prisoners.
+  id: 104
+  time: '2025-10-12T17:28:16.0000000+00:00'
