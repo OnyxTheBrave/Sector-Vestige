@@ -12,6 +12,9 @@
     slots: neck
   - type: Whistle
     distance: 8 # Quieter than the actual trench whistle.
+  - type: EmitSoundOnUse
+    sound:
+      collection: CyrusPersonalWhistle
 
 - type: loadout
   id: PersonalItemCyrusWhistle
