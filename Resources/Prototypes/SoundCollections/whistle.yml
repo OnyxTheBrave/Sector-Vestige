@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2025 Sector Vestige contributors (modifications)
 # SPDX-FileCopyrightText: 2024 Fahasor <70820551+Fahasor@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 Firewatch <54725557+musicmanvr@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
 #
 # SPDX-License-Identifier: MIT
 
@@ -23,10 +22,3 @@
     - /Audio/Items/Whistle/trench_whistle_1.ogg
     - /Audio/Items/Whistle/trench_whistle_2.ogg
     - /Audio/Items/Whistle/trench_whistle_3.ogg
-
-- type: soundCollection
-  id: CyrusPersonalWhistle
-  files:
-    - /Audio/Items/Whistle/cyrus_whistle_1.ogg
-    - /Audio/Items/Whistle/cyrus_whistle_2.ogg
-    - /Audio/Items/Whistle/cyrus_whistle_3.ogg
