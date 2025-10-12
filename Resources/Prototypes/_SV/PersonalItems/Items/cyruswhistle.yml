@@ -7,8 +7,10 @@
   components:
 - type: Sprite
   sprite: _SV/PersonalItems/CyrusWhistle.rsi
-  state: trench
+  state: cyrus-whistle
 - type: Clothing
+  sprite: _SV/PersonalItems/CyrusWhistle.rsi
+  state: cyrus-whistle-equipped-NECK
   quickEquip: true
   slots: neck
 - type: Whistle
