@@ -63,3 +63,5 @@
             #Silicon (3)
             StationAi: [ 1, 1 ]
             Borg: [ 2, 3 ]
+            #misc (2)
+            Prisoner: [ 2, 2 ] #Sector Vestige: Add prioner to the map rotations
