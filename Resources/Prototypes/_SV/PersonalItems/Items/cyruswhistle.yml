@@ -2,7 +2,7 @@
 - type: entity
   parent: BaseWhistle
   id: PersonalItemCyrusWhistle
-  name: Faded Whistle
+  name: faded whistle
   description: A vaguely familiar trench whistle with "For honor." inscribed on the underside.
   components:
   - type: Sprite
