@@ -5,16 +5,13 @@
   name: faded whistle
   description: A vaguely familiar trench whistle with "For honor." inscribed on the underside.
   components:
-  - type: Sprite
-    sprite: _SV/PersonalItems/CyrusWhistle.rsi
-    state: cyrus-whistle
   - type: Item
     sprite: _SV/PersonalItems/CyrusWhistle.rsi
     state: cyrus-whistle
+    size: Tiny
   - type: Clothing
     sprite: _SV/PersonalItems/CyrusWhistle.rsi
     equippedPrefix: cyrus-whistle
-    # state: cyrus-whistle-equipped-NECK
     slots: neck
   - type: Whistle
     distance: 8 # Quieter than the actual trench whistle.
