@@ -1,15 +1,22 @@
-# - type: entity
-#   parent: IDCardStandard
-#   id: CDPrisonerIDCard
-#   name: prisoner ID card
-#   components:
-#   - type: Sprite
-#     layers:
-#     - state: orange
-#     - sprite: _CD/Objects/Misc/id_cards.rsi
-#       state: prisoner
-#   - type: PresetIdCard
-#     job: Prisoner
+# SPDX-FileCopyrightText: 2025 Cosmatic Drift contributors
+# SPDX-FileCopyrightText: 2025 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2025 OnyxTheBrave <vinjeerik@gmail.com>
+# SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+#
+# SPDX-License-Identifier: MIT
+
+- type: entity
+  parent: IDCardStandard
+  id: CDPrisonerIDCard
+  name: prisoner ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: orange
+    - sprite: _CD/Objects/Misc/id_cards.rsi
+      state: prisoner
+  - type: PresetIdCard
+    job: Prisoner
 
 - type: entity
   parent: IDCardStandard

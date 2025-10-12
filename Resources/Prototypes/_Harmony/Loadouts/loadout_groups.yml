@@ -1,3 +1,13 @@
+# SPDX-FileCopyrightText: 2025 Harmony contributors
+# SPDX-FileCopyrightText: 2025 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2024 DieselMohawk <gavin.drinka@gmail.com>
+# SPDX-FileCopyrightText: 2025 DieselMohawk <173439801+DieselMohawk@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 OnyxTheBrave <vinjeerik@gmail.com>
+# SPDX-FileCopyrightText: 2025 jajsha <corbinbinouche7@gmail.com>
+# SPDX-FileCopyrightText: 2025 youtissoum <51883137+youtissoum@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 # Command
 - type: loadoutGroup
   id: HoPShoesHarmony
@@ -6,13 +16,7 @@
   - BrownShoes
   - HoPLeatherShoesHarmony
 
-# Security
-- type: loadoutGroup
-  id: PermaPrisonerJumpsuit
-  name: loadout-group-perma-prisoner-jumpsuit
-  loadouts:
-  - PermaPrisonerJumpsuit
-  - PermaPrisonerJumpskirt
+# Sector Vestige: Remove Harmony's prisoner in favor of Cosmatic Drift's
 
 # Medical
 - type: loadoutGroup
