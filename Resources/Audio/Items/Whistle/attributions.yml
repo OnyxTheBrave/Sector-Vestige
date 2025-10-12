@@ -17,3 +17,11 @@
   license: "CC0-1.0"
   copyright: "Deleted user on freesound.org."
   source: "https://freesound.org/people/deleted_user_2104797/sounds/324539/"
+
+- files:
+  - "cyrus_whistle_1.ogg"
+  - "cyrus_whistle_2.ogg"
+  - "cyrus_whistle_3.ogg"
+  license: "CC0-1.0"
+  copyright: "User MagiaZ on pixabay.com. Modified by qu4drivium on github"
+  source: "https://pixabay.com/sound-effects/whistle-whistle-392905/"
