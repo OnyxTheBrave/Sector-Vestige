@@ -17,6 +17,6 @@
       - !type:NestedSelector
         tableId: CargoGiftsTable
       - !type:NestedSelector
-        tableId: CalmPestEventsTable # Sector Vestige: Kept calm pests only (mice, roaches, snails)
-#      - !type:NestedSelector # Sector Vestige: Disabled spicy pests (spiders, snakes, slimes spawn too frequently)
-#        tableId: SpicyPestEventsTable
+        tableId: CalmPestEventsTable
+      - !type:NestedSelector
+        tableId: VestigeHostilePestEventsTable

@@ -1,0 +1,74 @@
+# Sector Vestige: Custom pest events with reduced hostile fauna spawning
+
+# Custom table for Vestige that includes reduced hostile pests
+- type: entityTable
+  id: VestigeHostilePestEventsTable
+  table: !type:AllSelector
+    children:
+    - id: VestigeSlimesSpawn
+    - id: VestigeSnakeSpawn
+    - id: VestigeSpiderSpawn
+
+# Slimes - Reduced spawn rate and increased requirements
+- type: entity
+  id: VestigeSlimesSpawn
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 30 # Sector Vestige: Delayed from 20 to 30 minutes
+    minimumPlayers: 10 # Sector Vestige: Increased from 15 to 25 players
+    weight: 2 # Sector Vestige: Reduced from 5 to 2 (less frequent)
+    duration: 60
+  - type: VentCrittersRule
+    entries:
+    - id: MobAdultSlimesBlueAngry
+      prob: 0.01 # Sector Vestige: Halved from 0.02 to 0.01
+    - id: MobAdultSlimesGreenAngry
+      prob: 0.01 # Sector Vestige: Halved from 0.02 to 0.01
+    - id: MobAdultSlimesYellowAngry
+      prob: 0.01 # Sector Vestige: Halved from 0.02 to 0.01
+
+# Snakes - Reduced spawn rate and increased requirements
+- type: entity
+  id: VestigeSnakeSpawn
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 30 # Sector Vestige: Delayed from 20 to 30 minutes
+    minimumPlayers: 10 # Sector Vestige: Increased from 15 to 25 players
+    weight: 2 # Sector Vestige: Reduced from 5 to 2 (less frequent)
+    duration: 60
+  - type: VentCrittersRule
+    entries:
+    - id: MobPurpleSnake
+      prob: 0.01 # Sector Vestige: Halved from 0.02 to 0.01
+    - id: MobSmallPurpleSnake
+      prob: 0.01 # Sector Vestige: Halved from 0.02 to 0.01
+    - id: MobCobraSpace
+      prob: 0.01 # Sector Vestige: Halved from 0.02 to 0.01
+
+# Spiders - Reduced spawn rate and increased requirements
+- type: entity
+  id: VestigeSpiderSpawn
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 30 # Sector Vestige: Delayed from 20 to 30 minutes
+    minimumPlayers: 10 # Sector Vestige: Increased from 15 to 25 players
+    weight: 2 # Sector Vestige: Reduced from 5 to 2 (less frequent)
+    duration: 60
+  - type: VentCrittersRule
+    entries:
+    - id: MobGiantSpiderAngry
+      prob: 0.025 # Sector Vestige: Halved from 0.05 to 0.025
+
+# Note: Spider Clown event is intentionally excluded from Vestige events
