@@ -1,18 +1,18 @@
-# - type: entity
-#   parent: BasePDA
-#   id: PrisonerPDA
-#   name: prisoner PDA
-#   description: Clear, so you can make sure there's nothing being smuggled inside.
-#   components:
-#   - type: Pda
-#     id: CDPrisonerIDCard
-#   - type: Appearance
-#     appearanceDataInit:
-#      enum.PdaVisuals.PdaType:
-#        !type:String
-#        pda-clear
-#   - type: Icon
-#     state: pda-clear
+- type: entity
+  parent: BasePDA
+  id: PrisonerPDA
+  name: prisoner PDA
+  description: Clear, so you can make sure there's nothing being smuggled inside.
+  components:
+  - type: Pda
+    id: CDPrisonerIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-clear
+  - type: Icon
+    state: pda-clear
 
 - type: entity
   parent: BasePDA

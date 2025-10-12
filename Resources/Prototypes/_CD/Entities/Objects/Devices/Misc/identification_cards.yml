@@ -1,15 +1,15 @@
-# - type: entity
-#   parent: IDCardStandard
-#   id: CDPrisonerIDCard
-#   name: prisoner ID card
-#   components:
-#   - type: Sprite
-#     layers:
-#     - state: orange
-#     - sprite: _CD/Objects/Misc/id_cards.rsi
-#       state: prisoner
-#   - type: PresetIdCard
-#     job: Prisoner
+- type: entity
+  parent: IDCardStandard
+  id: CDPrisonerIDCard
+  name: prisoner ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: orange
+    - sprite: _CD/Objects/Misc/id_cards.rsi
+      state: prisoner
+  - type: PresetIdCard
+    job: Prisoner
 
 - type: entity
   parent: IDCardStandard
