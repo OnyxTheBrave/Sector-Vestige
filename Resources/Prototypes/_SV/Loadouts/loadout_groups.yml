@@ -4,6 +4,15 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+# Personal Items
+- type: loadoutGroup
+  id: PersonalItemsJobAgnostic
+  name: loadout-group-personal-items
+  minLimit: 0
+  maxLimit: 2
+  loadouts:
+  - PersonalItemCyrusWhistle
+
 # Senior Courier
 - type: loadoutGroup
   id: SeniorCourierHead

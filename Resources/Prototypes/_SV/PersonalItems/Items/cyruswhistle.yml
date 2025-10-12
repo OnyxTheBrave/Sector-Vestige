@@ -1,0 +1,24 @@
+## Personal item for Cyrus Ambrose-Huxley
+- type: entity
+  parent: BaseWhistle
+  id: PersonalItemCyrusWhistle
+  name: Faded Whistle
+  description: A vaguely familiar trench whistle with "For honor." inscribed on the underside.
+  components:
+  - type: Sprite
+    state: trench
+  - type: Clothing
+    quickEquip: true
+    slots: neck
+  - type: Whistle
+    distance: 8 # Quieter than the actual trench whistle.
+
+- type: loadout
+  id: PersonalItemCyrusWhistle
+  storage:
+    back:
+    - PersonalItemCyrusWhistle
+  effects:
+  - !type:PersonalItemLoadoutEffect
+    character:
+    - Cyrus Ambrose-Huxley
