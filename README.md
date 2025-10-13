@@ -2,7 +2,7 @@
   <img alt="Sector Vestige" src="https://raw.githubusercontent.com/Sector-Vestige/Sector-Vestige/refs/heads/master/Resources/Textures/Logo/logo.png" />
 </p>
 
-# Sector Vestige14
+# Sector Vestige
 
 [![REUSE status](https://api.reuse.software/badge/github.com/Sector-Vestige/Sector-Vestige)](https://api.reuse.software/info/github.com/Sector-Vestige/Sector-Vestige)
 [![Build & Test Debug](https://github.com/Sector-Vestige/Sector-Vestige/actions/workflows/build-test-debug.yml/badge.svg?branch=master)](https://github.com/Sector-Vestige/Sector-Vestige/actions/workflows/build-test-debug.yml)
@@ -11,57 +11,62 @@
 [![Validate RSIs](https://github.com/Sector-Vestige/Sector-Vestige/actions/workflows/validate-rsis.yml/badge.svg?branch=master)](https://github.com/Sector-Vestige/Sector-Vestige/actions/workflows/validate-rsis.yml)
 [![YAML RGA schema validator](https://github.com/Sector-Vestige/Sector-Vestige/actions/workflows/validate-rgas.yml/badge.svg?branch=master)](https://github.com/Sector-Vestige/Sector-Vestige/actions/workflows/validate-rgas.yml)
 
-**Sector Vestige** is a custom-content fork of the official [Space Station 14](https://github.com/space-wizards/space-station-14) project.
-We aim to create our own gameplay experience, with original mechanics, stations, and assets — while staying aligned with the upstream SS14 codebase.
+**Sector Vestige** is a custom-content fork of [Space Station 14](https://github.com/space-wizards/space-station-14), building its own unique gameplay experience with original mechanics, stations, and assets while staying aligned with the upstream SS14 codebase.
 
-Sector Vestige is steadily building its own identity on top of the SS14 platform. While much of the game remains familiar to upstream, Sector Vestige actively develops new systems, balance changes, and unique content to support our long-term vision.
+We actively develop new systems, balance changes, and exclusive content to support our long-term vision. While much remains familiar to upstream players, Sector Vestige is steadily establishing its own identity on the SS14 platform.
 
-**Space Station 14** is a remake of the classic SS13, running on [RobustToolbox](https://github.com/space-wizards/RobustToolbox) — an open-source engine written in C# and purpose-built for multiplayer, tile-based simulation games.
+**Space Station 14** is a remake of SS13, powered by [RobustToolbox](https://github.com/space-wizards/RobustToolbox) — an open-source C# engine purpose-built for multiplayer, tile-based simulation games.
 
 ---
 
 ## 🔗 Links
 
-- 🌐 Sector Vestige Website: WIP
-- 🧭 SS14 Website: https://spacestation14.io/
-- 🛠️ SS14 Standalone Download: https://spacestation14.io/about/nightlies/
-- 🎮 SS14 on Steam: https://store.steampowered.com/app/1255460/Space_Station_14/
-- 📁 Sector-Vestige Builds: https://cdn.sector-vestige.space:8443/fork/sector-vestige
+**Sector Vestige**
+- 🌐 Website: *Coming Soon*
+- 📁 Builds: https://cdn.sector-vestige.space:8443/fork/sector-vestige
+
+**Space Station 14**
+- 🌐 Website: https://spacestation14.io/
+- 🛠️ Standalone Download: https://spacestation14.io/about/nightlies/
+- 🎮 Steam: https://store.steampowered.com/app/1255460/Space_Station_14/
 
 ---
 
-## 📚 Documentation & Wiki
+## 📚 Documentation
 
-- SS14 Docs: https://docs.spacestation14.io/ — covers engine, content, mapping, modding, and more.
-- Sector Vestige Contributions: see [CONTRIBUTING.md](CONTRIBUTING.md) — read this first if you want to contribute!
+- **SS14 Docs**: https://docs.spacestation14.io/ — comprehensive guide covering engine, content, mapping, and modding
+- **Contributing**: See [CONTRIBUTING.md](CONTRIBUTING.md) — **read this first** if you want to contribute!
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions of all kinds — coding, spriting, mapping, balancing, and feedback.
+We welcome all contributions — code, sprites, maps, balance suggestions, and feedback!
 
-- Check out [CONTRIBUTING.md](CONTRIBUTING.md)
-- Open a pull request or issue to get involved
+**Getting Started:**
+1. Read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines
+2. Check existing issues or open a new one
+3. Submit a pull request
 
 ---
 
 ## 🧱 Building the Project
 
-1. Clone this repo:
+**Quick Start:**
 
-   git clone https://github.com/Sector-Vestige/Sector-Vestige.git
+```bash
+# Clone the repository
+git clone https://github.com/Sector-Vestige/Sector-Vestige.git
+cd Sector-Vestige
 
-2. Enter the project folder and run the setup script:
+# Run setup script
+python RUN_THIS.py
 
-   cd Late-station-14
-   python RUN_THIS.py
+# Build the solution
+dotnet build
+```
 
-3. Build the solution:
-
-   dotnet build
-
-For full IDE and build setup, see the [SS14 Developer Docs](https://docs.spacestation14.com/en/general-development/setup.html).
+**For detailed setup:** See the [SS14 Developer Docs](https://docs.spacestation14.com/en/general-development/setup.html) for IDE configuration and advanced build options.
 
 ---
 
@@ -69,39 +74,56 @@ For full IDE and build setup, see the [SS14 Developer Docs](https://docs.spacest
 
 ### Code
 
-- All **original Sector Vestige code** (generally in `_SV/` folders) is **licensed under AGPL-3.0-or-later**.
-  (Code written before the switch remains MIT-only.)
-- **Upstream code** from [Wizards Den / Space Station 14](https://github.com/space-wizards/space-station-14) remains under the **MIT License**.
-  If changes are required to upstream files, they are commented to make merges and attribution clear.
-- Contributors agree to these terms when submitting code (see [CONTRIBUTING.md](CONTRIBUTING.md)).
+**Sector Vestige Original Code**
+- All original Sector Vestige code (in `_SV/` folders) is licensed under **AGPL-3.0-or-later**.
+- Contributors agree to license their contributions under AGPL-3.0-or-later when submitting code (see [CONTRIBUTING.md](CONTRIBUTING.md)).
 
-⚠️ **Note**: SPDX license headers are being added across the codebase to make licensing explicit.
-Files without headers are covered by the project-wide license policy until complete.
+**Upstream Code**
+- Code from [Space Station 14](https://github.com/space-wizards/space-station-14) remains under the **MIT License**.
+- Modified upstream files include comments to clarify changes and maintain attribution.
+
+**SPDX Headers**
+- SPDX license headers are automatically managed by GitHub Actions to ensure clear licensing.
+- Files without headers are covered by the project-wide license policy defined in `.reuse/dep5`.
 
 ### Ported Code
 
-This repository also includes code ported from other SS14 forks, organized in namespaced folders:
+Sector Vestige includes code ported from other SS14 forks, organized in namespaced folders:
 
-- `_AXOLOTL/` — [Axolotl MRP](https://github.com/Axolotl-MRP/axolotl-mrp-14)
-- `_CD/` — [Cosmatic Drift](https://github.com/cosmatic-drift-14/cosmatic-drift)
-- `_DV/` — [Delta-V](https://github.com/DeltaV-Station/Delta-v)
-- `_Harmony/` — [Harmony](https://github.com/ss14-harmony/ss14-harmony)
-- `_NF/` — [Frontier](https://github.com/new-frontiers-14/frontier-station-14)
+| Fork | Folder | License | Repository |
+|------|--------|---------|------------|
+| **LateStation** | `_LateStation/` | MIT or AGPL-3.0-or-later | *N/A* |
+| **Axolotl MRP** | `_AXOLOTL/` | MIT | [GitHub](https://github.com/Axolotl-MRP/axolotl-mrp-14) |
+| **Cosmatic Drift** | `_CD/` | MIT | [GitHub](https://github.com/cosmatic-drift-14/cosmatic-drift) |
+| **Delta-V** | `_DV/` | AGPL-3.0-or-later | [GitHub](https://github.com/DeltaV-Station/Delta-v) |
+| **Frontier** | `_NF/` | AGPL-3.0-or-later | [GitHub](https://github.com/new-frontiers-14/frontier-station-14) |
+| **Harmony** | `_Harmony/` | AGPL-3.0-or-later | [GitHub](https://github.com/ss14-harmony/ss14-harmony) |
+| **Umbra** | `_Umbra/` | MIT | [GitHub](https://github.com/Sector-Umbra/Sector-Umbra) |
+| **FloofStation** | `_Floofstation/` | AGPL-3.0-or-later | [GitHub](https://github.com/Simple-Station/Einstein-Engines) |
+| **Impstation** | `_Impstation/` | AGPL-3.0-or-later | [GitHub](https://github.com/impstation/imp-station-14) |
+| **Einstein Engines** | `_EE/` | AGPL-3.0-or-later | [GitHub](https://github.com/Simple-Station/Einstein-Engines) |
+| **Funkystation** | `_Funkystation/` | AGPL-3.0-or-later | [GitHub](https://github.com/funky-station/funky-station) |
+| **Moffstation** | `_Moffstation/` | MIT | [GitHub](https://github.com/moff-station/moff-station-14) |
 
-- Ported code retains its **original license** (MIT or AGPL).
-- Where dual-licensing is offered by the source, both options are preserved.
-- SPDX headers and comments are used to mark provenance and ensure compliance.
+- Ported code retains its **original license** as specified above.
+- All modifications by Sector Vestige contributors are documented in SPDX headers.
+- See `.reuse/dep5` for complete licensing details.
 
-### 🖼️ Assets
+### Assets
 
-- Most assets (sprites, sounds, etc.) are licensed under **CC BY-SA 3.0**:
-  https://creativecommons.org/licenses/by-sa/3.0/
+**Textures, Sprites, and Audio**
+- Most assets are licensed under **CC BY-SA 3.0**: https://creativecommons.org/licenses/by-sa/3.0/
   - Requires attribution
   - Requires derivative works to use the same license (share-alike)
 
-- Each asset folder contains a `meta.json` file that defines authorship and license.
-  Example: `hop_turtle.rsi/meta.json`
+- Each asset folder contains a `meta.json` file defining authorship and license.
+  - Example: `Resources/Textures/hop_turtle.rsi/meta.json`
 
-⚠️ **Note**: Some assets are licensed under **CC BY-NC-SA 3.0** (non-commercial):
-https://creativecommons.org/licenses/by-nc-sa/3.0/
-These cannot be used in commercial projects. Review and replace them if commercial use is intended.
+⚠️ **Non-Commercial Assets**
+- Some assets use **CC BY-NC-SA 3.0** (non-commercial): https://creativecommons.org/licenses/by-nc-sa/3.0/
+- These **cannot be used in commercial projects**.
+- Review `meta.json` files and replace non-commercial assets if commercial use is intended.
+
+---
+
+For detailed licensing information, see the [REUSE specification](https://reuse.software/) and our `.reuse/dep5` file.

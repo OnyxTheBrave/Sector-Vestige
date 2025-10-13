@@ -1,4 +1,16 @@
+// SPDX-FileCopyrightText: 2025 Wizards Den contributors
+// SPDX-FileCopyrightText: 2025 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2023 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 Tom Leys <tom@crump-leys.com>
+// SPDX-FileCopyrightText: 2023 avery <51971268+graevy@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
 using Content.Server.Shuttles.Systems;
+using Robust.Shared.Serialization;  // Moffstation
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.Shuttles.Components;
@@ -16,6 +28,14 @@ public sealed partial class ArrivalsShuttleComponent : Component
     [DataField("nextArrivalsTime", customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan NextArrivalsTime;
 
+    // Moffstation - Start - Keep track of the first time hitting the station
+    /// <summary>
+    /// True until the arrivals shuttle arrives at the station for the first time
+    /// </summary>
+    [DataField]
+    public bool FirstArrival = true;
+    // Moffstation - End
+
     /// <summary>
     ///     the first arrivals FTL originates from nullspace instead of the station
     /// </summary>
@@ -23,3 +43,11 @@ public sealed partial class ArrivalsShuttleComponent : Component
     public bool FirstRun = true;
 
 }
+
+// Moffstation - Start - First arrivals event
+/// <summary>
+///     Event for the first time the arrivals shuttle reaches the station.
+/// </summary>
+[Serializable]
+public sealed class FirstArrivalEvent : EventArgs;
+// Moffstation - End

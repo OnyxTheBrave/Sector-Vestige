@@ -1,4 +1,15 @@
-﻿using Content.Shared.Administration;
+// SPDX-FileCopyrightText: 2025 Wizards Den contributors
+// SPDX-FileCopyrightText: 2025 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Lachryphage <stuart.e.clough@gmail.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+// SPDX-FileCopyrightText: 2025 Simon <63975668+Simyon264@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
+// SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
+using Content.Shared.Administration;
 using Content.Shared.CCVar.CVarAccess;
 using Robust.Shared.Configuration;
 
@@ -38,6 +49,20 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<string> ArrivalsMap =
         CVarDef.Create("shuttle.arrivals_map", "/Maps/Misc/terminal.yml", CVar.SERVERONLY);
+
+    // Moffstation - Start - Custom arrivals settings
+    /// <summary>
+    ///     The maximum range people are allowed to travel from the center of the arrivals map
+    /// </summary>
+    public static readonly CVarDef<float> ArrivalsRange =
+        CVarDef.Create("shuttle.arrivals_range", 50f, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Whether players should spawn at arrivals at the start of the round
+    /// </summary>
+    public static readonly CVarDef<bool> StartAtArrivals =
+        CVarDef.Create("shuttle.start_at_arrivals", true, CVar.SERVERONLY);
+    // Moffstation - End - Custom arrivals settings
 
     /// <summary>
     ///     Cooldown between arrivals departures. This should be longer than the FTL time or it will double cycle.
