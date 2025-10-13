@@ -21,7 +21,7 @@
 - type: startingGear
   id: ServiceWorkerGear
   equipment:
-    shoes: ClothingShoesColorBlack
+    # shoes: ClothingShoesColorBlack # VS, removed due to loadout addition.
     id: ServiceWorkerPDA
     ears: ClothingHeadsetService
   #storage:
