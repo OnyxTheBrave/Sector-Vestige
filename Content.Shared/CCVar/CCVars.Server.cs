@@ -1,4 +1,12 @@
-﻿using Robust.Shared.Configuration;
+// SPDX-FileCopyrightText: 2025 Wizards Den contributors
+// SPDX-FileCopyrightText: 2025 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2024 Simon <63975668+Simyon264@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Errant <35878406+Errant-4@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
+//
+// SPDX-License-Identifier: MIT
+
+using Robust.Shared.Configuration;
 
 namespace Content.Shared.CCVar;
 
@@ -59,4 +67,16 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<bool> ForceClientHudVersionWatermark =
         CVarDef.Create("server.force_client_hud_version_watermark", false, CVar.REPLICATED | CVar.SERVER);
+
+    /// <summary>
+    /// Moffstation - Pauses the lobby on server startup. Requires an admin to unpause before rounds begin
+    /// </summary>
+    public static readonly CVarDef<bool> StartServerPaused =
+        CVarDef.Create("server.start_server_paused", true, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Moffstation - Automatically pauses the lobby (until an admin unpauses) when the server reaches 0 players
+    /// </summary>
+    public static readonly CVarDef<bool> EmptyAutoPause =
+        CVarDef.Create("server.empty_auto_pause", true, CVar.SERVERONLY);
 }

@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: 2025 Wizards Den contributors
+// SPDX-FileCopyrightText: 2025 Sector Vestige contributors (modifications)
 // SPDX-FileCopyrightText: 2021 20kdc <asdd2808@gmail.com>
 // SPDX-FileCopyrightText: 2021 Galactic Chimp <63882831+GalacticChimp@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2021 Javier Guardia Fernández <DrSmugleaf@users.noreply.github.com>
@@ -24,8 +26,8 @@
 // SPDX-FileCopyrightText: 2024 nikthechampiongr <32041239+nikthechampiongr@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 J <billsmith116@gmail.com>
 // SPDX-FileCopyrightText: 2025 Milon <milonpl.git@proton.me>
-// SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
 // SPDX-FileCopyrightText: 2025 vestige-bot <vestige-bot@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
 //
 // SPDX-License-Identifier: MIT
 
@@ -163,6 +165,11 @@ namespace Content.Server.GameTicking
                     {
                         _pvsOverride.RemoveSessionOverride(mindId.Value, session);
                     }
+
+                    // Moffstation - Start - Auto-pause if there's nobody left to play
+                    if (_cfg.GetCVar(CCVars.EmptyAutoPause) && _playerManager.PlayerCount <= 1)
+                        PauseStart();
+                    // Moffstation - End
 
                     _userDb.ClientDisconnected(session);
                     break;
