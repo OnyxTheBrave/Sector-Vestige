@@ -90,22 +90,22 @@ namespace Content.IntegrationTests.Tests
         {
             "Dev",
             "TestTeg",
-            "Fland",
+            // "Fland", // Vestige: Derotated Map
             "Packed",
             "Bagel",
             "CentComm",
-            "Box",
+            // "Box", // Vestige: Derotated Map
             "Marathon",
             "MeteorArena",
             "Saltern",
-            "Reach",
-            "Oasis",
+            // "Reach", // Vestige: Derotated Map
+            // "Oasis", // Vestige: Derotated Map
             "Amber",
             "Plasma",
             "Elkridge",
-            "Relic",
+            // "Relic", // Vestige: Derotated Map
             "dm01-entryway",
-            "Exo",
+            // "Exo", // Vestige: Derotated Map
             "Vanquish",
         };
 
