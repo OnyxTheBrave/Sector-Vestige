@@ -1505,13 +1505,3 @@
   hidden: true
   loadouts:
   - LoadoutSpeciesBreathToolSecurity
-
-# Shoes
-- type: loadoutGroup
-  id: FormalShoes
-  name: loadout-group-formal-shoes
-  minLimit: 1
-  maxLimit: 1
-  loadouts:
-  - LeatherShoes # CD
-  - LaceupShoes # CD

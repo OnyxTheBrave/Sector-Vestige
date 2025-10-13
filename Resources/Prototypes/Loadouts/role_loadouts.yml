@@ -527,7 +527,7 @@
   - ParamedicJumpsuit
   # CD: ETU Gear
   - ParamedicGloves
-  - MedicalGloves
+  # - MedicalGloves # ParamedicGloves ALSO include MedicalGloves.
   - MedicalBackpack
   - ParamedicOuterClothing
   - ParamedicShoes

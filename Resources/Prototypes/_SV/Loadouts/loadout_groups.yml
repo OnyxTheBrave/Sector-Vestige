@@ -31,6 +31,12 @@
   loadouts:
   - SeniorCourierJumpsuit
   - SeniorCourierJumpskirt
+  - CargoTechnicianPants
+  - ClothingUniformJumpsuitCargoLight
+  - ClothingUniformJumpskirtCargoLight
+  - ClothingUniformJumpsuitCargoDark
+  - ClothingUniformJumpskirtCargoDark
+  - CargoTechnicianOveralls
 
 - type: loadoutGroup
   id: SeniorCourierBackpack
@@ -46,6 +52,7 @@
   minLimit: 0
   loadouts:
   - SeniorCourierWintercoat
+  - CargoBomber
 
 - type: loadoutGroup
   id: SeniorCourierShoes
@@ -53,5 +60,4 @@
   minLimit: 0
   loadouts:
   - SeniorCourierBootsSteel
-  - SeniorCourierBootsBlack
   - SeniorCourierWinterBoots
