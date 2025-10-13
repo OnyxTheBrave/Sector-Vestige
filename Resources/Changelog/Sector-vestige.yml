@@ -799,3 +799,9 @@ Entries:
         lobby is down to one person.
   id: 106
   time: '2025-10-13T07:36:52.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Add
+      message: SMES dont drain until the arrivals shuttle docks.
+  id: 107
+  time: '2025-10-13T09:57:36.0000000+00:00'
