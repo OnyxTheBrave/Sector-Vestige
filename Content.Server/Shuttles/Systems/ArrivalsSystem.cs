@@ -256,7 +256,7 @@ public sealed class ArrivalsSystem : EntitySystem
 
             if (component.FirstRun)
             {
-                var station = _station.GetLargestGrid(Comp<StationDataComponent>(component.Station));
+                var station = _station.GetLargestGrid((component.Station, Comp<StationDataComponent>(component.Station)));
                 sourceMap = station == null ? null : Transform(station.Value)?.MapUid;
                 arrivalsDelay += RoundStartFTLDuration;
                 component.FirstRun = false;
@@ -548,7 +548,7 @@ public sealed class ArrivalsSystem : EntitySystem
                 // Go to station
                 else
                 {
-                    var targetGrid = _station.GetLargestGrid(data);
+                    var targetGrid = _station.GetLargestGrid((comp.Station, data));
 
                     if (targetGrid != null)
                         _shuttles.FTLToDock(uid, shuttle, targetGrid.Value);
