@@ -791,3 +791,11 @@ Entries:
         Central Command.
   id: 105
   time: '2025-10-13T07:33:01.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Fix
+      message: >-
+        The lobby now pauses automatically when the server starts and when the
+        lobby is down to one person.
+  id: 106
+  time: '2025-10-13T07:36:52.0000000+00:00'
