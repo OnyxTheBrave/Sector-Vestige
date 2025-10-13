@@ -805,3 +805,9 @@ Entries:
       message: SMES dont drain until the arrivals shuttle docks.
   id: 107
   time: '2025-10-13T09:57:36.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Remove
+      message: Removed Box, Exo, Fland, Oasis, Reach, and Relic.
+  id: 108
+  time: '2025-10-13T19:36:17.0000000+00:00'
