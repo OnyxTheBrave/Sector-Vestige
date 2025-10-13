@@ -92,7 +92,7 @@ Sector Vestige includes code ported from other SS14 forks, organized in namespac
 
 | Fork | Folder | License | Repository |
 |------|--------|---------|------------|
-| **LateStation** | `_LateStation/` | MIT or AGPL-3.0-or-later | *N/A* |
+| **LateStation** | `_LateStation/` | AGPL-3.0-or-later | [Github](https://github.com/LateStation14/Late-station-14) |
 | **Axolotl MRP** | `_AXOLOTL/` | MIT | [GitHub](https://github.com/Axolotl-MRP/axolotl-mrp-14) |
 | **Cosmatic Drift** | `_CD/` | MIT | [GitHub](https://github.com/cosmatic-drift-14/cosmatic-drift) |
 | **Delta-V** | `_DV/` | AGPL-3.0-or-later | [GitHub](https://github.com/DeltaV-Station/Delta-v) |
