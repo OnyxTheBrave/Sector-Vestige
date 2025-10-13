@@ -783,3 +783,11 @@ Entries:
       message: Added Prisoners.
   id: 104
   time: '2025-10-12T17:28:16.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Tweak
+      message: >-
+        The red phone is now able to have real-time, live conversations with
+        Central Command.
+  id: 105
+  time: '2025-10-13T07:33:01.0000000+00:00'
