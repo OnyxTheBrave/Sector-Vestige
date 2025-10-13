@@ -40,7 +40,7 @@ If there are none, write: "None"
 <!-- Confirm the following by placing an X inside each [ ] -->
 - [ ] I have tested all added content and code changes.
 - [ ] I have added media to this PR if it includes visual changes, or it does not require visual demonstration.
-- [ ] I understand that by submitting this PR, my code contributions are licensed under the AGPL-3.0-or-later used by Sector Vestige.
+- [ ] I understand that by submitting this PR, my code contributions are licensed under the AGPL-3.0-or-later used by Sector Vestige (only if under _SV namespace, files in other namespaces retain their licence ).
 
 <!-- PRs that do not meet these requirements may be delayed or closed. -->
 
