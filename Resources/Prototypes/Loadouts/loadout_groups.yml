@@ -668,10 +668,10 @@
   id: QuartermasterShoes
   name: loadout-group-quartermaster-shoes
   loadouts:
-  - BrownShoes
-  - CargoWinterBoots
   - LeatherShoes # CD
   - LaceupShoes # CD
+  - BrownShoes
+  - CargoWinterBoots
 
 - type: loadoutGroup
   id: CargoTechnicianHead
@@ -787,11 +787,10 @@
   id: ChiefEngineerShoes
   name: loadout-group-chief-engineer-shoes
   loadouts:
-  - BrownShoes
-  - EngineeringWinterBoots
-  - WorkBoots # CD
-  - LeatherShoes # CD
   - LaceupShoes # CD
+  - LeatherShoes # CD
+  - WorkBoots # CD
+  - EngineeringWinterBoots
 
 - type: loadoutGroup
   id: TechnicalAssistantJumpsuit
@@ -939,10 +938,9 @@
   id: ResearchDirectorShoes
   name: loadout-group-research-director-shoes
   loadouts:
-  - BrownShoes
-  - ScienceWinterBoots
   - LeatherShoes # CD
   - LaceupShoes # CD
+  - ScienceWinterBoots
 
 - type: loadoutGroup
   id: ScientistHead
@@ -1250,10 +1248,10 @@
   id: ChiefMedicalOfficerShoes
   name: loadout-group-chief-medical-officer-shoes
   loadouts:
-  - BrownShoes
-  - MedicalWinterBoots
   - LeatherShoes # CD
   - LaceupShoes # CD
+  - MedicalWinterBoots
+  - BrownShoes
 
 - type: loadoutGroup
   id: MedicalDoctorHead
