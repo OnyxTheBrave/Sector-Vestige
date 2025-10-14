@@ -829,3 +829,11 @@ Entries:
       message: Removed the Senior Courier PDA change.
   id: 110
   time: '2025-10-14T08:34:40.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Tweak
+      message: >-
+        Allows storing items in the backslot while wearing winter coats and
+        other jackets.
+  id: 111
+  time: '2025-10-14T21:25:39.0000000+00:00'
