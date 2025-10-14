@@ -22,32 +22,32 @@
     jumpsuit: ClothingUniformJumpskirtCargo
 
 - type: loadout
-  id: CargoTechnicianPants
+  id: SeniorCourierPants
   equipment:
     jumpsuit: ClothingUniformJumpsuitCargoPants
 
 - type: loadout
-  id: CargoTechnicianJumpsuitLight
+  id: SeniorCourierJumpsuitLight
   equipment:
     jumpsuit: ClothingUniformJumpsuitCargoLight
 
 - type: loadout
-  id: CargoTechnicianJumpskirtLight
+  id: SeniorCourierJumpskirtLight
   equipment:
     jumpsuit: ClothingUniformJumpskirtCargoLight
 
 - type: loadout
-  id: CargoTechnicianJumpsuitDark
+  id: SeniorCourierJumpsuitDark
   equipment:
     jumpsuit: ClothingUniformJumpsuitCargoDark
 
 - type: loadout
-  id: CargoTechnicianJumpskirtDark
+  id: SeniorCourierJumpskirtDark
   equipment:
     jumpsuit: ClothingUniformJumpskirtCargoDark
 
 - type: loadout
-  id: CargoTechnicianOveralls
+  id: SeniorCourierOveralls
   equipment:
     jumpsuit: ClothingUniformJumpsuitCargoOveralls
 
@@ -74,7 +74,7 @@
     outerClothing: ClothingOuterWinterCargo
 
 - type: loadout
-  id: CargoBomber
+  id: SeniorCourierCargoBomber
   equipment:
     outerClothing: ClothingOuterCoatCargoBomber
 
