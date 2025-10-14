@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2025 Sector-Vestige contributors
 # SPDX-FileCopyrightText: 2025 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2025 OnyxTheBrave <vinjeerik@gmail.com>
 # SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+# SPDX-FileCopyrightText: 2025 qu4drivium <aaronholiver@outlook.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -20,6 +22,36 @@
   id: SeniorCourierJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtCargo
+
+- type: loadout
+  id: SeniorCourierPants
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargoPants
+
+- type: loadout
+  id: SeniorCourierJumpsuitLight
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargoLight
+
+- type: loadout
+  id: SeniorCourierJumpskirtLight
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCargoLight
+
+- type: loadout
+  id: SeniorCourierJumpsuitDark
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargoDark
+
+- type: loadout
+  id: SeniorCourierJumpskirtDark
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCargoDark
+
+- type: loadout
+  id: SeniorCourierOveralls
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargoOveralls
 
 # Back
 - type: loadout
@@ -43,14 +75,14 @@
   equipment:
     outerClothing: ClothingOuterWinterCargo
 
+- type: loadout
+  id: SeniorCourierCargoBomber
+  equipment:
+    outerClothing: ClothingOuterCoatCargoBomber
+
 # Shoes
 - type: loadout
   id: SeniorCourierBootsSteel
-  equipment:
-    shoes: ClothingShoesBootsWork
-
-- type: loadout
-  id: SeniorCourierBootsBlack
   equipment:
     shoes: ClothingShoesBootsWork
 
