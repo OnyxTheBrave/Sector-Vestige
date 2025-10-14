@@ -811,3 +811,9 @@ Entries:
       message: Removed Box, Exo, Fland, Oasis, Reach, and Relic.
   id: 108
   time: '2025-10-13T19:36:17.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Add
+      message: Added a personal item for Rana Chana-Owlbane
+  id: 109
+  time: '2025-10-14T07:38:43.0000000+00:00'
