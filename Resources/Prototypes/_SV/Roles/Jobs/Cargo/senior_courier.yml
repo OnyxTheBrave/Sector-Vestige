@@ -54,7 +54,7 @@
   equipment:
     id: SeniorCourierPDA
     ears: ClothingHeadsetCargo
-    shoes: ClothingShoesBootsWork
+    # shoes: ClothingShoesBootsWork # VS, removed due to loadout addition.
     pocket1: AppraisalTool
 
 - type: chameleonOutfit
