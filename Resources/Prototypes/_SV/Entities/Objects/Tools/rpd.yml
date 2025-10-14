@@ -1,0 +1,20 @@
+- type: entity
+  id: RPD
+  parent: [ BaseItem, BaseEngineeringContraband, RCD ]
+  name: RPD
+  description: The rapid piping device can be used to quickly place and remove various pipes and atmospherics furnishings. Requires compressed matter to function.
+  components:
+  - type: RCD
+    availablePrototypes:
+    - PipeHalf
+    - PipeStraight
+    - PipeBend
+    - PipeTee
+    - PipeCross
+    - PipeManifold
+    - Deconstruct-Piping
+    - PassiveVent
+    - AirInjector
+    - ActiveVent
+    - GasScrubber
+    - GasSensor

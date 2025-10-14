@@ -273,3 +273,185 @@
   collisionMask: Impassable
   rotation: User
   fx: EffectRCDConstruct0
+
+#Sector Vestige - Begin: Add RPD
+
+- type: rcd
+  id: Deconstruct-Piping
+  name: rcd-component-deconstruct-piping
+  category: Main
+  sprite: /Textures/Interface/Radial/RCD/deconstruct.png
+  mode: Deconstruct
+  prototype: EffectRCDDeconstructPreview
+  rotation: Camera
+
+#Piping
+- type: rcd
+  id: PipeHalf
+  category: Piping
+  sprite: /Textures/_SV/Interface/Radial/RPD/RPDPiping.png
+  mode: ConstructObject
+  prototype: GasPipeHalf
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PipeStraight
+  category: Piping
+  sprite: /Textures/_SV/Interface/Radial/RPD/RPDPiping.png
+  mode: ConstructObject
+  prototype: GasPipeStraight
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PipeBend
+  category: Piping
+  sprite: /Textures/_SV/Interface/Radial/RPD/RPDPiping.png
+  mode: ConstructObject
+  prototype: GasPipeBend
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PipeTee
+  category: Piping
+  sprite: /Textures/_SV/Interface/Radial/RPD/RPDPiping.png
+  mode: ConstructObject
+  prototype: GasPipeTJunction
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PipeCross
+  category: Piping
+  sprite: /Textures/_SV/Interface/Radial/RPD/RPDPiping.png
+  mode: ConstructObject
+  prototype: GasPipeFourway
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PipeManifold
+  category: Piping
+  sprite: /Textures/_SV/Interface/Radial/RPD/RPDPiping.png
+  mode: ConstructObject
+  prototype: GasPipeManifold
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+#Vents
+
+- type: rcd
+  id: PassiveVent
+  category: Vents
+  sprite: /Textures/_SV/Interface/Radial/RPD/RPDPiping.png
+  mode: ConstructObject
+  prototype: GasPassiveVent
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: AirInjector
+  category: Vents
+  sprite: /Textures/_SV/Interface/Radial/RPD/RPDPiping.png
+  mode: ConstructObject
+  prototype: GasOutletInjector
+  cost: 2
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: ActiveVent
+  category: Vents
+  sprite: /Textures/_SV/Interface/Radial/RPD/RPDPiping.png
+  mode: ConstructObject
+  prototype: GasVentPump
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: GasScrubber
+  category: Vents
+  sprite: /Textures/_SV/Interface/Radial/RPD/RPDPiping.png
+  mode: ConstructObject
+  prototype: GasVentScrubber
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+#Utility
+
+- type: rcd
+  id: GasSensor
+  category: Utility
+  sprite: /Textures/_SV/Interface/Radial/RPD/RPDPiping.png
+  mode: ConstructObject
+  prototype: AirSensor
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: Radiator
+  category: Utility
+  sprite: /Textures/_SV/Interface/Radial/RPD/RPDPiping.png
+  mode: ConstructObject
+  prototype: HeatExchanger
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: RadiatorBend
+  category: Utility
+  sprite: /Textures/_SV/Interface/Radial/RPD/RPDPiping.png
+  mode: ConstructObject
+  prototype: HeatExchangerBend
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: Filter
+  category: Utility
+  sprite: /Textures/_SV/Interface/Radial/RPD/RPDPiping.png
+  mode: ConstructObject
+  prototype: GasFilter
+  cost: 2
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: Filter
+  category: Utility
+  sprite: /Textures/_SV/Interface/Radial/RPD/RPDPiping.png
+  mode: ConstructObject
+  prototype: GasFilter
+  cost: 2
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
