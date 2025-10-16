@@ -18,3 +18,15 @@
     - ActiveVent
     - GasScrubber
     - GasSensor
+    - Radiator
+    - RadiatorBend
+    - Filter
+    - Mixer
+    - ConnectorPort
+    - PressurePump
+    - VolumePump
+    - PressureRegulator
+    - PassiveGate
+    - ManualValve
+    - SignalValve
+    - PneumaticValve
