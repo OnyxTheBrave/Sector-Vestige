@@ -1,0 +1,84 @@
+- type: entity
+  name: energy rapier
+  parent: [BaseMeleeWeaponEnergy, BaseCommandContraband]
+  id: EnergyRapier
+  description: A crackling thin blade of electrified plasma. A sleek symbol for a imposing figure.
+  components:
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/_SV/Weapons/erapieron.ogg
+      params:
+        volume: -3
+    soundDeactivate:
+      path: /Audio/_SV/Weapons/erapieroff.ogg
+      params:
+        volume: -3
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/_SV/Weapons/erapier1.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/_SV/Weapons/erapier1.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedSoundOnSwing:
+      path: /Audio/_SV/Weapons/erapiermiss.ogg
+      params:
+        volume: -3
+        variation: 0.250
+    activatedDamage:
+      types:
+        Piercing: 8
+        Heat: 1
+        Shock: 2
+    deactivatedSecret: true
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/_SV/Weapons/e_rapier_hum.ogg
+      params:
+        volume: -3
+  - type: ComponentToggler
+    components:
+    - type: Sharp
+    - type: DisarmMalus
+    - type: Execution
+      doAfterDuration: 4.0
+  - type: Sprite
+    sprite: _SV/Objects/Weapons/Melee/Energy/energyrapier.rsi
+    layers:
+    - state: e_rapier
+    - state: e_rapier_blade
+      color: "#ffff8f"
+      visible: false
+      shader: unshaded
+      map: [ "blade" ]
+  - type: Clothing
+    sprite: _SV/Objects/Weapons/Melee/Energy/energyrapier.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Reflect
+    reflectProb: .1
+    spread: 90
+  - type: MeleeWeapon
+    wideAnimationRotation: 230
+    attackRate: 1.3
+    hidden: true
+    damage:
+      types:
+        Blunt: 4
+    angle: 2
+    animation: WeaponArcThrust
+  - type: StaminaDamageOnHit
+    damage: 15
+  - type: Item
+    size: Large
+    sprite: _SV/Objects/Weapons/Melee/Energy/energyrapier.rsi
+  - type: PointLight
+    enabled: false
+    radius: 1.5
+    energy: 2.7
+    color: white
+    netsync: false

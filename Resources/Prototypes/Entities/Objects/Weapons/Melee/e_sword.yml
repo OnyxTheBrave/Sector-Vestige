@@ -35,7 +35,7 @@
         variation: 0.250
         volume: -10
     activatedSoundOnSwing:
-      path: /Audio/Weapons/eblademiss.ogg
+      path: x1Weapons/eblademiss.ogg
       params:
         variation: 0.125
     activatedDamage:
