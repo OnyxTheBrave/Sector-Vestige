@@ -1,13 +1,12 @@
 using Content.Shared._SV.Utility;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._SV.Fire;
 
 /// <summary>
 /// This is used for how reagents should react to being burned. This component should house data for the fire to work, and update only when the composition of the puddle changes.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class FlammableFluidComponent : Component
 {
     /// <summary>
@@ -39,10 +38,4 @@ public sealed partial class FlammableFluidComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public List<GasSpawnEntry> ExhaustedGases;
-
-    /// <summary>
-    /// The UID of the fire
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    private EntityUid _entityUid;
 }

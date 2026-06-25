@@ -11,7 +11,7 @@ namespace Content.Shared._SV.Fire;
 public sealed partial class ActualFireComponent : Component
 {
     /// <summary>
-    /// The UID of the puddle that is being burnt
+    /// The UID of the solution that is being burnt
     /// </summary>
     [DataField]
     public EntityUid TargetEntity;
@@ -26,6 +26,7 @@ public sealed partial class ActualFireComponent : Component
     /// A ratio of how much oxidizer is in the fluid being burnt.
     /// A number below 1 would require oxygen from the atmosphere to be burnt at full temperature, and a value higher than 1 would allow the fire to burn at a higher temperature, but faster.
     /// If there was 15 units of Oxygen, and 15 units of Oil, the Oxidation should be 15, and burn at normal temperature
+    /// This would also take into account the atmosphere of the tile
     /// </summary>
     [DataField]
     public float Oxidation;
