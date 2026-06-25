@@ -8,7 +8,7 @@ using Content.Shared.Atmos;
 using Content.Shared.Destructible.Thresholds;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._SV.StationEvents;
+namespace Content.Shared._SV.Utility;
 
 /// <summary>
 /// This is a prototype for...
