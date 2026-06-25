@@ -5,7 +5,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 namespace Content.Shared._SV.Fire;
 
 /// <summary>
-/// This is used for how reagents should react to being burned
+/// This is used for how reagents should react to being burned. This component should house data for the fire to work, and update only when the composition of the puddle changes.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentPause, AutoGenerateComponentState]
 public sealed partial class FlammableFluidComponent : Component
@@ -41,27 +41,8 @@ public sealed partial class FlammableFluidComponent : Component
     public List<GasSpawnEntry> ExhaustedGases;
 
     /// <summary>
-    /// Is it on fire? Admins should be able to manipulate this to start the fire
-    /// </summary>
-    [DataField]
-    private bool _isOnFire;
-
-    /// <summary>
     /// The UID of the fire
     /// </summary>
     [DataField, AutoNetworkedField]
     private EntityUid _entityUid;
-
-    /// <summary>
-    /// How long in-between fire ticks should there be
-    /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadOnly)]
-    public TimeSpan TimeBetweenFireTick = TimeSpan.FromSeconds(1);
-
-    /// <summary>
-    /// When the next fire tick should happen
-    /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
-    public TimeSpan TimeSinceLastFire = TimeSpan.Zero;
 }
-
