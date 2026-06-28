@@ -2,7 +2,6 @@ using Content.Shared._SV.Utility;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Fluids.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._SV.Fire;
@@ -14,7 +13,7 @@ public sealed partial class ActualFireSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IEntityManager _entityManager = default!;
-    [Dependency] private SharedSolutionContainerSystem _sharedSolutionContainerSystem = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -42,6 +41,10 @@ public sealed partial class ActualFireSystem : EntitySystem
 
     public void OnIgnite(EntityUid uid, ActualFireComponent fire)
     {
+
+        //check data of the fluid to light on fire
+        //give the item the ActualFireComponent
+        //use the component to add a flag for the client to know when to render the fire visuals
 
     }
 
