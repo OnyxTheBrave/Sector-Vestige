@@ -94,7 +94,7 @@ public sealed partial class ActualFireSystem : EntitySystem
         //This is a shit ass way of representing how oxidized the fire is. I need to somehow be able to use the air as an oxidizer, and have it be a ratio like airOxidizer + (oxidizer / fuel)
         fire.Oxidation = oxidizer / fuel;
 
-        fire.FireTemp = finalTemp * fire.Oxidation;
+        fire.GenratedHeat = finalTemp * fire.Oxidation;
 
         fire.GasSpawnEntries = exhaust.ToArray();
     }

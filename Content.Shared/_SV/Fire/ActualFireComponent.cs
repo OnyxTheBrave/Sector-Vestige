@@ -17,10 +17,16 @@ public sealed partial class ActualFireComponent : Component
     public EntityUid TargetEntity;
 
     /// <summary>
-    /// The target temperature of the fire
+    /// How much heat the fire will expel each fire tick
     /// </summary>
     [DataField]
-    public float FireTemp;
+    public float GenratedHeat;
+
+    /// <summary>
+    /// The total temperature the fire will burn upto
+    /// </summary>
+    [DataField]
+    public float MaxFireTemp;
 
     /// <summary>
     /// A ratio of how much oxidizer is in the fluid being burnt.
@@ -39,13 +45,14 @@ public sealed partial class ActualFireComponent : Component
 
     /// <summary>
     /// How long in-between fire ticks should there be
+    /// Default is 1 second
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadOnly)]
-    public TimeSpan TimeBetweenFireTick = TimeSpan.FromSeconds(1);
+    public float TimeBetweenFireTick = 1f;
 
     /// <summary>
     /// When the next fire tick should happen
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
-    public TimeSpan TimeSinceLastFire = TimeSpan.Zero;
+    public TimeSpan TimeTillNextTick = TimeSpan.Zero;
 }

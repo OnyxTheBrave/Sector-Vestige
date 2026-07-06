@@ -4,6 +4,8 @@ using Content.Shared._SV.Utility;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using Robust.Shared.Timing;
 using static Content.Shared.Atmos.Gas;
 
 namespace Content.Server._SV.Fire;
@@ -11,26 +13,57 @@ namespace Content.Server._SV.Fire;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class ServerActualFireSystem : EntitySystem
+public sealed partial class ServerActualFireSystem : EntitySystem
 {
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private EntityManager _entityManager = default!;
     [Dependency] private PrototypeManager _prototypeManager = default!;
     [Dependency] private GasAnalyzerSystem _analyzerSystem = default!;
-
-    /// <summary>
-    /// Minimum moles of a gas to be sent to the client.
-    /// </summary>
-    private const float UIMinMoles = 0.01f;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private RobustRandom _random = default!;
 
     private const float EffectiveOxygenOxidation = 21.8f;
+    private const float EffectiveFrezonOxidation = 5.3f;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
+        base.Initialize();
 
+        SubscribeLocalEvent<ActualFireComponent, ComponentInit>(OnInit);
     }
-        public void TryLightFluidFire(EntityUid uid)
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<ActualFireComponent>();
+        while (query.MoveNext(out var entity, out var fireComp))
+        {
+            if (_timing.CurTime < fireComp.TimeTillNextTick)
+                continue;
+            fireComp.TimeTillNextTick += TimeSpan.FromSeconds(fireComp.TimeBetweenFireTick);
+
+            var tileMixture = _atmosphere.GetTileMixture(entity);
+
+            //if there is an atmosphere, and the temperature of the air is less than the maximum heat of the fire; add heat to it.
+            if (tileMixture != null && tileMixture.Temperature < fireComp.MaxFireTemp)
+                _atmosphere.AddHeat(tileMixture, fireComp.GenratedHeat);
+
+            foreach (var gas in fireComp.GasSpawnEntries)
+            {
+                _atmosphere.AdjustTileMixture(entity, gas.Gas, gas.Amount.Next(_random));
+            }
+        }
+    }
+
+    private void OnInit(EntityUid uid, ActualFireComponent component, ComponentInit args)
+    {
+        UpdateData(uid, component);
+
+        Dirty(uid, component);
+    }
+
+    public void TryLightFluidFire(EntityUid uid)
     {
         var entity = _entityManager.TryGetComponent<SolutionComponent>(uid, out var solution);
 
@@ -55,7 +88,9 @@ public sealed class ServerActualFireSystem : EntitySystem
 
         var oxidizer = 0f;
         var fuel = 0f;
-        var finalTemp = 0f;
+        var totalFluid = solution.Solution.Contents.Count;
+        var generatedHeat = 0f;
+        var maxFireHeat = 0f;
 
         var exhaust = new List<GasSpawnEntry>();
 
@@ -75,7 +110,8 @@ public sealed class ServerActualFireSystem : EntitySystem
             //Generate exhause gas list
             exhaust.AddRange(fluid.FlammableFluid.ExhaustedGases);
 
-            finalTemp = (finalTemp + fluid.FlammableFluid.GeneratedHeat) / 2;
+            generatedHeat = (fluid.FlammableFluid.GeneratedHeat * reagent.Quantity.Value);
+            maxFireHeat = (fluid.FlammableFluid.MaxHeat * reagent.Quantity.Value);
         }
 
         if (fuel == 0)
@@ -83,9 +119,11 @@ public sealed class ServerActualFireSystem : EntitySystem
 
         //TODO: FIX THIS
         //This is a shit ass way of representing how oxidized the fire is. I need to somehow be able to use the air as an oxidizer, and have it be a ratio like airOxidizer + (oxidizer / fuel)
-        fire.Oxidation = GetOxidation(uid) + oxidizer / fuel;
+        fire.Oxidation = GetOxidation(uid) + oxidizer / fuel / totalFluid;
 
-        fire.FireTemp = finalTemp * fire.Oxidation;
+        //Weird way of calculating this, but this averages out how much heat there is from the fluid that is being burnt, then modify it based on the oxidation (clamped to stop it from getting too stupid)
+        fire.GenratedHeat =  (generatedHeat / totalFluid) * Math.Clamp(fire.Oxidation, 0f, 25f);
+        fire.MaxFireTemp = (maxFireHeat  / totalFluid) * Math.Clamp(fire.Oxidation, 0f, 25f);
 
         fire.GasSpawnEntries = exhaust.ToArray();
         Dirty(uid, fire);
@@ -133,6 +171,9 @@ public sealed class ServerActualFireSystem : EntitySystem
                 {
                     case Oxygen:
                         oxidizer += gas.Amount / EffectiveOxygenOxidation;
+                        break;
+                    case Frezon:
+                        oxidizer += gas.Amount /  EffectiveFrezonOxidation;
                         break;
                 }
             }
