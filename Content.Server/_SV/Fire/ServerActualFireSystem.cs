@@ -17,10 +17,10 @@ public sealed partial class ServerActualFireSystem : EntitySystem
 {
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private EntityManager _entityManager = default!;
-    [Dependency] private PrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private GasAnalyzerSystem _analyzerSystem = default!;
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private RobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private const float EffectiveOxygenOxidation = 21.8f;
     private const float EffectiveFrezonOxidation = 5.3f;
@@ -59,7 +59,6 @@ public sealed partial class ServerActualFireSystem : EntitySystem
     private void OnInit(EntityUid uid, ActualFireComponent component, ComponentInit args)
     {
         UpdateData(uid, component);
-
         Dirty(uid, component);
     }
 
