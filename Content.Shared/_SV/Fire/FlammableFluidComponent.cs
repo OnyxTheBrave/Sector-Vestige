@@ -37,5 +37,5 @@ public sealed partial class FlammableFluidComponent : Component
     /// The list of gasses that the fluid should produce when burnt
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadOnly)]
-    public List<GasSpawnEntry> ExhaustedGases;
+    public List<GasSpawnEntry>? ExhaustedGases;
 }

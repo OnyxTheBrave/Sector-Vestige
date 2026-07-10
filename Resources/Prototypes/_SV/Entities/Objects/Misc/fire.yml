@@ -4,5 +4,8 @@
   name: fire
   description: The puddle appears to be on fire. You should probably stop staring at it and get a fire extinguisher.
   components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Umbra/Objects/Misc/fire.rsi
   - type: ActualFire
   - type: Barotrauma #Original has this, and a self oxidizing can exist. Either way, this is governed by ActualFireSystem.cs

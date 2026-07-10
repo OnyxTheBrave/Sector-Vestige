@@ -21,6 +21,8 @@ public sealed partial class ServerActualFireSystem : EntitySystem
     [Dependency] private GasAnalyzerSystem _analyzerSystem = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private EntityLookupSystem _lookupSystem = default!;
 
     private const float EffectiveOxygenOxidation = 21.8f;
     private const float EffectiveFrezonOxidation = 5.3f;
@@ -49,15 +51,19 @@ public sealed partial class ServerActualFireSystem : EntitySystem
             if (tileMixture != null && tileMixture.Temperature < fireComp.MaxFireTemp)
                 _atmosphere.AddHeat(tileMixture, fireComp.GenratedHeat);
 
-            foreach (var gas in fireComp.GasSpawnEntries)
+            if (fireComp.GasSpawnEntries != null)
             {
-                _atmosphere.AdjustTileMixture(entity, gas.Gas, gas.Amount.Next(_random));
+                foreach (var gas in fireComp.GasSpawnEntries)
+                {
+                    _atmosphere.AdjustTileMixture(entity, gas.Gas, gas.Amount.Next(_random));
+                }
             }
         }
     }
 
     private void OnInit(EntityUid uid, ActualFireComponent component, ComponentInit args)
     {
+        TargetEntity(uid, component);
         UpdateData(uid, component);
         Dirty(uid, component);
     }
@@ -107,7 +113,8 @@ public sealed partial class ServerActualFireSystem : EntitySystem
                 oxidizer += reagent.Quantity.Value;
 
             //Generate exhause gas list
-            exhaust.AddRange(fluid.FlammableFluid.ExhaustedGases);
+            if (fluid.FlammableFluid.ExhaustedGases != null)
+                exhaust.AddRange(fluid.FlammableFluid.ExhaustedGases);
 
             generatedHeat = (fluid.FlammableFluid.GeneratedHeat * reagent.Quantity.Value);
             maxFireHeat = (fluid.FlammableFluid.MaxHeat * reagent.Quantity.Value);
@@ -180,5 +187,29 @@ public sealed partial class ServerActualFireSystem : EntitySystem
         return oxidizer;
     }
 
+    /// <summary>
+    /// Will try to get a target solution to burn. This will either be provided as either parsing a third target Entity UID as a target, or it will try to find a puddle where the tile the fire is contained in.
+    /// It's better to use the specific target function as it's less jank, but it allows admins to spawn the entity wherever and it "just work"
+    /// </summary>
+    /// <param name="uid">UID of the fire</param>
+    /// <param name="component"></param>
+    /// <param name="target">Optional target for the fire.</param>
+    public void TargetEntity(EntityUid uid, ActualFireComponent component, EntityUid target)
+    {
+            component.TargetEntity = target;
+            return;
+    }
+
+    public void TargetEntity(EntityUid uid, ActualFireComponent component)
+    {
+        var query = _lookupSystem.GetEntitiesIntersecting(uid);
+        foreach (var entity in query)
+        {
+            if (_entityManager.HasComponent<SolutionComponent>(entity))
+            {
+                component.TargetEntity = entity;
+            }
+        }
+    }
 
 }

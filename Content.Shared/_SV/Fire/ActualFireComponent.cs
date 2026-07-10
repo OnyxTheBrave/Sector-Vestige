@@ -14,7 +14,7 @@ public sealed partial class ActualFireComponent : Component
     /// The UID of the solution that is being burnt
     /// </summary>
     [DataField]
-    public EntityUid TargetEntity;
+    public EntityUid? TargetEntity;
 
     /// <summary>
     /// How much heat the fire will expel each fire tick
@@ -41,7 +41,7 @@ public sealed partial class ActualFireComponent : Component
     /// The list of gases that should be spawned for every fire tick
     /// </summary>
     [DataField]
-    public GasSpawnEntry [] GasSpawnEntries;
+    public GasSpawnEntry[]? GasSpawnEntries;
 
     /// <summary>
     /// How long in-between fire ticks should there be
