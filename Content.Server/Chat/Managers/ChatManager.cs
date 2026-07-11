@@ -292,7 +292,7 @@ internal sealed partial class ChatManager : IChatManager
 
         if (_adminManager.HasAdminFlag(player, AdminFlags.NameColor))
         {
-            // colorOverride = prefs.AdminOOCColor;
+            // colorOverride = prefs.AdminOOCColor; // SV disabled
             wrappedMessage = Loc.GetString("chat-manager-send-ooc-admin-active-wrap-message", ("adminColor", prefs.AdminOOCColor), ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
         }
         else if (_adminManager.AllAdmins.Contains(player) && !_adminManager.HasAdminFlag(player, AdminFlags.NameColor))
