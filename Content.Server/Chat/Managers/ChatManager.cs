@@ -288,14 +288,21 @@ internal sealed partial class ChatManager : IChatManager
 
         Color? colorOverride = null;
         var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName",player.Name), ("message", FormattedMessage.EscapeText(message)));
+        var prefs = _preferencesManager.GetPreferences(player.UserId);
+
         if (_adminManager.HasAdminFlag(player, AdminFlags.NameColor))
         {
-            var prefs = _preferencesManager.GetPreferences(player.UserId);
-            colorOverride = prefs.AdminOOCColor;
+            // colorOverride = prefs.AdminOOCColor;
+            wrappedMessage = Loc.GetString("chat-manager-send-ooc-admin-active-wrap-message", ("adminColor", prefs.AdminOOCColor), ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
         }
-        if (  _netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) && player.Channel.UserData.PatronTier is { } patron && PatronOocColors.TryGetValue(patron, out var patronColor))
+        else if (_adminManager.AllAdmins.Contains(player) && !_adminManager.HasAdminFlag(player, AdminFlags.NameColor))
         {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", patronColor),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+            wrappedMessage = Loc.GetString("chat-manager-send-ooc-admin-inactive-wrap-message", ("adminColor", prefs.AdminOOCColor), ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+        }
+
+        if (_netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) && player.Channel.UserData.PatronTier is { } patron && PatronOocColors.TryGetValue(patron, out var patronColor))
+        {
+            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", patronColor), ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
         }
 
         //TODO: player.Name color, this will need to change the structure of the MsgChatMessage
@@ -312,10 +319,10 @@ internal sealed partial class ChatManager : IChatManager
             return;
         }
 
+        var preferences = _preferencesManager.GetPreferences(player.UserId);
         var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
-        var wrappedMessage = Loc.GetString("chat-manager-send-admin-chat-wrap-message",
-                                        ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
-                                        ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+        var wrappedMessage = Loc.GetString("chat-manager-send-admin-chat-wrap-message", ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
+                                    ("playerName", player.Name), ("adminColor", preferences.AdminOOCColor), ("message", FormattedMessage.EscapeText(message)));
 
         foreach (var client in clients)
         {
