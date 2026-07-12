@@ -362,11 +362,11 @@ internal sealed partial class ChatManager : IChatManager
         if (_adminManager.HasAdminFlag(player, AdminFlags.NameColor))
         {
             // colorOverride = prefs.AdminOOCColor; // SV disabled
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-admin-active-wrap-message", ("adminColor", prefs.AdminOOCColor), ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+            wrappedMessage = Loc.GetString("sv-chat-manager-send-ooc-admin-active-wrap-message", ("adminColor", prefs.AdminOOCColor), ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
         }
         else if (_adminManager.AllAdmins.Contains(player) && !_adminManager.HasAdminFlag(player, AdminFlags.NameColor))
         {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-admin-inactive-wrap-message", ("adminColor", prefs.AdminOOCColor), ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+            wrappedMessage = Loc.GetString("sv-chat-manager-send-ooc-admin-inactive-wrap-message", ("adminColor", prefs.AdminOOCColor), ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
         }
 
         if (_netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) && player.Channel.UserData.PatronTier is { } patron && PatronOocColors.TryGetValue(patron, out var patronColor))
@@ -391,8 +391,10 @@ internal sealed partial class ChatManager : IChatManager
 
         var preferences = _preferencesManager.GetPreferences(player.UserId);
         var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
-        var wrappedMessage = Loc.GetString("chat-manager-send-admin-chat-wrap-message", ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
+        // SV - Added some color to the Adminchat - Start
+        var wrappedMessage = Loc.GetString("sv-chat-manager-send-admin-chat-wrap-message", ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
                                     ("playerName", player.Name), ("adminColor", preferences.AdminOOCColor), ("message", FormattedMessage.EscapeText(message)));
+        // SV - Added some color to the Adminchat - End
 
         foreach (var client in clients)
         {
