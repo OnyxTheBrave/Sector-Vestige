@@ -123,7 +123,7 @@ internal sealed partial class ChatManager : IChatManager
         // _sawmill might have not been initialized when DispatchServerAnnouncement is called
         // during server setup when some cvars are changed
         _sawmill?.Info(message);
-        
+
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Server announcement: {message}");
     }
 

@@ -1420,7 +1420,7 @@
 
 - type: Tag
   id: TeleportScrollWarpBlacklist # blacklists a warp point for the wizard's teleport scroll
-  
+
 - type: Tag
   id: TheaterBagel # used for Bagel Station's randomized theater
 
