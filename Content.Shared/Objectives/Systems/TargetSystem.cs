@@ -56,7 +56,18 @@ public sealed partial class TargetSystem : EntitySystem
     {
         _pickingMinds.Clear();
         pool.FindMinds(_pickingMinds, exclude, EntityManager, this);
-        _mind.FilterMinds(_pickingMinds, filters, exclude);
+
+        // Apply each filter sequentially. Inlined here because the upstream merge removed
+        // SharedMindSystem.FilterMinds(List<MindFilter>) in favour of its EntityCondition API.
+        // This preserves the fork's original FilterMinds(List<MindFilter>) semantics.
+        foreach (var filter in filters)
+        {
+            // no point calling it if there are none left
+            if (_pickingMinds.Count == 0)
+                break;
+
+            _pickingMinds.RemoveWhere(mind => filter.Filter(mind, exclude, EntityManager));
+        }
 
         if (_pickingMinds.Count == 0)
             return null;

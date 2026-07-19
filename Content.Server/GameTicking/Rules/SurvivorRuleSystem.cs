@@ -29,12 +29,12 @@ namespace Content.Server.GameTicking.Rules;
 public sealed partial class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComponent>
 {
     [Dependency] private AntagSelectionSystem _antag = default!;
-//    [Dependency] private TransformSystem _xform = default!; // Vestige 15/04/2026 Remove antags and related things from round-end text.
-//    [Dependency] private EmergencyShuttleSystem _eShuttle = default!;
+    [Dependency] private EmergencyShuttleSystem _eShuttle = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private RoleSystem _role = default!;
     [Dependency] private TagSystem _tag = default!;
-    [Dependency] private TargetSystem _target = default!;
-//    [Dependency] private MobStateSystem _mobState = default!; // Vestige 15/04/2026
+    [Dependency] private AliveHumanoidTargetSystem _target = default!;
+    [Dependency] private TransformSystem _xform = default!;
 
     private static readonly ProtoId<TagPrototype> InvalidForSurvivorAntagTag = "InvalidForSurvivorAntag";
 
@@ -50,7 +50,7 @@ public sealed partial class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComp
     {
         base.Started(uid, component, gameRule, args);
 
-        var allAliveHumanMinds = _target.GetAliveHumans();
+        var allAliveHumanMinds = _target.GetMinds();
 
         foreach (var humanMind in allAliveHumanMinds)
         {

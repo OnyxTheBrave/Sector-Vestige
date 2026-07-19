@@ -229,31 +229,29 @@ public sealed partial class ClampedHsvColoration : ISkinColorationStrategy
 
     public bool VerifySkinColor(Color color, [NotNullWhen(false)] out string? reason)
     {
-        // Sector Vestige - start: skin colors are stored as 8-bit RGB (HumanoidCharacterAppearance.ClampColor), which
-        // perturbs the recovered HSV channels. Saturation precision loss scales with 1/value, so the original fixed
-        // epsilon below was too tight for dark tones and would reject colors ClosestSkinColor had just produced.
-        // Verifying against ClosestSkinColor's own output (within quantization distance) sidesteps that entirely.
-        //
-        // Original upstream implementation:
-        // reason = null;
-        // var hsv = Color.ToHsv(color);
-        // if (Hue is (var minHue, var maxHue) && !SkinColorationUtils.IsHueInRange(hsv.X, minHue, maxHue))
-        // { reason = $"Hue {Hue} is outside of range of min {minHue} max {maxHue}"; return false; }
-        // if (Saturation is (var minSat, var maxSat) && (hsv.Y < minSat - SkinColorationUtils.Epsilon || hsv.Y > maxSat + SkinColorationUtils.Epsilon))
-        // { reason = $"Saturation {Saturation} is outside of range of min {minSat} max {maxSat}"; return false; }
-        // if (Value is (var minVal, var maxVal) && (hsv.Z < minVal - SkinColorationUtils.Epsilon || hsv.Z > maxVal + SkinColorationUtils.Epsilon))
-        // { reason = $"Value {Value} is outside of range of min {minVal} max {maxVal}"; return false; }
-        // return true;
-        var closest = ClosestSkinColor(color);
-        if (SkinColorationUtils.WithinQuantization(color, closest))
+        reason = null;
+
+        var hsv = Color.ToHsv(color);
+
+        if (Hue is (var minHue, var maxHue) && !SkinColorationUtils.IsHueInRange(hsv.X, minHue, maxHue))
         {
-            reason = null;
-            return true;
+            reason = $"Hue {Hue} is outside of range of min {minHue} max {maxHue}";
+            return false;
         }
 
-        reason = $"Color {color} is outside the valid range; nearest valid color is {closest}.";
-        return false;
-        // Sector Vestige - end
+        if (Saturation is (var minSat, var maxSat) && (hsv.Y < minSat - SkinColorationUtils.Epsilon || hsv.Y > maxSat + SkinColorationUtils.Epsilon))
+        {
+            reason = $"Saturation {Saturation} is outside of range of min {minSat} max {maxSat}";
+            return false;
+        }
+
+        if (Value is (var minVal, var maxVal) && (hsv.Z < minVal - SkinColorationUtils.Epsilon || hsv.Z > maxVal + SkinColorationUtils.Epsilon))
+        {
+            reason = $"Value {Value} is outside of range of min {minVal} max {maxVal}";
+            return false;
+        }
+
+        return true;
     }
 
     public Color ClosestSkinColor(Color color)
@@ -301,31 +299,29 @@ public sealed partial class ClampedHslColoration : ISkinColorationStrategy
 
     public bool VerifySkinColor(Color color, [NotNullWhen(false)] out string? reason)
     {
-        // Sector Vestige - start: skin colors are stored as 8-bit RGB (HumanoidCharacterAppearance.ClampColor), which
-        // perturbs the recovered HSL channels. Saturation precision loss is amplified near the lightness extremes, so
-        // the original fixed epsilon below was too tight and would reject colors ClosestSkinColor had just produced.
-        // Verifying against ClosestSkinColor's own output (within quantization distance) sidesteps that entirely.
-        //
-        // Original upstream implementation:
-        // reason = null;
-        // var hsl = Color.ToHsl(color);
-        // if (Hue is (var minHue, var maxHue) && !SkinColorationUtils.IsHueInRange(hsl.X, minHue, maxHue))
-        // { reason = $"Hue {Hue} is outside of range of min {minHue} max {maxHue}"; return false; }
-        // if (Saturation is (var minSat, var maxSat) && (hsl.Y < minSat - SkinColorationUtils.Epsilon || hsl.Y > maxSat + SkinColorationUtils.Epsilon))
-        // { reason = $"Saturation {Saturation} is outside of range of min {minSat} max {maxSat}"; return false; }
-        // if (Lightness is (var minLight, var maxLight) && (hsl.Z < minLight - SkinColorationUtils.Epsilon || hsl.Z > maxLight + SkinColorationUtils.Epsilon))
-        // { reason = $"Lightness {Lightness} is outside of range of min {minLight} max {maxLight}"; return false; }
-        // return true;
-        var closest = ClosestSkinColor(color);
-        if (SkinColorationUtils.WithinQuantization(color, closest))
+        reason = null;
+
+        var hsl = Color.ToHsl(color);
+
+        if (Hue is (var minHue, var maxHue) && !SkinColorationUtils.IsHueInRange(hsl.X, minHue, maxHue))
         {
-            reason = null;
-            return true;
+            reason = $"Hue {Hue} is outside of range of min {minHue} max {maxHue}";
+            return false;
         }
 
-        reason = $"Color {color} is outside the valid range; nearest valid color is {closest}.";
-        return false;
-        // Sector Vestige - end
+        if (Saturation is (var minSat, var maxSat) && (hsl.Y < minSat - SkinColorationUtils.Epsilon || hsl.Y > maxSat + SkinColorationUtils.Epsilon))
+        {
+            reason = $"Saturation {Saturation} is outside of range of min {minSat} max {maxSat}";
+            return false;
+        }
+
+        if (Lightness is (var minLight, var maxLight) && (hsl.Z < minLight - SkinColorationUtils.Epsilon || hsl.Z > maxLight + SkinColorationUtils.Epsilon))
+        {
+            reason = $"Lightness {Lightness} is outside of range of min {minLight} max {maxLight}";
+            return false;
+        }
+
+        return true;
     }
 
     public Color ClosestSkinColor(Color color)
@@ -356,6 +352,18 @@ public sealed partial class ClampedHslColoration : ISkinColorationStrategy
 [Serializable, NetSerializable]
 public sealed partial class HueNodeClampedHsvColoration : ISkinColorationStrategy
 {
+    // TODO: this is awful - why is it so large?
+    /// <summary>
+    /// The maximum amount of change to the saturation that we can expect between generating an HSV value
+    /// at a threshold, converting it to RGB, then resaving it.
+    /// Found experimentally by running HumanoidProfileTests.EnsureValidRandomSpecies("Vulpkanin") many times.
+    /// </summary>
+    /// <remarks>
+    /// Due to RGB colors being clamped to 8 bits, precision is lost during transformation to HSL or HSV.
+    /// The precision of the result _should be_ approximately 1/180.
+    /// </remarks>
+    public const float HSVTolerance = 0.019f;
+
     /// <summary>
     /// List of valid nodes in this coloration.
     /// </summary>
@@ -366,32 +374,37 @@ public sealed partial class HueNodeClampedHsvColoration : ISkinColorationStrateg
 
     public bool VerifySkinColor(Color color, [NotNullWhen(false)] out string? reason)
     {
-        // Sector Vestige - start: skin colors are stored as 8-bit RGB (HumanoidCharacterAppearance.ClampColor), which
-        // perturbs the recovered HSV channels. Saturation precision loss scales with 1/value, so the original fixed
-        // epsilon below was too tight for dark tones and would reject colors ClosestSkinColor had just produced.
-        // Verifying against ClosestSkinColor's own output (within quantization distance) sidesteps that entirely.
-        //
-        // Original upstream implementation:
-        // reason = null;
-        // var hsv = Color.ToHsv(color);
-        // var hue = SkinColorationUtils.ClampHue(hsv.X, Nodes.First().Hue, Nodes.Last().Hue);
-        // var range = GetNodeValuesForHue(hue);
-        // if (range is null) { reason = "No valid range was found."; return false; }
-        // if (hsv.Y < range.Saturation.Min - SkinColorationUtils.Epsilon || hsv.Y > range.Saturation.Max + SkinColorationUtils.Epsilon)
-        // { reason = $"Saturation {hsv.Y} is outside of range of min {range.Saturation.Item1} max {range.Saturation.Item2}"; return false; }
-        // if (hsv.Z < range.Value.Min - SkinColorationUtils.Epsilon || hsv.Z > range.Value.Max + SkinColorationUtils.Epsilon)
-        // { reason = $"Value {hsv.Z} is outside of range of min {range.Value.Min} max {range.Value.Max}"; return false; }
-        // return true;
-        var closest = ClosestSkinColor(color);
-        if (SkinColorationUtils.WithinQuantization(color, closest))
+        reason = null;
+        var hsv = Color.ToHsv(color);
+
+        // Clamp the hue between the first and last node.
+        // We don't want anything going outside of these values.
+        var hue = SkinColorationUtils.ClampHue(hsv.X, Nodes.First().Hue,  Nodes.Last().Hue);
+
+        var range = GetNodeValuesForHue(hue);
+
+        // If no range was found, this color is invalid.
+        if (range is null)
         {
-            reason = null;
-            return true;
+            reason = "No valid range was found.";
+            return false;
         }
 
-        reason = $"Color {color} is outside the valid range; nearest valid color is {closest}.";
-        return false;
-        // Sector Vestige - end
+        // If a range is found, check if the saturation is within the provided ranges.
+        if (hsv.Y < range.Saturation.Min - HSVTolerance || hsv.Y > range.Saturation.Max + HSVTolerance)
+        {
+            reason = $"Saturation {hsv.Y} is outside of range of min {range.Saturation.Item1} max {range.Saturation.Item2}";
+            return false;
+        }
+
+        // Check if the value is within provided ranges.
+        if (hsv.Z < range.Value.Min - HSVTolerance || hsv.Z > range.Value.Max + HSVTolerance)
+        {
+            reason = $"Value {hsv.Z} is outside of range of min {range.Value.Min} max {range.Value.Max}";
+            return false;
+        }
+
+        return true;
     }
 
     /// <inheritdoc/>
@@ -521,34 +534,10 @@ internal static class SkinColorationUtils
     public const float EpsilonHue = 0.00277f;
 
     /// <summary>
-    /// Due to RGB colors being clamped to 8 bits, precision is lost during transformation to HSL or HSV.
-    /// The precision of the result is approximately 1/180.
+    /// A value derived by dividing 1 by 256.
+    /// Due to the way these values are stored and deconstructed we can't expect much more precision than this..
     /// </summary>
-    public const float Epsilon = 0.0056f;
-
-    // Sector Vestige - start: quantization-aware verification helpers (see the VerifySkinColor changes above).
-    /// <summary>
-    /// Per-channel RGB tolerance used when verifying a stored skin color.
-    /// Skin colors are stored as 8-bit RGB (see <see cref="Color.RByte"/>, which truncates), so a color produced by
-    /// <see cref="ISkinColorationStrategy.ClosestSkinColor"/> can drift by roughly 1/255 per channel before it is ever
-    /// verified. Because saturation (S = chroma / value) and hue both amplify that drift for dark or low-chroma colors,
-    /// verifying channel-by-channel in HSV/HSL needs awkward value-dependent epsilons. Comparing back in RGB against the
-    /// clamped color sidesteps all of that, with a small margin on top of the raw 1/255 quantization step.
-    /// </summary>
-    public const float ChannelEpsilon = 4f / 255f;
-
-    /// <summary>
-    /// Whether <paramref name="color"/> is within 8-bit quantization distance of <paramref name="reference"/>.
-    /// Used so that VerifySkinColor accepts any color that ClosestSkinColor would have produced, even after it has
-    /// been rounded to 8-bit RGB for storage.
-    /// </summary>
-    public static bool WithinQuantization(Color color, Color reference)
-    {
-        return MathF.Abs(color.R - reference.R) <= ChannelEpsilon
-            && MathF.Abs(color.G - reference.G) <= ChannelEpsilon
-            && MathF.Abs(color.B - reference.B) <= ChannelEpsilon;
-    }
-    // Sector Vestige - end
+    public const float Epsilon = 0.00390625f;
 
     /// <summary>
     /// Checks if a hue value is within a specified range, correctly handling ranges that wrap around 1.0 (e.g., reds).

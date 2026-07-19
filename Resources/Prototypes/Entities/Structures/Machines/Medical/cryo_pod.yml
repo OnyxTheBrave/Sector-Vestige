@@ -118,6 +118,15 @@
   - type: GuideHelp
     guides:
     - Cryogenics
+  - type: AmbientMusicMarkerMedical
+
+- type: entity
+  parent: SolutionSmall
+  id: SolutionCryoBuffer
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: injectionBuffer
 
 - type: entity
   parent: SolutionSmall

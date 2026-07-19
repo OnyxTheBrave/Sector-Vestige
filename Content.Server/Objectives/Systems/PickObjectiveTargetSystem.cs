@@ -15,8 +15,8 @@ namespace Content.Server.Objectives.Systems;
 /// </summary>
 public sealed partial class PickObjectiveTargetSystem : EntitySystem
 {
-    [Dependency] private TargetObjectiveSystem _objective = default!;
-    [Dependency] private TargetSystem _target = default!;
+    [Dependency] private TargetObjectiveSystem _target = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     public override void Initialize()
     {
@@ -69,7 +69,7 @@ public sealed partial class PickObjectiveTargetSystem : EntitySystem
             return;
 
         // couldn't find a target :(
-        if (_target.PickFromPool(ent.Comp.Pool, ent.Comp.Filters, args.MindId) is not {} picked)
+        if (_mind.PickFromPool(ent.Comp.Pool, args.MindId, ent.Comp.Conditions) is not {} picked)
         {
             args.Cancelled = true;
             return;

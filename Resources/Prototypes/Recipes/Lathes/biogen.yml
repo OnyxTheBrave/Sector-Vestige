@@ -295,7 +295,7 @@
   materials:
     Biomass: 10
 
-# SV additions below
+# SV additions below // Migrate this to another file later
 - type: latheRecipe
   id: BioGenCigaretteFilter1
   result: CigaretteFilter1
