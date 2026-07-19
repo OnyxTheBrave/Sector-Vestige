@@ -75,8 +75,6 @@ public abstract partial class SharedMoverController : VirtualController
 
     private const LookupFlags _touchingFlags = LookupFlags.Approximate | LookupFlags.Dynamic | LookupFlags.Static;
 
-    private const LookupFlags _touchingFlags = LookupFlags.Approximate | LookupFlags.Dynamic | LookupFlags.Static;
-
     /// <summary>
     /// Cache the mob movement calculation to re-use elsewhere.
     /// </summary>
