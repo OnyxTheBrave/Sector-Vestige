@@ -342,18 +342,3 @@
   - type: Label
     localizedLabel: reagent-name-energy-drink
   # TODO new sprite
-
-- type: entity
-  parent: CustomDrinkJug
-  id: DrinkEnergyDrinkJug
-  name: Red Bool jug
-  description: A jug of Red Bool, with enough caffeine to kill a whole station.
-  components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: EnergyDrink
-        Quantity: 240
-  - type: Label
-    currentLabel: reagent-name-energy-drink
-  # TODO new sprite

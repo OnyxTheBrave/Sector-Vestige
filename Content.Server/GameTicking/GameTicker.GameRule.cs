@@ -35,14 +35,6 @@ public sealed partial class GameTicker
     [Dependency] private EntityWhitelistSystem _whitelist = null!;
 
     /// <summary>
-    /// List of ignored game rules, these rules won't be spawned by normal means.
-    /// This list is populated by <see cref="CCVars.GameTickerIgnoredPresets"/>
-    /// </summary>
-    [ViewVariables] private string[] _ignoredRules = [];
-
-    [Dependency] private EntityWhitelistSystem _whitelist = null!;
-
-    /// <summary>
     ///     A list storing the start times of all game rules that have been started this round.
     ///     Game rules can be started and stopped at any time, including midround.
     /// </summary>

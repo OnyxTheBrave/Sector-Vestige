@@ -389,7 +389,7 @@
           type: WiresBoundUserInterface
   - type: ActivatableUI
     key: enum.CharacterDocumentConsoleUiKey.Key
-- type: AmbientMusicMarkerMedical
+  - type: AmbientMusicMarkerMedical
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerCriminalRecords

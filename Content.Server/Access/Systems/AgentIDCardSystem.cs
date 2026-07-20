@@ -15,6 +15,7 @@ using Content.Shared.StatusIcon;
 using Content.Shared.UserInterface;
 using Content.Shared.VoiceMask;
 using Robust.Server.GameObjects;
+using Content.Shared._CD.NanoChat; // CD
 
 namespace Content.Server.Access.Systems
 {
@@ -25,8 +26,8 @@ namespace Content.Server.Access.Systems
         [Dependency] private UserInterfaceSystem _uiSystem = default!;
         [Dependency] private ChameleonClothingSystem _chameleon = default!;
         [Dependency] private ChameleonControllerSystem _chamController = default!;
-        [Dependency] private LockSystem _lock = default!;
         [Dependency] private SharedJobStatusSystem _jobStatus = default!;
+        [Dependency] private SharedNanoChatSystem _nanoChat = default!; // CD
         public override void Initialize()
         {
             base.Initialize();

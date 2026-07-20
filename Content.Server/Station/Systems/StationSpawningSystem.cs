@@ -45,6 +45,7 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private MetaDataSystem _metaSystem = default!;
     [Dependency] private PdaSystem _pdaSystem = default!;
     [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private SharedScaleVisualsSystem _scaleVisuals = default!; // Sector Vestige - profile height scaling
 
     /// <summary>
     /// Attempts to spawn a player character onto the given station.

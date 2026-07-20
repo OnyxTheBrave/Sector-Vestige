@@ -53,14 +53,14 @@ public sealed partial class LogProbeCartridgeSystem : EntitySystem
         if (args.Args.Handled || !args.Args.CanReach || args.Args.Target is not { } target)
             return;
 
-            // CD begin - Add NanoChat card scanning
-            if (TryComp<NanoChatCardComponent>(target, out var nanoChatCard))
-            {
-                ScanNanoChatCard(ent, args, target, nanoChatCard);
-                args.InteractEvent.Handled = true;
-                return;
-            }
-            // CD end
+        // CD begin - Add NanoChat card scanning
+        if (TryComp<NanoChatCardComponent>(target, out var nanoChatCard))
+        {
+            ScanNanoChatCard(ent, args, target, nanoChatCard);
+            args.Args.Handled = true;
+            return;
+        }
+        // CD end
 
         if (!TryComp(target, out AccessReaderComponent? accessReaderComponent))
             return;

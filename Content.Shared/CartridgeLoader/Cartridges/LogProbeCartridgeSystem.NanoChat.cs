@@ -2,12 +2,12 @@
 //
 // SPDX-License-Identifier: MIT
 
-using Content.Shared.Audio;
-using Content.Shared.CartridgeLoader;
+using Content.Shared.Interaction;
 using Content.Shared._CD.CartridgeLoader.Cartridges;
 using Content.Shared._CD.NanoChat;
+using Robust.Shared.Audio;
 
-namespace Content.Server.CartridgeLoader.Cartridges;
+namespace Content.Shared.CartridgeLoader.Cartridges;
 
 public sealed partial class LogProbeCartridgeSystem
 {
@@ -62,15 +62,15 @@ public sealed partial class LogProbeCartridgeSystem
     }
 
     private void ScanNanoChatCard(Entity<LogProbeCartridgeComponent> ent,
-        CartridgeAfterInteractEvent args,
+        CartridgeRelayedEvent<AfterInteractEvent> args,
         EntityUid target,
         NanoChatCardComponent card)
     {
-        _audio.PlayEntity(ent.Comp.SoundScan,
-            args.InteractEvent.User,
+        _audio.PlayPredicted(ent.Comp.SoundScan,
             target,
-            AudioHelpers.WithVariation(0.25f, _random));
-        _popup.PopupCursor(Loc.GetString("log-probe-scan-nanochat", ("card", target)), args.InteractEvent.User);
+            args.Args.User,
+            AudioParams.Default.WithVariation(0.25f));
+        _popup.PopupPredictedCursor(Loc.GetString("log-probe-scan-nanochat", ("card", target)), args.Args.User);
 
         ent.Comp.PulledAccessLogs.Clear();
 

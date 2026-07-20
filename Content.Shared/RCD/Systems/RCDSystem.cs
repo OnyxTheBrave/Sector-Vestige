@@ -578,7 +578,7 @@ public sealed partial class RCDSystem : EntitySystem
 
     private bool IsDeconstructionStillValid(EntityUid uid, TileRef tile, EntityUid? target, EntityUid user, RCDComponent component, bool popMsgs = true) //Sector Vestige: RPD Logic
     {
-        var prototype = _protoManager.Index(component.ProtoId); //Sector Vestige: RPD Logic
+        var prototype = ProtoMan.Index(component.ProtoId); //Sector Vestige: RPD Logic
         // Attempt to deconstruct a floor tile
         if (target == null)
         {
@@ -710,7 +710,7 @@ public sealed partial class RCDSystem : EntitySystem
                 }
 
                 string ent;
-                if (_protoManager.TryIndex<EntityPrototype>(prototype.Prototype, out var entProto) &&
+                if (ProtoMan.TryIndex<EntityPrototype>(prototype.Prototype, out var entProto) &&
                     entProto.TryGetComponent<AtmosPipeLayersComponent>(out var pipeLayer, _entityManager.ComponentFactory) &&
                     _layer.TryGetAlternativePrototype(pipeLayer, _currentLayer, out var actualPipe))
                 {

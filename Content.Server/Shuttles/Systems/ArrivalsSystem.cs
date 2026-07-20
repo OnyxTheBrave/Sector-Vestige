@@ -80,6 +80,7 @@ public sealed partial class ArrivalsSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ActorSystem _actor = default!;
+    [Dependency] private BatterySystem _batterySystem = default!; // Moffstation
     [Dependency] private BiomeSystem _biomes = default!;
     [Dependency] private DeviceNetworkSystem _deviceNetworkSystem = default!;
     [Dependency] private GameTicker _ticker = default!;

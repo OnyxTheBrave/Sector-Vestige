@@ -5,7 +5,6 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.Revolutionary.Components;
 using Robust.Shared.Random;
 using System.Linq;
-using Content.Shared.Objectives.Systems;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -52,7 +51,7 @@ public sealed partial class PickObjectiveTargetSystem : EntitySystem
             return;
         }
 
-        _objective.SetTarget(ent.Owner, targetComp.Target.Value);
+        _target.SetTarget(ent.Owner, targetComp.Target.Value);
     }
 
     private void OnRandomPersonAssigned(Entity<PickRandomPersonComponent> ent, ref ObjectiveAssignedEvent args)
@@ -75,6 +74,6 @@ public sealed partial class PickObjectiveTargetSystem : EntitySystem
             return;
         }
 
-        _objective.SetTarget(ent, picked, target);
+        _target.SetTarget(ent, picked, target);
     }
 }
