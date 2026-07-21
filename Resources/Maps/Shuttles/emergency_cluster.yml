@@ -459,6 +459,11 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles: {}
+        - volume: 2500
+          temperature: 293.15
+          moles:
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         chunkSize: 4
     - type: GasTileOverlay
     - type: GridPathfinding
@@ -1374,17 +1379,17 @@ entities:
     - type: Transform
       pos: 8.5,-10.5
       parent: 2
-  - uid: 505
+  - uid: 642
     components:
     - type: Transform
       pos: 11.5,-8.5
       parent: 2
-  - uid: 506
+  - uid: 643
     components:
     - type: Transform
       pos: 12.5,-8.5
       parent: 2
-  - uid: 507
+  - uid: 644
     components:
     - type: Transform
       pos: 13.5,-8.5

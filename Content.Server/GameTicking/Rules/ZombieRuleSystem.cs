@@ -95,59 +95,59 @@ public sealed partial class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponen
         args.Append(Loc.GetString("zombie-infection-greeting"));
     }
 
-    protected override void AppendRoundEndText(EntityUid uid,
-        ZombieRuleComponent component,
-        GameRuleComponent gameRule,
-        ref RoundEndTextAppendEvent args)
-    {
-        base.AppendRoundEndText(uid, component, gameRule, ref args);
+    // protected override void AppendRoundEndText(EntityUid uid,
+    //     ZombieRuleComponent component,
+    //     GameRuleComponent gameRule,
+    //     ref RoundEndTextAppendEvent args)
+    // {
+    //     base.AppendRoundEndText(uid, component, gameRule, ref args);
 
-        // This is just the general condition thing used for determining the win/lose text
-        var fraction = GetInfectedFraction(true, true);
+    //     // This is just the general condition thing used for determining the win/lose text
+    //     var fraction = GetInfectedFraction(true, true);
 
-        if (fraction <= 0)
-            args.AddLine(Loc.GetString("zombie-round-end-amount-none"));
-        else if (fraction <= 0.25)
-            args.AddLine(Loc.GetString("zombie-round-end-amount-low"));
-        else if (fraction <= 0.5)
-            args.AddLine(Loc.GetString("zombie-round-end-amount-medium", ("percent", Math.Round((fraction * 100), 2).ToString(CultureInfo.InvariantCulture))));
-        else if (fraction < 1)
-            args.AddLine(Loc.GetString("zombie-round-end-amount-high", ("percent", Math.Round((fraction * 100), 2).ToString(CultureInfo.InvariantCulture))));
-        else
-            args.AddLine(Loc.GetString("zombie-round-end-amount-all"));
+    //     if (fraction <= 0)
+    //         args.AddLine(Loc.GetString("zombie-round-end-amount-none"));
+    //     else if (fraction <= 0.25)
+    //         args.AddLine(Loc.GetString("zombie-round-end-amount-low"));
+    //     else if (fraction <= 0.5)
+    //         args.AddLine(Loc.GetString("zombie-round-end-amount-medium", ("percent", Math.Round((fraction * 100), 2).ToString(CultureInfo.InvariantCulture))));
+    //     else if (fraction < 1)
+    //         args.AddLine(Loc.GetString("zombie-round-end-amount-high", ("percent", Math.Round((fraction * 100), 2).ToString(CultureInfo.InvariantCulture))));
+    //     else
+    //         args.AddLine(Loc.GetString("zombie-round-end-amount-all"));
 
-        var antags = _antag.GetAntagIdentifiers(uid).ToList();
-        args.AddLine(Loc.GetString("zombie-round-end-initial-count", ("initialCount", antags.Count)));
-        foreach (var (_, data, entName) in antags)
-        {
-            args.AddLine(Loc.GetString("zombie-round-end-user-was-initial",
-                ("name", entName),
-                ("username", data.UserName)));
-        }
+    //     var antags = _antag.GetAntagIdentifiers(uid).ToList();
+    //     args.AddLine(Loc.GetString("zombie-round-end-initial-count", ("initialCount", antags.Count)));
+    //     foreach (var (_, data, entName) in antags)
+    //     {
+    //         args.AddLine(Loc.GetString("zombie-round-end-user-was-initial",
+    //             ("name", entName),
+    //             ("username", data.UserName)));
+    //     }
 
-        var healthy = GetHealthyHumans();
-        // Gets a bunch of the living players and displays them if they're under a threshold.
-        // InitialInfected is used for the threshold because it scales with the player count well.
-        if (healthy.Count <= 0 || healthy.Count > 2 * antags.Count)
-            return;
-        args.AddLine("");
-        args.AddLine(Loc.GetString("zombie-round-end-survivor-count", ("count", healthy.Count)));
-        foreach (var survivor in healthy)
-        {
-            var meta = MetaData(survivor);
-            var username = string.Empty;
-            if (_mindSystem.TryGetMind(survivor, out _, out var mind) &&
-                _player.TryGetSessionById(mind.UserId, out var session))
-            {
-                username = session.Name;
-            }
+    //     var healthy = GetHealthyHumans();
+    //     // Gets a bunch of the living players and displays them if they're under a threshold.
+    //     // InitialInfected is used for the threshold because it scales with the player count well.
+    //     if (healthy.Count <= 0 || healthy.Count > 2 * antags.Count)
+    //         return;
+    //     args.AddLine("");
+    //     args.AddLine(Loc.GetString("zombie-round-end-survivor-count", ("count", healthy.Count)));
+    //     foreach (var survivor in healthy)
+    //     {
+    //         var meta = MetaData(survivor);
+    //         var username = string.Empty;
+    //         if (_mindSystem.TryGetMind(survivor, out _, out var mind) &&
+    //             _player.TryGetSessionById(mind.UserId, out var session))
+    //         {
+    //             username = session.Name;
+    //         }
 
-            args.AddLine(Loc.GetString("zombie-round-end-user-was-survivor",
-                ("name", meta.EntityName),
-                ("username", username)));
-        }
-        args.AddLine("");
-    }
+    //         args.AddLine(Loc.GetString("zombie-round-end-user-was-survivor",
+    //             ("name", meta.EntityName),
+    //             ("username", username)));
+    //     }
+    //     args.AddLine("");
+    // }
 
     /// <summary>
     ///     The big kahoona function for checking if the round is gonna end

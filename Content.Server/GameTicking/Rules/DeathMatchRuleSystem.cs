@@ -117,18 +117,18 @@ public sealed partial class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRule
         _roundEnd.EndRound(component.RestartDelay);
     }
 
-    protected override void AppendRoundEndText(EntityUid uid, DeathMatchRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent args)
-    {
-        if (!TryComp<PointManagerComponent>(uid, out var point))
-            return;
+    // protected override void AppendRoundEndText(EntityUid uid, DeathMatchRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent args)
+    // {
+    //     if (!TryComp<PointManagerComponent>(uid, out var point))
+    //         return;
 
-        if (component.Victor != null && _player.TryGetPlayerData(component.Victor.Value, out var data))
-        {
-            args.AddLine(Loc.GetString("point-scoreboard-winner", ("player", data.UserName)));
-            args.AddLine("");
-        }
-        args.AddLine(Loc.GetString("point-scoreboard-header"));
-        args.AddLine(new FormattedMessage(point.Scoreboard).ToMarkup());
-        args.AddLine("");
-    }
+    //     if (component.Victor != null && _player.TryGetPlayerData(component.Victor.Value, out var data))
+    //     {
+    //         args.AddLine(Loc.GetString("point-scoreboard-winner", ("player", data.UserName)));
+    //         args.AddLine("");
+    //     }
+    //     args.AddLine(Loc.GetString("point-scoreboard-header"));
+    //     args.AddLine(new FormattedMessage(point.Scoreboard).ToMarkup());
+    //     args.AddLine("");
+    // }
 }

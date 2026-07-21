@@ -74,52 +74,52 @@ public sealed partial class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComp
         args.Append(Loc.GetString("survivor-role-greeting"));
     }
 
-//    protected override void AppendRoundEndText(EntityUid uid, // Vestige 14/04/2026 Remove antags and related things from round-end text.
-//        SurvivorRuleComponent component,
-//        GameRuleComponent gameRule,
-//        ref RoundEndTextAppendEvent args)
-//    {
-//        base.AppendRoundEndText(uid, component, gameRule, ref args);
-//
-//        // Using this instead of alive antagonists to make checking for shuttle & if the ent is alive easier
-//        var existingSurvivors = AllEntityQuery<SurvivorComponent, MindComponent>();
-//
-//        var deadSurvivors = 0;
-//        var aliveMarooned = 0;
-//        var aliveOnShuttle = 0;
-//        var eShuttle = _eShuttle.GetShuttle();
-//
-//        while (existingSurvivors.MoveNext(out _, out _, out var mindComp))
-//        {
-//            // If their brain is gone or they respawned/became a ghost role
-//            if (mindComp.CurrentEntity is null)
-//            {
-//                deadSurvivors++;
-//                continue;
-//            }
-//
-//            var survivor = mindComp.CurrentEntity.Value;
-//
-//            if (!_mobState.IsAlive(survivor))
-//            {
-//                deadSurvivors++;
-//                continue;
-//            }
-//
-//            if (eShuttle != null && eShuttle.Value.IsValid() && (Transform(eShuttle.Value).MapID == _xform.GetMapCoordinates(survivor).MapId))
-//            {
-//                aliveOnShuttle++;
-//                continue;
-//            }
-//
-//           aliveMarooned++;
-//        }
-//
-//        args.AddLine(Loc.GetString("survivor-round-end-dead-count", ("deadCount", deadSurvivors)));
-//        args.AddLine(Loc.GetString("survivor-round-end-alive-count", ("aliveCount", aliveMarooned)));
-//        args.AddLine(Loc.GetString("survivor-round-end-alive-on-shuttle-count", ("aliveCount", aliveOnShuttle)));
-//        args.AddLine("");
-//
-//        // Player manifest at EOR shows who's a survivor so no need for extra info here.
-//    }
+    // protected override void AppendRoundEndText(EntityUid uid,
+    //     SurvivorRuleComponent component,
+    //     GameRuleComponent gameRule,
+    //     ref RoundEndTextAppendEvent args)
+    // {
+    //     base.AppendRoundEndText(uid, component, gameRule, ref args);
+
+    //     // Using this instead of alive antagonists to make checking for shuttle & if the ent is alive easier
+    //     var existingSurvivors = AllEntityQuery<SurvivorComponent, MindComponent>();
+
+    //     var deadSurvivors = 0;
+    //     var aliveMarooned = 0;
+    //     var aliveOnShuttle = 0;
+    //     var eShuttle = _eShuttle.GetShuttle();
+
+    //     while (existingSurvivors.MoveNext(out _, out _, out var mindComp))
+    //     {
+    //         // If their brain is gone or they respawned/became a ghost role
+    //         if (mindComp.CurrentEntity is null)
+    //         {
+    //             deadSurvivors++;
+    //             continue;
+    //         }
+
+    //         var survivor = mindComp.CurrentEntity.Value;
+
+    //         if (!_mobState.IsAlive(survivor))
+    //         {
+    //             deadSurvivors++;
+    //             continue;
+    //         }
+
+    //         if (eShuttle != null && eShuttle.Value.IsValid() && (Transform(eShuttle.Value).MapID == _xform.GetMapCoordinates(survivor).MapId))
+    //         {
+    //             aliveOnShuttle++;
+    //             continue;
+    //         }
+
+    //        aliveMarooned++;
+    //     }
+
+    //     args.AddLine(Loc.GetString("survivor-round-end-dead-count", ("deadCount", deadSurvivors)));
+    //     args.AddLine(Loc.GetString("survivor-round-end-alive-count", ("aliveCount", aliveMarooned)));
+    //     args.AddLine(Loc.GetString("survivor-round-end-alive-on-shuttle-count", ("aliveCount", aliveOnShuttle)));
+    //     args.AddLine("");
+
+    //     // Player manifest at EOR shows who's a survivor so no need for extra info here.
+    // }
 }
