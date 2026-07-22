@@ -165,11 +165,7 @@
       amount: 5
   - type: TypingIndicator
     proto: rodentia
-  - type: Vocal
-    sounds:
-      Male: MaleRodentia
-      Female: FemaleRodentia
-      Unsexed: MaleRodentia
+  - type: Vocal # Sector Vestige: per-sex `sounds` dict removed upstream; voice now comes from humanoid Voice
   - type: MouthStorage
     mouthProto: CheekStorage
     openStorageAction: ActionOpenMouthStorage
