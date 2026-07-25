@@ -14,6 +14,7 @@ namespace Content.IntegrationTests.Tests._SV.Objectives;
 public sealed class CustomObjectiveTest : GameTest
 {
     private const string DummyUsername = "CustomObjectiveTestUser";
+    private static readonly ProtoId<CustomObjectiveIconPrototype> CuffsIconProto = "cuffs";
 
     public override PoolSettings PoolSettings => new()
     {
@@ -53,13 +54,13 @@ public sealed class CustomObjectiveTest : GameTest
 
         // the second one only lands if the prototype has unique: false.
         // the bad-icon rejection path can't be tested here, the harness fails any command that WriteErrors.
-        await pair.WaitCommand($"customobjectivecreate {session.Name} \"Keep it quiet\" \"Tell nobody what you found.\" cuffs TheSyndicate");
+        await pair.WaitCommand($"customobjectivecreate {session.Name} \"Keep it quiet\" \"Tell nobody what you found.\" {CuffsIconProto} TheSyndicate");
 
         Assert.That(mind.Objectives, Has.Count.EqualTo(2), "A second custom objective was rejected as a duplicate.");
 
         var first = objectivesSys.GetInfo(mind.Objectives[0], mindEnt.Value, mind);
         var second = objectivesSys.GetInfo(mind.Objectives[1], mindEnt.Value, mind);
-        var cuffsIcon = protoMan.Index<CustomObjectiveIconPrototype>("cuffs").Icon;
+        var cuffsIcon = protoMan.Index(CuffsIconProto).Icon;
         var firstIssuer = entMan.GetComponent<ObjectiveComponent>(mind.Objectives[0]).Issuer;
         var secondIssuer = entMan.GetComponent<ObjectiveComponent>(mind.Objectives[1]).Issuer;
 
