@@ -389,11 +389,11 @@ internal sealed partial class ChatManager : IChatManager
             return;
         }
 
-        var preferences = _preferencesManager.GetPreferences(player.UserId);
-        var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
         // SV - Added some color to the Adminchat - Start
+        var prefs = _preferencesManager.GetPreferences(player.UserId);
+        var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
         var wrappedMessage = Loc.GetString("sv-chat-manager-send-admin-chat-wrap-message", ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
-                                    ("playerName", player.Name), ("adminColor", preferences.AdminOOCColor), ("message", FormattedMessage.EscapeText(message)));
+                                    ("playerName", player.Name), ("adminColor", prefs.AdminOOCColor), ("message", FormattedMessage.EscapeText(message)));
         // SV - Added some color to the Adminchat - End
 
         foreach (var client in clients)
