@@ -1959,3 +1959,9 @@ Entries:
       message: Added the ability to set custom objectives for antags.
   id: 271
   time: '2026-07-25T17:53:20.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Tweak
+      message: 'Admin OOC messages are not a giant line of one color anymore. '
+  id: 272
+  time: '2026-07-25T18:07:54.0000000+00:00'
