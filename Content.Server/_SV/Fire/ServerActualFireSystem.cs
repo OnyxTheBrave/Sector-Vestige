@@ -2,6 +2,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Shared._SV.Fire;
 using Content.Shared._SV.Utility;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -23,6 +24,7 @@ public sealed partial class ServerActualFireSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private EntityLookupSystem _lookupSystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
 
     private const float EffectiveOxygenOxidation = 21.8f;
     private const float EffectiveFrezonOxidation = 5.3f;
@@ -55,9 +57,19 @@ public sealed partial class ServerActualFireSystem : EntitySystem
             {
                 foreach (var gas in fireComp.GasSpawnEntries)
                 {
-                    _atmosphere.AdjustTileMixture(entity, gas.Gas, gas.Amount.Next(_random));
+                    _atmosphere.AdjustTileMixture(entity, gas.Gas, gas.Amount.Next(_random), true);
                 }
             }
+
+            if (fireComp.TargetEntity == null)
+                continue;
+
+            if(!_solutionContainerSystem.TryGetSolution(fireComp.TargetEntity.Value,fireComp.TargetEntity.ToString()!, out var solution, out var sol))
+                continue;
+
+            _solutionContainerSystem.RemoveEachReagent(solution.Value, 5);
+
+
         }
     }
 
@@ -93,7 +105,7 @@ public sealed partial class ServerActualFireSystem : EntitySystem
 
         var oxidizer = 0f;
         var fuel = 0f;
-        var totalFluid = solution.Solution.Contents.Count;
+        var totalFluid = 0f;
         var generatedHeat = 0f;
         var maxFireHeat = 0f;
 
@@ -118,6 +130,7 @@ public sealed partial class ServerActualFireSystem : EntitySystem
 
             generatedHeat = (fluid.FlammableFluid.GeneratedHeat * reagent.Quantity.Value);
             maxFireHeat = (fluid.FlammableFluid.MaxHeat * reagent.Quantity.Value);
+            totalFluid +=  reagent.Quantity.Value;
         }
 
         if (fuel == 0)

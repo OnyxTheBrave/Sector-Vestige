@@ -187,7 +187,7 @@
     isOxidizer: true
     generatedHeat: 580
     maxHeat: 2477
-    ExhaustedGases:
+    exhaustedGases:
     - gas: CarbonDioxide
       spawnWeight: 1
       gasAmount:
@@ -200,7 +200,7 @@
       spawnWeight: 1
       gasAmount:
         min: 5
-        max: 7.5
+        max: 8
       molPerSecond:
         min: 10
         max: 15 #SV: End - Flammable fluids
