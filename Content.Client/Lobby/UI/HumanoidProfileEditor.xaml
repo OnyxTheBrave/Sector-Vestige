@@ -36,6 +36,7 @@
                                 <ui:RandomizeLockButton For="Sex" LabelText="{Loc 'humanoid-profile-editor-randomize-sex-button'}"/>
                                 <ui:RandomizeLockButton For="Skin" LabelText="{Loc 'humanoid-profile-editor-randomize-skin-button'}"/>
                                 <ui:RandomizeLockButton For="Eyes" LabelText="{Loc 'humanoid-profile-editor-randomize-eye-button'}"/>
+                                <ui:RandomizeLockButton For="Markings" LabelText="{Loc 'humanoid-profile-editor-randomize-markings-button'}"/>
                             </GridContainer>
                             <Button
                                 Name="RandomizeUnlockedButton"
@@ -99,6 +100,12 @@
                                     <Label Text="{Loc 'humanoid-profile-editor-sex-label'}" />
                                     <Control HorizontalExpand="True"/>
                                     <OptionButton Name="SexButton" HorizontalAlignment="Right" />
+                                </BoxContainer>
+                                <!-- Voice -->
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label Text="{Loc 'humanoid-profile-editor-voice-label'}" />
+                                    <Control HorizontalExpand="True" />
+                                    <OptionButton Name="VoiceButton" HorizontalAlignment="Right" />
                                 </BoxContainer>
                                 <!-- Voice -->
                                 <BoxContainer HorizontalExpand="True">

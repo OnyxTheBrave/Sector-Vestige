@@ -152,6 +152,7 @@
       - WetFloorSign
       - HolosignProjector
       - Plunger
+      - TrashBagHolding
       - TrashBagBlue
       - GoldenPlunger
       - WireBrush
@@ -176,10 +177,10 @@
         whitelist:
           tags:
           - TrashBag
-      trashbag_blue:
+      trashbag_holding:
         whitelist:
           tags:
-          - TrashBagBlue
+          - TrashBagHolding
       wetfloorsign:
         whitelist:
           tags:

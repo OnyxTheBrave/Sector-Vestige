@@ -14,7 +14,7 @@
     - state: printing
       map: [ "printing" ]
       visible: false
-    - state:
+    - state: 
       map: [ "enum.FaxMachineVisuals.VisualState" ]
   - type: Icon
     sprite: Structures/Machines/fax_machine.rsi
@@ -89,7 +89,7 @@
   suffix: CentCom
   components:
   - type: Sprite
-    layers:
+    layers:      
     - state: icon
       color: "#bfe3ff"
     - state: idle
@@ -97,7 +97,7 @@
     - state: printing
       map: [ "printing" ]
       visible: false
-    - state:
+    - state: 
       map: [ "enum.FaxMachineVisuals.VisualState" ]
   - type: FaxMachine
     name: "Central Command"
@@ -110,7 +110,7 @@
   suffix: Syndicate
   components:
   - type: Sprite
-    layers:
+    layers:      
     - state: icon
       color: "#a3a3a3"
     - state: idle
@@ -118,7 +118,7 @@
     - state: printing
       map: [ "printing" ]
       visible: false
-    - state:
+    - state: 
       map: [ "enum.FaxMachineVisuals.VisualState" ]
   - type: FaxMachine
     name: "ERR*?*%!"
