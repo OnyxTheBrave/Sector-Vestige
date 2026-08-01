@@ -378,6 +378,7 @@
   - type: ActivatableUI
     key: enum.CharacterDocumentConsoleUiKey.Key
   - type: AmbientMusicMarkerMedical
+
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerCriminalRecords
@@ -419,57 +420,6 @@
       board: !type:Container
         ents: [ ]
       Paper: !type:ContainerSlot { }
-  - type: UserInterface
-    interfaces:
-      enum.CharacterDocumentConsoleUiKey.Key:
-        type: CharacterDocumentConsoleBoundUserInterface #SV - CharacterDocuments
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: ActivatableUI
-    key: enum.CharacterDocumentConsoleUiKey.Key
-  - type: AmbientMusicMarkerMedical
-
-- type: entity
-  parent: BaseComputerAiAccess
-  id: ComputerCriminalRecords
-  name: security records computer
-  description: This can be used to access security records.
-  components:
-  - type: CriminalRecordsConsole
-  - type: Sprite
-    layers:
-    - map: [ "computerLayerBody" ]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: explosive
-    - map: ["computerLayerKeys"]
-      state: security_key
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#1f8c28"
-  - type: Computer
-    board: CriminalRecordsComputerCircuitboard
-  - type: AccessReader
-    access: [["Security"]]
-  - type: CharacterDocumentConsole #SV - CharacterDocuments
-    documentType: Security
-    paperSlot:
-      insertSound: /Audio/Machines/scanning.ogg
-      ejectSound: /Audio/Machines/tray_eject.ogg
-      whitelist:
-        components:
-        - Paper
-  - type: ItemSlots #SV - CharacterDocuments
-  - type: ContainerContainer #SV - CharacterDocuments
-    containers:
-      board: !type:Container
-        ents: []
-      Paper: !type:ContainerSlot {}
   - type: UserInterface
     interfaces:
       enum.CharacterDocumentConsoleUiKey.Key:
