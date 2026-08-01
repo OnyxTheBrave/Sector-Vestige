@@ -540,50 +540,36 @@ public sealed partial class HueNodeClampedHsvColorationNode
 /// </summary>
 internal static class SkinColorationUtils
 {
+    // Sector Vestige - start: quantization-aware verification helpers (see the VerifySkinColor changes above).
     /// <summary>
-    /// A value derived by dividing 1 by 361, rounding down.
-    /// Due to the way these values are stored and deconstructed we can't expect much more precision than this..
-    /// A value derived by dividing 1 by 361, rounding down.
-    /// Due to the way these values are stored and deconstructed we can't expect much more precision than this..
+    /// Per-channel RGB tolerance used when verifying a stored skin color.
+    /// Skin colors are stored as 8-bit RGB (see <see cref="Color.RByte"/>, which truncates), so a color produced by
+    /// <see cref="ISkinColorationStrategy.ClosestSkinColor"/> can drift by roughly 1/255 per channel before it is ever
+    /// verified. Because saturation (S = chroma / value) and hue both amplify that drift for dark or low-chroma colors,
+    /// verifying channel-by-channel in HSV/HSL needs awkward value-dependent epsilons. Comparing back in RGB against the
+    /// clamped color sidesteps all of that, with a small margin on top of the raw 1/255 quantization step.
     /// </summary>
     public const float EpsilonHue = 0.00277f;
 
     /// <summary>
-    /// Due to RGB colors being clamped to 8 bits, precision is lost during transformation to HSL or HSV.
-    /// The precision of the result is approximately 1/180.
+    /// A value derived by dividing 1 by 256.
+    /// Due to the way these values are stored and deconstructed we can't expect much more precision than this..
     /// </summary>
-    public const float Epsilon = 0.0056f;
+    public const float Epsilon = 0.00390625f;
+    public const float ChannelEpsilon = 4f / 255f;
 
-    // // Sector Vestige - start: quantization-aware verification helpers (see the VerifySkinColor changes above).
-    // /// <summary>
-    // /// Per-channel RGB tolerance used when verifying a stored skin color.
-    // /// Skin colors are stored as 8-bit RGB (see <see cref="Color.RByte"/>, which truncates), so a color produced by
-    // /// <see cref="ISkinColorationStrategy.ClosestSkinColor"/> can drift by roughly 1/255 per channel before it is ever
-    // /// verified. Because saturation (S = chroma / value) and hue both amplify that drift for dark or low-chroma colors,
-    // /// verifying channel-by-channel in HSV/HSL needs awkward value-dependent epsilons. Comparing back in RGB against the
-    // /// clamped color sidesteps all of that, with a small margin on top of the raw 1/255 quantization step.
-    // /// </summary>
-    // public const float EpsilonHue = 0.00277f;
-    //
-    // /// <summary>
-    // /// A value derived by dividing 1 by 256.
-    // /// Due to the way these values are stored and deconstructed we can't expect much more precision than this..
-    // /// </summary>
-    // public const float Epsilon = 0.00390625f;
-    // public const float ChannelEpsilon = 4f / 255f;
-    //
-    // /// <summary>
-    // /// Whether <paramref name="color"/> is within 8-bit quantization distance of <paramref name="reference"/>.
-    // /// Used so that VerifySkinColor accepts any color that ClosestSkinColor would have produced, even after it has
-    // /// been rounded to 8-bit RGB for storage.
-    // /// </summary>
-    // public static bool WithinQuantization(Color color, Color reference)
-    // {
-    //     return MathF.Abs(color.R - reference.R) <= ChannelEpsilon
-    //         && MathF.Abs(color.G - reference.G) <= ChannelEpsilon
-    //         && MathF.Abs(color.B - reference.B) <= ChannelEpsilon;
-    // }
-    // // Sector Vestige - end
+    /// <summary>
+    /// Whether <paramref name="color"/> is within 8-bit quantization distance of <paramref name="reference"/>.
+    /// Used so that VerifySkinColor accepts any color that ClosestSkinColor would have produced, even after it has
+    /// been rounded to 8-bit RGB for storage.
+    /// </summary>
+    public static bool WithinQuantization(Color color, Color reference)
+    {
+        return MathF.Abs(color.R - reference.R) <= ChannelEpsilon
+            && MathF.Abs(color.G - reference.G) <= ChannelEpsilon
+            && MathF.Abs(color.B - reference.B) <= ChannelEpsilon;
+    }
+    // Sector Vestige - end
 
     /// <summary>
     /// Checks if a hue value is within a specified range, correctly handling ranges that wrap around 1.0 (e.g., reds).
