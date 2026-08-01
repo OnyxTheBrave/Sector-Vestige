@@ -5,8 +5,8 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: latheRecipe
-  id: RMCWheelchairBellSpawnFolded
-  result: RMCWheelchairBellSpawnFolded
+  id: VehicleWheelchairFolded
+  result: VehicleWheelchairFolded
   completetime: 4
   materials:
     Steel: 300
