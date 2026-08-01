@@ -343,10 +343,5 @@ namespace Content.Server.Zombies
             ghostRole.RoleRules = Loc.GetString("zombie-role-rules");
             ghostRole.MindRoles.Add(MindRoleZombie);
         }
-
-        private void OnAttemptConvert(Entity<ZombieComponent> ent, ref AttemptConvertRevolutionaryEvent args)
-        {
-            args.Cancelled = true;
-        }
     }
 }
