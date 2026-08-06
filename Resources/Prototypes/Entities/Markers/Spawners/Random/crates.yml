@@ -246,7 +246,6 @@
         - id: CrateTrainingBombs
         - id: CrateTrackingImplants
         - id: CrateSecurityTrackingMindshieldImplants
-        - id: CrateSecurityHelmet
         - id: CrateSecurityArmor
         - id: CrateRestraints
         - id: CrateEmergencyExplosive
