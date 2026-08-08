@@ -8,6 +8,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords.Components;
 using Content.Shared.StationRecords.Events;
+using Content.Shared._CD.Loadouts;
 using Robust.Shared.Enums;
 using Robust.Shared.Timing;
 
@@ -158,6 +159,9 @@ public sealed partial class StationRecordsSystem : EntitySystem
             SetIdKey(idUid, new StationRecordKey(id, station));
             return;
         }
+
+        // CD: Job titles. We need to inject it here for the manifest and records.
+        var jobTitle = TryComp<RenameIdComponent>(idUid, out var rename) ? Loc.GetString(rename.Value) : jobPrototype.LocalizedName;
 
         var record = new GeneralStationRecord
         {
