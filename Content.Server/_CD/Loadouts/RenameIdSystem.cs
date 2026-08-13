@@ -15,6 +15,7 @@ using Content.Shared.PDA;
 using Content.Shared.StationRecords;
 using Content.Shared.StationRecords.Components;
 using Content.Shared.StationRecords.Systems;
+using Content.Shared._CD.Loadouts;
 
 namespace Content.Server._CD.Loadouts;
 

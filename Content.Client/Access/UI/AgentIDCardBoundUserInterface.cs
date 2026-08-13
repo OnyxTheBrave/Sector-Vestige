@@ -1,3 +1,4 @@
+using Content.Shared._CD.NanoChat;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.StatusIcon;
@@ -25,6 +26,7 @@ public sealed class AgentIDCardBoundUserInterface(EntityUid owner, Enum uiKey) :
         _window.OnNameChanged += OnNameChanged;
         _window.OnJobChanged += OnJobChanged;
         _window.OnJobIconChanged += OnJobIconChanged;
+        _window.OnNumberChanged += OnNumberChanged; // CD
 
         ProtoId<JobIconPrototype> currentIcon = default;
         if (EntMan.TryGetComponent<IdCardComponent>(Owner, out var card))
@@ -43,8 +45,10 @@ public sealed class AgentIDCardBoundUserInterface(EntityUid owner, Enum uiKey) :
 
         if (!EntMan.TryGetComponent<IdCardComponent>(Owner, out var card))
             return;
+        if (!EntMan.TryGetComponent<NanoChatCardComponent>(Owner, out var nanoChat))
+            return;
 
-        _window.Update(card);
+        _window.Update(card, nanoChat);
     }
 
     private void OnNameChanged(string newName)
@@ -60,5 +64,11 @@ public sealed class AgentIDCardBoundUserInterface(EntityUid owner, Enum uiKey) :
     private void OnJobIconChanged(ProtoId<JobIconPrototype> newJobIconId)
     {
         SendPredictedMessage(new AgentIDCardJobIconChangedMessage(newJobIconId));
+    }
+
+    //SV: Fix Nanochat with changes to agent ID cards
+    private void OnNumberChanged(uint newNumber)
+    {
+        SendPredictedMessage(new AgentIDCardNumberChangedMessage(newNumber));
     }
 }

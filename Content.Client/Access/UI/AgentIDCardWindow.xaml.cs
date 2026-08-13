@@ -32,6 +32,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using System.Numerics;
 using System.Linq;
+using Content.Shared._CD.NanoChat;
 
 namespace Content.Client.Access.UI;
 
@@ -71,21 +72,21 @@ public sealed partial class AgentIDCardWindow : FancyWindow
         AgentTabs.SetTabTitle(1, Loc.GetString("agent-id-ui-tab-job-icons"));
 
         // CD - Add handlers for number changes
-        JobLineEdit.OnTextEntered += OnNumberEntered;
-        JobLineEdit.OnFocusExit += OnNumberEntered;
+        NumberLineEdit.OnTextEntered += OnNumberEntered;
+        NumberLineEdit.OnFocusExit += OnNumberEntered;
 
         // CD - Filter to only allow digits
-        JobLineEdit.OnTextChanged += args =>
+        NumberLineEdit.OnTextChanged += args =>
         {
             if (args.Text.Length > MaxNumberLength)
             {
-                JobLineEdit.Text = args.Text[..MaxNumberLength];
+                NumberLineEdit.Text = args.Text[..MaxNumberLength];
             }
 
             // Filter to digits only
             var newText = string.Concat(args.Text.Where(char.IsDigit));
             if (newText != args.Text)
-                JobLineEdit.Text = newText;
+                NumberLineEdit.Text = newText;
         };
     }
 
@@ -94,12 +95,13 @@ public sealed partial class AgentIDCardWindow : FancyWindow
     {
         if (uint.TryParse(args.Text, out var number) && number > 0)
             OnNumberChanged?.Invoke(number);
+        NumberLineEdit.Text = number.ToString("D4") ?? "";
     }
 
     // CD - Add setter for current number
     public void SetCurrentNumber(uint? number)
     {
-        JobLineEdit.Text = number?.ToString("D4") ?? "";
+
     }
 
     /// <summary>
@@ -178,15 +180,18 @@ public sealed partial class AgentIDCardWindow : FancyWindow
         }
     }
 
-    public void Update(IdCardComponent card)
+    public void Update(IdCardComponent card, NanoChatCardComponent nanoChat)
     {
         var name = card.FullName ?? string.Empty;
         var job = card.LocalizedJobTitle ?? string.Empty;
+        var number = nanoChat.Number?.ToString() ?? string.Empty;
 
         NameLineEdit.Text = name;
         CurrentName.Text = name;
         JobLineEdit.Text = job;
         CurrentJob.Text = job;
+        NumberLineEdit.Text = number;
+        CurrentNumber.Text = number;
 
         var jobIconProto = _prototypeManager.Index(card.JobIcon);
         CurrentJobIcon.Texture = _spriteSystem.Frame0(jobIconProto.Icon);
