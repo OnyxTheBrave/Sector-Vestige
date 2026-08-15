@@ -28,12 +28,13 @@ using Content.Shared.Coordinates;
 using System.Threading.Tasks;
 using Content.Server.CriminalRecords.Systems;
 using Content.Server.Radio.EntitySystems;
-using Content.Server.StationRecords.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.CriminalRecords;
 using Content.Shared.Radio;
 using Content.Shared.Security;
 using Content.Shared.StationRecords;
+using Content.Shared.StationRecords.Systems;
+using Content.Shared.StationRecords.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
