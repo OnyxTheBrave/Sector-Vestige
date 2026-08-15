@@ -8,8 +8,9 @@
 using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Fixtures.Attributes;
 using Content.Server._SV.CharacterDocuments.Consoles;
-using Content.Server.StationRecords.Systems;
 using Content.Shared.StationRecords;
+using Content.Shared.StationRecords.Components;
+using Content.Shared.StationRecords.Systems;
 using Robust.Shared.Enums;
 using Robust.Shared.GameObjects;
 
@@ -45,9 +46,8 @@ public sealed class CharacterDocumentConsoleFingerprintTest : GameTest
         var station = SEntMan.Spawn();
         var records = SEntMan.AddComponent<StationRecordsComponent>(station);
 
-        _stationRecords.AddRecordEntry(station,
-            new GeneralStationRecord { Name = name, Fingerprint = fingerprint },
-            records);
+        _stationRecords.AddRecordEntry((station, records),
+            new GeneralStationRecord { Name = name, Fingerprint = fingerprint });
 
         return (station, records);
     }
