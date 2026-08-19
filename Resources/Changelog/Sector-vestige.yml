@@ -1975,3 +1975,11 @@ Entries:
       message: Increased timeout for Holopads to 600 seconds.
   id: 274
   time: '2026-08-15T13:03:45.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Added a new lobby art.
+    - type: Remove
+      message: Removed two lobby arts from Harmony.
+  id: 275
+  time: '2026-08-19T11:19:38.0000000+00:00'
