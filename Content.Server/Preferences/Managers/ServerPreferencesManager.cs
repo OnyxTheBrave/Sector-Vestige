@@ -3,10 +3,12 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Server.Afk;
 using Content.Server.Database;
 using Content.Server.Database.Migrations.Sqlite;
 using Content.Shared.Body;
 using Content.Shared.CCVar;
+using Content.Shared.Database;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -15,8 +17,6 @@ using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Traits;
-using Content.Server._CD.Records;
-using Content.Shared._CD.Records;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -25,6 +25,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Utility;
+using Content.Server.Administration.Logs; // SV - Add logging to keep track of what people delete
 
 namespace Content.Server.Preferences.Managers
 {
@@ -38,12 +39,14 @@ namespace Content.Server.Preferences.Managers
         [Dependency] private IConfigurationManager _cfg = default!;
         [Dependency] private IServerDbManager _db = default!;
         [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private IAfkManager _afkManager = default!;
         [Dependency] private IDependencyCollection _dependencies = default!;
         [Dependency] private ILogManager _log = default!;
         [Dependency] private UserDbDataManager _userDb = default!;
         [Dependency] private IPrototypeManager _prototypeManager = default!;
         [Dependency] private MarkingManager _marking = default!;
         [Dependency] private ISerializationManager _serialization = default!;
+        [Dependency] private IAdminLogManager _adminLogger = default!; // SV - Add logging to keep track of what people delete
 
         // Cache player prefs on the server so we don't need as much async hell related to them.
         private readonly Dictionary<NetUserId, PlayerPrefData> _cachedPlayerPrefs =
@@ -113,8 +116,15 @@ namespace Content.Server.Preferences.Managers
                 new Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>>();
 
             var species = profile.Species;
-            if (!_prototypeManager.HasIndex<SpeciesPrototype>(species))
+            if (!_prototypeManager.TryIndex<SpeciesPrototype>(species, out var speciesPrototype))
+            {
                 species = HumanoidCharacterProfile.DefaultSpecies;
+                speciesPrototype = _prototypeManager.Index<SpeciesPrototype>(species);
+            }
+
+            var voice = profile.Voice ?? speciesPrototype.DefaultSoundsBySex[(int)sex];
+            if (!_prototypeManager.HasIndex(voice))
+                voice = speciesPrototype.DefaultSoundsBySex[(int)sex];
 
             if (profile.OrganMarkings?.RootElement is { } element)
             {
@@ -148,10 +158,44 @@ namespace Content.Server.Preferences.Managers
 
             var loadouts = new Dictionary<string, RoleLoadout>();
 
-            // CD: get character records or create default records
-            var cdRecords = profile.CDProfile?.CharacterRecords != null
-                ? RecordsSerialization.Deserialize(profile.CDProfile.CharacterRecords, profile.CDProfile.CharacterRecordEntries)
-                : PlayerProvidedCharacterRecords.DefaultRecords();
+            // SV: hydrate the lobby-visible SV documents from the persistent store.
+            List<Content.Shared._SV.CharacterDocuments.CharacterDocument>? svDocs = null;
+            if (profile.SVProfile?.CharacterDocuments is { Count: > 0 } svRows)
+            {
+                svDocs = svRows
+                    // Binned (soft-deleted) docs are invisible to the owning player — they only
+                    // surface to Central Command consoles and admins until the retention sweep.
+                    .Where(d => d.DeletedAt == null)
+                    .Select(d => new Content.Shared._SV.CharacterDocuments.CharacterDocument
+                    {
+                        DocID = d.DocID,
+                        DocType = d.DocType,
+                        DocTitle = d.DocTitle,
+                        DocAuthor = d.DocAuthor,
+                        DocLastEditedBy = d.DocLastEditedBy,
+                        DocDateLastEdited = d.DocDateLastEdited,
+                        DocContent = d.DocContent,
+                        DocStamps = Content.Server._SV.CharacterDocuments.CharacterDocumentDeserializer.DeserializeStamps(d.DocStamps),
+                    })
+                    .ToList();
+            }
+
+            // SV: hydrate the lobby-visible General flavour block from the persistent JSON.
+            Content.Shared._SV.CharacterDocuments.CharacterDocumentGeneral? svGeneral = null;
+            if (profile.SVProfile?.CharacterDocumentGeneral != null)
+            {
+                try
+                {
+                    svGeneral = profile.SVProfile.CharacterDocumentGeneral
+                        .Deserialize<Content.Shared._SV.CharacterDocuments.CharacterDocumentGeneral>();
+                    svGeneral?.EnsureValid();
+                }
+                catch
+                {
+                    // Corrupt blob — fall back to defaults rather than blocking login.
+                    svGeneral = null;
+                }
+            }
 
             foreach (var role in profile.Loadouts)
             {
@@ -179,9 +223,10 @@ namespace Content.Server.Preferences.Managers
                 profile.CharacterName,
                 profile.FlavorText,
                 species,
-                profile.CDProfile?.Height ?? 1.0f,
+                profile.Height,
                 profile.Age,
                 sex,
+                voice,
                 gender,
                 new HumanoidCharacterAppearance
                 (
@@ -195,8 +240,8 @@ namespace Content.Server.Preferences.Managers
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts,
-                cdRecords
-            );
+                svDocs, // SV: hydrated from SVProfile.CharacterDocuments
+                svGeneral); // SV: hydrated from SVProfile JSON column
         }
 
         private async void HandleSelectCharacterMessage(MsgSelectCharacter message)
@@ -224,6 +269,7 @@ namespace Content.Server.Preferences.Managers
             }
 
             prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, index, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites);
+            _afkManager.PlayerDidAction(message.MsgChannel);
 
             if (ShouldStorePrefs(message.MsgChannel.AuthType))
             {
@@ -239,7 +285,10 @@ namespace Content.Server.Preferences.Managers
             if (message.Profile == null)
                 _sawmill.Error($"User {userId} sent a {nameof(MsgUpdateCharacter)} with a null profile in slot {message.Slot}.");
             else
+            {
                 await SetProfile(userId, message.Slot, message.Profile);
+                _afkManager.PlayerDidAction(message.MsgChannel);
+            }
         }
 
         public async Task SetProfile(NetUserId userId, int slot, HumanoidCharacterProfile profile)
@@ -258,6 +307,12 @@ namespace Content.Server.Preferences.Managers
 
             profile.EnsureValid(session, _dependencies);
 
+            // SV: high-alert admin log for any character document removed via the preferences
+            // / character editor. Compares the slot's previously-saved docs against the incoming
+            // ones and logs any that disappeared.
+            if (curPrefs.Characters.TryGetValue(slot, out var previousProfile))
+                LogRemovedSVDocuments(session, previousProfile, profile);
+
             var profiles = new Dictionary<int, HumanoidCharacterProfile>(curPrefs.Characters)
             {
                 [slot] = profile
@@ -267,6 +322,28 @@ namespace Content.Server.Preferences.Managers
 
             if (ShouldStorePrefs(session.Channel.AuthType))
                 await _db.SaveCharacterSlotAsync(userId, profile, slot);
+        }
+
+        /// <summary>
+        ///     SV: Emits a high-alert admin log for each character document a player removed via the
+        ///     in-lobby preferences / character editor. A document counts as removed when its DocID
+        ///     was present in the previously-saved profile but is absent from the incoming one.
+        /// </summary>
+        private void LogRemovedSVDocuments(ICommonSession session, HumanoidCharacterProfile oldProfile, HumanoidCharacterProfile newProfile)
+        {
+            var oldDocs = oldProfile.SVCharacterDocuments;
+            if (oldDocs is not { Count: > 0 })
+                return;
+
+            var newDocs = newProfile.SVCharacterDocuments;
+            foreach (var doc in oldDocs)
+            {
+                if (newDocs != null && newDocs.Any(d => d.DocID == doc.DocID))
+                    continue;
+
+                _adminLogger.Add(LogType.CharacterDocument, LogImpact.High,
+                    $"{session:player} deleted character document '{doc.DocTitle}' (#{doc.DocID}) of character '{newProfile.Name}' via the preferences editor");
+            }
         }
 
         public async Task SetConstructionFavorites(NetUserId userId, List<ProtoId<ConstructionPrototype>> favorites)
@@ -296,12 +373,18 @@ namespace Content.Server.Preferences.Managers
                 return;
             }
 
-            if (slot < 0 || slot >= MaxCharacterSlots)
+
+            if (slot < 0)
             {
                 return;
             }
 
             var curPrefs = prefsData.Prefs!;
+
+            if (!curPrefs.Characters.ContainsKey(slot))
+            {
+                return;
+            }
 
             // If they try to delete the slot they have selected then we switch to another one.
             // Of course, that's only if they HAVE another slot.
@@ -323,6 +406,7 @@ namespace Content.Server.Preferences.Managers
             arr.Remove(slot);
 
             prefsData.Prefs = new PlayerPreferences(arr, nextSlot ?? curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites);
+            _afkManager.PlayerDidAction(message.MsgChannel);
 
             if (ShouldStorePrefs(message.MsgChannel.AuthType))
             {
@@ -364,6 +448,7 @@ namespace Content.Server.Preferences.Managers
 
             var curPrefs = prefsData.Prefs!;
             prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, validatedList);
+            _afkManager.PlayerDidAction(message.MsgChannel);
 
             if (ShouldStorePrefs(message.MsgChannel.AuthType))
             {
@@ -422,6 +507,30 @@ namespace Content.Server.Preferences.Managers
             };
             _netManager.ServerSendMessage(msg, session.Channel);
         }
+
+        /// <summary>
+        ///     SV: Re-fetch a player's preferences from the DB and push a fresh
+        ///     <see cref="MsgPreferencesAndSettings"/> to them. Used by the admin
+        ///     character-documents tool so that admin-side edits show up in the
+        ///     player's lobby UI without requiring a reconnect.
+        /// </summary>
+        public async Task RefreshPreferencesForUserAsync(ICommonSession session)
+        {
+            if (!_cachedPlayerPrefs.TryGetValue(session.UserId, out var prefsData) || !prefsData.PrefsLoaded)
+                return;
+
+            var prefs = await GetOrCreatePreferencesAsync(session.UserId, CancellationToken.None);
+            prefsData.Prefs = SanitizePreferences(session, ConvertPreferences(prefs), _dependencies);
+
+            var msg = new MsgPreferencesAndSettings();
+            msg.Preferences = prefsData.Prefs;
+            msg.Settings = new GameSettings
+            {
+                MaxCharacterSlots = MaxCharacterSlots
+            };
+            _netManager.ServerSendMessage(msg, session.Channel);
+        }
+        // SV: Re-fetch a player's preferences from the DB - END
 
         public void OnClientDisconnected(ICommonSession session)
         {
@@ -485,9 +594,16 @@ namespace Content.Server.Preferences.Managers
             var prefs = await _db.GetPlayerPreferencesAsync(userId, cancel);
             if (prefs is null)
             {
+                // The player has no characters, so the Company assigns them one
+
                 var speciesToBlacklist =
                     new HashSet<string>(_cfg.GetCVar(CCVars.ICNewAccountSpeciesBlacklist).Split(","));
-                return await _db.InitPrefsAsync(userId, HumanoidCharacterProfile.Random(speciesToBlacklist), cancel);
+
+                //Randomize species and set job priorities from cvar
+                var profile = HumanoidCharacterProfile.Random(speciesToBlacklist);
+                profile = profile.WithJobFromCvar(_cfg);
+
+                return await _db.InitPrefsAsync(userId, profile, cancel);
             }
 
             return prefs;

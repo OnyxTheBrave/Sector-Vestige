@@ -1,9 +1,10 @@
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Fixtures.Attributes;
 using Content.IntegrationTests.Utility;
 using Content.Shared.Body;
+using Content.Shared.Chat.Prototypes;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
@@ -11,9 +12,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Speech.Components;
 using Robust.Shared.Enums;
 using Robust.Shared.GameObjects;
-using Robust.Shared.Maths; // Sector Vestige: Color for the quantization test
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random; // Sector Vestige: RobustRandom for the quantization test
 
 namespace Content.IntegrationTests.Tests.Humanoid;
 
@@ -22,7 +21,9 @@ namespace Content.IntegrationTests.Tests.Humanoid;
 public sealed class HumanoidProfileTests : GameTest
 {
     private static readonly EntProtoId BaseSpecies = "MobHuman";
-    private static readonly ProtoId<SpeciesPrototype> Vox = "Vox";
+    private static readonly ProtoId<SpeciesPrototype> SlimePerson = "SlimePerson";
+    public static readonly ProtoId<EmoteSoundsPrototype> SlimeVoice = "FemaleSlime";
+
     private static string[] _species = GameDataScrounger.PrototypesOfKind<SpeciesPrototype>();
 
     [SidedDependency(Side.Server)] private BodySystem _bodySystem = default!;
@@ -47,16 +48,20 @@ public sealed class HumanoidProfileTests : GameTest
                 .WithSex(Sex.Female)
                 .WithAge(67)
                 .WithGender(Gender.Neuter)
-                .WithSpecies(Vox));
+                .WithSpecies(SlimePerson)
+                .WithVoice(SlimeVoice));
+
             var voiceComponent = SEntMan.GetComponent<VocalComponent>(body);
 
             Assert.That(humanoidComponent.Age, Is.EqualTo(67));
             Assert.That(humanoidComponent.Sex, Is.EqualTo(Sex.Female));
             Assert.That(humanoidComponent.Gender, Is.EqualTo(Gender.Neuter));
-            Assert.That(humanoidComponent.Species, Is.EqualTo(Vox));
+            Assert.That(humanoidComponent.Species, Is.EqualTo(SlimePerson));
+            Assert.That(humanoidComponent.Voice, Is.EqualTo(SlimeVoice));
 
-            Assert.That(voiceComponent.Sounds, Is.Not.Null, message: "the MobHuman spawned by this test needs to have sex-specific sound set");
-            Assert.That(voiceComponent.Sounds![Sex.Female], Is.EqualTo(voiceComponent.EmoteSounds));
+            var speciesProto = SProtoMan.Index(humanoidComponent.Species);
+
+            Assert.That(speciesProto.DefaultSoundsBySex[(int)Sex.Female], Is.EqualTo(voiceComponent.EmoteSounds));
         });
     }
 
@@ -104,48 +109,11 @@ public sealed class HumanoidProfileTests : GameTest
             Assert.That(proto.Sexes.Contains(humanoidComponent.Sex), Is.True, $"Character has sex not found in the species prototype! Current: {humanoidComponent.Sex}");
             Assert.That(humanoidComponent.Species, Is.EqualTo(species), $"Species does not match! Expected: {species} Current: {humanoidComponent.Species}");
             var strategy = Server.ProtoMan.Index(proto.SkinColoration).Strategy;
-            Assert.That(strategy.VerifySkinColor(profile.Appearance.SkinColor, out var reason), Is.True, $"Failed to verify the skin color from strategy {strategy}. Reason: {reason}");
+            Assert.That(strategy.VerifySkinColor(profile.Appearance.SkinColor, out var reason), Is.True, $"Failed to verify the skin color ({profile.Appearance.SkinColor}) from strategy {strategy}. Reason: {reason}");
 
             AssertValidProfile((body, humanoidComponent), profile);
         });
     }
-
-    // Sector Vestige - start: regression guard for the skin-color/8-bit-storage heisenbug (Vulpkanin, Vox, Human, Dwarf).
-    [Test]
-    [TestOf(typeof(HumanoidCharacterAppearance))]
-    [Description("Every species' skin coloration must still verify its own clamped output after it is stored as 8-bit RGB. " +
-                "8-bit quantization perturbs HSV/HSL saturation by ~1/255 ÷ value, which made the skin-color check intermittently " +
-                "reject valid colors for low-value species like Vulpkanin and Vox.")]
-    public async Task EnsureSkinColorsSurviveQuantization()
-    {
-        await Server.WaitIdleAsync();
-
-        await Server.WaitAssertion(() =>
-        {
-            var random = new RobustRandom();
-
-            foreach (var species in _species)
-            {
-                var proto = SProtoMan.Index<SpeciesPrototype>(species);
-                var strategy = SProtoMan.Index(proto.SkinColoration).Strategy;
-
-                for (var i = 0; i < 10000; i++)
-                {
-                    // Mirror HumanoidCharacterAppearance.Random, including the 8-bit storage its constructor applies via ClampColor.
-                    var generated = strategy.InputType switch
-                    {
-                        SkinColorationStrategyInput.Unary => strategy.FromUnary(random.NextFloat() * 100f),
-                        _ => strategy.ClosestSkinColor(new Color(random.NextFloat(), random.NextFloat(), random.NextFloat())),
-                    };
-                    var stored = HumanoidCharacterAppearance.ClampColor(generated);
-
-                    Assert.That(strategy.VerifySkinColor(stored, out var reason), Is.True,
-                        $"Species '{species}' ({strategy.GetType().Name}) produced a skin tone that fails verification after 8-bit storage (iteration {i}). Color: {stored}. Reason: {reason}");
-                }
-            }
-        });
-    }
-    // Sector Vestige - end
 
     private void LoadDependencies(out EntityUid body, out HumanoidProfileComponent humanoidComponent)
     {
@@ -210,5 +178,33 @@ public sealed class HumanoidProfileTests : GameTest
                     Assert.That(markingProto.SexRestriction, Is.EqualTo(profile.Sex), $"Marking {markingProto.ID} has invalid sex restriction! Expected: {profile.Sex} Current: {markingProto.SexRestriction}");
             }
         }
+    }
+
+    [Test]
+    [TestOf(typeof(VocalComponent))]
+    [TestCaseSource(nameof(_species))]
+    [Description("Tests that if a species has corresponding UI entries for their VocalComponent, as well as sex mappings for their voice entry in speciesPrototype")]
+    public async Task EnsureValidVoices(string species)
+    {
+        await Server.WaitIdleAsync();
+
+        await Server.WaitAssertion(() =>
+        {
+            var proto = SProtoMan.Index<SpeciesPrototype>(species);
+
+            // Species like skeletons don't need UI entries
+            if (!proto.RoundStart)
+                return;
+
+            var voiceProtos = proto.Voices;
+            var sexedProtos = proto.DefaultSoundsBySex.ToHashSet();
+
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(sexedProtos.IsSubsetOf(voiceProtos), "Species with modified `DefaultSoundsBySex` should have an entry added to the `voice` field in the `speciesPrototype`");
+                Assert.That(voiceProtos.Union(sexedProtos).Any(), "Species should have sex mappings for at least one voice set in speciesPrototype");
+                Assert.That(proto.DefaultSoundsBySex, Has.Length.EqualTo(3), "Species should declare a defaultSoundsBySex for every sex");
+            }
+        });
     }
 }

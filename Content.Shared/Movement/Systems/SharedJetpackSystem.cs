@@ -20,7 +20,6 @@ public abstract partial class SharedJetpackSystem : EntitySystem
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private ActionContainerSystem _actionContainer = default!;
 
-
     [Dependency] private EntityQuery<JetpackComponent> _jetpackQuery = default!;
 
     public override void Initialize()
@@ -63,7 +62,7 @@ public abstract partial class SharedJetpackSystem : EntitySystem
             if (transform.GridUid == gridUid && ev.HasGravity &&
                 _jetpackQuery.TryGetComponent(user.Jetpack, out var jetpack))
             {
-                _popup.PopupClient(Loc.GetString("jetpack-to-grid"), uid, uid);
+                _popup.PopupEntity(Loc.GetString("jetpack-to-grid"), uid, uid);
 
                 SetEnabled(user.Jetpack, jetpack, false, uid);
             }
@@ -93,7 +92,7 @@ public abstract partial class SharedJetpackSystem : EntitySystem
         {
             SetEnabled(component.Jetpack, jetpack, false, uid);
 
-            _popup.PopupClient(Loc.GetString("jetpack-to-grid"), uid, uid);
+            _popup.PopupEntity(Loc.GetString("jetpack-to-grid"), uid, uid);
         }
     }
 
@@ -133,7 +132,7 @@ public abstract partial class SharedJetpackSystem : EntitySystem
 
         if (TryComp(uid, out TransformComponent? xform) && !CanEnableOnGrid(xform.GridUid))
         {
-            _popup.PopupClient(Loc.GetString("jetpack-no-station"), uid, args.Performer);
+            _popup.PopupEntity(Loc.GetString("jetpack-no-station"), uid, args.Performer);
 
             return;
         }

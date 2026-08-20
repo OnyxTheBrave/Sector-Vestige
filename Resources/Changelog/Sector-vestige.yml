@@ -1887,3 +1887,103 @@ Entries:
       message: Added a HealNearby component for map makers and GMs.
   id: 260
   time: '2026-06-24T11:36:40.0000000+00:00'
+- author: Anzuneth
+  changes:
+    - type: Tweak
+      message: Leg paralysis now allows very slow movement via crawling
+    - type: Tweak
+      message: Wheelchairs now allow you to use both hands
+    - type: Fix
+      message: Updated internal wheelchair functionality to be less buggy
+  id: 261
+  time: '2026-06-30T07:04:57.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Fix
+      message: You can now deconstruct broken APCs.
+    - type: Tweak
+      message: APCs will now turn into broken APCs when damaged.
+  id: 262
+  time: '2026-06-30T07:06:23.0000000+00:00'
+- author: HexReject
+  changes:
+    - type: Add
+      message: R&D has been given gear to make them stand out
+  id: 263
+  time: '2026-07-03T14:07:18.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Added a bonfire that can be used as a microwave
+  id: 264
+  time: '2026-07-03T15:11:04.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Tweak
+      message: Updated event map.
+  id: 265
+  time: '2026-07-04T11:07:04.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Fix
+      message: Hypohonia is fixed again.
+  id: 266
+  time: '2026-07-08T23:30:17.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Tweak
+      message: Removed snowball from rotation.
+  id: 267
+  time: '2026-07-11T22:39:31.0000000+00:00'
+- author: lambdatiger
+  changes:
+    - type: Add
+      message: Amber back into map pool.
+  id: 268
+  time: '2026-07-12T13:09:13.0000000+00:00'
+- author: lambdatiger
+  changes:
+    - type: Add
+      message: In-hand alternate interaction to cycle door remote.
+  id: 269
+  time: '2026-07-12T13:11:45.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Tweak
+      message: Rodentia starve at a slower rate.
+  id: 270
+  time: '2026-07-13T16:52:15.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Add
+      message: Added the ability to set custom objectives for antags.
+  id: 271
+  time: '2026-07-25T17:53:20.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Tweak
+      message: 'Admin OOC messages are not a giant line of one color anymore. '
+  id: 272
+  time: '2026-07-25T18:07:54.0000000+00:00'
+- author: ReboundQ3
+  changes: []
+  id: 273
+  time: '2026-08-13T23:32:33.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Tweak
+      message: Increased timeout for Holopads to 600 seconds.
+  id: 274
+  time: '2026-08-15T13:03:45.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Added a new lobby art.
+    - type: Remove
+      message: Removed two lobby arts from Harmony.
+  id: 275
+  time: '2026-08-19T11:19:38.0000000+00:00'
+- author: ReboundQ3
+  changes: []
+  id: 276
+  time: '2026-08-19T23:38:31.0000000+00:00'

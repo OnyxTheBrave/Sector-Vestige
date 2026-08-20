@@ -257,13 +257,8 @@
     speechVerb: Parrot
     speechSounds: MaleAvali
     allowedEmotes: ['Chirp', 'Coo'] # FloofStation - Coo
-  - type: Vocal
-    sounds:
-      Male: MaleAvaliEmote
-      Unsexed: MaleAvaliEmote
-      Female: FemaleAvaliEmote
+  - type: Vocal # Sector Vestige: per-sex `sounds` dict removed upstream; voice now comes from humanoid Voice
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatChicken
       amount: 5

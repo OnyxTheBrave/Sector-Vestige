@@ -18,7 +18,6 @@
       state: atmos_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: GenericVisualizer
     visuals:
       enum.ComputerVisuals.Powered:
@@ -35,10 +34,6 @@
           2: { state: alert-1 }
           3: { state: alert-2 }
           4: { state: alert-2 }
-      enum.WiresVisuals.MaintenancePanelState:
-        enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: false }
-          False: { visible: true }
   - type: AtmosAlertsComputer
   - type: ActivatableUI
     singleUser: true
@@ -53,6 +48,7 @@
     guides:
     - AtmosphericAlertsComputer
     - DeviceMonitoringAndControl
+  - type: AmbientMusicMarkerEngineering
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -74,7 +70,6 @@
       state: atmos_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: AtmosMonitoringConsole
     navMapTileColor: "#1a1a1a"
     navMapWallColor: "#404040"
@@ -174,7 +169,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: Computer
     board: ShuttleConsoleCircuitboard
 
@@ -196,7 +190,6 @@
       state: syndie_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: Tag
     tags:
       - Syndicate
@@ -227,7 +220,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: DroneConsole
     components:
       - type: CargoShuttle
@@ -262,7 +254,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: ActivatableUI
     key: enum.IFFConsoleUiKey.Key
   - type: UserInterface
@@ -315,7 +306,6 @@
       state: power_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -339,6 +329,7 @@
         type: PowerMonitoringConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+  - type: AmbientMusicMarkerEngineering
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -358,21 +349,35 @@
       state: med_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: PointLight
     radius: 1.5
     energy: 4.0
     color: "#1f8c28"
   - type: Computer
     board: MedicalRecordsComputerCircuitboard
-  - type: CharacterRecordConsole
-    consoleType: Medical
+  - type: CharacterDocumentConsole #SV - CharacterDocuments
+    documentType: Medical
+    paperSlot:
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components:
+        - Paper
+  - type: ItemSlots #SV - CharacterDocuments
+  - type: ContainerContainer #SV - CharacterDocuments
+    containers:
+      board: !type:Container
+        ents: [ ]
+      Paper: !type:ContainerSlot { }
   - type: UserInterface
     interfaces:
-      enum.CharacterRecordConsoleKey.Key:
-        type: CharacterRecordConsoleBoundUserInterface
+      enum.CharacterDocumentConsoleUiKey.Key:
+        type: CharacterDocumentConsoleBoundUserInterface #SV - CharacterDocuments
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: ActivatableUI
-    key: enum.CharacterRecordConsoleKey.Key
+    key: enum.CharacterDocumentConsoleUiKey.Key
+  - type: AmbientMusicMarkerMedical
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -380,28 +385,19 @@
   name: security records computer
   description: This can be used to access security records.
   components:
-    # We need to have both a CriminalRecordsConsole and CharacterRecordConsole
-    # component to be able to set wanted status.
   - type: CriminalRecordsConsole
-  - type: UserInterface
-    interfaces:
-      enum.CharacterRecordConsoleKey.Key:
-        type: CharacterRecordConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
   - type: Sprite
     layers:
-    - map: ["computerLayerBody"]
+    - map: [ "computerLayerBody" ]
       state: computer
-    - map: ["computerLayerKeyboard"]
+    - map: [ "computerLayerKeyboard" ]
       state: generic_keyboard
-    - map: ["computerLayerScreen"]
+    - map: [ "computerLayerScreen" ]
       state: explosive
-    - map: ["computerLayerKeys"]
+    - map: [ "computerLayerKeys" ]
       state: security_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -409,11 +405,29 @@
   - type: Computer
     board: CriminalRecordsComputerCircuitboard
   - type: AccessReader
-    access: [["Security"]]
-  - type: CharacterRecordConsole
-    consoleType: Security
+    access: [ [ "Security" ] ]
+  - type: CharacterDocumentConsole #SV - CharacterDocuments
+    documentType: Security
+    paperSlot:
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components:
+        - Paper
+  - type: ItemSlots #SV - CharacterDocuments
+  - type: ContainerContainer #SV - CharacterDocuments
+    containers:
+      board: !type:Container
+        ents: [ ]
+      Paper: !type:ContainerSlot { }
+  - type: UserInterface
+    interfaces:
+      enum.CharacterDocumentConsoleUiKey.Key:
+        type: CharacterDocumentConsoleBoundUserInterface #SV - CharacterDocuments
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: ActivatableUI
-    key: enum.CharacterRecordConsoleKey.Key
+    key: enum.CharacterDocumentConsoleUiKey.Key
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -421,15 +435,29 @@
   name: employment records computer
   description: This can be used to check employment records.
   components:
-  - type: GeneralStationRecordConsole
+  # - type: GeneralStationRecordConsole #SV - CharacterDocuments
+  - type: CharacterDocumentConsole #SV - CharacterDocuments
+    documentType: Employment
+    paperSlot:
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components:
+        - Paper
+  - type: ItemSlots #SV - CharacterDocuments
+  - type: ContainerContainer #SV - CharacterDocuments
+    containers:
+      board: !type:Container
+        ents: []
+      Paper: !type:ContainerSlot {}
   - type: UserInterface
     interfaces:
-        enum.CharacterRecordConsoleKey.Key:
-          type: CharacterRecordConsoleBoundUserInterface
-        enum.WiresUiKey.Key:
-          type: WiresBoundUserInterface
+      enum.CharacterDocumentConsoleUiKey.Key:
+        type: CharacterDocumentConsoleBoundUserInterface #SV - CharacterDocuments
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: ActivatableUI
-    key: enum.CharacterRecordConsoleKey.Key
+    key: enum.CharacterDocumentConsoleUiKey.Key #SV - CharacterDocuments
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -439,8 +467,116 @@
   - type: GuideHelp
     guides:
     - Forensics
-  - type: CharacterRecordConsole
-    consoleType: Employment
+
+# SV: Central Command documentation computer — handles Employment, Medical, Security,
+# AND Central Command documents. New scans land as CentralCommand by default; existing
+# docs of any of the four types show up and can be edited / printed (with their own headers).
+- type: entity
+  parent: BaseComputerAiAccess
+  id: SVComputerCentralCommandDocuments
+  name: central command records computer
+  description: A multi-purpose Central Command terminal. Reads employment, medical, security, and CentCom-classified documents.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm
+    - map: ["computerLayerKeys"]
+      state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#a4885c"
+  - type: Computer
+    board: CommsComputerCircuitboard
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: CharacterDocumentConsole
+    documentType: CentralCommand
+    additionalDocumentTypes:
+    - Employment
+    - Medical
+    - Security
+    paperSlot:
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components:
+          - Paper
+  # CentComm operates from a different map than the main station without this the
+  # console would only see crew on its own (empty) station entity
+  - type: CrossMapDocumentAccess
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        ents: []
+      Paper: !type:ContainerSlot {}
+  - type: UserInterface
+    interfaces:
+        enum.CharacterDocumentConsoleUiKey.Key:
+          type: CharacterDocumentConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: ActivatableUI
+    key: enum.CharacterDocumentConsoleUiKey.Key
+
+# SV: Syndicate documentation computer — handles Syndicate-classified documents.
+- type: entity
+  parent: BaseComputerAiAccess
+  id: SVComputerSyndicateDocuments
+  name: syndicate records computer
+  description: A clandestine records terminal. Bears no NanoTrasen branding.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm_syndie
+    - map: ["computerLayerKeys"]
+      state: syndie_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#aa0000"
+  - type: Computer
+    board: SyndicateCommsComputerCircuitboard
+  - type: CharacterDocumentConsole
+    documentType: Syndicate
+    paperSlot:
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components:
+          - Paper
+    # CentComm operates from a different map than the main station without this the
+    # console would only see crew on its own (empty) station entity
+  - type: CrossMapDocumentAccess
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        ents: []
+      Paper: !type:ContainerSlot {}
+  - type: UserInterface
+    interfaces:
+        enum.CharacterDocumentConsoleUiKey.Key:
+          type: CharacterDocumentConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: ActivatableUI
+    key: enum.CharacterDocumentConsoleUiKey.Key
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -460,7 +596,6 @@
       state: med_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -481,6 +616,7 @@
     receiveFrequencyId: CrewMonitor
   - type: WirelessNetworkConnection
     range: 1200
+  - type: AmbientMusicMarkerMedical
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -500,7 +636,6 @@
       state: rd_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: ResearchClient
   - type: ResearchConsole
   - type: ActiveRadio
@@ -552,7 +687,6 @@
       state: tech_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: ResearchClient
   - type: AnalysisConsole
   - type: DeviceList
@@ -637,7 +771,6 @@
       state: id_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: Computer
     board: IDComputerCircuitboard
   - type: PointLight
@@ -663,6 +796,7 @@
     radius: 1.5
     energy: 4.0
     color: "#1f8c28"
+  - type: AmbientMusicMarkerMedical
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -682,7 +816,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: AccessReader
     access: [[ "Command" ]]
   - type: CommunicationsConsole
@@ -727,7 +860,6 @@
       state: syndie_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: AccessReader
     access: [[ "NuclearOperative" ]]
   - type: CommunicationsConsole
@@ -762,7 +894,6 @@
       state: wizard_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: AccessReader
     access: [[ "Wizard" ]]
   - type: CommunicationsConsole
@@ -797,7 +928,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: AccessReader
     access: [[ "CentralCommand" ]]
   - type: CommunicationsConsole
@@ -830,7 +960,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: SolarControlConsole
   - type: ActivatableUI
     key: enum.SolarControlConsoleUiKey.Key
@@ -869,7 +998,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: RadarConsole
   - type: ActivatableUI
     key: enum.RadarConsoleUiKey.Key
@@ -904,7 +1032,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: CargoOrderConsole
     removeLimitAccess: [ "Quartermaster" ]
   - type: ActiveRadio
@@ -958,7 +1085,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: CargoOrderConsole
     account: Engineering
     announcementChannel: Engineering
@@ -973,6 +1099,7 @@
     color: "#c9c042"
   - type: AccessReader
     access: [["Engineering"]]
+  - type: AmbientMusicMarkerEngineering
 
 - type: entity
   id: ComputerCargoOrdersMedical
@@ -992,7 +1119,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: CargoOrderConsole
     account: Medical
     announcementChannel: Medical
@@ -1007,6 +1133,7 @@
     color: "#41e0fc"
   - type: AccessReader
     access: [["Medical"]]
+  - type: AmbientMusicMarkerMedical
 
 - type: entity
   id: ComputerCargoOrdersScience
@@ -1026,7 +1153,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: CargoOrderConsole
     account: Science
     announcementChannel: Science
@@ -1060,7 +1186,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: CargoOrderConsole
     account: Security
     announcementChannel: Security
@@ -1094,7 +1219,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: CargoOrderConsole
     account: Service
     announcementChannel: Service
@@ -1128,7 +1252,6 @@
       state: tech_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: CargoBountyConsole
   - type: ActivatableUI
     key: enum.CargoConsoleUiKey.Bounty
@@ -1169,7 +1292,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: FundingAllocationConsole
   - type: ActivatableUI
     key: enum.FundingAllocationConsoleUiKey.Key
@@ -1259,7 +1381,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: SalvageJobBoardConsole
   - type: ActivatableUI
     key: enum.SalvageJobBoardUiKey.Key
@@ -1306,10 +1427,6 @@
           computerLayerKeys:
             True: { visible: true, shader: unshaded }
             False: { visible: true }
-        enum.WiresVisuals.MaintenancePanelState:
-          enum.WiresVisualLayers.MaintenancePanel:
-            True: { visible: false }
-            False: { visible: true }
     - type: SalvageExpeditionConsole
     - type: ActivatableUI
       key: enum.SalvageConsoleUiKey.Expedition
@@ -1349,7 +1466,6 @@
       state: tech_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: Computer
     board: SurveillanceCameraMonitorCircuitboard
   - type: DeviceNetwork
@@ -1389,7 +1505,6 @@
       state: tech_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: Computer
     board: SurveillanceWirelessCameraMonitorCircuitboard
   - type: DeviceNetwork
@@ -1446,7 +1561,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: Anchorable
     flags:
     - Anchorable
@@ -1487,7 +1601,6 @@
       state: service_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: Computer
     board: ComputerMassMediaCircuitboard
   - type: DeviceNetworkRequiresPower
@@ -1572,7 +1685,6 @@
       state: rd_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: RoboticsConsole
     allowBorgControl: false
   - type: ActiveRadio
@@ -1621,7 +1733,6 @@
       state: rd_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: ActivatableUI
     key: enum.RoboticsConsoleUiKey.Key
   - type: UserInterface
@@ -1666,7 +1777,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: ApcPowerReceiver
     powerLoad: 50
   - type: PowerState
@@ -1718,7 +1828,6 @@
       state: rd_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-      visible: false
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -1743,10 +1852,6 @@
           Occupied: { state: ai-fixer-full }
           Rebooting: { state: ai-fixer-404 }
           Dead: { state: ai-fixer-404 }
-      enum.WiresVisuals.MaintenancePanelState:
-        enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: false }
-          False: { visible: true }
   - type: ApcPowerReceiver
     powerLoad: 50
   - type: PowerState
