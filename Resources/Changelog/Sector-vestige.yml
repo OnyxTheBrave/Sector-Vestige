@@ -1987,3 +1987,9 @@ Entries:
   changes: []
   id: 276
   time: '2026-08-19T23:38:31.0000000+00:00'
+- author: BackeTako
+  changes:
+    - type: Add
+      message: Added Empty Portal Frame
+  id: 277
+  time: '2026-08-22T07:47:58.0000000+00:00'
