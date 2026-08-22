@@ -38,4 +38,10 @@ public sealed partial class FlammableFluidComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public List<GasSpawnEntry>? ExhaustedGases;
+
+    /// <summary>
+    /// Should the reagent try to light the puddle on fire by itself?
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    public bool DoesAutoIgnite;
 }
