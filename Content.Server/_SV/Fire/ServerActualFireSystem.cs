@@ -52,25 +52,31 @@ public sealed partial class ServerActualFireSystem : EntitySystem
             if (tileMixture != null && tileMixture.Temperature < fireComp.MaxFireTemp)
                 _atmosphere.AddHeat(tileMixture, fireComp.GenratedHeat);
 
-
-
             if (fireComp.TargetEntity == null)
                 continue;
 
+            // get the solution and solution entity from the targeted entity
             if (!_solutionContainerSystem.TryGetSolution(fireComp.TargetEntity.Value,
                     fireComp.TargetEntity.ToString()!,
                     out var solution,
                     out var sol))
                 continue;
 
-            _fireSystem.GetFlamableReagents(sol, out var flammableReagents);
+            //Extinguish the fire if there is nothing to burn, as well as grabbing each flammable reagent from the fire
+            if (!_fireSystem.TryGetFlamableReagents(sol, out var flammableReagents) || flammableReagents == null)
+            {
+                _entityManager.DeleteEntity(entity);
+                continue;
+            }
 
+            // burn a certain amount of reagents, stored as ReagentsToBurn by getting the ratio that the reagent is, and then multiplying it by how much reagent is being burnt
             foreach (var reagent in flammableReagents)
             {
                 var amountToBurn = (reagent.Quantity/flammableReagents.Volume) * ReagentToBurn;
                 _solutionContainerSystem.RemoveReagent(solution.Value, reagent.Reagent, amountToBurn);
             }
 
+            // spawn the exhaust gases. This should also handle burning off the oxygen
             if (fireComp.GasSpawnEntries != null)
             {
                 foreach (var gas in fireComp.GasSpawnEntries)

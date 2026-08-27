@@ -148,7 +148,7 @@ public sealed partial class SharedActualFireSystem : EntitySystem
         return oxidizer;
     }
 
-    public void GetFlamableReagents(Solution solution, out Solution outSolution)
+    public bool TryGetFlamableReagents(Solution solution, out Solution? outSolution)
     {
         var listedSolution = new Solution();
         foreach (var reagent in solution.Contents)
@@ -161,6 +161,13 @@ public sealed partial class SharedActualFireSystem : EntitySystem
             }
         }
 
+        if (listedSolution.Contents.Count == 0)
+        {
+            outSolution = null;
+            return false;
+        }
+
         outSolution = listedSolution;
+        return true;
     }
 }
