@@ -39,7 +39,7 @@ public sealed class MapPreviewTest : GameTest
                 Assert.That(map.Preview, Is.Not.Null, $"Map '{map.ID}' is in pool '{pool.ID}' but has no preview set");
 
                 if (map.Preview is { } preview)
-                    Assert.That(resMan.ContentFileExists(preview), Is.True, $"Map '{map.ID}' preview '{preview}' does not exist in Resources");
+                    Assert.That(resMan.ContentFileExists(preview), Is.True, $"Map '{map.ID}' preview '{preview}' does not exist in Resources/Textures/_SV/MapPreviews");
             }
         });
     }
