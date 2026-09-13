@@ -9,6 +9,7 @@
 # species : Harpy
 - type: emoteSounds
   id: SoundsHarpyMale
+  voiceSelectorName: humanoid-profile-editor-voice-masculine # Sector Vestige: shown in the character editor
   params:
     variation: 0.125
   sounds:
@@ -87,6 +88,7 @@
 
 - type: emoteSounds
   id: SoundsHarpyFemale
+  voiceSelectorName: humanoid-profile-editor-voice-feminine # Sector Vestige: shown in the character editor
   params:
     variation: 0.125
   sounds:

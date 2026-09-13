@@ -227,7 +227,8 @@
     - Howl
     - Whine
     - Coo # FloofStation
-  - type: Vocal # Sector Vestige: per-sex `sounds` dict removed upstream; voice now comes from humanoid Voice
+  - type: Vocal
+    emoteSounds: SoundsHarpyMale # Sector Vestige: used when spawned without a profile; players get their voice from the species prototype
   - type: GenericVisualizer
     visuals:
       enum.HarpyVisualLayers.Singing:

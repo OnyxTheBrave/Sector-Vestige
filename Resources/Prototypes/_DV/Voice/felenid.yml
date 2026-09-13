@@ -8,6 +8,7 @@
 # Species : Felinid
 - type: emoteSounds
   id: SoundsFelinidFemale
+  voiceSelectorName: humanoid-profile-editor-voice-feminine # Sector Vestige: shown in the character editor
   sounds:
     Hiss:
       collection: FelinidHisses
@@ -54,6 +55,7 @@
 
 - type: emoteSounds
   id: SoundsFelinidMale
+  voiceSelectorName: humanoid-profile-editor-voice-masculine # Sector Vestige: shown in the character editor
   sounds:
     Hiss:
       collection: FelinidHisses

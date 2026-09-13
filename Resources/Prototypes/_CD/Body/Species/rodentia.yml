@@ -168,7 +168,8 @@
       amount: 5
   - type: TypingIndicator
     proto: rodentia
-  - type: Vocal # Sector Vestige: per-sex `sounds` dict removed upstream; voice now comes from humanoid Voice
+  - type: Vocal
+    emoteSounds: MaleRodentia # Sector Vestige: used when spawned without a profile; players get their voice from the species prototype
   - type: MouthStorage
     mouthProto: CheekStorage
     openStorageAction: ActionOpenMouthStorage
