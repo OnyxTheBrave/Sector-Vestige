@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "R&D Sprite made by HexReject (github), res sprite made by HexReject (github) based off of r&d sprites made EmoGarbage404 (github)",
+    "states": [
+        {
+            "name": "R&D"
+        },
+        {
+            "name": "res"
+        }
+
+    ]
+}

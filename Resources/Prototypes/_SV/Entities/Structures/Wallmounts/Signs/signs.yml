@@ -1,0 +1,19 @@
+- type: entity
+  parent: BaseSign
+  id: SignR&D
+  name: NTR&D sign
+  description: A sign indicating an area NTR&D's authority.
+  components:
+  - type: Sprite
+    sprite: _SV/Structures/Wallmounts/signs.rsi
+    state: R&D
+
+- type: entity
+  parent: BaseSign
+  id: SignRES
+  name: research sign
+  description: A sign indicating the researchlab.
+  components:
+  - type: Sprite
+    sprite: _SV/Structures/Wallmounts/signs.rsi
+    state: res
