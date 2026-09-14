@@ -18,7 +18,7 @@
   parent: BaseSign
   id: SignRES
   name: research sign
-  description: A sign indicating the researchlab.
+  description: A sign indicating the research lab.
   components:
   - type: Sprite
     sprite: _SV/Structures/Wallmounts/signs.rsi
