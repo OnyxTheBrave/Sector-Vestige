@@ -16,7 +16,7 @@
 
 - type: entity
   parent: BaseSign
-  id: SignRES
+  id: SignRes
   name: research sign
   description: A sign indicating the research lab.
   components:
