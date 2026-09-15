@@ -171,6 +171,29 @@ public sealed partial record PolymorphConfiguration
     /// </summary>
     [DataField]
     public LocId? ExitPolymorphPopup = "polymorph-revert-popup-generic";
+
+    /// <summary>
+    /// SV data field
+    /// An additional entry for an effect to play when reverting from polymorph
+    /// Used so that we can have a different exit animation or effect from what is used to go into said polymorph
+    /// </summary>
+    [DataField(serverOnly: true)]
+    public EntProtoId? RevertEffectProto;
+
+    /// <summary>
+    /// SV data field
+    /// Allows us to specify a delay in seconds from when the user gets reverted back to their position before doing it
+    /// Used so that we can play an effect, wait for said effect to finish playing, then revert the player only after the effect is done playing
+    /// </summary>
+    [DataField(serverOnly: true)]
+    public float RevertDelay;
+
+    /// <summary>
+    /// SV data field
+    /// If there is a revert delay, how much longer till the animation finishes
+    /// </summary>
+    [DataField(serverOnly: true)]
+    public TimeSpan RevertDuration;
 }
 
 public enum PolymorphInventoryChange : byte

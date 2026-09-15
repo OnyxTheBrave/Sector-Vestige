@@ -1,11 +1,13 @@
 using Content.Server.Actions;
 using Content.Server.Inventory;
 using Content.Server.Polymorph.Components;
+using Content.Shared.Administration.Logs;
 using Content.Shared.Body;
 using Content.Shared.Buckle;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Database;
 using Content.Shared.Destructible;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
@@ -18,6 +20,7 @@ using Content.Shared.Tools.Systems;
 using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -71,6 +74,13 @@ public sealed partial class PolymorphSystem : EntitySystem
             comp.Time += frameTime;
 
             if (comp.Configuration.Duration != null && comp.Time >= comp.Configuration.Duration)
+            {
+                Revert((uid, comp));
+                continue;
+            }
+
+            if (_gameTiming.CurTime >= comp.Configuration.RevertDuration &&
+                comp.Configuration.RevertDuration != TimeSpan.Zero)
             {
                 Revert((uid, comp));
                 continue;
@@ -130,7 +140,7 @@ public sealed partial class PolymorphSystem : EntitySystem
     private void OnRevertPolymorphActionEvent(Entity<PolymorphedEntityComponent> ent,
         ref RevertPolymorphActionEvent args)
     {
-        Revert((ent, ent));
+        TryRevertAfterTimerAndPlayEffect((ent, ent));
     }
 
     private void OnBeforeToolRefined(Entity<PolymorphedEntityComponent> ent, ref BeforeToolRefinedEvent args)
@@ -317,8 +327,9 @@ public sealed partial class PolymorphSystem : EntitySystem
         if (TerminatingOrDeleted(uidXform.ParentUid))
             return null;
 
-        if (component.Configuration.ExitPolymorphSound != null)
-            _audio.PlayPvs(component.Configuration.ExitPolymorphSound, uidXform.Coordinates);
+        // SV - Disabled as is handled in TryRevertAfterTimerAndPlayEffect
+        // if (component.Configuration.ExitPolymorphSound != null)
+        //     _audio.PlayPvs(component.Configuration.ExitPolymorphSound, uidXform.Coordinates);
 
         _transform.SetParent(parent, parentXform, uidXform.ParentUid);
         _transform.SetCoordinates(parent, parentXform, uidXform.Coordinates, uidXform.LocalRotation);
@@ -371,9 +382,16 @@ public sealed partial class PolymorphSystem : EntitySystem
         var ev = new PolymorphedEvent(uid, parent, true);
         RaiseLocalEvent(uid, ref ev);
 
+        //SV: Begin - Makes it so that we can use a different effect as an effect exit, and that it has an exit time animation
         // visual effect spawn
-        if (component.Configuration.EffectProto != null)
-            SpawnAttachedTo(component.Configuration.EffectProto, parent.ToCoordinates());
+        // Handled in TryRevertAfterTimerAndPlayEffect
+        // if (component.Configuration.EffectProto != null)
+        //     SpawnAttachedTo(component.Configuration.EffectProto, parent.ToCoordinates());
+
+        //Reset the timespan to zero so that we can re-use this
+        //I hate this but *shrugs*
+        component.Configuration.RevertDuration = TimeSpan.Zero;
+        //SV: End
 
         if (component.Configuration.ExitPolymorphPopup != null)
             _popup.PopupEntity(Loc.GetString(component.Configuration.ExitPolymorphPopup,
@@ -431,5 +449,46 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         if (actions.TryGetValue(id, out var action))
             _actions.RemoveAction(target.Owner, action);
+    }
+
+    //SV Helper function
+    //Set a timer to revert after a time specified in the polymorph configuration component
+    //Also where we move the Effects to play
+    //I wonder what other functions I'll cram into here
+    public void TryRevertAfterTimerAndPlayEffect(Entity<PolymorphedEntityComponent?> ent)
+    {
+        var (uid, component) = ent;
+        if (!Resolve(ent, ref component))
+            return;
+
+        if (Deleted(uid))
+            return;
+
+        if (component.Parent is not { } parent)
+            return;
+
+        if (Deleted(parent))
+            return;
+
+        EntityUid? spawnedEnt = null;
+
+        //Configure how long the delay should be before reverting the player. Should be now for 99% of times
+        component.Configuration.RevertDuration = _gameTiming.CurTime + TimeSpan.FromSeconds(component.Configuration.RevertDelay);
+
+        if (!_transform.TryGetMapOrGridCoordinates(uid, out var coordinates))
+            return;
+
+        //Spawn effect now, so that we can wait to see if we should wait before reverting the player
+        if (component.Configuration.RevertEffectProto != null)
+            spawnedEnt = PredictedSpawnAtPosition(component.Configuration.RevertEffectProto, coordinates.Value);
+
+        // Attach the effect to the player. We can't attach the player to the entity else when the entity deletes it deletes the player
+        // looks mildly jank, buuuut it works.
+        if (spawnedEnt != null)
+            _transform.SetParent(spawnedEnt.Value, uid);
+
+        //play that funky music white boy
+        if (component.Configuration.ExitPolymorphSound != null)
+             _audio.PlayPvs(component.Configuration.ExitPolymorphSound, coordinates.Value);
     }
 }

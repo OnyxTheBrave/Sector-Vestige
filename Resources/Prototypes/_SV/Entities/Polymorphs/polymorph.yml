@@ -1,0 +1,23 @@
+- type: entity
+  parent: [Incorporeal, BaseMob]
+  id: DesynchronizedPocketMyo
+  name: a puddle
+  description: You're not sure what you're looking at.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _SV/Mobs/Demons/myoqueen.rsi
+#    offset: 0,0.4
+    layers:
+    - state: jaunt
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    noRot: true
+  - type: Spectral
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 6
+    baseWalkSpeed: 4
+  - type: ContentEye
+    maxZoom: 1.44,1.44
+  - type: Eye
+    drawFov: false

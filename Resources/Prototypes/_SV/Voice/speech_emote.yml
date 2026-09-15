@@ -1,0 +1,35 @@
+# - type: emote
+#   id: MyoGrowl
+#   category: Vocal
+#   name: MyoPassive
+#   icon: Interface/Actions/scream.png
+#   available: false
+#   whitelist:
+#     components:
+#     - Vocal
+#   blacklist:
+#     components:
+#     - BorgChassis
+#   chatMessages: [makes a low growl.]
+#   chatTriggers:
+#     - growl
+#     - growls
+#     - growling
+#     - growled
+
+ - type: emote
+   id: Roar
+   category: Vocal
+   name: Roar
+   icon: Interface/Actions/scream.png
+   available: false
+   whitelist:
+     components:
+     - Vocal
+   blacklist:
+     components:
+     - BorgChassis
+   chatMessages: [roars!]
+   chatTriggers:
+   - roar
+   - roars
