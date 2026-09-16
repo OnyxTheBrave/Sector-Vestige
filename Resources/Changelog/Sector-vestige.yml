@@ -2011,3 +2011,9 @@ Entries:
       message: Fixed the sounds for Avali, Resomi, Foxfolk and Rodentia.
   id: 284
   time: '2026-09-15T23:24:01.0000000+00:00'
+- author: lambdatiger
+  changes:
+    - type: Fix
+      message: Cluster respite changes and minor Security mapping requests.
+  id: 285
+  time: '2026-09-16T15:55:30.0000000+00:00'
