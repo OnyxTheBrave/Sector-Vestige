@@ -132,6 +132,7 @@
     jumpSound:
       collection: MyoLeap
   - type: Puller
+    needsHands: false
   - type: Butcherable
     spawned:
     - id: FoodMeatXeno
