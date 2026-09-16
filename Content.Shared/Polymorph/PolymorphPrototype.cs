@@ -193,7 +193,7 @@ public sealed partial record PolymorphConfiguration
     /// If there is a revert delay, how much longer till the animation finishes
     /// </summary>
     [DataField(serverOnly: true)]
-    public TimeSpan RevertDuration;
+    public TimeSpan TimeTillRevert;
 }
 
 public enum PolymorphInventoryChange : byte

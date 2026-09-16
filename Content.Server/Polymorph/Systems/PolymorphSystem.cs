@@ -79,8 +79,8 @@ public sealed partial class PolymorphSystem : EntitySystem
                 continue;
             }
 
-            if (_gameTiming.CurTime >= comp.Configuration.RevertDuration &&
-                comp.Configuration.RevertDuration != TimeSpan.Zero)
+            if (_gameTiming.CurTime >= comp.Configuration.TimeTillRevert &&
+                comp.Configuration.TimeTillRevert != TimeSpan.Zero)
             {
                 Revert((uid, comp));
                 continue;
@@ -390,7 +390,7 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         //Reset the timespan to zero so that we can re-use this
         //I hate this but *shrugs*
-        component.Configuration.RevertDuration = TimeSpan.Zero;
+        component.Configuration.TimeTillRevert = TimeSpan.Zero;
         //SV: End
 
         if (component.Configuration.ExitPolymorphPopup != null)
@@ -473,7 +473,7 @@ public sealed partial class PolymorphSystem : EntitySystem
         EntityUid? spawnedEnt = null;
 
         //Configure how long the delay should be before reverting the player. Should be now for 99% of times
-        component.Configuration.RevertDuration = _gameTiming.CurTime + TimeSpan.FromSeconds(component.Configuration.RevertDelay);
+        component.Configuration.TimeTillRevert = _gameTiming.CurTime + TimeSpan.FromSeconds(component.Configuration.RevertDelay);
 
         if (!_transform.TryGetMapOrGridCoordinates(uid, out var coordinates))
             return;
@@ -484,7 +484,9 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         // Attach the effect to the player. We can't attach the player to the entity else when the entity deletes it deletes the player
         // looks mildly jank, buuuut it works.
-        if (spawnedEnt != null)
+        // Only attach to the player if there is a delay, else it attaches to the polymorph and gets deleted.
+        // It's that, or we attach the effect to the parent (AKA the player) instead of the UID (the polymorph) but this fucks with things when you are in polymorph and have a polymorph delay as it spawns on the parent which is in fuckoff nowhereville
+        if (spawnedEnt != null &&  component.Configuration.RevertDelay > 0)
             _transform.SetParent(spawnedEnt.Value, uid);
 
         //play that funky music white boy
