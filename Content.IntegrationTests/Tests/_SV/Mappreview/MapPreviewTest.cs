@@ -15,7 +15,7 @@ namespace Content.IntegrationTests.Tests._SV.Mappreview;
 
 public sealed class MapPreviewTest : GameTest
 {
-    private static readonly ProtoId<GameMapPoolPrototype> SVmapPool = "SVmapPool";
+    private readonly ProtoId<GameMapPoolPrototype> _svMapPool = "SVmapPool";
     public override PoolSettings PoolSettings => PsDisconnected;
 
     /// <summary>
@@ -30,7 +30,7 @@ public sealed class MapPreviewTest : GameTest
         var allMaps = protoMan.EnumeratePrototypes<GameMapPrototype>();
 
         // A missing pool must fail loudly, not silently pass an empty test.
-        Assert.That(protoMan.TryIndex(SVmapPool, out var pool), Is.True, $"Pool '{SVmapPool}' not found");
+        Assert.That(protoMan.TryIndex(_svMapPool, out var pool), Is.True, $"Pool '{_svMapPool}' not found");
         if (pool == null)
             return;
 
