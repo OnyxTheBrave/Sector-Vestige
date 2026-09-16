@@ -9,15 +9,16 @@
 // SPDX-License-Identifier: MIT
 
 using Content.Server.Body.Systems;
+using Content.Shared.Body.Systems;
 using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._CD.Traits;
 
-public sealed class SynthSystem : EntitySystem
+public sealed partial class SynthSystem : EntitySystem
 {
-    [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
+    [Dependency] private BloodstreamSystem _bloodstream = default!;
 
     public override void Initialize()
     {

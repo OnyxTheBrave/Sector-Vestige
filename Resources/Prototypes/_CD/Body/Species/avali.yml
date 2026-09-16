@@ -1,8 +1,9 @@
 # SPDX-FileCopyrightText: 2026 Cosmatic Drift contributors
 # SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
 # SPDX-FileCopyrightText: 2025 MoonlightHollow <muszynskinicholas8@gmail.com>
-# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 qu4drivium <aaronholiver@outlook.com>
+# SPDX-FileCopyrightText: 2026 riv <234791249+qu4drivium@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 #
 # SPDX-License-Identifier: MIT
 
@@ -99,13 +100,10 @@
   id: MobAvali
   name: Urist McRaptor
   components:
-  - type: Hunger
-  - type: Thirst
   - type: Icon
     sprite: _CD/Mobs/Species/Avali/parts.rsi
     state: full
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatChicken
       amount: 3
@@ -125,12 +123,10 @@
         layer:
         - MobLayer
   - type: Vocal
-    sounds:
-      Male: MaleAvali
-      Female: FemaleAvali
-      Unsexed: MaleAvali
-  - type: Damageable
+    emoteSounds: MaleAvali # Sector Vestige: used when spawned without a profile; players get their voice from the species prototype
+  - type: Injurable
     damageContainer: Biological
+  - type: Damageable
     damageModifierSet: Avali
   - type: DamageVisuals
     damageOverlayGroups:
@@ -151,7 +147,7 @@
       types:
         Slash: 5
   - type: Temperature
-    currentTemperature: 296.15
+    temperature: 296.15
     specificHeat: 48
   - type: TemperatureDamage
     heatDamageThreshold: 310

@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
 // SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
 // SPDX-FileCopyrightText: 2026 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -15,6 +16,7 @@ using Content.Shared.Atmos;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
+using Content.Shared._SV.Utility;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -23,14 +25,14 @@ namespace Content.Server._SV.StationEvents.Events;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class SMOffGasRule : GameRuleSystem<SMOffGasComponent>
+public sealed partial class SMOffGasRule : GameRuleSystem<SMOffGasComponent>
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly SupermatterSystem _superMatter = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private SupermatterSystem _superMatter = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private const float LeakCooldown = .25f;
 

@@ -2,8 +2,9 @@
 # SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
 # SPDX-FileCopyrightText: 2024 DieselMohawk <gavin.drinka@gmail.com>
 # SPDX-FileCopyrightText: 2024 TheCrimsonJupiter <54331834+TheCrimsonJupiter@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 BoskiYourk <175783845+BoskiYourk@users.noreply.guthub.com>
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 Nico64 <74880554+NicoSGF64@users.noreply.github.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -12,21 +13,25 @@
   id: HoPJumpsuitTurtleneckHarmony
   equipment:
     jumpsuit: ClothingUniformJumpsuitHeadOfPersonnelTurtleneckHarmony
+  groupBy: "turtleneck" #SV
 
 - type: loadout
   id: HoPJumpskirtTurtleneckHarmony
   equipment:
     jumpsuit: ClothingUniformJumpskirtHeadOfPersonnelTurtleneckHarmony
-    
+  groupBy: "turtleneck" #SV
+
 - type: loadout
   id: HoPJumpsuitMessKitHarmony
   equipment:
     jumpsuit: ClothingUniformJumpsuitHeadofPersonnelMessKitHarmony
+  groupBy: "messkit" #SV
 
 - type: loadout
   id: HoPJumpskirtMessKitHarmony
   equipment:
     jumpsuit: ClothingUniformJumpskirtHeadofPersonnelMessKitHarmony
+  groupBy: "messkit" #SV
 
 # Shoes
 - type: loadout

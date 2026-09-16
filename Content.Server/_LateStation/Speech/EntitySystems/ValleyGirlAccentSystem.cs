@@ -9,19 +9,20 @@
 using System.Text.RegularExpressions;
 using Content.Shared.Speech;
 using Content.Server.Speech.EntitySystems;
+using Content.Shared.Speech.EntitySystems;
 using Content.Server._Latestation.Speech.Components;
 using Robust.Shared.Random;
 using System.Linq;
 
 namespace Content.Server._Latestation.Speech.EntitySystems;
 
-public sealed class ValleyGirlAccentSystem : EntitySystem
+public sealed partial class ValleyGirlAccentSystem : EntitySystem
 {
     //Words ending in -ing = in'. Bein', Darlin', etc.
     //Taken from mobster accent.
     private static readonly Regex RegexIng = new(@"(?<=\w\w)(in)g(?!\w)", RegexOptions.IgnoreCase);
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
 
     public override void Initialize()
     {

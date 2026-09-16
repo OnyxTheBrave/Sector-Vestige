@@ -1,4 +1,14 @@
-﻿using Content.Shared.Buckle.Components;
+// SPDX-FileCopyrightText: 2026 Wizards Den contributors
+// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2023 Morb <14136326+Morb0@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2024 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 pathetic meowmeow <uhhadd@gmail.com>
+// SPDX-FileCopyrightText: 2026 Anzuneth <malachigene@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
+using Content.Shared.Buckle.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
@@ -6,10 +16,10 @@ using Content.Shared.Throwing;
 
 namespace Content.Shared.Traits.Assorted;
 
-public sealed class LegsParalyzedSystem : EntitySystem
+public sealed partial class LegsParalyzedSystem : EntitySystem
 {
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
-    [Dependency] private readonly StandingStateSystem _standingSystem = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
+    [Dependency] private StandingStateSystem _standingSystem = default!;
 
     public override void Initialize()
     {

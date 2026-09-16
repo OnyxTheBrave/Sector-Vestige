@@ -1,0 +1,21 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 Boaz1111 <149967078+Boaz1111@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Player: Boaz1111 - Character: Johan Ullman
+- type: entity
+  parent: ClothingHeadBase
+  id: PersonalItemJohanHood
+  categories: [ HideSpawnMenu ]
+  name: Mothe's hood
+  description: ""
+  suffix: PersonalItem
+  components:
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+  - type: Sprite
+    sprite: _SV/PersonalItems/Wearables/johanhood.rsi
+  - type: Clothing
+    sprite: _SV/PersonalItems/Wearables/johanhood.rsi

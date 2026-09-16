@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2026 Cosmatic Drift contributors
 # SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
-# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 #
 # SPDX-License-Identifier: MIT
 
@@ -153,8 +153,6 @@
   id: MobFoxfolk
   name: Urist McFoxfolk
   components:
-  - type: Hunger
-  - type: Thirst
   - type: Icon
     sprite: _CD/Mobs/Species/Foxfolk/parts.rsi
     state: full
@@ -165,12 +163,10 @@
   - type: TypingIndicator
     proto: foxfolk
   - type: Vocal
-    sounds:
-      Male: MaleFoxfolk
-      Female: FemaleFoxfolk
-      Unsexed: MaleFoxfolk
-  - type: Damageable
+    emoteSounds: MaleFoxfolk # Sector Vestige: used when spawned without a profile; players get their voice from the species prototype
+  - type: Injurable
     damageContainer: Biological
+  - type: Damageable
     damageModifierSet: Foxfolk
   - type: MeleeWeapon
     hidden: true
@@ -183,7 +179,7 @@
         Blunt: 2
         Slash: 3
   - type: Temperature
-    currentTemperature: 310.15
+    temperature: 310.15
     specificHeat: 46
   - type: TemperatureDamage
     heatDamageThreshold: 320

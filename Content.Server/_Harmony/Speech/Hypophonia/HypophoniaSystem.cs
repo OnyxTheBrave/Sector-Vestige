@@ -13,19 +13,21 @@ using Content.Shared.Chat.Prototypes;
 using Content.Shared.Puppet;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Muting;
+using Content.Shared.Speech.EntitySystems;
+using Content.Shared.StatusEffectNew;
 using Content.Shared._Harmony.Speech.Hypophonia;
 
 namespace Content.Server._Harmony.Speech.Hypophonia
 {
-    public sealed class HypophoniaSystem : EntitySystem
+    public sealed partial class HypophoniaSystem : EntitySystem
     {
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private StatusEffectsSystem _statusEffects = default!;
         public override void Initialize()
         {
             base.Initialize();
             SubscribeLocalEvent<HypophoniaComponent, SpeakAttemptEvent>(OnSpeakAttempt);
             SubscribeLocalEvent<HypophoniaComponent, EmoteEvent>(OnEmote, before: new[] { typeof(VocalSystem) });
-            SubscribeLocalEvent<HypophoniaComponent, ScreamActionEvent>(OnScreamAction, before: new[] { typeof(VocalSystem) });
         }
 
         private void OnEmote(EntityUid uid, HypophoniaComponent component, ref EmoteEvent args)
@@ -34,7 +36,7 @@ namespace Content.Server._Harmony.Speech.Hypophonia
                 return;
 
             // Let MutingSystem handle the event for muted characters (mimes included)
-            if (HasComp<MutedComponent>(uid))
+            if (_statusEffects.HasEffectComp<MutedStatusEffectComponent>(uid))
                 return;
 
             //still leaves the text so it looks like they are pantomiming a laugh
@@ -42,25 +44,10 @@ namespace Content.Server._Harmony.Speech.Hypophonia
                 args.Handled = true;
         }
 
-        private void OnScreamAction(EntityUid uid, HypophoniaComponent component, ScreamActionEvent args)
-        {
-            if (args.Handled)
-                return;
-
-            // Let MutingSystem handle the event muted characters (mimes included)
-            if (HasComp<MutedComponent>(uid))
-                return;
-
-            // Mark the event as handled and show the popup
-            _popupSystem.PopupEntity(Loc.GetString("speech-hypophonia"), uid, uid);
-            args.Handled = true;
-        }
-
-
         private void OnSpeakAttempt(EntityUid uid, HypophoniaComponent component, SpeakAttemptEvent args)
         {
             // Let MutingSystem handle the event for puppets and muted characters (mimes included)
-            if (HasComp<VentriloquistPuppetComponent>(uid) || HasComp<MutedComponent>(uid))
+            if (HasComp<VentriloquistPuppetComponent>(uid) || _statusEffects.HasEffectComp<MutedStatusEffectComponent>(uid))
                 return;
 
             // Allow whispering - Hypophonia means you can only whisper

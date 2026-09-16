@@ -87,6 +87,8 @@
   - type: Item
     size: Tiny
   - type: Damageable
+  - type: Injurable
+    damageContainer: Inorganic
   - type: TapeCassette
     maxCapacity: 1200 # SV Change, Upped From Three Minutes To Twenty Minutes
     repairWhitelist:
@@ -112,7 +114,7 @@
   id: CassetteTapeInterview
   components:
   - type: Label
-    currentLabel: Interview with Garry Smosh
+    localizedLabel: tape-cassette-label-interview
   - type: TapeCassette
     recordedData:
       - timestamp: 2

@@ -1,6 +1,20 @@
-﻿using System.Linq;
+// SPDX-FileCopyrightText: 2026 Wizards Den contributors
+// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+// SPDX-FileCopyrightText: 2025 Tayrtahn <tayrtahn@gmail.com>
+// SPDX-FileCopyrightText: 2025 dffdff2423 <dffdff2423@gmail.com>
+// SPDX-FileCopyrightText: 2026 lunarcomets (GitHub)
+// SPDX-FileCopyrightText: 2026 lunarcomets <lunarcomets2@gmail.com>
+//
+// SPDX-License-Identifier: MIT
+
+using System.Linq;
+using Content.Client._CD.Silicons.Borgs.UI;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Guidebook;
+using Content.Shared._CD.Silicons;
+using Content.Shared._CD.Silicons.Borgs;
 using Content.Shared.Guidebook;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
@@ -19,11 +33,12 @@ namespace Content.Client.Silicons.Borgs;
 [GenerateTypedNameReferences]
 public sealed partial class BorgSelectTypeMenu : FancyWindow
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private BorgTypePrototype? _selectedBorgType;
 
     public event Action<ProtoId<BorgTypePrototype>>? ConfirmedBorgType;
+    public event Action<EntityPrototype?>? ConfirmedBorgSubtype; // CD event - borg subtypes
 
     private static readonly List<ProtoId<GuideEntryPrototype>> GuidebookEntries = new() { "Cyborgs", "Robotics" };
 
@@ -50,6 +65,12 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
 
         ConfirmTypeButton.OnPressed += ConfirmButtonPressed;
         HelpGuidebookIds = GuidebookEntries;
+
+        // CD - borg subtype
+        ChassisSpriteSelection.SubtypeSelected += () =>
+        {
+            ConfirmTypeButton.Disabled = false;
+        };
     }
 
     private void UpdateInformation(BorgTypePrototype prototype)
@@ -58,11 +79,19 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
 
         InfoContents.Visible = true;
         InfoPlaceholder.Visible = false;
-        ConfirmTypeButton.Disabled = false;
+        // ConfirmTypeButton.Disabled = false;  // CD comment, we handle enabling the button below
 
         NameLabel.Text = PrototypeName(prototype);
         DescriptionLabel.Text = Loc.GetString($"borg-type-{prototype.ID}-desc");
         ChassisView.SetPrototype(prototype.DummyPrototype);
+
+        // CD changes below
+        if (_selectedBorgType != null)
+        {
+            ConfirmTypeButton.Disabled = true;
+            ChassisSpriteSelection.Update(_selectedBorgType);
+        }
+
     }
 
     private void ConfirmButtonPressed(BaseButton.ButtonEventArgs obj)
@@ -70,6 +99,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
         if (_selectedBorgType == null)
             return;
 
+        ConfirmedBorgSubtype?.Invoke(ChassisSpriteSelection.SubtypePrototype); // CD
         ConfirmedBorgType?.Invoke(_selectedBorgType);
     }
 

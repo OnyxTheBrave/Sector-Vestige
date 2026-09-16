@@ -9,13 +9,14 @@
 using Content.Server._NF.Speech.Components;
 using Content.Shared.Speech;
 using Content.Server.Speech.EntitySystems;
+using Content.Shared.Speech.EntitySystems;
 using System.Text.RegularExpressions;
 
 namespace Content.Server._NF.Speech.EntitySystems;
 
-public sealed class StreetpunkAccentSystem : EntitySystem
+public sealed partial class StreetpunkAccentSystem : EntitySystem
 {
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
     private static readonly Regex RegexIng = new(@"ing\b");
     private static readonly Regex RegexAnd = new(@"\band\b");
     private static readonly Regex RegexDve = new("d've");

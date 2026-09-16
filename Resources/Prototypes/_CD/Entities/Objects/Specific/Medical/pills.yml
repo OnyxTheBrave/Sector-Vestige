@@ -30,14 +30,13 @@
   - type: Sprite
     state: pill1
   - type: Label
-    currentLabel: Happiness
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Happiness
-          Quantity: 10
+    localizedLabel: reagent-name-happiness
+  - type: Solution
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Happiness
+        Quantity: 10
 
 - type: entity
   parent: PillCanister
@@ -46,7 +45,7 @@
   suffix: Happiness 7
   components:
   - type: Label
-    currentLabel: Happiness
+    localizedLabel: reagent-name-happiness
   - type: StorageFill
     contents:
     - id: PillHappiness

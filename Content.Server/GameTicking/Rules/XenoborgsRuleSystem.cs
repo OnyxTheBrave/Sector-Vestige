@@ -1,3 +1,12 @@
+// SPDX-FileCopyrightText: 2026 Wizards Den contributors
+// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2025 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 Samuka <47865393+Samuka-C@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 Boaz1111 <149967078+Boaz1111@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
 using Content.Server.Antag;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Rules.Components;
@@ -7,20 +16,22 @@ using Content.Shared.Destructible;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Objectives.Systems;
 using Content.Shared.Xenoborgs.Components;
 using Robust.Shared.Timing;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class XenoborgsRuleSystem : GameRuleSystem<XenoborgsRuleComponent>
+public sealed partial class XenoborgsRuleSystem : GameRuleSystem<XenoborgsRuleComponent>
 {
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private RoundEndSystem _roundEnd = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private AliveHumanoidTargetSystem _target = default!;
 
     private static readonly Color AnnouncmentColor = Color.Gold;
 
@@ -53,7 +64,7 @@ public sealed class XenoborgsRuleSystem : GameRuleSystem<XenoborgsRuleComponent>
         base.AppendRoundEndText(uid, component, gameRule, ref args);
 
         var numXenoborgs = GetNumberXenoborgs();
-        var numHumans = _mindSystem.GetAliveHumans().Count;
+        var numHumans = _target.GetMinds().Count;
 
         if (numXenoborgs < 5)
             args.AddLine(Loc.GetString("xenoborgs-crewmajor"));
@@ -96,7 +107,7 @@ public sealed class XenoborgsRuleSystem : GameRuleSystem<XenoborgsRuleComponent>
     private void CheckRoundEnd(XenoborgsRuleComponent xenoborgsRuleComponent)
     {
         var numXenoborgs = GetNumberXenoborgs();
-        var numHumans = _mindSystem.GetAliveHumans().Count;
+        var numHumans = _target.GetMinds().Count;
 
         xenoborgsRuleComponent.MaxNumberXenoborgs = Math.Max(xenoborgsRuleComponent.MaxNumberXenoborgs, numXenoborgs);
 

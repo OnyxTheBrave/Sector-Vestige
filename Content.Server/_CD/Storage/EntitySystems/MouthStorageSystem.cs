@@ -8,6 +8,7 @@
 using Content.Server.Nutrition;
 using Content.Server.Speech;
 using Content.Server.Speech.EntitySystems;
+using Content.Shared.Speech.EntitySystems;
 using Content.Shared.CD.Storage.Components;
 using Content.Shared.CD.Storage.EntitySystems;
 using Content.Shared.Nutrition;
@@ -16,9 +17,9 @@ using Content.Shared.Storage;
 
 namespace Content.Server.CD.Storage.EntitySystems;
 
-public sealed class MouthStorageSystem : SharedMouthStorageSystem
+public sealed partial class MouthStorageSystem : SharedMouthStorageSystem
 {
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
     public override void Initialize()
     {
         base.Initialize();

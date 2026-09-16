@@ -239,6 +239,7 @@
   loadouts:
   - BlueShoes
   - WhiteShoes
+  - ShoesColorSlate # SV
   - MedicalWinterBoots
 
 #- type: loadoutGroup

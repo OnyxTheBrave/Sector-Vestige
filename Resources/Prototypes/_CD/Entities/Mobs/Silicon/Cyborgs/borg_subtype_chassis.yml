@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: 2026 Cosmatic Drift contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2025 dffdff2423 <dffdff2423@gmail.com>
+# SPDX-FileCopyrightText: 2026 lunarcomets (GitHub)
+#
+# SPDX-License-Identifier: MIT
+
+ # Actual entity prototypes used for UI visuals and admin spawning
+ - type: entity
+   id: BorgChassisSpidermin
+   parent: BorgChassisSelectable
+   name: spidermin cyborg
+   components:
+   - type: BorgSwitchableType
+     selectedBorgType: mining
+   - type: BorgSwitchableSubtype
+     borgSubtype: MiningSpiderSubtype
+
+ - type: entity
+   id: BorgChassisQualifiedDoctor
+   parent: BorgChassisSelectable
+   name: qualified doctor cyborg
+   components:
+   - type: BorgSwitchableType
+     selectedBorgType: medical
+   - type: BorgSwitchableSubtype
+     borgSubtype: MedicalQualifiedDoctorSubtype

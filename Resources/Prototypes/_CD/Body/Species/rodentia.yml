@@ -1,7 +1,8 @@
 # SPDX-FileCopyrightText: 2026 Cosmatic Drift contributors
 # SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
-# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+# SPDX-FileCopyrightText: 2026 qu4drivium <aaronholiver@outlook.com>
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 #
 # SPDX-License-Identifier: MIT
 
@@ -139,9 +140,12 @@
   id: MobRodentia
   name: Urist McRat
   components:
-  - type: Hunger
-    baseDecayRate: 0.0467
-  - type: Thirst
+  - type: Satiation
+    satiations:
+      Hunger:
+        prototype: RodentiaSatiationHunger
+      Thirst:
+        prototype: NormalSatiationThirst
   - type: Icon
     sprite: _CD/Mobs/Species/Rodentia/parts.rsi
     state: full
@@ -165,10 +169,7 @@
   - type: TypingIndicator
     proto: rodentia
   - type: Vocal
-    sounds:
-      Male: MaleRodentia
-      Female: FemaleRodentia
-      Unsexed: MaleRodentia
+    emoteSounds: MaleRodentia # Sector Vestige: used when spawned without a profile; players get their voice from the species prototype
   - type: MouthStorage
     mouthProto: CheekStorage
     openStorageAction: ActionOpenMouthStorage

@@ -61,6 +61,7 @@
 - type: entity
   parent: BaseSpeciesAppearance
   id: AppearanceReptilian
+  categories: [ HideSpawnMenu ]
   name: reptilian appearance
   components:
   - type: Inventory
@@ -127,7 +128,6 @@
   - type: Puller
     needsHands: false
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatLizard
       amount: 5
@@ -138,11 +138,12 @@
     allowedEmotes: ['Thump', 'Yip', 'Hiss'] # FloofStation - Yip, Hiss
   - type: TypingIndicator
     proto: lizard
+  - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_lizard
   - type: Vocal
-    sounds:
-      Male: MaleReptilian
-      Female: FemaleReptilian
-      Unsexed: MaleReptilian
+    emoteSounds: MaleReptilian
   - type: BodyEmotes
     soundsId: ReptilianBodyEmotes
   - type: Damageable
@@ -155,11 +156,8 @@
     damage:
       types:
         Slash: 5
-  - type: Temperature
-    currentTemperature: 310.15
-    specificHeat: 42
   - type: TemperatureDamage
-    heatDamageThreshold: 400
+    heatDamageThreshold: 321.15
     coldDamageThreshold: 285
     coldDamage:
       types:
@@ -175,7 +173,7 @@
   - type: Wagging
 
 - type: entity
-  parent: OrganBase
+  parent: OrganBaseOrganic
   id: OrganReptilian
   abstract: true
   suffix: Reptilian

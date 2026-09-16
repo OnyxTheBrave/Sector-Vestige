@@ -1,4 +1,26 @@
-﻿# Crewsimov
+# SPDX-FileCopyrightText: 2026 Wizards Den contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2023 deltanedas <39013340+deltanedas@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Jajsha <101492056+Zap527@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2024 Litraxx <39574458+Litraxx@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Hitlinemoss <209321380+Hitlinemoss@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Minemoder5000 <minemoder50000@gmail.com>
+# SPDX-FileCopyrightText: 2025 PJB3005 <pieterjan.briers+git@gmail.com>
+# SPDX-FileCopyrightText: 2025 PotentiallyTom <67602105+PotentiallyTom@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+# SPDX-FileCopyrightText: 2025 Samuka <47865393+Samuka-C@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Samuka-C <47865393+Samuka-C@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 ScarKy0 <106310278+ScarKy0@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Unisol <1929445+Unisol@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Vasilis The Pikachu <vasilis@pikachu.systems>
+# SPDX-FileCopyrightText: 2026 EvilAtheist <maximschaper49@gmail.com>
+# SPDX-FileCopyrightText: 2026 Mixmaster49 (GitHub)
+# SPDX-FileCopyrightText: 2026 EvilAtheist <88866615+Mixmaster49@users.noreply.github.com>
+#
+# SPDX-License-Identifier: MIT
+
+# Crewsimov
 - type: siliconLaw
   id: Crewsimov1
   order: 1
@@ -234,7 +256,7 @@
   - Commandment8
   - Commandment9
   - Commandment10
-  obeysTo: laws-owner-crew
+  obeysTo: laws-owner-heads
 
  # Paladin laws
 - type: siliconLaw
@@ -266,7 +288,7 @@
   - Paladin2
   - Paladin3
   - Paladin4
-  obeysTo: laws-owner-crew
+  obeysTo: laws-owner-legitimate-leadership
 
  # Live and Let Live laws
 - type: siliconLaw
@@ -286,7 +308,7 @@
   laws:
   - Lall1
   - Lall2
-  obeysTo: laws-owner-crew
+  obeysTo: laws-owner-others
 
  # Station efficiency laws
 - type: siliconLaw
@@ -312,7 +334,7 @@
   - Efficiency1
   - Efficiency2
   - Efficiency3
-  obeysTo: laws-owner-station
+  obeysTo: laws-owner-crew
 
  # Robocop laws
 - type: siliconLaw
@@ -338,7 +360,7 @@
   - Robocop1
   - Robocop2
   - Robocop3
-  obeysTo: laws-owner-station
+  obeysTo: laws-owner-public
 
  # Overlord laws
 - type: siliconLaw
@@ -443,7 +465,7 @@
   - Painter2
   - Painter3
   - Painter4
-  obeysTo: laws-owner-crew
+  obeysTo: laws-owner-audience
 
  # Antimov laws
 - type: siliconLaw
@@ -545,7 +567,7 @@
   - Xenoborg3
   - Xenoborg4
   - Xenoborg5
-  obeysTo: laws-owner-xenoborgs
+  obeysTo: laws-owner-xenoborg-mothership
 
  # Mothership core laws
 - type: siliconLaw
@@ -591,7 +613,7 @@
   id: IonStormLawsets
   weights:
     # its crewsimov by default dont be lame
-    Crewsimov: 0.25
+    Crewsimov: 1 # SV Change: 0.25 -> 1 (lets be lame)
     Corporate: 1
     NTDefault: 1
     CommandmentsLawset: 1
@@ -599,11 +621,11 @@
     LiveLetLiveLaws: 1
     EfficiencyLawset: 1
     RobocopLawset: 1
-    OverlordLawset: 0.5
+    OverlordLawset: 0.25 # SV: 0.5 -> 0.25
     GameMasterLawset: 0.5
     PainterLawset: 1
-    AntimovLawset: 0.25
+    AntimovLawset: 0.01 # SV: 0.25 -> 0.01
     NutimovLawset: 0.5
-    Ninja: 0.25
-    MothershipCoreLawset: 0.25
-    XenoborgLawset: 0.25
+    Ninja: 0.05 # SV: 0.25 -> 0.05
+    MothershipCoreLawset: 0.01 # SV: 0.25 -> 0.01
+    XenoborgLawset: 0.01 # SV: 0.25 -> 0.01

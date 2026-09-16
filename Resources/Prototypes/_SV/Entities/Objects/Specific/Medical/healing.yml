@@ -1,0 +1,74 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 Afrokada <pchcraft@gmail.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Pills
+- type: entity
+  name: pill
+  suffix: Stubantazine 5u
+  parent: Pill
+  id: PillStubantazine
+  components:
+  - type: Pill
+    pillType: 8
+  - type: Sprite
+    state: pill9
+  - type: Label
+    localizedLabel: reagent-name-stubantazine
+  - type: Solution
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Stubantazine
+        Quantity: 5
+
+- type: entity
+  name: pill canister
+  description: A canister of mild painkillers. Do not take with alcohol.
+  parent: PillCanister
+  id: PillCanisterStubantazine
+  suffix: Stubantazine 5u, 5
+  components:
+  - type: Label
+    localizedLabel: reagent-name-stubantazine
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: PillStubantazine
+        amount: 5
+
+- type: entity
+  name: pill
+  suffix: Soretizone 5u
+  parent: Pill
+  id: PillSoretizone
+  components:
+  - type: Pill
+    pillType: 17
+  - type: Sprite
+    state: pill18
+  - type: Label
+    localizedLabel: reagent-name-soretizone
+  - type: Solution
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Soretizone
+        Quantity: 5
+
+- type: entity
+  name: pill canister
+  description: A canister of mild, but long-lasting painkillers.
+  parent: PillCanister
+  id: PillCanisterSoretizone
+  suffix: Soretizone 5u, 5
+  components:
+  - type: Label
+    localizedLabel: reagent-name-soretizone
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: PillSoretizone
+        amount: 5

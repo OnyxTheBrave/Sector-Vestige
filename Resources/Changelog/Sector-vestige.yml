@@ -434,14 +434,6 @@ Entries:
       message: Added seven beanies of varying colors.
   id: 52
   time: '2025-04-27T09:30:54.0000000+00:00'
-- author: '-'
-  changes: []
-  id: 53
-  time: '2025-05-09T16:46:32.0000000+00:00'
-- author: '-'
-  changes: []
-  id: 54
-  time: '2025-05-10T16:25:35.0000000+00:00'
 - author: BaguetteYeast
   changes:
     - type: Add
@@ -450,10 +442,6 @@ Entries:
       message: Added a variant of the shuttle, NT-Biosphere-OldEarthDiner
   id: 55
   time: '2025-05-31T12:42:11.0000000+00:00'
-- author: Necro-a
-  changes: []
-  id: 56
-  time: '2025-05-31T13:14:25.0000000+00:00'
 - author: ReboundQ3
   changes:
     - type: Fix
@@ -941,10 +929,6 @@ Entries:
       message: Personal Item for Attacus Fischer
   id: 126
   time: '2025-11-03T14:16:04.0000000+00:00'
-- author: Mixmaster49
-  changes: []
-  id: 127
-  time: '2025-11-03T17:10:49.0000000+00:00'
 - author: ReboundQ3
   changes:
     - type: Tweak
@@ -1317,10 +1301,6 @@ Entries:
       message: Added Cortexene and Saprodipine.
   id: 180
   time: '2026-01-27T13:54:05.0000000+00:00'
-- author: Added new pickup and drop sounds
-  changes: []
-  id: 181
-  time: '2026-01-27T18:35:03.0000000+00:00'
 - author: OnyxTheBrave
   changes:
     - type: Add
@@ -1637,3 +1617,409 @@ Entries:
       message: Some damaged Central Clothing.
   id: 225
   time: '2026-04-11T20:28:02.0000000+00:00'
+- author: NicoSGF64
+  changes:
+    - type: Add
+      message: The HoP has a new beret as well as new uniforms.
+    - type: Add
+      message: >-
+        All medical roles except for psychologists and medical interns now can
+        have gloves on their loadouts.
+    - type: Fix
+      message: Senior courier can no longer start shoeless.
+    - type: Fix
+      message: >-
+        Paramedics now can access their corresponding clothing both from their
+        loadout screen as well as opening the ETU can now included on their
+        locker.
+    - type: Fix
+      message: >-
+        Captains won't be forced to wear leather shoes anymore nor will a pair
+        appear on the floor magically.
+    - type: Tweak
+      message: >-
+        The CE, RD now have been assigned their corresponding berets instead of
+        generic departmental ones.
+  id: 226
+  time: '2026-04-12T15:51:49.0000000+00:00'
+- author: cooldolphin
+  changes:
+    - type: Add
+      message: Painkillers now available in medical at the start of the shift.
+  id: 227
+  time: '2026-04-15T17:28:43.0000000+00:00'
+- author: Boaz1111
+  changes:
+    - type: Add
+      message: Added synth markings from CD!
+  id: 228
+  time: '2026-04-16T13:29:15.0000000+00:00'
+- author: Boaz1111
+  changes:
+    - type: Remove
+      message: The end of round menu no longer shows information regarding antagonists.
+  id: 229
+  time: '2026-04-16T13:51:35.0000000+00:00'
+- author: Boaz1111
+  changes:
+    - type: Fix
+      message: Fixed some knives not fixing in lockers.
+  id: 230
+  time: '2026-04-18T16:07:25.0000000+00:00'
+- author: Zamshi8
+  changes:
+    - type: Add
+      message: Added new pickup, drop and equip sounds to some items and clothing
+  id: 231
+  time: '2026-04-24T18:22:52.0000000+00:00'
+- author: Mixmaster49
+  changes:
+    - type: Tweak
+      message: Less severe ion storms
+  id: 232
+  time: '2026-04-27T15:35:50.0000000+00:00'
+- author: lunarcomets
+  changes:
+    - type: Add
+      message: >-
+        feeding starving silicons by adding new screens and holograms for the AI
+        to choose from
+  id: 233
+  time: '2026-04-27T15:49:03.0000000+00:00'
+- author: lunarcomets
+  changes:
+    - type: Add
+      message: >-
+        AIs can now select which lawset they start with, and Cyborgs can now
+        select which type of brain their body has. Both are available via their
+        respective loadouts.
+  id: 234
+  time: '2026-04-27T16:22:31.0000000+00:00'
+- author: lunarcomets
+  changes:
+    - type: Add
+      message: added subtype support for cyborgs
+    - type: Add
+      message: >-
+        spidermin and qualified doctor subtypes are now available for mining and
+        medical cyborgs, respectively
+  id: 235
+  time: '2026-05-01T14:41:40.0000000+00:00'
+- author: Rose-Diere
+  changes:
+    - type: Tweak
+      message: Reptillians can now eat Chili and Chili con Carnival
+  id: 236
+  time: '2026-05-06T07:35:41.0000000+00:00'
+- author: Zamshi8
+  changes:
+    - type: Tweak
+      message: added some sounds to foxfolk to keep consistency with other species
+  id: 237
+  time: '2026-05-07T17:21:42.0000000+00:00'
+- author: BackeTako
+  changes:
+    - type: Add
+      message: Frostbitey Personal Item
+  id: 238
+  time: '2026-05-08T14:13:04.0000000+00:00'
+- author: purpleskittleo
+  changes:
+    - type: Add
+      message: Added two news ambiences.
+    - type: Add
+      message: Added four new event tracks. Have fun!
+  id: 239
+  time: '2026-05-08T14:20:34.0000000+00:00'
+- author: Sophia12434
+  changes:
+    - type: Add
+      message: Mamba the Syndicate Battlecruiser
+    - type: Add
+      message: Copperhead the Syndicate Spycraft(The salv destroyer 9000)
+  id: 240
+  time: '2026-05-09T17:10:33.0000000+00:00'
+- author: Boaz1111
+  changes:
+    - type: Add
+      message: Ports the sofas and benches from CD.
+  id: 241
+  time: '2026-05-13T06:42:47.0000000+00:00'
+- author: NicoSGF64
+  changes:
+    - type: Add
+      message: >-
+        Ported chat indicators for talking on radio, talking on LOOC, emoting,
+        whispering and writing on paper from Delta-V
+  id: 242
+  time: '2026-05-16T15:48:02.0000000+00:00'
+- author: Blackern5000
+  changes:
+    - type: Fix
+      message: Fixed certain gauze arm markings incorrectly using the "Overlay" layer
+  id: 243
+  time: '2026-05-16T15:51:00.0000000+00:00'
+- author: lambdatiger
+  changes:
+    - type: Tweak
+      message: Changed Packed_SM internal station ID.
+  id: 244
+  time: '2026-05-16T15:51:52.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Fix
+      message: Fixed the electropack.
+  id: 245
+  time: '2026-05-18T15:50:54.0000000+00:00'
+- author: akirrer
+  changes:
+    - type: Add
+      message: Added a new Syndicate sniper rifle.
+    - type: Add
+      message: Added a new caliber, .338 lapua.
+    - type: Tweak
+      message: Tweaked large ammo casing sprites to accept colored tips.
+  id: 246
+  time: '2026-05-18T16:37:44.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Tweak
+      message: various spent casings can be spawned in the spawn menu.
+  id: 247
+  time: '2026-05-24T10:36:52.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Tweak
+      message: Shuttles should dock normally again
+  id: 248
+  time: '2026-05-24T11:38:48.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Add
+      message: Added a faction verb menu for the GM's.
+  id: 249
+  time: '2026-05-25T14:24:58.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Add
+      message: >-
+        You can now dump ores in to the ore processor with your ore-bag using
+        left click.
+  id: 250
+  time: '2026-05-25T14:25:44.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Tweak
+      message: Torches now last longer, but emit less light.
+  id: 251
+  time: '2026-05-26T08:48:11.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Added a broken APC entity.
+  id: 252
+  time: '2026-05-29T15:29:42.0000000+00:00'
+- author: Boaz1111
+  changes:
+    - type: Fix
+      message: Prevents loneOps from spawning.
+  id: 253
+  time: '2026-06-02T18:40:00.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Added a new variant of the abomination
+  id: 254
+  time: '2026-06-02T18:43:31.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Remove
+      message: Frozen Abominations now have a new texture.
+  id: 255
+  time: '2026-06-06T12:29:50.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Tweak
+      message: GM's can now send custom mail.
+  id: 256
+  time: '2026-06-06T12:39:43.0000000+00:00'
+- author: NicoSGF64
+  changes:
+    - type: Add
+      message: Ported magical fire from Sector Umbra.
+  id: 257
+  time: '2026-06-06T12:40:30.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Added a new event map.
+  id: 258
+  time: '2026-06-07T13:13:46.0000000+00:00'
+- author: Onyx_The_Brave, HexReject
+  changes:
+    - type: Add
+      message: Added a personal item for Oktavian Llewelyn.
+  id: 259
+  time: '2026-06-18T08:46:08.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Added a HealNearby component for map makers and GMs.
+  id: 260
+  time: '2026-06-24T11:36:40.0000000+00:00'
+- author: Anzuneth
+  changes:
+    - type: Tweak
+      message: Leg paralysis now allows very slow movement via crawling
+    - type: Tweak
+      message: Wheelchairs now allow you to use both hands
+    - type: Fix
+      message: Updated internal wheelchair functionality to be less buggy
+  id: 261
+  time: '2026-06-30T07:04:57.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Fix
+      message: You can now deconstruct broken APCs.
+    - type: Tweak
+      message: APCs will now turn into broken APCs when damaged.
+  id: 262
+  time: '2026-06-30T07:06:23.0000000+00:00'
+- author: HexReject
+  changes:
+    - type: Add
+      message: R&D has been given gear to make them stand out
+  id: 263
+  time: '2026-07-03T14:07:18.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Added a bonfire that can be used as a microwave
+  id: 264
+  time: '2026-07-03T15:11:04.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Tweak
+      message: Updated event map.
+  id: 265
+  time: '2026-07-04T11:07:04.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Fix
+      message: Hypohonia is fixed again.
+  id: 266
+  time: '2026-07-08T23:30:17.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Tweak
+      message: Removed snowball from rotation.
+  id: 267
+  time: '2026-07-11T22:39:31.0000000+00:00'
+- author: lambdatiger
+  changes:
+    - type: Add
+      message: Amber back into map pool.
+  id: 268
+  time: '2026-07-12T13:09:13.0000000+00:00'
+- author: lambdatiger
+  changes:
+    - type: Add
+      message: In-hand alternate interaction to cycle door remote.
+  id: 269
+  time: '2026-07-12T13:11:45.0000000+00:00'
+- author: qu4drivium
+  changes:
+    - type: Tweak
+      message: Rodentia starve at a slower rate.
+  id: 270
+  time: '2026-07-13T16:52:15.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Add
+      message: Added the ability to set custom objectives for antags.
+  id: 271
+  time: '2026-07-25T17:53:20.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Tweak
+      message: 'Admin OOC messages are not a giant line of one color anymore. '
+  id: 272
+  time: '2026-07-25T18:07:54.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Tweak
+      message: Increased timeout for Holopads to 600 seconds.
+  id: 274
+  time: '2026-08-15T13:03:45.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: Added a new lobby art.
+    - type: Remove
+      message: Removed two lobby arts from Harmony.
+  id: 275
+  time: '2026-08-19T11:19:38.0000000+00:00'
+- author: BackeTako
+  changes:
+    - type: Add
+      message: Added Empty Portal Frame
+  id: 277
+  time: '2026-08-22T07:47:58.0000000+00:00'
+- author: Onyx_The_Brave, HexReject
+  changes:
+    - type: Add
+      message: Added the CentComm armored winter coat
+    - type: Tweak
+      message: added a few clothing item from harmony back into the captain's loadouts
+  id: 278
+  time: '2026-08-28T12:31:59.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Tweak
+      message: Document character limit changed to 16384.
+  id: 279
+  time: '2026-08-29T11:52:48.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Fix
+      message: hardsuits for foxfolk have been fixed.
+  id: 280
+  time: '2026-09-09T19:46:47.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Add
+      message: Added mapvotesv as a new command for GM's.
+    - type: Tweak
+      message: Made mapvotes have a preview.
+  id: 281
+  time: '2026-09-10T14:39:43.0000000+00:00'
+- author: lambdatiger
+  changes:
+    - type: Fix
+      message: Fixed Amber airlock, firelock, and blastdoor alignment.
+  id: 282
+  time: '2026-09-11T15:22:29.0000000+00:00'
+- author: lambdatiger
+  changes:
+    - type: Fix
+      message: Packed_SM resprite changes.
+  id: 283
+  time: '2026-09-12T16:25:46.0000000+00:00'
+- author: ReboundQ3
+  changes:
+    - type: Fix
+      message: Fixed the sounds for Avali, Resomi, Foxfolk and Rodentia.
+  id: 284
+  time: '2026-09-15T23:24:01.0000000+00:00'
+- author: lambdatiger
+  changes:
+    - type: Fix
+      message: Cluster respite changes and minor Security mapping requests.
+  id: 285
+  time: '2026-09-16T15:55:30.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: A handful of new signs for map makers
+  id: 286
+  time: '2026-09-16T16:24:24.0000000+00:00'

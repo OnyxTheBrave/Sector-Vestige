@@ -45,7 +45,8 @@
         - MobLayer
   - type: AshOnMeleeHit
     popup: ash-on-melee-smspider
-  - type: Damageable
+  - type: Damageable # Sector Vestige: Injurable needs its Damageable sister component or the mob takes no damage at all.
+  - type: Injurable
     damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
@@ -97,11 +98,7 @@
     speechVerb: Arachnid
   - type: TypingIndicator
     proto: robot
-  - type: Vocal
-    sounds:
-      Male: UnisexArachnid
-      Female: UnisexArachnid
-      Unsexed: UnisexArachnid
+  - type: Vocal # Sector Vestige: per-sex `sounds` dict removed upstream; voice now comes from humanoid Voice
   - type: AnimatedEmotes
   - type: Buckle
   - type: Climbing

@@ -31,6 +31,20 @@
     - "pillbottle_pickup.ogg"
     - "knife_drop.ogg"
     - "knife_pickup.ogg"
+    - paper_drop.ogg
+    - paper_pickup.ogg
+    - paper_throw.ogg
+    - paper_use.ogg
+    - cloth_drop.ogg
+    - cloth_pickuo.ogg
+    - genetic_eqip1.ogg
+    - genetic_eqip2.ogg
+    - genetic_eqip3.ogg
+    - genetic_eqip4.ogg
+    - genetic_eqip5.ogg
+    - generic_small_pickup.ogg
+    - drinkglass_pickup.ogg
+    - drinkglass_drop.ogg
   license: "CC-BY-SA-3.0"
   copyright: "https://github.com/ss220-space/Paradise/tree/master220/sound/items/handling"
   source: "https://github.com/Goob-Station/Goob-Station/pull/2940"

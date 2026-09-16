@@ -3,8 +3,9 @@
 # SPDX-FileCopyrightText: 2025 NakataRin <45946146+NakataRin@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 OrnamentalFreak <190691663+OrnamentalFreak@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Sadie <147350443+Sadie-silly@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 halycon <104782767+GithubEnjoyer1984@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -13,12 +14,7 @@
   copyright: "Created by pigeonbeans"
   source: "https://soundcloud.com/pigeonbeans/moodswings"
 
-- files: ["blatantly_nuclear.ogg"]
-  license: "Custom"
-  copyright: "Blatantly Nuclear by mrjajkes is licensed under the following terms: free use and modification with proper credit to the original creator, excluding usage by FulpStation, White Dream, Wizard's Den, and any ERP/sexually-oriented servers, or for commercial use unless granted permission by the author. For commercial use, please contact the author to discuss details."
-  source: "https://www.youtube.com/watch?v=f5URIS00IIc"
-
 - files: ["sponsored_by_syndicate.ogg"]
-  license: "Custom"
-  copyright: "Sponsored By Syndicate by mrjajkes is licensed under the following terms: free use and modification with proper credit to the original creator, excluding usage by FulpStation, White Dream, and any ERP/sexually-oriented servers, or for commercial use unless granted permission by the author. For commercial use (Patreon is fine). please contact the author to discuss details."
+  license: "CC-BY-3.0"
+  copyright: "Sponsored By Syndicate by mrjajkes"
   source: "https://youtu.be/vO_dMp4d3ew"

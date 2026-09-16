@@ -1,0 +1,34 @@
+# SPDX-FileCopyrightText: 2026 Cosmatic Drift contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2025 dffdff2423 <dffdff2423@gmail.com>
+# SPDX-FileCopyrightText: 2026 lunarcomets (GitHub)
+#
+# SPDX-License-Identifier: MIT
+
+# mining
+- type: entity
+  parent: BorgMiningSubtypeBase
+  id: MiningSpiderSubtype
+  name: spider miner
+  description: "Spider frame for a mining chassis."
+  components:
+  - type: BorgSubtypeDefinition
+    dummyPrototype: BorgChassisSpidermin
+
+    inventoryTemplateId: borgDutch
+    spritePath: _CD/Mobs/Silicon/Borg/Mining/spidermin.rsi
+
+    footstepCollection:
+      collection: FootstepThud
+
+# medical
+- type: entity
+  parent: BorgMedicalSubtypeBase
+  id: MedicalQualifiedDoctorSubtype
+  name: qualified doctor
+  description: "A board-certified cyborg for all your medical needs."
+  components:
+  - type: BorgSubtypeDefinition
+    dummyPrototype: BorgChassisQualifiedDoctor
+
+    spritePath: _CD/Mobs/Silicon/Borg/Medical/qualified_doctor.rsi

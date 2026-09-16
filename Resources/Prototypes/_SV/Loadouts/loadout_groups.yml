@@ -7,6 +7,7 @@
 # SPDX-FileCopyrightText: 2025 TheNarwhalrus <luca.patel.05@gmail.com>
 # SPDX-FileCopyrightText: 2026 Afrokada <pchcraft@gmail.com>
 # SPDX-FileCopyrightText: 2026 BackeTako <branne33@gmail.com>
+# SPDX-FileCopyrightText: 2026 Boaz1111 <149967078+Boaz1111@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 JuneSzalkowska <juneszalkowska@gmail.com>
 # SPDX-FileCopyrightText: 2026 MissKay1994 <15877268+MissKay1994@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 Nico <74880554+NicoSGF64@users.noreply.github.com>
@@ -14,9 +15,11 @@
 # SPDX-FileCopyrightText: 2026 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 TakoDragon <69509841+BackeTako@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 TakoDragon <branne33@gmail.com>
 # SPDX-FileCopyrightText: 2026 Zamshi8 <235235723+Zamshi8@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 lambdatiger <11843718+lambdatiger@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 lambdatiger <spam.stnuocca.sl@gmail.com>
+# SPDX-FileCopyrightText: 2026 lunarcomets <lunarcomets2@gmail.com>
 # SPDX-FileCopyrightText: 2026 qu4drivium <aaronholiver@outlook.com>
 # SPDX-FileCopyrightText: 2026 riv <234791249+qu4drivium@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 s3ptemb3rr (GitHub)
@@ -39,7 +42,7 @@
   - PersonalItemDawnPlushie
   - PersonalItemAttacusGuitar
   - PersonalItemJohanCodex
-  - PersonalItemJohanScarf
+  - PersonalItemJohanCoat
   - PersonalItemAlexiJacket
   - PersonalItemSerendipityGuitar
   - PersonalItemRiyadaCrucifix
@@ -57,6 +60,8 @@
   - PersonalItemGilaKnife
   - PersonalItemJagerGoggles
   - PersonalItemMelvynSatchel
+  - PersonalItemFrostbiteCoat
+  - PersonalItemOktavianFragment
 
 # Senior Courier
 - type: loadoutGroup
@@ -96,7 +101,6 @@
 - type: loadoutGroup
   id: SeniorCourierShoes
   name: loadout-group-vestige-shoes
-  minLimit: 0
   loadouts:
   - BlackShoes
   - CargoWinterBoots
@@ -138,3 +142,66 @@
   minLimit: 0
   loadouts:
   - MagistrateBriefcase
+
+# Medical gloves
+- type: loadoutGroup
+  id: MedicalGloves
+  name: loadout-group-vestige-gloves
+  minLimit: 0
+  loadouts:
+  - LatexGloves
+  - NitrileGloves
+
+- type: loadoutGroup
+  id: ParamedicGloves
+  parent: MedicalGloves
+  loadouts:
+  - GlovesETUGauntlet # CD
+
+# Ai laws
+- type: loadoutGroup
+  id: StationAiLawset
+  name: loadout-group-ai-lawset
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - Crewsimov
+  - NTDefault
+
+# NT R&D - Directorate bag choice
+- type: loadoutGroup
+  id: SVRnDBackpack
+  name: loadout-group-vestige-backpack
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - RnDBackpack
+  - RnDSatchel
+  - RnDDuffel
+
+# NT R&D - Field researcher uniform choice
+- type: loadoutGroup
+  id: SVRnDFieldUniform
+  name: loadout-group-vestige-jumpsuit
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - RnDFieldResearcherJumpsuit
+  - RnDFieldResearcherJumpskirt
+
+- type: loadoutGroup
+  id: SVRnDFieldHead
+  name: loadout-group-vestige-head
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - RnDFieldResearcherBeret
+
+# NT R&D - RCT goggles
+- type: loadoutGroup
+  id: SVRnDRCTGoggles
+  name: loadout-group-vestige-goggles
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - RnDRCTGoggles

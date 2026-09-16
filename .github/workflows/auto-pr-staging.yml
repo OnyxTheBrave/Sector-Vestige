@@ -1,0 +1,51 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+#
+# SPDX-License-Identifier: MIT
+
+name: "Auto PR: master -> staging"
+
+# Manually-triggered workflow that keeps a single open pull request proposing to
+# merge everything new on `master` into `staging`. Run it from the Actions tab
+# whenever you want to (re)build the promotion PR. Running it again refreshes the
+# overview in the body of the existing PR.
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: auto-pr-master-staging
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  open-pr:
+    runs-on: ubuntu-latest
+    steps:
+      # Full history, because the overview walks `staging..master` along first
+      # parents. blob:none and the sparse path keep that cheap.
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout: .github/scripts
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/github-script@v8
+        with:
+          # Use a PAT (not the default GITHUB_TOKEN) so the resulting PR is
+          # treated as user-created and triggers the normal CI workflows.
+          github-token: ${{ secrets.WEH_BOT_PAT }}
+          script: |
+            const promotionOverview = require(`${process.env.GITHUB_WORKSPACE}/.github/scripts/promotion-overview.js`);
+            await promotionOverview({
+              github,
+              context,
+              core,
+              base: 'staging',
+              head: 'master',
+              labels: ['Branch: Staging', 'Maintenance'],
+            });

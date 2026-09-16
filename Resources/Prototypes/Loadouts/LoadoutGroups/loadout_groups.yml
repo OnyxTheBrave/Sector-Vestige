@@ -40,7 +40,6 @@
 # SPDX-FileCopyrightText: 2025 Brassica Prime <114382089+Pumkin69@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Cass <45694413+CubixThree@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Hannah Giovanna Dawson <karakkaraz@gmail.com>
-# SPDX-FileCopyrightText: 2025 Hitlinemoss <209321380+Hitlinemoss@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Huaqas <zacswebb@gmail.com>
 # SPDX-FileCopyrightText: 2025 Jajsha <101492056+Zap527@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Julian Giebel <juliangiebel@live.de>
@@ -71,7 +70,10 @@
 # SPDX-FileCopyrightText: 2025 whythelettuce <stephanietokai@gmail.com>
 # SPDX-FileCopyrightText: 2025 youtissoum <51883137+youtissoum@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 Afrokada <pchcraft@gmail.com>
+# SPDX-FileCopyrightText: 2026 Hitlinemoss <209321380+Hitlinemoss@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 JuneSzalkowska <juneszalkowska@gmail.com>
+# SPDX-FileCopyrightText: 2026 K-Dynamic <20566341+K-Dynamic@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 Nico64 <74880554+NicoSGF64@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2026 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
@@ -80,6 +82,15 @@
 # SPDX-License-Identifier: MIT
 
 # Miscellaneous
+- type: loadoutGroup
+  id: Glasses
+  name: loadout-group-glasses
+  minLimit: 0
+  loadouts:
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+
 - type: loadoutGroup
   id: Trinkets
   name: loadout-group-trinkets
@@ -128,24 +139,22 @@
   - ClothingNeckTransPin
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
+  - TowelColorWhite
+  - CDDogtags #Sector Vestige - Dogtags to loadout
+  - ClothingNeckLanyard #Sector Vestige - lanyard to loadout
+
+- type: loadoutGroup
+  id: AssistiveItems
+  name: loadout-group-assistive-items
+  minLimit: 0
+  maxLimit: 1 # Increase this limit in the future once there's more assistive items than just canes!
+  loadouts:
   - OffsetCane
   - OffsetCaneWood
   - OffsetCaneClown
   - OffsetCaneMime
   - OffsetCaneNT
   - Cane
-  - TowelColorWhite
-  - CDDogtags #Sector Vestige - Dogtags to loadout
-  - ClothingNeckLanyard #Sector Vestige - lanyard to loadout
-
-- type: loadoutGroup
-  id: Glasses
-  name: loadout-group-glasses
-  minLimit: 0
-  loadouts:
-  - Glasses
-  - GlassesJamjar
-  - GlassesJensen
 
 - type: loadoutGroup
   id: GroupTankHarness
@@ -209,6 +218,8 @@
   - CaptainJumpskirt
   - CaptainFormalSuit
   - CaptainFormalSkirt
+  - CaptainHawaiianHarmony #Added by Harmony
+  - CaptainJumpsuitTurtleneckHarmony #Added by Harmony
 
 - type: loadoutGroup
   id: CaptainNeck
@@ -233,6 +244,7 @@
   loadouts:
   - CaptainOuterClothing
   - CaptainWintercoat
+  - CaptainArmoredWinterCoatHarmony #Added by Harmony
 
 #- type: loadoutGroup
 #  id: CaptainJobTrinkets
@@ -246,6 +258,7 @@
   minLimit: 0
   loadouts:
   - HoPHead
+  - HoPBeretHarmony # Added by SV
 
 - type: loadoutGroup
   id: HoPJumpsuit
@@ -253,6 +266,12 @@
   loadouts:
   - HoPJumpsuit
   - HoPJumpskirt
+# Begin SV changes - Add Harmony's clothing to loadouts
+  - HoPJumpsuitTurtleneckHarmony
+  - HoPJumpskirtTurtleneckHarmony
+  - HoPJumpsuitMessKitHarmony
+  - HoPJumpskirtMessKitHarmony
+# End SV changes
 
 - type: loadoutGroup
   id: HoPNeck
@@ -605,6 +624,7 @@
   loadouts:
   - JesterHat
   - JesterAltHat
+  - ClownMitre
 
 - type: loadoutGroup
   id: ClownJumpsuit
@@ -700,17 +720,6 @@
   loadouts:
   - MimeSuspendersRed
   - MimeSuspendersBlack
-
-- type: loadoutGroup
-  id: SurvivalMime
-  name: loadout-group-survival-mime
-  minLimit: 2
-  hidden: true
-  loadouts:
-  - EmergencyNitrogenMime
-  - EmergencyOxygenMime
-  - EmergencySpeciesMothMime
-  - LoadoutSpeciesVoxNitrogen
 
 #- type: loadoutGroup
 #  id: MimeJobTrinkets
@@ -920,7 +929,8 @@
   minLimit: 0
   loadouts:
   - ChiefEngineerHead
-  - ChiefEngineerBeret
+  - CEBeretHarmony # Added by SV
+  # - ChiefEngineerBeret # Removed by SV
 
 - type: loadoutGroup
   id: ChiefEngineerJumpsuit
@@ -1096,7 +1106,8 @@
   name: loadout-group-vestige-head #Changed by SV
   minLimit: 0
   loadouts:
-  - ResearchDirectorBeret
+  - RDBeretHarmony # Added by SV
+  # - ResearchDirectorBeret # Removed by SV
 
 - type: loadoutGroup
   id: ResearchDirectorNeck
@@ -1411,6 +1422,7 @@
   - DetectiveArmorVest
   - DetectiveCoat
   - DetectiveCoatGrey
+  - SecurityOfficerWintercoat
   - ForensicJacket # CD
 
 - type: loadoutGroup
@@ -1485,9 +1497,49 @@
 #  minLimit: 0
 #  loadouts:
 
-# Other
 - type: loadoutGroup
-  id: SurvivalSyndicate
+  id: TramDriverJumpsuit
+  name: loadout-group-tramdriver-jumpsuit
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - TramDriverJumpsuit
+
+- type: loadoutGroup
+  id: TramDriverOuterClothing
+  name: loadout-group-tramdriver-outerclothing
+  minLimit: 0
+  loadouts:
+  - TramDriverSuit
+
+- type: loadoutGroup
+  id: TramDriverHat
+  name: loadout-group-tramdriver-hat
+  loadouts:
+  - TramDriverHat
+
+- type: loadoutGroup
+  id: TramDriverGloves
+  name: loadout-group-tramdriver-gloves
+  minLimit: 0
+  loadouts:
+  - TramDriverGlovesWhite
+  - TramDriverGlovesBlack
+
+# Other
+
+- type: loadoutGroup
+  id: SurvivalExtendedAntag # Larger survival box containing food/water, used by antags that spawn off-station (e.g ninjas, wizards)
+  name: loadout-group-survival-extended
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyNitrogenExtendedAntag
+  - EmergencyOxygenExtendedAntag
+  - LoadoutSpeciesVoxNitrogen
+
+- type: loadoutGroup
+  id: SurvivalSyndicate # Larger survival box containing food, used by syndicate operatives that spawn off-station (e.g nukies)
   name: loadout-group-survival-syndicate
   minLimit: 2
   hidden: true
@@ -1497,7 +1549,7 @@
   - LoadoutSpeciesVoxNitrogen
 
 - type: loadoutGroup
-  id: SurvivalMilitaryDouble
+  id: SurvivalMilitaryDouble # Survival box mostly used by ERT/deathsquad
   name: loadout-group-survival-military
   minLimit: 2
   hidden: true

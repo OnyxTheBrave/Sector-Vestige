@@ -1,0 +1,29 @@
+# SPDX-FileCopyrightText: 2026 Sector-Vestige contributors
+# SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+# SPDX-FileCopyrightText: 2026 BackeTako (GitHub)
+# SPDX-FileCopyrightText: 2026 TakoDragon <branne33@gmail.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Player: Frostbitey - Character: Frostbite-Drago
+- type: entity
+  parent: ClothingOuterWinterCoat
+  id: PersonalItemFrostbiteCoat
+  name: frosty winter coat
+  description: A delicate, precisely made winter coat with a small label that says "Frostbite-Drago", it seems to be covered in a light layer of frost.
+  suffix: PersonalItem
+  components:
+  - type: Sprite
+    sprite: _SV/PersonalItems/Wearables/frostbitecoat.rsi
+  - type: Clothing
+    sprite: _SV/PersonalItems/Wearables/frostbitecoat.rsi
+
+- type: loadout
+  id: PersonalItemFrostbiteCoat
+  storage:
+    back:
+    - PersonalItemFrostbiteCoat
+  effects:
+  - !type:PersonalItemLoadoutEffect
+     character:
+      - Frostbite-Drago

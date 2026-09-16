@@ -1,21 +1,23 @@
-// SPDX-FileCopyrightText: 2025 Wizards Den contributors
-// SPDX-FileCopyrightText: 2025 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2026 Wizards Den contributors
+// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
 // SPDX-FileCopyrightText: 2025 J <billsmith116@gmail.com>
 // SPDX-FileCopyrightText: 2025 OnyxTheBrave <131422822+OnyxTheBrave@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+// SPDX-FileCopyrightText: 2025 Samuka <47865393+Samuka-C@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 keronshb <54602815+keronshb@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 Boaz1111 <149967078+Boaz1111@users.noreply.github.com>
 //
 // SPDX-License-Identifier: MIT
 
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
-using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Objectives.Systems;
 using Content.Shared.Roles.Components;
 using Content.Shared.Survivor.Components;
 using Content.Shared.Tag;
@@ -24,15 +26,15 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComponent>
+public sealed partial class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComponent>
 {
-    [Dependency] private readonly RoleSystem _role = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly TransformSystem _xform = default!;
-    [Dependency] private readonly EmergencyShuttleSystem _eShuttle = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private EmergencyShuttleSystem _eShuttle = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private RoleSystem _role = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private AliveHumanoidTargetSystem _target = default!;
+    [Dependency] private TransformSystem _xform = default!;
 
     private static readonly ProtoId<TagPrototype> InvalidForSurvivorAntagTag = "InvalidForSurvivorAntag";
 
@@ -48,7 +50,7 @@ public sealed class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComponent>
     {
         base.Started(uid, component, gameRule, args);
 
-        var allAliveHumanMinds = _mind.GetAliveHumans();
+        var allAliveHumanMinds = _target.GetMinds();
 
         foreach (var humanMind in allAliveHumanMinds)
         {
@@ -72,52 +74,52 @@ public sealed class SurvivorRuleSystem : GameRuleSystem<SurvivorRuleComponent>
         args.Append(Loc.GetString("survivor-role-greeting"));
     }
 
-    protected override void AppendRoundEndText(EntityUid uid,
-        SurvivorRuleComponent component,
-        GameRuleComponent gameRule,
-        ref RoundEndTextAppendEvent args)
-    {
-        base.AppendRoundEndText(uid, component, gameRule, ref args);
+    // protected override void AppendRoundEndText(EntityUid uid,
+    //     SurvivorRuleComponent component,
+    //     GameRuleComponent gameRule,
+    //     ref RoundEndTextAppendEvent args)
+    // {
+    //     base.AppendRoundEndText(uid, component, gameRule, ref args);
 
-        // Using this instead of alive antagonists to make checking for shuttle & if the ent is alive easier
-        var existingSurvivors = AllEntityQuery<SurvivorComponent, MindComponent>();
+    //     // Using this instead of alive antagonists to make checking for shuttle & if the ent is alive easier
+    //     var existingSurvivors = AllEntityQuery<SurvivorComponent, MindComponent>();
 
-        var deadSurvivors = 0;
-        var aliveMarooned = 0;
-        var aliveOnShuttle = 0;
-        var eShuttle = _eShuttle.GetShuttle();
+    //     var deadSurvivors = 0;
+    //     var aliveMarooned = 0;
+    //     var aliveOnShuttle = 0;
+    //     var eShuttle = _eShuttle.GetShuttle();
 
-        while (existingSurvivors.MoveNext(out _, out _, out var mindComp))
-        {
-            // If their brain is gone or they respawned/became a ghost role
-            if (mindComp.CurrentEntity is null)
-            {
-                deadSurvivors++;
-                continue;
-            }
+    //     while (existingSurvivors.MoveNext(out _, out _, out var mindComp))
+    //     {
+    //         // If their brain is gone or they respawned/became a ghost role
+    //         if (mindComp.CurrentEntity is null)
+    //         {
+    //             deadSurvivors++;
+    //             continue;
+    //         }
 
-            var survivor = mindComp.CurrentEntity.Value;
+    //         var survivor = mindComp.CurrentEntity.Value;
 
-            if (!_mobState.IsAlive(survivor))
-            {
-                deadSurvivors++;
-                continue;
-            }
+    //         if (!_mobState.IsAlive(survivor))
+    //         {
+    //             deadSurvivors++;
+    //             continue;
+    //         }
 
-            if (eShuttle != null && eShuttle.Value.IsValid() && (Transform(eShuttle.Value).MapID == _xform.GetMapCoordinates(survivor).MapId))
-            {
-                aliveOnShuttle++;
-                continue;
-            }
+    //         if (eShuttle != null && eShuttle.Value.IsValid() && (Transform(eShuttle.Value).MapID == _xform.GetMapCoordinates(survivor).MapId))
+    //         {
+    //             aliveOnShuttle++;
+    //             continue;
+    //         }
 
-            aliveMarooned++;
-        }
+    //        aliveMarooned++;
+    //     }
 
-        args.AddLine(Loc.GetString("survivor-round-end-dead-count", ("deadCount", deadSurvivors)));
-        args.AddLine(Loc.GetString("survivor-round-end-alive-count", ("aliveCount", aliveMarooned)));
-        args.AddLine(Loc.GetString("survivor-round-end-alive-on-shuttle-count", ("aliveCount", aliveOnShuttle)));
-        args.AddLine("");
+    //     args.AddLine(Loc.GetString("survivor-round-end-dead-count", ("deadCount", deadSurvivors)));
+    //     args.AddLine(Loc.GetString("survivor-round-end-alive-count", ("aliveCount", aliveMarooned)));
+    //     args.AddLine(Loc.GetString("survivor-round-end-alive-on-shuttle-count", ("aliveCount", aliveOnShuttle)));
+    //     args.AddLine("");
 
-        // Player manifest at EOR shows who's a survivor so no need for extra info here.
-    }
+    //     // Player manifest at EOR shows who's a survivor so no need for extra info here.
+    // }
 }

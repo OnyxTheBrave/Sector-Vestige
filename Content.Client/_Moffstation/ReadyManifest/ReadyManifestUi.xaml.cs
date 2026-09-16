@@ -22,8 +22,8 @@ namespace Content.Client._Moffstation.ReadyManifest;
 [GenerateTypedNameReferences]
 public sealed partial class ReadyManifestUi : DefaultWindow
 {
-    [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntitySystemManager _entitySystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
     private readonly SpriteSystem _spriteSystem;
 
     public ReadyManifestUi()
@@ -58,7 +58,11 @@ public sealed partial class ReadyManifestUi : DefaultWindow
             ReadyManifestListing.AddChild(category);
             var jobs = department.Roles.Select(jobId => _prototypeManager.Index(jobId))
                 .Where(job => job.SetPreference)
-                .Order(JobUIComparer.Instance);
+                .ToList();
+
+            // Sector Vestige: JobUIComparer is now driven by a job-weight profile; retain source order without one.
+            if (JobUIComparer.TryCreate(_prototypeManager, null, out var jobComparer))
+                jobs.Sort(jobComparer);
 
             foreach (var job in jobs)
             {

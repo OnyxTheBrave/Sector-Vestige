@@ -1,3 +1,14 @@
+// SPDX-FileCopyrightText: 2026 Wizards Den contributors
+// SPDX-FileCopyrightText: 2026 Sector Vestige contributors (modifications)
+// SPDX-FileCopyrightText: 2025 J <billsmith116@gmail.com>
+// SPDX-FileCopyrightText: 2025 ReboundQ3 <ReboundQ3@gmail.com>
+// SPDX-FileCopyrightText: 2025 ScarKy0 <106310278+ScarKy0@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 lzk <124214523+lzk228@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2026 ReboundQ3 <22770594+ReboundQ3@users.noreply.github.com>
+//
+// SPDX-License-Identifier: MIT
+
 using System.Linq;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Examine;
@@ -21,16 +32,16 @@ namespace Content.Shared.Delivery;
 /// Shared side of the DeliverySystem.
 /// This covers for letters/packages, as well as spawning a reward for the player upon opening.
 /// </summary>
-public abstract class SharedDeliverySystem : EntitySystem
+public abstract partial class SharedDeliverySystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly FingerprintReaderSystem _fingerprintReader = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly NameModifierSystem _nameModifier = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private FingerprintReaderSystem _fingerprintReader = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private NameModifierSystem _nameModifier = default!;
 
     private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
     private static readonly ProtoId<TagPrototype> RecyclableTag = "Recyclable";
@@ -145,9 +156,9 @@ public abstract class SharedDeliverySystem : EntitySystem
             {
                 _audio.PlayPredicted(ent.Comp.OpenSound, ent.Owner, user);
 
-                if(ent.Comp.ContainedDeliveryAmount == 0)
+                if (ent.Comp.ContainedDeliveryAmount == 0)
                 {
-                    _popup.PopupPredicted(Loc.GetString("delivery-teleporter-empty", ("entity", ent)), null, ent, user);
+                    _popup.PopupEntity(Loc.GetString("delivery-teleporter-empty", ("entity", ent)), ent, user);
                     return;
                 }
 
@@ -184,8 +195,9 @@ public abstract class SharedDeliverySystem : EntitySystem
             GrantSpesoReward(ent.AsNullable());
 
         if (!force)
-            _popup.PopupPredicted(Loc.GetString("delivery-unlocked-self", ("delivery", deliveryName)),
-                Loc.GetString("delivery-unlocked-others", ("delivery", deliveryName), ("recipient", Identity.Entity(user, EntityManager)), ("possadj", user)), user, user);
+            _popup.PopupEntity(Loc.GetString("delivery-unlocked-self", ("delivery", deliveryName)),
+                Loc.GetString("delivery-unlocked-others", ("delivery", deliveryName), ("recipient", Identity.Entity(user, EntityManager)), ("possadj", user)),
+                user, user);
 
         return true;
     }
@@ -212,8 +224,9 @@ public abstract class SharedDeliverySystem : EntitySystem
         DirtyField(ent.Owner, ent.Comp, nameof(DeliveryComponent.IsOpened));
 
         if (!force)
-            _popup.PopupPredicted(Loc.GetString("delivery-opened-self", ("delivery", deliveryName)),
-                Loc.GetString("delivery-opened-others", ("delivery", deliveryName), ("recipient", Identity.Entity(user, EntityManager)), ("possadj", user)), user, user);
+            _popup.PopupEntity(Loc.GetString("delivery-opened-self", ("delivery", deliveryName)),
+                Loc.GetString("delivery-opened-others", ("delivery", deliveryName), ("recipient", Identity.Entity(user, EntityManager)), ("possadj", user)),
+                user, user);
 
         if (!_container.TryGetContainer(ent, ent.Comp.Container, out var container))
             return;
