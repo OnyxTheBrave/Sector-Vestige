@@ -2017,3 +2017,9 @@ Entries:
       message: Cluster respite changes and minor Security mapping requests.
   id: 285
   time: '2026-09-16T15:55:30.0000000+00:00'
+- author: OnyxTheBrave
+  changes:
+    - type: Add
+      message: A handful of new signs for map makers
+  id: 286
+  time: '2026-09-16T16:24:24.0000000+00:00'
