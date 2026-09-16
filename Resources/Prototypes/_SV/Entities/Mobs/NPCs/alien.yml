@@ -20,12 +20,10 @@
       reagents:
       - ReagentId: Blood
         Quantity: 1500
-      - ReagentId: Saline
-        Quantity: 1 #Fix that bloodloss queen
   - type: Sprite
     drawdepth: Mobs
     sprite: _SV/Mobs/Demons/myoqueen.rsi
-#    offset: 0,0.4
+    offset: 0,0.4
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: alive
