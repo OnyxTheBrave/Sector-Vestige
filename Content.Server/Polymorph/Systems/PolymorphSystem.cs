@@ -113,12 +113,16 @@ public sealed partial class PolymorphSystem : EntitySystem
                 continue;
             }
 
+            // SV - Begin: Polymorph exit effect refactor
+            // Checks to see if the timestamp that is set in TryRevertAfterTimerAndPlayEffect has passed, and only revert after that event.
+            // Does not fire if the default value, TimeSpan.Zero is set. Even a time of now should have a timestamp to when the event should follow, AKA CurTime
             if (_gameTiming.CurTime >= comp.Configuration.TimeTillRevert &&
                 comp.Configuration.TimeTillRevert != TimeSpan.Zero)
             {
                 Revert((uid, comp));
                 continue;
             }
+            // SV - End: Polymorph exit effect refactor
 
             if (!TryComp<MobStateComponent>(uid, out var mob))
                 continue;
@@ -174,7 +178,7 @@ public sealed partial class PolymorphSystem : EntitySystem
     private void OnRevertPolymorphActionEvent(Entity<PolymorphedEntityComponent> ent,
         ref RevertPolymorphActionEvent args)
     {
-        TryRevertAfterTimerAndPlayEffect((ent, ent));
+        TryRevertAfterTimerAndPlayEffect((ent, ent)); //SV: Polymorph effect refactor
     }
 
     private void OnBeforeToolRefined(Entity<PolymorphedEntityComponent> ent, ref BeforeToolRefinedEvent args)
@@ -183,7 +187,7 @@ public sealed partial class PolymorphSystem : EntitySystem
             return;
 
         args.Cancelled = true;
-        Revert((ent, ent));
+        TryRevertAfterTimerAndPlayEffect((ent, ent)); //SV: Polymorph effect refactor
     }
 
     /// <summary>
@@ -485,10 +489,13 @@ public sealed partial class PolymorphSystem : EntitySystem
             _actions.RemoveAction(target.Owner, action);
     }
 
-    //SV Helper function
-    //Set a timer to revert after a time specified in the polymorph configuration component
-    //Also where we move the Effects to play
-    //I wonder what other functions I'll cram into here
+    /// <summary>
+    /// SV Helper function
+    /// Set a timer to revert after a time specified in the polymorph configuration component
+    /// Also where we move the Effects to play
+    /// I wonder what other functions I'll cram into here
+    /// </summary>
+    /// <param name="uid">The entityuid of the entity being reverted</param>
     public void TryRevertAfterTimerAndPlayEffect(Entity<PolymorphedEntityComponent?> ent)
     {
         var (uid, component) = ent;
