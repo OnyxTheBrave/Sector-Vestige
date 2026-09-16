@@ -2023,3 +2023,9 @@ Entries:
       message: A handful of new signs for map makers
   id: 286
   time: '2026-09-16T16:24:24.0000000+00:00'
+- author: HexReject
+  changes:
+    - type: Add
+      message: Added new Res and R&D Signs
+  id: 287
+  time: '2026-09-16T17:29:39.0000000+00:00'
