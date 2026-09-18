@@ -32,7 +32,7 @@
   description: A direction sign, pointing out which way a place labelled "COMMND" is.
   components:
   - type: Sprite
-    sprite: _SV/Structures/Wallmount/signs.rsi
+    sprite: _SV/Structures/Wallmounts/signs.rsi
     state: direction_altCommand
 
 - type: entity
@@ -42,7 +42,7 @@
   description: A direction sign, pointing out which way a place labelled "CRYOGN" is.
   components:
   - type: Sprite
-    sprite: _SV/Structures/Wallmount/signs.rsi
+    sprite: _SV/Structures/Wallmounts/signs.rsi
     state: direction_altCryo
 
 - type: entity
@@ -52,7 +52,7 @@
   description: A direction sign, pointing out which way a place labelled "DATA" is.
   components:
   - type: Sprite
-    sprite: _SV/Structures/Wallmount/signs.rsi
+    sprite: _SV/Structures/Wallmounts/signs.rsi
     state: direction_altData
 
 - type: entity
@@ -62,7 +62,7 @@
   description: A direction sign, pointing out which way a place labelled "HABITN" is.
   components:
   - type: Sprite
-    sprite: _SV/Structures/Wallmount/signs.rsi
+    sprite: _SV/Structures/Wallmounts/signs.rsi
     state: direction_altHabitation
 
 - type: entity
@@ -72,7 +72,7 @@
   description: A direction sign, pointing out which way a place labelled "HEAVY" is.
   components:
   - type: Sprite
-    sprite: _SV/Structures/Wallmount/signs.rsi
+    sprite: _SV/Structures/Wallmounts/signs.rsi
     state: direction_altHeavy
 
 - type: entity
@@ -82,7 +82,7 @@
   description: A direction sign, pointing out which way a place labelled "MEDIUM" is.
   components:
   - type: Sprite
-    sprite: _SV/Structures/Wallmount/signs.rsi
+    sprite: _SV/Structures/Wallmounts/signs.rsi
     state: direction_altMedium
 
 - type: entity
@@ -92,7 +92,7 @@
   description: A direction sign, pointing out which way a place labelled "LIGHT" is.
   components:
   - type: Sprite
-    sprite: _SV/Structures/Wallmount/signs.rsi
+    sprite: _SV/Structures/Wallmounts/signs.rsi
     state: direction_altLight
 
 - type: entity
@@ -102,7 +102,7 @@
   description: A direction sign, pointing out which way a place labelled "MEDICAL" is.
   components:
   - type: Sprite
-    sprite: _SV/Structures/Wallmount/signs.rsi
+    sprite: _SV/Structures/Wallmounts/signs.rsi
     state: direction_altMedical
 
 - type: entity
@@ -112,5 +112,5 @@
   description: A direction sign, pointing out which way a place labelled "OFFICES" is.
   components:
   - type: Sprite
-    sprite: _SV/Structures/Wallmount/signs.rsi
+    sprite: _SV/Structures/Wallmounts/signs.rsi
     state: direction_altOffices
