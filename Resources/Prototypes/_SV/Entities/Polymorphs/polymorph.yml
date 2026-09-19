@@ -19,4 +19,3 @@
     maxZoom: 1.44,1.44
   - type: Eye
     drawFov: false
-
